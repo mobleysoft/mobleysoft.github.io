@@ -10,9 +10,28 @@
         justify-content: center;
         align-items: center;
       }
+      
+      section {
+        background: dark grey;
+        color: lime;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) 
+      }
+  </style>
+  <section>
+    <h1>Nicely centered</h1>
+    <p>This text block is vertically centered.
+    <p>Horizontally, too, if the window is wide enough.
+  </section>
+      
     </style>
   </head>
   <body>
-    <div class="center"><h1 style="color:lime;" ><a href="mailto:jmobley@mobleysoft.com">jmobley@mobleysoft.com</a></h1></div>
+    <section><h1><a href="mailto:jmobley@mobleysoft.com">jmobley@mobleysoft.com</a></h1></section>
   </body>
 </html>
