@@ -6,6 +6,48 @@
     <link href='https://fonts.googleapis.com/css?family=Stalinist One' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+      .search {
+        width: 100%;
+        position: relative;
+        display: flex;
+      }
+
+      .searchTerm {
+        width: 100%;
+        border: 3px solid #00B4CC;
+        border-right: none;
+        padding: 5px;
+        height: 20px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #9DBFAF;
+      }
+
+      .searchTerm:focus{
+        color: #00B4CC;
+      }
+
+      .searchButton {
+        width: 40px;
+        height: 36px;
+        border: 1px solid #00B4CC;
+        background: #00B4CC;
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      /*Resize the wrap to see the search bar change!*/
+      .wrap{
+        width: 30%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
       @keyframes flicker {
         0% {
         opacity: 0.27861;
@@ -71,6 +113,7 @@
         opacity: 0.24387;
         }
       }
+      
       @keyframes textShadow {
         0% {
         text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
@@ -215,11 +258,21 @@
       transform: translate(-50%, -50%) 
       }
       .material-icons.lime { color: lime; }
+      #rcorners3 {
+        border-radius: 50%;
+        border-width:medium;
+        border-color:lime;
+        background: black;
+        padding: 20px; 
+        width: 200px;
+        height: 150px;
+      } 
   </style>      
   </head>
   <body class="crt">
-    <section><h1><a href="#" onclick="window.location='mailto:jmobley@mobleysoft.com?'; return false;" ><i class="material-icons md-48 lime">mail_outline</i></a></h1><br/>
-      <i class="material-icons md-48 outlined">movie</i>
+    <section><h1 class="stalinist">Mobleysoft</h1><br/>
+      <a href="#" onclick="window.location='mailto:jmobley@mobleysoft.com?'; return false;" ><i class="material-icons md-48 lime">mail_outline</i></a>
+      <i class="material-icons md-48 lime">movie_outline</i>
     </section>
   </body>
 </html>
