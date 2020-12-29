@@ -31,7 +31,7 @@
     }
 
     a:hover {
-      color: Chartreuse;
+      color: #7fff00;
       background-color: transparent;
       text-decoration: underline;
     }
@@ -40,6 +40,26 @@
       color: yellow;
       background-color: transparent;
       text-decoration: underline;
+    }
+
+  img:link {
+      color: Lime;
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    img:visited {
+      color: lime;
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    img:hover {
+      filter: brightness(0) saturate(100%) invert(76%) sepia(82%) saturate(559%) hue-rotate(34deg) brightness(97%) contrast(114%);
+    }
+
+    img:active {
+      filter:brightness(0) saturate(100%) invert(87%) sepia(59%) saturate(2587%) hue-rotate(350deg) brightness(107%) contrast(107%);
     }
 
     .flickeringBorder {
@@ -73,11 +93,19 @@
     #offsetTextI {
       animation: text-flicker 5s linear infinite;
     }
+
     #offsetTextG {
       animation: text-flicker 6s linear infinite;
     }
-    #offsetTextS {
+    #offsetTextR {
       animation: text-flicker 7s linear infinite;
+    }
+    #offsetTextS {
+      animation: text-flicker 8s linear infinite;
+    }
+
+    #offsetTextM {
+      animation: text-flicker 9s linear infinite;
     }
 
     .flickeringLogo {
@@ -670,7 +698,7 @@
       border-style: solid;
       border-color: lime;
       border-radius: 45px;
-      width: 720px;
+      width: 526px;
       line-height: normal;
     }
 
@@ -684,26 +712,32 @@
       padding-left: 25px;
       padding-right: 25px;
       padding-top: 10px;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       line-height: normal;
       font-size: 48px;
       font-family: 'Iceland', cursive;
     }
 
-    input:focus { color: lime }
+    input:focus {
+      color: lime
+    }
 
     .buttonBar {
       padding-top: 10px;
-      padding-left: 9px;
+      padding-left: 10px;
+      text-align: center;
       z-index: 4;
     }
 
     .logo {
-      font-size: 64px;
+      font-size: 48px;
       text-align: center;
       z-index: 3;
     }
-    .md-96 { font-size: 96px; }
+
+    .md-64 {
+      font-size: 64px;
+    }
   </style>
 </head>
 
@@ -718,17 +752,22 @@
         <div class="searchBar flickeringBorder flickeringShadow"><input type="text" class="searchInput"></div>
         <div class="buttonBar flickeringText">
           <a href="#" onclick="Show(MoblysoftInfo)">
-            <i class="material-icons-outlined  md-96 lime">help</i></a>
+            <i class="material-icons-outlined  md-64 lime">help</i></a>
           <span id="offsetTextE"><a href="mailto:jmobley@mobleysoft.com" onclick="javascript:email()">
-              <i class="material-icons-outlined md-96 lime">mail</i></a></span>
+              <i class="material-icons-outlined md-64 lime">mail</i></a></span>
           <span id="offsetTextM"><a href="https://mobleysoft.github.io/MobleyFilmCo.html">
-              <i class="material-icons-outlined md-96 lime">movie</i></a></span>
+              <i class="material-icons-outlined md-64 lime">movie</i></a></span>
           <span id="offsetTextI"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
-              <i class="material-icons-outlined  md-96 lime">savings</i></a></span>
-              <span id="offsetTextG"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
-                <i class="material-icons-outlined  md-96 lime">sports_esports</i></a></span>
-                <span id="offsetTextS"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
-                  <i class="material-icons-outlined  md-96 lime">science</i></a></span>
+              <i class="material-icons-outlined  md-64 lime">savings</i></a></span>
+          <span id="offsetTextG"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+              <i class="material-icons-outlined  md-64 lime">sports_esports</i></a></span>              
+          <span id="offsetTextR"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+                <i><img src="rocket.ico" height="62px"></i></a></span>
+          <span id="offsetTextS"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+              <i class="material-icons-outlined  md-64 lime" style="letter-spacing: -10px;">science</i></a></span>
+          <span id="offsetTextM"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+              <i class="material-icons-outlined md-64 lime" style="letter-spacing: 20px,0px;">military_tech</i></a></span>
+
         </div>
 
       </div>
@@ -736,8 +775,8 @@
     <section class="main" id="MobleysoftInfo" hidden></section>
   </div>
   <script>
-    function email(){
-      window.location="mailto:jmobley@mobleysoft.com"
+    function email() {
+      window.location = "mailto:jmobley@mobleysoft.com"
     }
   </script>
 </body>
