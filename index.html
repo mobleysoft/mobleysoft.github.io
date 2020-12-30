@@ -42,7 +42,7 @@
       text-decoration: underline;
     }
 
-  img:link {
+    img:link {
       color: Lime;
       background-color: transparent;
       text-decoration: none;
@@ -57,12 +57,13 @@
     img:hover {
       filter: brightness(0) saturate(100%) invert(76%) sepia(82%) saturate(559%) hue-rotate(34deg) brightness(97%) contrast(114%);
     }
-    img:hover.plain{
-      filter:none;
+
+    img:hover.plain {
+      filter: none;
     }
 
     img:active {
-      filter:brightness(0) saturate(100%) invert(87%) sepia(59%) saturate(2587%) hue-rotate(350deg) brightness(107%) contrast(107%);
+      filter: brightness(0) saturate(100%) invert(87%) sepia(59%) saturate(2587%) hue-rotate(350deg) brightness(107%) contrast(107%);
     }
 
     .flickeringBorder {
@@ -81,33 +82,35 @@
       animation: text-flicker 3s linear infinite;
     }
 
-    #offsetTextQ {
+    #offsetText2 {
       animation: text-flicker 2s linear infinite;
     }
 
-    #offsetTextE {
+    #offsetText3 {
       animation: text-flicker 3s linear infinite;
     }
 
-    #offsetTextM {
+    #offsetText4 {
       animation: text-flicker 4s linear infinite;
     }
 
-    #offsetTextI {
+    #offsetText5 {
       animation: text-flicker 5s linear infinite;
     }
 
-    #offsetTextG {
+    #offsetText6 {
       animation: text-flicker 6s linear infinite;
     }
-    #offsetTextR {
+
+    #offsetText7 {
       animation: text-flicker 7s linear infinite;
     }
-    #offsetTextS {
+
+    #offsetText8 {
       animation: text-flicker 8s linear infinite;
     }
 
-    #offsetTextM {
+    #offsetText9 {
       animation: text-flicker 9s linear infinite;
     }
 
@@ -669,7 +672,7 @@
       background-color: black;
       color: lime;
       border: 2px;
-      border-style: solid;
+      border-style: none;
       border-radius: 13em/97em;
       padding: 1px;
       position: absolute;
@@ -679,6 +682,9 @@
       transform: translate(-50%, -50%);
       width: 98%;
       height: 95%;
+      -webkit-box-shadow: 0px 0px 35px 15px rgb(10, 10, 10) inset;
+      -moz-box-shadow: 0px 0px 35px 15px rgb(10, 10, 10) inset;
+      box-shadow: 0px 0px 35px 15px rgb(10, 10, 10) inset;
     }
 
     .main {
@@ -720,6 +726,11 @@
       line-height: normal;
       font-size: 24px;
       font-family: 'Iceland', cursive;
+      caret-color: lime;
+    }
+
+    ::spelling-error {
+      text-decoration: wavy lime;
     }
 
     input:focus {
@@ -728,7 +739,7 @@
 
     .buttonBar {
       padding-top: 10px;
-      padding-left: 10px;
+      padding-left: 0px;
       text-align: center;
       z-index: 4;
     }
@@ -746,35 +757,34 @@
 </head>
 
 <body>
-  <img src="screwGray.png" class="plain" style="position: absolute; left: 97.25%; transform:rotate(180deg) "></img>
-  <img src="screwGray.png" class="plain" style="position: absolute; right: 97.25%; transform:rotate(90deg);"></img>
-  <img src="screwGray.png" class="plain" style="position: absolute; left: 97.25%; bottom:1.25% ;transform:rotate(270deg);"></img>
-  <img src="screwGray.png" class="plain" style="position: absolute; right: 97.25%; bottom:1.25% "></img>
+
   <div class="">
-    <section class="frame">
-      <div class="main crt">
+  <section class="frame crt">
+      <div class="main ">
         <div class="stalinist logo flickeringLogo">M<span id="offsetLogoO">o</span><span id="offsetLogoB">b</span><span
             id="offsetLogoL">l</span><span id="offsetLogoE">e</span><span id="offsetLogoY">y</span><span
             id="offsetLogoS">s</span><span id="offsetLogoO2">o</span><span id="offsetLogoF">f</span><span
             id="offsetLogoT">t</span></div>
-        <div class="searchBar flickeringBorder flickeringShadow"><input type="text" class="searchInput"></div>
+        <div class="searchBar flickeringBorder flickeringShadow"><input type="text" class="searchInput"
+            spellcheck="false"></div>
         <div class="buttonBar flickeringText">
           <a href="#" onclick="Show(MoblysoftInfo)">
             <i class="material-icons-outlined  iconSize lime">help</i></a>
-          <span id="offsetTextE"><a href="mailto:jmobley@mobleysoft.com" onclick="javascript:email()">
+          <span id="offsetText2"><a href="mailto:jmobley@mobleysoft.com" onclick="javascript:email()">
               <i class="material-icons-outlined iconSize lime">mail</i></a></span>
-          <span id="offsetTextM"><a href="https://mobleysoft.github.io/MobleyFilmCo.html">
+          <span id="offsetText3"><a href="https://mobleysoft.github.io/MobleyFilmCo.html">
               <i class="material-icons-outlined iconSize lime">movie</i></a></span>
-          <span id="offsetTextI"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+          <span id="offsetText4"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
               <i class="material-icons-outlined  iconSize lime">savings</i></a></span>
-          <span id="offsetTextG"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
-              <i class="material-icons-outlined  iconSize lime">sports_esports</i></a></span>              
-          <span id="offsetTextR"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
-                <i><img src="Rocket.png" height="30px"></i></a></span>
-          <span id="offsetTextS"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+          <span id="offsetText5"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+              <i><img src="Rocket.png" height="30px"></i></a></span>
+          <span id="offsetText6"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+              <i class="material-icons-outlined  iconSize lime">sports_esports</i></a></span>
+          <span id="offsetText7"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
               <i class="material-icons-outlined  iconSize lime" style="letter-spacing: -10px;">science</i></a></span>
-          <span id="offsetTextM"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
-              <i class="material-icons-outlined iconSize lime" style="letter-spacing: 20px,0px;">military_tech</i></a></span>
+          <span id="offsetText8"><a href="https://mobleysoft.github.io/MobleyInvestments.html">
+              <i class="material-icons-outlined iconSize lime">military_tech</i></a></span>
+
         </div>
 
       </div>
