@@ -57,6 +57,9 @@
     img:hover {
       filter: brightness(0) saturate(100%) invert(76%) sepia(82%) saturate(559%) hue-rotate(34deg) brightness(97%) contrast(114%);
     }
+    img:hover.plain{
+      filter:none;
+    }
 
     img:active {
       filter:brightness(0) saturate(100%) invert(87%) sepia(59%) saturate(2587%) hue-rotate(350deg) brightness(107%) contrast(107%);
@@ -742,12 +745,12 @@
 </head>
 
 <body>
-  <img src="Screw.png" style="position: absolute; left: 97.75%;"></img>
-  <img src="Screw.png" style="position: absolute; right: 97.75%; transform:rotate(90deg);"></img>
-  <img src="Screw.png" style="position: absolute; left: 97.75%; bottom:1.25% ;transform:rotate(90deg);"></img>
-  <img src="Screw.png" style="position: absolute; right: 97.75%; bottom:1.25% "></img>
+  <img src="screw.jpg" class="plain" style="position: absolute; left: 98%; transform:rotate(180deg) "></img>
+  <img src="screw.jpg" class="plain" style="position: absolute; right: 98%; transform:rotate(90deg);"></img>
+  <img src="screw.jpg" class="plain" style="position: absolute; left: 98%; bottom:1.25% ;transform:rotate(270deg);"></img>
+  <img src="screw.jpg" class="plain" style="position: absolute; right: 98%; bottom:1.25% "></img>
   <div>
-    <section class="frame crt">
+    <section class="frame">
       <div class="main crt">
         <div class="stalinist logo flickeringLogo">M<span id="offsetLogoO">o</span><span id="offsetLogoB">b</span><span
             id="offsetLogoL">l</span><span id="offsetLogoE">e</span><span id="offsetLogoY">y</span><span
