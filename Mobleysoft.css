@@ -1,0 +1,189 @@
+@font-face { font-family: myFirstFont; src: url(sansation_light.woff); }
+@import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
+@import url("https://fonts.googleapis.com/css?family=Stalinist One");
+@import url("https://fonts.googleapis.com/css2?family=Iceland&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Audiowide");
+@import url("https://fonts.googleapis.com/css?family=Monoton");
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Numans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+.eurostile { font-family: 'Eurostile', sans-serif; }
+.stalinist { font-family: 'Stalinist One'; }
+.iceland { font-family: 'Iceland', cursive; }
+.odibee { font-family: 'Odibee Sans', cursive; }
+.audiowide { font-family: 'Audiowide'; }
+.monoton { font-family: 'Monoton'; }
+.baloo { font-family: 'Baloo Tammudu 2', cursive; }
+.pica { font-family: 'IM Fell DW Pica', serif; }
+.numans { font-family: 'Numans', sans-serif; }
+.tamma { font-family: 'Baloo Tamma 2', cursive; }
+.cormorant { font-family: 'Cormorant SC', serif; }
+.volkorn { font-family: 'Vollkorn SC', serif; }
+.andada { font-family: 'Andada', serif; }
+.carne { font-family: 'Carme', sans-serif; }
+.fell { font-family: 'IM Fell English', serif; }
+.averia { font-family: 'Averia Serif Libre', cursive; }
+.da { font-family: 'Baloo Da 2', cursive; }
+.days { font-family: 'Days One', sans-serif; }
+.poiret { font-family: 'Poiret One', cursive; }
+.squada { font-family: 'Squada One', cursive; }
+.orbitron { font-family: 'Orbitron', sans-serif; }
+.montserrat { font-family: 'Montserrat Alternates', sans-serif; }
+.dosis { font-family: 'Dosis', sans-serif; }
+.arimo { font-family: 'Arimo', sans-serif; }
+.michroma { font-family: 'Michroma', sans-serif; }
+.saira { font-family: 'Saira', sans-serif; }
+.jura { font-family: 'Jura', sans-serif; }
+a:link { color: Lime; background-color: transparent; text-decoration: none; }
+a:visited { color: lime; background-color: transparent; text-decoration: none; }
+a:hover { color: #7fff00; background-color: transparent; text-decoration: none; }
+a:active { color: yellow; background-color: transparent; text-decoration: none; }
+img:link { color: Lime; background-color: transparent; text-decoration: none; }
+img:visited { color: lime; background-color: transparent; text-decoration: none; }
+.hover{ filter: brightness(0) saturate(100%) invert(76%) sepia(82%) saturate(559%) hue-rotate(34deg) brightness(97%) contrast(114%); }
+img:hover { filter: brightness(0) saturate(100%) invert(76%) sepia(82%) saturate(559%) hue-rotate(34deg) brightness(97%) contrast(114%); }
+img:hover.plain { filter: none; }
+.active{ filter: brightness(0) saturate(100%) invert(87%) sepia(59%) saturate(2587%) hue-rotate(350deg) brightness(107%) contrast(107%); }
+img:active { filter: brightness(0) saturate(100%) invert(87%) sepia(59%) saturate(2587%) hue-rotate(350deg) brightness(107%) contrast(107%); }
+.flickeringBorder { animation: border-flicker 2s linear infinite; }
+.flickeringShadow { animation: border-shadow 3s linear infinite; }
+.flickeringInsetShadow { animation: border-inner-shadow 4s linear infinite; }
+.flickeringText { animation: text-flicker 3s linear infinite; }
+#offsetText2 { animation: text-flicker 2s linear infinite; }
+#offsetText3 { animation: text-flicker 3s linear infinite; }
+#offsetText4 { animation: text-flicker 4s linear infinite; }
+#offsetText5 { animation: text-flicker 5s linear infinite; }
+#offsetText6 { animation: text-flicker 6s linear infinite; }
+#offsetText7 { animation: text-flicker 7s linear infinite; }
+#offsetText8 { animation: text-flicker 8s linear infinite; }
+#offsetText9 { animation: text-flicker 9s linear infinite; }
+.flickeringLogo { animation: logo-flicker 3s linear infinite; }
+#offsetLogoO { animation: logo-flicker 2s linear infinite; }
+#offsetLogoB { animation: logo-flicker 3s linear infinite; }
+#offsetLogoL { animation: logo-flicker 4s linear infinite; }
+#offsetLogoE { animation: logo-flicker 5s linear infinite; }
+#offsetLogoY { animation: logo-flicker 6s linear infinite; }
+#offsetLogoS { animation: logo-flicker 7s linear infinite; }
+#offsetLogoO2 { animation: logo-flicker 8s linear infinite; }
+#offsetLogoF { animation: logo-flicker 9s linear infinite; }
+#offsetLogoT { animation: logo-flicker 10s linear infinite; }
+@keyframes logo-flicker {
+    0% { opacity: 1; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    2% { opacity: 0.8; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    8% { opacity: 0.1; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    9% { opacity: 1; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    12% { opacity: 0.9; text-shadow: 0px 0px lime; }
+    20% { opacity: 6; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    25% { opacity: 0.3; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    30% { opacity: 1; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    70% { opacity: 0.7; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    72% { opacity: 0.2; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    77% { opacity: .9; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; }
+    100% { opacity: 1; text-shadow: 0px 0px 3px lime, 0px 0px 2px lime, 0px 0px 1px lime; } }
+@keyframes text-flicker {
+    0% { opacity: 0.1; text-shadow: 0px 0px 29px lime; }
+    2% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    8% { opacity: 0.1; text-shadow: 0px 0px 29px lime; }
+    9% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    12% { opacity: 0.1; text-shadow: 0px 0px lime; }
+    20% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    25% { opacity: 0.3; text-shadow: 0px 0px 29px lime; }
+    30% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    70% { opacity: 0.7; text-shadow: 0px 0px 29px lime; }
+    72% { opacity: 0.2; text-shadow: 0px 0px 29px lime; }
+    77% { opacity: .9; text-shadow: 0px 0px 29px lime; }
+    100% { opacity: .9; text-shadow: 0px 0px 29px lime; } }
+@keyframes border-flicker {
+    0% { opacity: 0.1; -webkit-box-shadow: 0px 0px 1px 1px lime; -moz-box-shadow: 0px 0px 1px 1px lime; box-shadow: 0px 0px 1px 1px lime; }
+    1% { opacity: 1; -webkit-box-shadow: 0px 0px 1px 1px lime; -moz-box-shadow: 0px 0px 1px 1px lime; box-shadow: 0px 0px 1px 1px lime; }
+    1% { opacity: 0.1; -webkit-box-shadow: 0px 0px 1px 1px lime; -moz-box-shadow: 0px 0px 1px 1px lime; box-shadow: 0px 0px 1px 1px lime; }
+    8% { opacity: 1; -webkit-box-shadow: 0px 0px 1px 1px lime; -moz-box-shadow: 0px 0px 1px 1px lime; box-shadow: 0px 0px 1px 1px lime; }
+    70% { opacity: 0.7; -webkit-box-shadow: 0px 0px 1px 1px lime; -moz-box-shadow: 0px 0px 1px 1px lime; box-shadow: 0px 0px 1px 1px lime; }
+    100% { opacity: 1; -webkit-box-shadow: 0px 0px 1px 1px lime; -moz-box-shadow: 0px 0px 1px 1px lime; box-shadow: 0px 0px 1px 1px lime; } }
+@keyframes border-shadow {
+    0% { opacity: 0.1; -webkit-box-shadow: 0px 0px 163px 1px lime; -moz-box-shadow: 0px 0px 163px 1px lime; box-shadow: 0px 0px 163px 1px lime; }
+    1% { opacity: 1; -webkit-box-shadow: 0px 0px 163px 1px lime; -moz-box-shadow: 0px 0px 163px 1px lime; box-shadow: 0px 0px 163px 1px lime; }
+    1% { opacity: 0.1; -webkit-box-shadow: 0px 0px 163px 1px lime; -moz-box-shadow: 0px 0px 163px 1px lime; box-shadow: 0px 0px 163px 1px lime; }
+    8% { opacity: 1; -webkit-box-shadow: 0px 0px 163px 1px lime; -moz-box-shadow: 0px 0px 163px 1px lime; box-shadow: 0px 0px 163px 1px lime; }
+    70% { opacity: 0.7; -webkit-box-shadow: 0px 0px 163px 1px lime; -moz-box-shadow: 0px 0px 163px 1px lime; box-shadow: 0px 0px 163px 1px lime; }
+    100% { opacity: 1; -webkit-box-shadow: 0px 0px 163px 1px lime; -moz-box-shadow: 0px 0px 163px 1px lime; box-shadow: 0px 0px 163px 1px lime; } }
+@keyframes border-inner-shadow {
+    0% { opacity: 0.1; -webkit-box-shadow: 0px 0px 5px 1px lime inset; -moz-box-shadow: 0px 0px 5px 1px lime inset; box-shadow: 0px 0px 5px 1px lime inset; }
+    1% { opacity: 1; -webkit-box-shadow: 0px 0px 5px 1px lime inset; -moz-box-shadow: 0px 0px 5px 1px lime inset; box-shadow: 0px 0px 5px 1px lime inset; }
+    1% { opacity: 0.1; -webkit-box-shadow: 0px 0px 5px 1px lime inset; -moz-box-shadow: 0px 0px 5px 1px lime inset; box-shadow: 0px 0px 5px 1px lime inset; }
+    8% { opacity: 1; -webkit-box-shadow: 0px 0px 5px 1px lime inset; -moz-box-shadow: 0px 0px 5px 1px lime inset; box-shadow: 0px 0px 5px 1px lime inset; }
+    70% { opacity: 0.7; -webkit-box-shadow: 0px 0px 5px 1px lime inset; -moz-box-shadow: 0px 0px 5px 1px lime inset; box-shadow: 0px 0px 5px 1px lime inset; }
+    100% { opacity: 1; -webkit-box-shadow: 0px 0px 5px 1px lime inset; -moz-box-shadow: 0px 0px 5px 1px lime inset; box-shadow: 0px 0px 5px 1px lime inset; } }
+@keyframes letter-flicker {
+    0% { opacity: 0.1; text-shadow: 0px 0px 29px lime; }
+    2% { opacity: 0.1; text-shadow: 0px 0px 29px lime; }
+    4% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    19% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    21% { opacity: 0.1; text-shadow: 0px 0px 29px lime; }
+    23% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    80% { opacity: 1; text-shadow: 0px 0px 29px lime; }
+    83% { opacity: 0.4; text-shadow: 0px 0px 29px lime; }
+    87% { opacity: 1; text-shadow: 0px 0px 29px lime; } }
+@keyframes flicker { 0% { opacity: 0.27861; } 5% { opacity: 0.34769;} 10% { opacity: 0.23604; } 15% { opacity: 0.90626; } 20% { opacity: 0.18128; }
+    25% { opacity: 0.83891; } 30% { opacity: 0.65583; } 35% { opacity: 0.67807; } 40% { opacity: 0.26559; } 45% { opacity: 0.84693; }
+    50% { opacity: 0.96019; } 55% { opacity: 0.08594; } 60% { opacity: 0.20313; } 65% { opacity: 0.71988; } 70% { opacity: 0.53455; }
+    75% { opacity: 0.37288; } 80% { opacity: 0.71428; } 85% { opacity: 0.70419; } 90% { opacity: 0.7003; } 95% { opacity: 0.36108; } 100% { opacity: 0.24387; } }
+@keyframes textShadow {
+    0% { text-shadow: 0.4389924193300864px 0 1px rgba(0, 30, 255, 0.5), -0.4389924193300864px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    5% { text-shadow: 2.7928974010788217px 0 1px rgba(0, 30, 255, 0.5), -2.7928974010788217px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    10% { text-shadow: 0.02956275843481219px 0 1px rgba(0, 30, 255, 0.5), -0.02956275843481219px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    15% { text-shadow: 0.40218538552878136px 0 1px rgba(0, 30, 255, 0.5), -0.40218538552878136px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    20% { text-shadow: 3.4794037899852017px 0 1px rgba(0, 30, 255, 0.5), -3.4794037899852017px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    25% { text-shadow: 1.6125630401149584px 0 1px rgba(0, 30, 255, 0.5), -1.6125630401149584px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    30% { text-shadow: 0.7015590085143956px 0 1px rgba(0, 30, 255, 0.5), -0.7015590085143956px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    35% { text-shadow: 3.896914047650351px 0 1px rgba(0, 30, 255, 0.5), -3.896914047650351px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    40% { text-shadow: 3.870905614848819px 0 1px rgba(0, 30, 255, 0.5), -3.870905614848819px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    45% { text-shadow: 2.231056963361899px 0 1px rgba(0, 30, 255, 0.5), -2.231056963361899px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    50% { text-shadow: 0.08084290417898504px 0 1px rgba(0, 30, 255, 0.5), -0.08084290417898504px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    55% { text-shadow: 2.3758461067427543px 0 1px rgba(0, 30, 255, 0.5), -2.3758461067427543px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    60% { text-shadow: 2.202193051050636px 0 1px rgba(0, 30, 255, 0.5), -2.202193051050636px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    65% { text-shadow: 2.8638780614874975px 0 1px rgba(0, 30, 255, 0.5), -2.8638780614874975px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    70% { text-shadow: 0.48874025155497314px 0 1px rgba(0, 30, 255, 0.5), -0.48874025155497314px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    75% { text-shadow: 1.8948491305757957px 0 1px rgba(0, 30, 255, 0.5), -1.8948491305757957px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    80% { text-shadow: 0.0833037308038857px 0 1px rgba(0, 30, 255, 0.5), -0.0833037308038857px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    85% { text-shadow: 0.09769827255241735px 0 1px rgba(0, 30, 255, 0.5), -0.09769827255241735px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    90% { text-shadow: 3.443339761481782px 0 1px rgba(0, 30, 255, 0.5), -3.443339761481782px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    95% { text-shadow: 2.1841838852799786px 0 1px rgba(0, 30, 255, 0.5), -2.1841838852799786px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; }
+    100% { text-shadow: 2.6208764473832513px 0 1px rgba(0, 30, 255, 0.5), -2.6208764473832513px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px; } }
+.crt::after { content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0; 
+background: rgba(18, 16, 16, 0.1); opacity: 0; z-index: 2; pointer-events: none; animation: flicker 0.15s infinite; }
+.crt::before { content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); }
+.crt { animation: textShadow 1.6s infinite; }
+body { background-color: black; }
+.frame { background-color: black; color: lime; border: 2px; border-style: none; border-radius: 13em/97em; padding: 1px; position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); width: 98%; height: 95%; -webkit-box-shadow: 0px 0px 35px 15px rgb(10, 10, 10) inset;-moz-box-shadow: 0px 0px 35px 15px rgb(10, 10, 10) inset; box-shadow: 0px 0px 35px 15px rgb(10, 10, 10) inset; }
+.main { background-color: black; color: black; position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); }
+.material-icons.lime { color: lime; }
+.searchBar { color: lime; background-color: black; border-width: 2px; border-style: solid; border-color: lime; border-radius: 45px; width: 302px; line-height: normal; }
+.searchInput { outline: none; background-color: black; border-style: none; border-radius: 45px; color: lime; width: 252px; padding-left: 25px; padding-right: 25px; padding-top: 6px; padding-bottom: 6px; line-height: normal; font-size: 24px; font-family: 'Iceland', cursive; caret-color: lime; }
+::spelling-error { text-decoration: wavy lime; }
+input:focus { color: lime }
+.buttonBar { padding-top: 7px; text-align: center; z-index: 4; color: lime; }
+.logo { font-size: 48px; text-align: center;  z-index: 3; }
+.iconSize { font-size: 32px; height: 32px; }
+* { box-sizing: border-box; }
+.column { float: left; width: 33.33%; padding: 10px; }
+.row:after { content: ""; display: table; clear: both; }
+.capital{ font-size: 133%; }
