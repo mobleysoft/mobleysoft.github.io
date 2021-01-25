@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobleysoft</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href='https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
+<style>
+.jura { font-family: 'Jura', sans-serif; }
+*,*::before,*::after { box-sizing: border-box; -webkit-box-sizing: border-box; }
+body { color:white; background-color: #151515; margin: 0; padding: 0; }
+.container { background-color: #141414; display: -webkit-box; display: -ms-flexbox; display: flex; flex-direction: row; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-align: center; -ms-flex-align: center; align-items: center; overflow: hidden;}
+.container .logo{ overflow: hidden; }
+.container .logo a { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; height: 100%; flex-grow: 1;}
+.container .logo a img { max-width: 100%; max-height: 100%; align-self: flex-start; }
+.container .navbar { max-width: 100%; max-height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; flex-direction: row;  align-self:auto; position:absolute; right:0px; top:20px; -ms-flex-wrap:wrap; flex-wrap:wrap; -webkit-box-flex:1; -ms-flex:1; flex: 1; flex-grow: 1;}
+.container .navbar ul { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: nowrap; flex-wrap: nowrap; list-style: none; margin: 0; padding: 0 0px; }
+.container .navbar ul li a { text-decoration: none; color: #999999; font-size: 14px; text-transform: uppercase; display: block; height: 60px; line-height: 60px; cursor: pointer; padding: 0 10px; }
+.container .navbar ul li a:hover { color: #ffffff; background-color: rgba(23, 23, 23, 0.9); }
+.container .navbar ul .close { display: none; text-align: right; padding: 10px; }
+.container .navbar ul .close span { font-size: 40px; display: inline-block; border: 1px solid #cccccc; padding: 0 10px; cursor: pointer; }
+.container .navbar .icon-bar { padding: 18px 9px; position: relative; top:-10px; width: 50px; height: 60px; display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column;  flex-direction: column; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; cursor: pointer;}
+.container .navbar .icon-bar i {
+  background-color: #ffffff;
+  height: 2px;
+}
+.inBar{
+  position: relative;
+  top:-10px;
+}
+.inMenu{
+  position: relative;
+  top:-5px;
+}
+.aboutInMenu{
+  position:relative;
+  left:-18px;
+}
+
+.body {
+  margin: 0 auto;
+  padding: 20px;
+}
+button{
+  width: 100%; height:80px; font-size:2rem; background-color: #b9b9b9; font-weight: bold;
+  }
+
+@media only screen and (max-width: 1066px) {
+  .container {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .container .logo {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    align-self:flex-start;
+  }
+
+  .container .navbar {
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+  }
+
+  .container .navbar ul {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    position: fixed;
+    left: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background: #151515;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-transition: left .3s;
+    -o-transition: left .3s;
+    transition: left .3s;
+
+  }
+
+  .container .navbar ul li a {
+    padding: 10px;
+    font-size: 16px;
+    height: auto;
+    line-height: normal;
+    color: #555555;
+    align-content: flex-start;
+  }
+
+  .container .navbar ul .close {
+    display: block;
+  }
+
+  .container .navbar .icon-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .container .navbar ._Menus-show {
+    left: 0;
+    top:0;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 185px) {
+  button{
+    font-size: 1.45rem;
+  }
+}
+
+
+</style>
+</head>
+<body class="jura">
+
+<div class="container">
+  <div class="logo">
+    <a href="#"><img src="images/MobleysoftUltimateLogo.png" alt="logo"></a>
+  </div>   
+ 
+  <div class="navbar">
+ <div class="icon-bar" z-index="99999" onclick="Show()"><i></i><i></i><i></i></div>
+    <ul id="nav-lists">
+      <li class="close"><span onclick="Hide()">×</span></li>
+      <li><a id="about" href="#" ><img src="images/AboutBtn.png"></a></li>
+      <li><a href="#"><img src="images/ServicesBtn.png"></a></li>
+      <li><a href="#"><img src="images/SoftwareBtn.png"></a></li>
+      <li><a id="contact" class="inBar" href="#"><img src="images/Contact.png"></a></li>
+      <li><a id="login" class="inBar" href="#"><img src="images/LoginBtn.png"></a></li>
+    </ul>
+ 
+  </div>
+</div>
+<div class="body">
+<button class="jura"><a href="window.location='mailto:jmobley@mobleysoft.com" value="Submit RFP"></a>Submit RFP</button>
+  <span style="font-size:32px">Mobleysoft has been building bespoke business software and web applications for customers for 21 years. </span>
+</div>
+<script>
+  var navList = document.getElementById("nav-lists");
+  var contact = document.getElementById("contact");
+  var login = document.getElementById("login");
+  var about = document.getElementById("about");
+  var menuVisible = false;
+  function ToggleMenu() {
+    if(menuVisible){
+      Hide();
+    }else{
+      Show();
+    }
+  }
+  function Show() { 
+    navList.classList.add("_Menus-show");
+    contact.classList.remove("inBar");
+    login.classList.remove("inBar");
+    login.classList.add("inMenu");
+    //about.classList.add("aboutInMenu")
+  }
+  function Hide() { 
+    navList.classList.remove("_Menus-show"); 
+    contact.classList.add("inBar");
+    login.classList.add("inBar");
+    login.classList.remove("inMenu");
+    //about.classList.remove("aboutInMenu")
+  }
+</script>
+</body></html
