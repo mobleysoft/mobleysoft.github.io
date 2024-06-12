@@ -1,9 +1,42 @@
 <html><head><script>
-    tji={1:["id:TJI","type:interface","name:TokenizedJSONInterface"],2:["id:Concept","type:description","value:FlatJSONwithLabelValuePairTokens"],3:["id:Purpose","type:description","value:EnhanceHumanAIcommunication"],4:["id:Benefit1","type:advantage","value:ConciseandHumanReadable"],5:["id:Benefit2","type:advantage","value:MachineFriendlyandEasilyParsable"],6:["id:Benefit3","type:advantage","value:FlexibleandExtensible"],7:["id:Usecase1","type:example","value:DataAnalysisandKnowledgeExtraction"],8:["id:Usecase2","type:example","value:CreativeContentGeneration"],9:["id:Usecase3","type:example","value:TaskAutomationandWorkflows"]};
-    document.head.append(`<style>body{font-family:sans-serif;line-height:1.5}div{margin-bottom:1em}h3{color:blue}</style>`);
-    </script></head><body>
-    <script>
-    for(let key in tji){let arr=tji[key];let label=arr[1].split(":")[1].replace(/</g, '&lt;').replace(/>/g, '&gt;');let value=arr[2].split(":")[1].replace(/</g, '&lt;').replace(/>/g, '&gt;');let div=document.createElement("div");div.innerHTML=`<h3>${label}</h3><p>${value}</p>`;document.body.append(div);}
-    </script></body></html>
+    const tji = {
+      1: ["id:TJI", "type:interface", "name:Tokenized JSON Interface", "description:A simple yet powerful way to communicate with AI"],
+      2: ["id:Structure", "type:feature", "value:Flat JSON with label:value pair tokens"],
+      3: ["id:Purpose", "type:goal", "value:Enhance human-AI communication"],
+      4: ["id:Benefit1", "type:advantage", "value:Concise and human-readable"],
+      5: ["id:Benefit2", "type:advantage", "value:Machine-friendly and easily parsable by AI"],
+      6: ["id:Benefit3", "type:advantage", "value:Flexible and extensible to various domains"],
+      7: ["id:Usecase1", "type:example", "value:Data analysis and knowledge extraction"],
+      8: ["id:Usecase2", "type:example", "value:Generating creative content and text"],
+      9: ["id:Usecase3", "type:example", "value:Automating tasks and workflows"]
+    };
     
+    // --- Add style after TJI data ---
+    document.head.append(`<style>
+      body { font-family: sans-serif; line-height: 1.5; }
+      .tji-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+      h2, h3 { color: #333; }
+      h2 { margin-top: 2em; }
+      p { margin-bottom: 1em; }
+      code { background-color: #f0f0f0; padding: 2px 5px; }
+    </style>`);
+    
+    // --- Create content after style ---
+    const container = document.createElement("div");
+    container.classList.add("tji-container");
+    for (let key in tji) {
+      const [id, type, label, value] = tji[key];
+      let content = `<h3>${label}</h3>`;
+      if (type === 'feature') {
+        content += `<p>TJI uses a <code>${value}</code> format.</p>`; 
+      } else if (type === 'goal') {
+        content += `<p>TJI aims to ${value}.</p>`;
+      } else {
+        content += `<p>${value}</p>`;
+      }
+      container.innerHTML += content;
+    }
+    document.body.append(container);
+    
+    </script></body></html>
     
