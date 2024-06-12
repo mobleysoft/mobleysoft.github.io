@@ -27,7 +27,6 @@ const tji = {
   "8": ["id:Usecase2", "type:example", "value:Generating creative content and text"],
   "9": ["id:Usecase3", "type:example", "value:Automating tasks and workflows"]
 };
-
 const container = document.createElement("div");
 container.classList.add("tji-container");
 
@@ -38,21 +37,15 @@ container.innerHTML = `
   <p>In the ever-evolving landscape of human-AI interaction, a simple yet powerful tool has emerged: the Tokenized JSON Interface (TJI). TJI is a structured format that enhances communication between humans and artificial intelligence by leveraging the strengths of both natural language and machine-readable data.</p>
 `;
 
-// Display TJI in dense format with scrolling
+// Display TJI in dense format with scrolling and proper quotes
 const tjiDisplay = document.createElement("div");
 tjiDisplay.classList.add("tji-display");
-for (const [key, value] of Object.entries(tji)) {
-  const line = document.createElement("div");
-  line.classList.add("tji-line");
-  line.textContent = `${key}: ${value.join(', ')}`;
-  tjiDisplay.appendChild(line);
-}
+tjiDisplay.textContent = `const tji = ${JSON.stringify(tji, null, 2)};` 
+
 container.appendChild(tjiDisplay); // Add the display to the main container
 container.innerHTML += `
   <h3>What is TJI?</h3>
   <p>At its core, TJI is a flat JSON structure that utilizes label:value pair tokens. This structure offers a unique blend of conciseness and clarity, making it easy for humans to read and understand while remaining easily parsable by AI models.</p>
-
-
   <h3>Why Use TJI?</h3>
   <p>TJI offers a multitude of benefits for both humans and AI:</p>
   <ul>
@@ -72,7 +65,6 @@ container.innerHTML += `
   <h3>TJI: The Future of Human-AI Interaction</h3>
   <p>TJI represents a significant step forward in how we communicate with AI. By combining the best of human language and machine-readable data, TJI opens up new possibilities for collaboration, automation, and knowledge discovery. As AI continues to advance, TJI will likely play an increasingly important role in bridging the gap between human intuition and machine intelligence.</p>
 `;
-
 
 document.body.append(container);
 </script>
