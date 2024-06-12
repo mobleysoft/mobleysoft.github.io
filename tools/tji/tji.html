@@ -1,17 +1,9 @@
 <html>
 <head>
-<style>
-body { font-family: sans-serif; line-height: 1.5; }
-.tji-container { max-width: 800px; margin: 0 auto; padding: 20px; }
-h2, h3 { color: #333; }
-h2 { margin-top: 2em; }
-p { margin-bottom: 1em; }
-code { background-color: #f0f0f0; padding: 2px 5px; }
-</style>
+<style>body{font-family:sans-serif;line-height:1.5}.tji-container{max-width:800px;margin:0 auto;padding:20px}h2,h3{color:#333}h2{margin-top:2em}p{margin-bottom:1em}code{background-color:#f0f0f0;padding:2px 5px}</style>
 </head>
 <body>
 <script>
-
 const tji = {
   1: ["id:TJI", "type:interface", "name:Tokenized JSON Interface", "description:A simple yet powerful way to communicate with AI"],
   2: ["id:Structure", "type:feature", "value:Flat JSON with label:value pair tokens"],
@@ -23,22 +15,18 @@ const tji = {
   8: ["id:Usecase2", "type:example", "value:Generating creative content and text"],
   9: ["id:Usecase3", "type:example", "value:Automating tasks and workflows"]
 };
-
 const container = document.createElement("div");
 container.classList.add("tji-container");
-
-for (let key in tji) {
-  const [id, type, label, value] = tji[key]; 
-  let content = `<h3>${label}</h3>`; 
-  if (type === 'feature' || type === 'goal' || type === 'advantage' || type === 'example') {
-    content += `<p>${value}</p>`;
-  } else { // This handles the initial description for the TJI interface
-    content += `<p>${label}: ${value}</p>`; 
-  }
-  container.innerHTML += content;
+for (const [key, value] of Object.entries(tji)) {
+    const arr = value;
+    const [id, type, label, description] = arr;
+    let content = `<h3>${label}</h3>`;
+    if (description) { //check if the description exists.
+        content += `<p>${description}</p>`;
+    }
+    container.innerHTML += content;
 }
 document.body.append(container);
 </script>
-
 </body>
 </html>
