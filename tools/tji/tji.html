@@ -1,6 +1,9 @@
-<html><body><script>
+<html><head><script>
     tji={1:["id:TJI","type:interface","name:TokenizedJSONInterface"],2:["id:Concept","type:description","value:FlatJSONwithLabelValuePairTokens"],3:["id:Purpose","type:description","value:EnhanceHumanAIcommunication"],4:["id:Benefit1","type:advantage","value:ConciseandHumanReadable"],5:["id:Benefit2","type:advantage","value:MachineFriendlyandEasilyParsable"],6:["id:Benefit3","type:advantage","value:FlexibleandExtensible"],7:["id:Usecase1","type:example","value:DataAnalysisandKnowledgeExtraction"],8:["id:Usecase2","type:example","value:CreativeContentGeneration"],9:["id:Usecase3","type:example","value:TaskAutomationandWorkflows"]};
-    document.body.append(`<style>body{font-family:sans-serif;line-height:1.5}div{margin-bottom:1em}h3{color:blue}</style>`);
+    document.head.append(`<style>body{font-family:sans-serif;line-height:1.5}div{margin-bottom:1em}h3{color:blue}</style>`);
+    </script></head><body>
+    <script>
     for(let key in tji){let arr=tji[key];let label=arr[1].split(":")[1].replace(/</g, '&lt;').replace(/>/g, '&gt;');let value=arr[2].split(":")[1].replace(/</g, '&lt;').replace(/>/g, '&gt;');let div=document.createElement("div");div.innerHTML=`<h3>${label}</h3><p>${value}</p>`;document.body.append(div);}
     </script></body></html>
+    
     
