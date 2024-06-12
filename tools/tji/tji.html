@@ -1,6 +1,28 @@
 <html>
 <head>
-<style>body{font-family:sans-serif;line-height:1.5}.tji-container{max-width:800px;margin:0 auto;padding:20px}h2,h3{color:#333}h2{margin-top:2em}p{margin-bottom:1em}code{background-color:#f0f0f0;padding:2px 5px; white-space: pre; font-family: monospace;}</style>
+<style>
+body { font-family: sans-serif; line-height: 1.5; }
+.tji-container { 
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 20px; 
+}
+h2, h3 { color: #333; }
+h2 { margin-top: 2em; }
+p { margin-bottom: 1em; }
+
+/* Style for scrollable TJI display */
+.tji-display {
+  background-color: #f0f0f0;
+  padding: 10px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 200px; /* Set a maximum height for the display */
+}
+.tji-line {
+  font-family: monospace;  /* Use a monospace font for better alignment */
+  white-space: pre;         /* Preserve whitespace for formatting */
+}
+</style>
 </head>
 <body>
 <script>
@@ -19,37 +41,26 @@ const tji = {
 const container = document.createElement("div");
 container.classList.add("tji-container");
 
-// Display TJI Write-up
-container.innerHTML = `
-  <h2>The Power of Tokenized JSON Interface (TJI)</h2>
+// Display TJI in dense format with scrolling
+const tjiDisplay = document.createElement("div");
+tjiDisplay.classList.add("tji-display");
+for (const [key, value] of Object.entries(tji)) {
+  const line = document.createElement("div");
+  line.classList.add("tji-line");
+  line.textContent = `${key}: ${value.join(', ')}`;
+  tjiDisplay.appendChild(line);
+}
+container.appendChild(tjiDisplay); // Add the display to the main container
 
-  <p>In the ever-evolving landscape of human-AI interaction, a simple yet powerful tool has emerged: the Tokenized JSON Interface (TJI). TJI is a structured format that enhances communication between humans and artificial intelligence by leveraging the strengths of both natural language and machine-readable data.</p>
-
-  <h3>What is TJI?</h3>
-  <p>At its core, TJI is a flat JSON structure that utilizes label:value pair tokens. This structure offers a unique blend of conciseness and clarity, making it easy for humans to read and understand while remaining easily parsable by AI models.</p>
-
-  <pre><code>${JSON.stringify(tji, null, 2)}</code></pre>
-
-  <h3>Why Use TJI?</h3>
-  <p>TJI offers a multitude of benefits for both humans and AI:</p>
-  <ul>
-    <li>Concise and Human-Readable</li>
-    <li>Machine-Friendly</li>
-    <li>Flexible and Extensible</li>
-  </ul>
-
-  <h3>Use Cases for TJI</h3>
-  <p>The versatility of TJI makes it applicable to a wide range of scenarios, including:</p>
-  <ul>
-    <li>Data Analysis and Knowledge Extraction</li>
-    <li>Creative Content Generation</li>
-    <li>Task Automation and Workflows</li>
-  </ul>
-
-  <h3>TJI: The Future of Human-AI Interaction</h3>
-  <p>TJI represents a significant step forward in how we communicate with AI. By combining the best of human language and machine-readable data, TJI opens up new possibilities for collaboration, automation, and knowledge discovery. As AI continues to advance, TJI will likely play an increasingly important role in bridging the gap between human intuition and machine intelligence.</p>
-`;
-
+// Display explanations (rest of the content)
+for (const [key, value] of Object.entries(tji)) {
+  const [id, type, label, description] = value; 
+  let content = `<h3>${label}</h3>`;
+  if (description) { 
+    content += `<p>${description}</p>`;
+  }
+  container.innerHTML += content;
+}
 document.body.append(container);
 </script>
 </body>
