@@ -5,12 +5,11 @@ body{font-family:sans-serif;line-height:1.5}.tji-container{max-width:800px;margi
 .tji-display {
   background-color: #f0f0f0;
   padding: 10px;
-  overflow-y: auto;
-  max-height: 200px;
+  overflow-x: auto;  /* Enable horizontal scrolling for long lines */
+  white-space: nowrap; /* Prevent word wrapping */
 }
 .tji-line {
   font-family: monospace;
-  white-space: pre;
 }
 </style>
 </head>
@@ -27,6 +26,7 @@ const tji = {
   "8": ["id:Usecase2", "type:example", "value:Generating creative content and text"],
   "9": ["id:Usecase3", "type:example", "value:Automating tasks and workflows"]
 };
+
 const container = document.createElement("div");
 container.classList.add("tji-container");
 
@@ -37,7 +37,7 @@ container.innerHTML = `
   <p>In the ever-evolving landscape of human-AI interaction, a simple yet powerful tool has emerged: the Tokenized JSON Interface (TJI). TJI is a structured format that enhances communication between humans and artificial intelligence by leveraging the strengths of both natural language and machine-readable data.</p>
 `;
 
-// Display TJI in dense format with scrolling and proper quotes
+// Display TJI in dense format with scrolling and no wrapping
 const tjiDisplay = document.createElement("div");
 tjiDisplay.classList.add("tji-display");
 tjiDisplay.textContent = `const tji = ${JSON.stringify(tji, null, 2)};` 
