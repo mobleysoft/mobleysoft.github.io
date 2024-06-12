@@ -1,11 +1,12 @@
 <html>
 <head>
-<style>body{font-family:sans-serif;line-height:1.5}.tji-container{max-width:800px;margin:0 auto;padding:20px}h2,h3{color:#333}h2{margin-top:2em}p{margin-bottom:1em}code{background-color:#f0f0f0;padding:2px 5px; white-space: pre; font-family: monospace;}
+<style>
+body{font-family:sans-serif;line-height:1.5}.tji-container{max-width:800px;margin:0 auto;padding:20px}h2,h3{color:#333}h2{margin-top:2em}p{margin-bottom:1em}code{background-color:#f0f0f0;padding:2px 5px; white-space: pre; font-family: monospace;}
 .tji-display {
   background-color: #f0f0f0;
   padding: 10px;
   overflow-x: auto;  
-  white-space: nowrap; 
+  white-space: pre;    
 }
 .tji-line {
   font-family: monospace;
@@ -39,16 +40,9 @@ container.innerHTML = `
 // Display TJI in dense format with scrolling and no wrapping
 const tjiDisplay = document.createElement("div");
 tjiDisplay.classList.add("tji-display");
-for (const [key, value] of Object.entries(tji)) {
-  const line = document.createElement("div");
-  line.classList.add("tji-line");
-  line.textContent = `"${key}": ${JSON.stringify(value)},`; 
-  tjiDisplay.appendChild(line);
-}
-// Remove the last trailing comma and newline
-tjiDisplay.lastChild.textContent = tjiDisplay.lastChild.textContent.slice(0, -2);
-container.appendChild(tjiDisplay); // Add the display to the main container
+tjiDisplay.textContent = `const tji = ${JSON.stringify(tji, null, 2)};`; // Show declaration and formatted JSON
 
+container.appendChild(tjiDisplay); // Add the display to the main container
 container.innerHTML += `
   <h3>What is TJI?</h3>
   <p>At its core, TJI is a flat JSON structure that utilizes label:value pair tokens. This structure offers a unique blend of conciseness and clarity, making it easy for humans to read and understand while remaining easily parsable by AI models.</p>
