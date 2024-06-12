@@ -6,7 +6,7 @@ body{font-family:sans-serif;line-height:1.5}.tji-container{max-width:800px;margi
   background-color: #f0f0f0;
   padding: 10px;
   overflow-x: auto;  
-  white-space: pre; /* Ensure that each line break is preserved */    
+  white-space: pre;    
 }
 .tji-line {
   font-family: monospace;
@@ -33,18 +33,15 @@ container.classList.add("tji-container");
 // Display TJI Write-up
 container.innerHTML = `
   <h2>The Power of Tokenized JSON Interface (TJI)</h2>
+
   <p>In the ever-evolving landscape of human-AI interaction, a simple yet powerful tool has emerged: the Tokenized JSON Interface (TJI). TJI is a structured format that enhances communication between humans and artificial intelligence by leveraging the strengths of both natural language and machine-readable data.</p>
 `;
 
-// Display TJI in dense format with one line per key-value pair
+// Display TJI in dense format with scrolling and no wrapping
 const tjiDisplay = document.createElement("div");
 tjiDisplay.classList.add("tji-display");
-for (const [key, value] of Object.entries(tji)) {
-  const line = document.createElement("div");
-  line.classList.add("tji-line");
-  line.textContent = `"${key}": ${JSON.stringify(value)},`; 
-  tjiDisplay.appendChild(line);
-}
+tjiDisplay.textContent = `const tji = ${JSON.stringify(tji, null, 2)};`; // Show declaration and formatted JSON
+
 container.appendChild(tjiDisplay); // Add the display to the main container
 container.innerHTML += `
   <h3>What is TJI?</h3>
