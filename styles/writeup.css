@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
   margin: 0;
   padding: 0;
   background: linear-gradient(135deg, #2c3e50, #4ca1af);
@@ -12,10 +12,10 @@ body {
 .tji-container {
   max-width: 800px;
   margin: 40px auto;
-  padding: 30px;
+  padding: 20px;
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
   backdrop-filter: blur(10px);
 }
 
@@ -26,22 +26,32 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   margin-bottom: 0.5em;
   text-align: center;
 }
 
 h2 {
-  font-size: 2em;
-  margin-top: 2em;
+  font-size: 1.5em;
+  margin-top: 1.5em;
   border-bottom: 2px solid #2c3e50;
   padding-bottom: 0.3em;
 }
 
 p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
   font-weight: 300;
   text-transform: none; /* Ensure text is not transformed */
+}
+
+ul {
+  padding-left: 20px;
+  margin-bottom: 1em;
+}
+
+li {
+  margin-bottom: 0.5em;
+  line-height: 1.4;
 }
 
 .tji-display {
@@ -73,7 +83,7 @@ button {
   background: #4ca1af;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -86,16 +96,16 @@ button:hover {
 
 @media (max-width: 600px) {
   .tji-container {
-    padding: 20px;
+    padding: 15px;
     margin: 20px;
   }
 
   h1 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 
   h2 {
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 
   p {
