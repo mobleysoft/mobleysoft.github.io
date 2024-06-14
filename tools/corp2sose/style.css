@@ -1,0 +1,37 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+.tji-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2,
+h3 {
+    color: #333;
+}
+
+h2 {
+    margin-top: 2em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+code {
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    white-space: pre;
+    font-family: monospace;
+}
+
+.tji-display {
+    background-color: #f0f0f0;
+    padding: 10px;
+    overflow-x: auto;
+    white-space: pre;
+}
