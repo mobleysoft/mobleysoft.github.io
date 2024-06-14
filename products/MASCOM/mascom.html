@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MASCOM Overview</title>
   <link rel="stylesheet" href="https://mobleysoft.com/styles/writeup.css">
+  <style>
+    .default-item {
+      background-color: #f0f0f0;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 3px solid #d0d0d0;
+    }
+  </style>
 </head>
 <body>
   <script type="module">
@@ -13,43 +21,54 @@
     document.addEventListener('DOMContentLoaded', () => {
       const container = document.createElement('div');
       container.classList.add('tji-container');
-      Object.entries(mascomTJI).forEach(([_, item]) => {
-        try {
-          const tagItem = item.find(e => e.startsWith('tag:'));
-          const contentItem = item.find(e => e.startsWith('content:'));
-          let element;
-          if (tagItem && contentItem) {
-            const tag = tagItem.split(':')[1];
-            const content = contentItem.split(':')[1];
-            element = document.createElement(tag);
-            element.innerHTML = content;
+
+      const createElementFromItem = (item) => {
+        const tagItem = item.find(e => e.startsWith('tag:'));
+        const contentItem = item.find(e => e.startsWith('content:'));
+        if (tagItem && contentItem) {
+          const tag = tagItem.split(':')[1];
+          const content = contentItem.split(':')[1];
+          const element = document.createElement(tag);
+          element.innerHTML = content;
+          return element;
+        } else {
+          const element = document.createElement('div');
+          element.classList.add('default-item');
+          element.textContent = item.join(' | ');
+          return element;
+        }
+      };
+
+      const appendElement = (element, item) => {
+        const parentItem = item.find(e => e.startsWith('parent:'));
+        if (parentItem) {
+          const parentId = parentItem.split(':')[1];
+          const parentElement = container.querySelector(`[data-id="${parentId}"]`);
+          if (parentElement) {
+            parentElement.appendChild(element);
           } else {
-            element = document.createElement('div');
-            element.classList.add('default-item');
-            element.textContent = item.join(' | ');
-          }
-          const parentItem = item.find(e => e.startsWith('parent:'));
-          if (parentItem) {
-            const parentId = parentItem.split(':')[1];
-            const parentElement = container.querySelector(`[data-id="${parentId}"]`);
-            if (parentElement) {
-              parentElement.appendChild(element);
-            } else {
-              console.warn(`Parent element with ID ${parentId} not found for item`, item);
-              container.appendChild(element);
-            }
-          } else {
-            const idItem = item.find(e => e.startsWith('id:'));
-            if (idItem) {
-              element.id = idItem.split(':')[1];
-              element.setAttribute('data-id', element.id);
-            }
+            console.warn(`Parent element with ID ${parentId} not found for item`, item);
             container.appendChild(element);
           }
+        } else {
+          const idItem = item.find(e => e.startsWith('id:'));
+          if (idItem) {
+            element.id = idItem.split(':')[1];
+            element.setAttribute('data-id', element.id);
+          }
+          container.appendChild(element);
+        }
+      };
+
+      Object.entries(mascomTJI).forEach(([_, item]) => {
+        try {
+          const element = createElementFromItem(item);
+          appendElement(element, item);
         } catch (e) {
           console.error('Error processing item', item, e);
         }
       });
+
       document.body.appendChild(container);
     });
   </script>
