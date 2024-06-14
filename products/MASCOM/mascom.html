@@ -5,16 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MASCOM Overview</title>
   <link rel="stylesheet" href="https://mobleysoft.com/styles/writeup.css">
-  <style>
-    .default-item {
-      background-color: rgba(255, 0, 0, 0.1);
-      padding: 15px;
-      margin: 15px 0;
-      border-left: 5px solid #ff0000;
-      border-radius: 5px;
-      font-style: italic;
-    }
-  </style>
 </head>
 <body>
   <script type="module">
@@ -34,18 +24,11 @@
       const createElementFromItem = (item) => {
         const tagItem = item.find(e => e.startsWith('tag:'));
         const contentItem = item.find(e => e.startsWith('content:'));
-        if (tagItem && contentItem) {
-          const [, tag] = splitOnce(tagItem, ':');
-          const [, content] = splitOnce(contentItem, ':');
-          const element = document.createElement(tag.trim());
-          element.innerHTML = content.trim();
-          return element;
-        } else {
-          const element = document.createElement('div');
-          element.classList.add('default-item');
-          element.textContent = `Missing tag or content: ${item.join(' | ')}`;
-          return element;
-        }
+        const [, tag] = splitOnce(tagItem, ':');
+        const [, content] = splitOnce(contentItem, ':');
+        const element = document.createElement(tag.trim());
+        element.innerHTML = content.trim();
+        return element;
       };
 
       const appendElement = (element, item) => {
@@ -61,12 +44,10 @@
           }
         } else {
           const idItem = item.find(e => e.startsWith('id:'));
-          if (idItem) {
-            const [, id] = splitOnce(idItem, ':');
-            element.id = id.trim();
-            element.setAttribute('data-id', id.trim());
-            elementsCache[id.trim()] = element;
-          }
+          const [, id] = splitOnce(idItem, ':');
+          element.id = id.trim();
+          element.setAttribute('data-id', id.trim());
+          elementsCache[id.trim()] = element;
           container.appendChild(element);
         }
       };
