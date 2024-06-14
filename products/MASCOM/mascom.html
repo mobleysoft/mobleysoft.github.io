@@ -52,11 +52,11 @@
         const parentItem = item.find(e => e.startsWith('parent:'));
         if (parentItem) {
           const [, parentId] = splitOnce(parentItem, ':');
-          const parentElement = elementsCache[parentId] || container.querySelector(`[data-id="${parentId}"]`);
+          const parentElement = elementsCache[parentId.trim()] || container.querySelector(`[data-id="${parentId.trim()}"]`);
           if (parentElement) {
             parentElement.appendChild(element);
           } else {
-            console.warn(`Parent element with ID ${parentId} not found for item`, item);
+            console.warn(`Parent element with ID ${parentId.trim()} not found for item`, item);
             container.appendChild(element);
           }
         } else {
@@ -71,8 +71,6 @@
         }
       };
 
-      const fragment = document.createDocumentFragment();
-
       Object.entries(mascomTJI).forEach(([_, item]) => {
         try {
           const element = createElementFromItem(item);
@@ -82,8 +80,7 @@
         }
       });
 
-      fragment.appendChild(container);
-      document.body.appendChild(fragment);
+      document.body.appendChild(container);
     });
   </script>
 </body>
