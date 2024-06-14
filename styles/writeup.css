@@ -30,3 +30,9 @@ body {
   .tji-line {
     font-family: monospace;
   }
+  .default-item {
+    background-color: #ffe0e0;
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 3px solid #ff0000;
+  }
