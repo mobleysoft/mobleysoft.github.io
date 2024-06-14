@@ -1,5 +1,5 @@
 export const mascomTJI = {
-    "1": ["id:MASCOM", "type:system", "name:Mobleysoft Autonomous Systems Controller and Optimization Manager", "description:An advanced AI-driven system replacing traditional departments, integrating and automating enterprise operations"],
+    "1": ["id:MASCOM", "type:section", "tag:h1", "content: MASCOM: Mobleysoft Autonomous Systems Controller and Optimization Manager", "description:An advanced AI-driven system replacing traditional departments, integrating and automating enterprise operations"],
     "2": ["id:intro", "type:section", "tag:h2", "content:Introduction"],
     "3": ["id:intro-content", "type:section", "tag:p", "content:Discover how MASCOM (Mobleysoft Autonomous Systems Controller and Optimization Manager) revolutionizes your business operations with cutting-edge AI-driven automation and optimization.", "parent:intro"],
     "4": ["id:what", "type:section", "tag:h2", "content:What is MASCOM?"],

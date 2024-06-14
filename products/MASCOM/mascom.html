@@ -37,8 +37,8 @@
         if (tagItem && contentItem) {
           const [, tag] = splitOnce(tagItem, ':');
           const [, content] = splitOnce(contentItem, ':');
-          const element = document.createElement(tag);
-          element.innerHTML = content;
+          const element = document.createElement(tag.trim());
+          element.innerHTML = content.trim();
           return element;
         } else {
           const element = document.createElement('div');
@@ -63,9 +63,9 @@
           const idItem = item.find(e => e.startsWith('id:'));
           if (idItem) {
             const [, id] = splitOnce(idItem, ':');
-            element.id = id;
-            element.setAttribute('data-id', id);
-            elementsCache[id] = element;
+            element.id = id.trim();
+            element.setAttribute('data-id', id.trim());
+            elementsCache[id.trim()] = element;
           }
           container.appendChild(element);
         }
@@ -84,19 +84,6 @@
 
       fragment.appendChild(container);
       document.body.appendChild(fragment);
-
-      // Add collapsible functionality if needed
-      document.querySelectorAll('.collapsible').forEach(button => {
-        button.addEventListener('click', () => {
-          button.classList.toggle('active');
-          const content = button.nextElementSibling;
-          if (content.style.display === 'block') {
-            content.style.display = 'none';
-          } else {
-            content.style.display = 'block';
-          }
-        });
-      });
     });
   </script>
 </body>
