@@ -6,7 +6,7 @@ body {font-family: Arial, sans-serif;line-height:1.2;margin:0;padding:0;backgrou
 /* Combined heading styles */
 h1,h2,h3 {color:#2c3e50;text-transform:none;font-weight:bold}
 h1 {font-size:1.2em;margin-bottom:.5em;text-align:center}
-h2 {font-size:1em;margin-top:1.2em;border-bottom:1px solid #2c3e50;padding-bottom:.2em}
+h2 {font-size:1.1em;margin-top:1.2em;border-bottom:1px solid #2c3e50;padding-bottom:.2em}
 
 /* Paragraph and line styles */
 p,.tji-line {margin-bottom:.8em;font-weight:normal;text-transform:none;font-size:1em}
@@ -14,22 +14,22 @@ p,.tji-line {margin-bottom:.8em;font-weight:normal;text-transform:none;font-size
 
 /* List styles */
 ul {padding-left:20px;margin-bottom:.8em;list-style-type:disc}
-li {margin-bottom:.5em;line-height:1.2;font-weight:normal;color:#2c3e50}
+li {margin-bottom:.5em;line-height:1.0;font-weight:lighter;color:#2c3e50}
 
 /* Display and link styles */
-.tji-display {background-color:#2c3e50;padding:10px;overflow-x:auto;white-space:pre;border-radius:5px;color:#ececec;font-size:.8em}
-a {color:#4ca1af;text-decoration:none;transition:color .3s ease;text-transform:none;font-size:.8em}
+.tji-display {background-color:#2c3e50;padding:10px;overflow-x:auto;white-space:pre;border-radius:5px;color:#ececec;font-size:.9em}
+a {color:#4ca1af;text-decoration:none;transition:color .3s ease;text-transform:none;font-size:.9em}
 a:hover {color:#2c3e50}
 
 /* Button styles */
-button {background:#4ca1af;color:#fff;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;transition:background .3s ease;text-transform:none;font-size:.8em}
+button {background:#4ca1af;color:#fff;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;transition:background .3s ease;text-transform:none;font-size:.9em}
 button:hover {background:#2c3e50}
 
 /* Media query (for smaller screens) */
 @media (max-width:600px) {
     .tji-container {padding:10px;margin:10px}
     h1 {font-size:1em}
-    h2 {font-size:.8em}
-    p,.tji-line,a,button {font-size:.7em} /* Combined smaller font sizes */
-    ul {font-size:.7em}
+    h2 {font-size:.9em}
+    p,.tji-line,a,button {font-size:.8em} /* Combined smaller font sizes */
+    ul {font-size:.8em}
 }
