@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MASCOM Overview</title>
-  <link rel="stylesheet" href="https://mobleysoft.com/styles/writeup.css">
+  <link rel="stylesheet" href="https://mobleysoft.github.io/styles/writeup.css">
 </head>
 <body>
   <script>
@@ -76,10 +76,22 @@
     container.classList.add("tji-container");
 
     Object.entries(mascomTJI).forEach(([_, item]) => {
-      const element = document.createElement(item.find(e => e.startsWith("tag:")).split(":")[1]);
-      element.innerHTML = item.find(e => e.startsWith("content:")).split(":")[1];
+      const tag = item.find(e => e.startsWith("tag:")).split(":")[1];
+      const content = item.find(e => e.startsWith("content:")).split(":")[1];
+      const element = document.createElement(tag);
+      element.innerHTML = content;
       const parent = item.find(e => e.startsWith("parent:"));
-      parent ? document.getElementById(parent.split(":")[1]).appendChild(element) : (element.id = item[0], container.appendChild(element));
+      if (parent) {
+        const parentId = parent.split(":")[1];
+        const parentElement = document.getElementById(parentId) || container.querySelector(`[data-id="${parentId}"]`);
+        if (parentElement) {
+          parentElement.appendChild(element);
+        }
+      } else {
+        element.id = item.find(e => e.startsWith("id:")).split(":")[1];
+        element.setAttribute('data-id', element.id);
+        container.appendChild(element);
+      }
     });
 
     document.body.append(container);
