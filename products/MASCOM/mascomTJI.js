@@ -59,5 +59,5 @@ export const mascomTJI = {
     "58": ["id:NextStep1", "type:item", "tag:li", "content:Schedule a Demo: Contact us to schedule a demonstration of MASCOM’s capabilities.", "parent:nextSteps"],
     "59": ["id:NextStep2", "type:item", "tag:li", "content:Consultation: Arrange a consultation to discuss your specific needs and how MASCOM can be tailored to meet them.", "parent:nextSteps"],
     "60": ["id:NextStep3", "type:item", "tag:li", "content:Implementation Plan: We will work with you to develop a phased implementation plan, ensuring minimal disruption to your current operations.", "parent:nextSteps"],
-    "61": ["id:NextStep4", "type:item", "tag:p", "content:Contact us at contact@mobleysoft.com", "parent:nextSteps"]
+    "61": ["id:NextStep4", "type:item", "tag:p", "content:Contact us at jmobley@mobleysoft.com", "parent:nextSteps"]
 };
