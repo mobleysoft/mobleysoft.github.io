@@ -32,6 +32,7 @@
     nav ul {
       list-style: none;
       padding: 0;
+      text-align: center;
     }
     nav ul li {
       display: inline;
@@ -40,23 +41,58 @@
     nav ul li a {
       color: #fff;
       text-decoration: none;
+      padding: 5px 10px;
     }
     section {
       margin: 20px 0;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .diagram {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .diagram img {
+      max-width: 100%;
+      height: auto;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 0;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .button:hover {
+      background: #555;
     }
   </style>
 </head>
 <body>
   <nav>
     <ul>
+      <li><a href="#intro">Introduction</a></li>
       <li><a href="#what">What is MASCOM?</a></li>
       <li><a href="#purpose">Purpose</a></li>
       <li><a href="#how-it-works">How it Works</a></li>
       <li><a href="#why-needed">Why it is Needed</a></li>
+      <li><a href="#next-steps">Next Steps</a></li>
     </ul>
   </nav>
 
   <div class="container">
+    <section id="intro">
+      <div class="intro">
+        <h1>Welcome to MASCOM</h1>
+        <p>Discover how MASCOM (Mobleysoft Autonomous Systems Controller and Optimization Manager) revolutionizes your business operations with cutting-edge AI-driven automation and optimization.</p>
+      </div>
+    </section>
+
     <section id="what">
       <h1>What is MASCOM?</h1>
       <p>MASCOM (Mobleysoft Autonomous Systems Controller and Optimization Manager) is an advanced AI-driven system designed to serve as a virtual Chief Technology Officer (CTO) for organizations. It integrates and automates multiple systems, optimizing performance, ensuring real-time adaptability, and minimizing human intervention.</p>
@@ -77,6 +113,10 @@
         <li><strong>Execution Logic:</strong> Defines and manages operational rules and error handling.</li>
         <li><strong>Surveillance and Logging:</strong> Monitors operations and ensures security.</li>
       </ul>
+      <div class="diagram">
+        <h3>System Architecture</h3>
+        <img src="system-architecture-diagram.png" alt="MASCOM System Architecture Diagram">
+      </div>
     </section>
 
     <section id="why-needed">
@@ -89,6 +129,19 @@
         <li><strong>Improve Workflow Integration:</strong> Unify business functions, eliminating disjointed tools.</li>
         <li><strong>Reduce Costs:</strong> Lower costs by reducing reliance on multiple software subscriptions and manual processes.</li>
       </ul>
+    </section>
+
+    <section id="next-steps">
+      <h2>Next Steps</h2>
+      <p>If you are interested in transforming your organization with MASCOM, here are the next steps:</p>
+      <ul>
+        <li><strong>Schedule a Demo:</strong> Contact us to schedule a demonstration of MASCOM’s capabilities.</li>
+        <li><strong>Consultation:</strong> Arrange a consultation to discuss your specific needs and how MASCOM can be tailored to meet them.</li>
+        <li><strong>Implementation Plan:</strong> We will work with you to develop a phased implementation plan, ensuring minimal disruption to your current operations.</li>
+      </ul>
+      <div class="button-container" style="text-align:center;">
+        <a href="mailto:contact@mobleysoft.com" class="button">Contact Us</a>
+      </div>
     </section>
   </div>
 
