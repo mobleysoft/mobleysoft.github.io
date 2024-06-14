@@ -76,29 +76,17 @@
       if (item[1] === "section") {
         const section = document.createElement("section");
         section.id = item[0];
-
-        const title = document.createElement("h2");
-        title.textContent = item[3];
-        section.appendChild(title);
-
-        if (item[4]) {
-          const content = document.createElement("p");
-          content.textContent = item[4];
-          section.appendChild(content);
-        }
-
-        if (item[5] && item[5].startsWith("items")) {
+        section.innerHTML = `<h2>${item[3]}</h2><p>${item[4]}</p>`;
+        if (item[5] && item[5].startsWith("items:")) {
           const ul = document.createElement("ul");
           item[5].split(":")[1].split(",").forEach(childId => {
-            const childItem = mascomTJI[Object.keys(mascomTJI).find(key => mascomTJI[key][0] === childId)];
+            const childItem = mascomTJI[Object.keys(mascomTJI).find(k => mascomTJI[k][0] === childId)];
             const li = document.createElement("li");
-            if (childItem[1] === "item") {
-              li.innerHTML = `<strong>${childItem[3]}:</strong> ${childItem[4]}`;
-            }
-            if (childItem[5]) {
+            li.innerHTML = `<strong>${childItem[3]}:</strong> ${childItem[4]}`;
+            if (childItem[5] && childItem[5].startsWith("items:")) {
               const nestedUl = document.createElement("ul");
               childItem[5].split(":")[1].split(",").forEach(nestedChildId => {
-                const nestedChildItem = mascomTJI[Object.keys(mascomTJI).find(key => mascomTJI[key][0] === nestedChildId)];
+                const nestedChildItem = mascomTJI[Object.keys(mascomTJI).find(k => mascomTJI[k][0] === nestedChildId)];
                 const nestedLi = document.createElement("li");
                 nestedLi.textContent = nestedChildItem[3];
                 nestedUl.appendChild(nestedLi);
