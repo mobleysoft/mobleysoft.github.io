@@ -25,12 +25,18 @@
       container.classList.add('tji-container');
       const elementsCache = {};
 
+      const splitOnce = (str, delimiter) => {
+        const index = str.indexOf(delimiter);
+        if (index === -1) return [str];
+        return [str.substring(0, index), str.substring(index + 1)];
+      };
+
       const createElementFromItem = (item) => {
         const tagItem = item.find(e => e.startsWith('tag:'));
         const contentItem = item.find(e => e.startsWith('content:'));
         if (tagItem && contentItem) {
-          const tag = tagItem.split(':')[1];
-          const content = contentItem.split(':')[1];
+          const [, tag] = splitOnce(tagItem, ':');
+          const [, content] = splitOnce(contentItem, ':');
           const element = document.createElement(tag);
           element.innerHTML = content;
           return element;
@@ -45,7 +51,7 @@
       const appendElement = (element, item) => {
         const parentItem = item.find(e => e.startsWith('parent:'));
         if (parentItem) {
-          const parentId = parentItem.split(':')[1];
+          const [, parentId] = splitOnce(parentItem, ':');
           const parentElement = elementsCache[parentId] || container.querySelector(`[data-id="${parentId}"]`);
           if (parentElement) {
             parentElement.appendChild(element);
@@ -56,7 +62,7 @@
         } else {
           const idItem = item.find(e => e.startsWith('id:'));
           if (idItem) {
-            const id = idItem.split(':')[1];
+            const [, id] = splitOnce(idItem, ':');
             element.id = id;
             element.setAttribute('data-id', id);
             elementsCache[id] = element;
