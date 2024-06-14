@@ -4,280 +4,116 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MASCOM Overview</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-    }
-    .container {
-      width: 80%;
-      margin: auto;
-      overflow: hidden;
-      padding: 20px;
-      background: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-top: 30px;
-    }
-    h1, h2, h3 {
-      color: #333;
-    }
-    nav {
-      background: #333;
-      color: #fff;
-      padding: 10px 0;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
-    nav ul li {
-      display: inline;
-      margin-right: 10px;
-    }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      padding: 5px 10px;
-    }
-    section {
-      margin: 20px 0;
-    }
-    .intro {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .diagram {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .diagram img {
-      max-width: 100%;
-      height: auto;
-    }
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 10px 0;
-      background: #333;
-      color: #fff;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .button:hover {
-      background: #555;
-    }
-  </style>
+  <link rel="stylesheet" href="https://mobleysoft.github.io/styles/writeup.css">
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="#intro">Introduction</a></li>
-      <li><a href="#what">What is MASCOM?</a></li>
-      <li><a href="#purpose">Purpose</a></li>
-      <li><a href="#components">Components</a></li>
-      <li><a href="#functions">Core Functions</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#categories">Categories</a></li>
-      <li><a href="#next-steps">Next Steps</a></li>
-    </ul>
-  </nav>
-
-  <div class="container">
-    <section id="intro">
-      <div class="intro">
-        <h1>Welcome to MASCOM</h1>
-        <p>Discover how MASCOM (Mobleysoft Autonomous Systems Controller and Optimization Manager) revolutionizes your business operations with cutting-edge AI-driven automation and optimization.</p>
-      </div>
-    </section>
-
-    <section id="what">
-      <h1>What is MASCOM?</h1>
-      <p>MASCOM (Mobleysoft Autonomous Systems Controller and Optimization Manager) is an advanced AI-driven system designed to serve as a virtual Chief Technology Officer (CTO) for organizations. It integrates and automates multiple systems, optimizing performance, ensuring real-time adaptability, and minimizing human intervention.</p>
-    </section>
-
-    <section id="purpose">
-      <h2>Purpose</h2>
-      <p>The primary purpose of MASCOM is to place AI at the core of an organization's operations, ensuring continuous improvement and adaptation. This approach enhances operational efficiency, future-proofs the organization against technological obsolescence, and reduces manual intervention in routine tasks.</p>
-    </section>
-
-    <section id="components">
-      <h2>Components</h2>
-      <ul>
-        <li><strong>Command Orchestrator:</strong> Manages operations sequence and coordinates AI-driven tasks, ensuring workflow continuity.</li>
-        <li><strong>AI Integration Manager:</strong> Facilitates secure communication with various AI APIs such as OpenAI, Google AI, Microsoft Azure AI, IBM Watson, AWS AI, Baidu AI, Alibaba Cloud AI, Anthropic's Claude Opus, Microsoft's Copilot Pro and Designer, and Google Gemini Advanced, handling request formatting and response parsing.</li>
-        <li><strong>Data Fusion Specialist:</strong> Aggregates and transforms data from various sources for compatibility and integrity.</li>
-        <li><strong>Execution Supervisor:</strong> Defines and manages operational rules, conditions, and error handling.</li>
-        <li><strong>Security Auditor:</strong> Monitors operations, logs activities, and ensures security and compliance.</li>
-        <li><strong>Predictive Analyst:</strong> Uses predictive analytics and anomaly detection to optimize operations and detect issues.</li>
-        <li><strong>Language Interpreter:</strong> Supports conversational interfaces, multilingual capabilities, and sentiment analysis for better user interactions and feedback.</li>
-        <li><strong>Integration Architect:</strong> Develops an open API framework for seamless integration with third-party applications and services.</li>
-        <li><strong>Modular Systems Engineer:</strong> Employs microservices, plugin architecture, and containerization for scalable and flexible deployments.</li>
-        <li><strong>Cloud Strategist:</strong> Supports multi-cloud, edge computing, and real-time data processing for flexibility and reduced latency.</li>
-        <li><strong>Communication Manager:</strong> Replaces Microsoft Teams with MASCOM’s integrated communication and collaboration capabilities.</li>
-        <li><strong>Document Manager:</strong> Replaces SharePoint with MASCOM’s centralized data management and document handling.</li>
-        <li><strong>Customer Manager:</strong> Replaces Microsoft Dynamics with MASCOM’s AI-driven customer management and sales automation.</li>
-        <li><strong>Email Manager:</strong> Replaces Outlook with MASCOM’s automated communication management.</li>
-        <li><strong>Process Automation Manager:</strong> Automates manual processes with MASCOM’s AI-driven workflows and RPA (Robotic Process Automation).</li>
-        <li><strong>Software Development Manager:</strong> Replaces custom software solutions with MASCOM’s AI-driven custom software development and continuous improvement.</li>
-        <li><strong>HR Manager:</strong> Automates HR processes including hiring, onboarding, employee management, and payroll.</li>
-        <li><strong>Finance Manager:</strong> Handles budgeting, accounting, financial reporting, and compliance.</li>
-        <li><strong>Supply Chain Manager:</strong> Manages procurement, inventory, logistics, and supplier relationships.</li>
-        <li><strong>Sales Manager:</strong> Automates sales processes including lead generation, pipeline management, and performance tracking.</li>
-        <li><strong>Marketing Manager:</strong> Manages marketing campaigns, customer outreach, and brand management using AI-driven insights.</li>
-        <li><strong>Accounting Manager:</strong> Automates accounting processes including invoicing, expense tracking, financial reconciliation, and regulatory compliance.</li>
-      </ul>
-    </section>
-
-    <section id="functions">
-      <h2>Core Functions of MASCOM</h2>
-      <ul>
-        <li><strong>IT Operations Management:</strong>
-          <ul>
-            <li>Command Orchestrator</li>
-            <li>AI Integration Manager</li>
-          </ul>
-        </li>
-        <li><strong>Data Management and Analysis:</strong>
-          <ul>
-            <li>Data Fusion Specialist</li>
-            <li>Predictive Analyst</li>
-          </ul>
-        </li>
-        <li><strong>Security and Compliance:</strong>
-          <ul>
-            <li>Security Auditor</li>
-          </ul>
-        </li>
-        <li><strong>Automation and Optimization:</strong>
-          <ul>
-            <li>Execution Supervisor</li>
-            <li>Process Automation Manager</li>
-          </ul>
-        </li>
-        <li><strong>User Interaction and Support:</strong>
-          <ul>
-            <li>Language Interpreter</li>
-            <li>Software Development Manager</li>
-          </ul>
-        </li>
-        <li><strong>Communication and Collaboration:</strong>
-          <ul>
-            <li>Communication Manager</li>
-            <li>Document Manager</li>
-          </ul>
-        </li>
-        <li><strong>Customer and Email Management:</strong>
-          <ul>
-            <li>Customer Manager</li>
-            <li>Email Manager</li>
-          </ul>
-        </li>
-        <li><strong>Human Resources Automation:</strong>
-          <ul>
-            <li>HR Manager</li>
-          </ul>
-        </li>
-        <li><strong>Financial Management:</strong>
-          <ul>
-            <li>Finance Manager</li>
-          </ul>
-        </li>
-        <li><strong>Supply Chain and Logistics:</strong>
-          <ul>
-            <li>Supply Chain Manager</li>
-          </ul>
-        </li>
-        <li><strong>Sales and Marketing:</strong>
-          <ul>
-            <li>Sales Manager</li>
-            <li>Marketing Manager</li>
-          </ul>
-        </li>
-        <li><strong>Accounting:</strong>
-          <ul>
-            <li>Accounting Manager</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section id="impact">
-      <h2>Impact of MASCOM</h2>
-      <ul>
-        <li><strong>Operational Efficiency:</strong>
-          <ul>
-            <li>Automation of Repetitive Tasks: Significantly reduces the time and effort required for routine activities, allowing human resources to focus on strategic and creative tasks.</li>
-            <li>Predictive Analytics: Uses predictive analytics to forecast trends and optimize resource allocation.</li>
-          </ul>
-        </li>
-        <li><strong>Enhanced Decision-Making:</strong>
-          <ul>
-            <li>Data-Driven Insights: Aggregates and analyzes data from various sources to provide real-time, data-driven insights.</li>
-            <li>AI-Driven Strategy: Develops and adapts business strategies based on AI analysis of market conditions and internal performance metrics.</li>
-          </ul>
-        </li>
-        <li><strong>Scalability and Flexibility:</strong>
-          <ul>
-            <li>Scalable Infrastructure: MASCOM's architecture allows it to scale effortlessly, handling increased loads and expanding functionalities as the business grows.</li>
-            <li>Flexible Deployment: Supports multiple deployment models, including on-premises, cloud, and hybrid environments.</li>
-          </ul>
-        </li>
-        <li><strong>Improved Security and Compliance:</strong>
-          <ul>
-            <li>Advanced Security Measures: Implements AI-driven threat detection, continuous authentication, and zero-trust security models.</li>
-            <li>Automated Compliance: Continuously monitors and ensures compliance with industry regulations.</li>
-          </ul>
-        </li>
-        <li><strong>User Empowerment and Experience:</strong>
-          <ul>
-            <li>Enhanced Interfaces: Features advanced conversational AI and adaptive user interfaces, making interaction with MASCOM intuitive.</li>
-            <li>Training and Support: Provides interactive tutorials and 24/7 AI-driven support.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section id="categories">
-      <h2>Categories of MASCOM as an Invention</h2>
-      <ul>
-        <li><strong>Autonomous Enterprise System:</strong> MASCOM functions as an entire enterprise system, managing everything from IT to HR to finance autonomously.</li>
-        <li><strong>Business Process Automation (BPA):</strong> Automates complex business processes, streamlining operations across the organization.</li>
-        <li><strong>Artificial Intelligence (AI) and Machine Learning:</strong> Integrates advanced AI and machine learning models to analyze data, predict trends, and make autonomous decisions.</li>
-        <li><strong>Enterprise Resource Planning (ERP):</strong> Manages and integrates core business processes, providing a comprehensive solution for organizational management.</li>
-        <li><strong>Intelligent Automation:</strong> Combines RPA with AI to create intelligent automation systems for complex tasks.</li>
-        <li><strong>Cloud and Edge Computing:</strong> Utilizes cloud and edge computing to provide scalable and flexible solutions.</li>
-      </ul>
-    </section>
-
-    <section id="next-steps">
-      <h2>Next Steps</h2>
-      <p>If you are interested in transforming your organization with MASCOM, here are the next steps:</p>
-      <ul>
-        <li><strong>Schedule a Demo:</strong> Contact us to schedule a demonstration of MASCOM’s capabilities.</li>
-        <li><strong>Consultation:</strong> Arrange a consultation to discuss your specific needs and how MASCOM can be tailored to meet them.</li>
-        <li><strong>Implementation Plan:</strong> We will work with you to develop a phased implementation plan, ensuring minimal disruption to your current operations.</li>
-      </ul>
-      <div class="button-container" style="text-align:center;">
-        <a href="mailto:contact@mobleysoft.com" class="button">Contact Us</a>
-      </div>
-    </section>
-  </div>
-
   <script>
-    // JavaScript to enable smooth scrolling for the navigation
-    document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
+    const mascomTJI = {
+      "1": ["id:MASCOM", "type:system", "name:Mobleysoft Autonomous Systems Controller and Optimization Manager", "description:An advanced AI-driven system replacing traditional departments, integrating and automating enterprise operations"],
+      "2": ["id:intro", "type:section", "title:Introduction", "content:Discover how MASCOM (Mobleysoft Autonomous Systems Controller and Optimization Manager) revolutionizes your business operations with cutting-edge AI-driven automation and optimization."],
+      "3": ["id:what", "type:section", "title:What is MASCOM?", "content:MASCOM (Mobleysoft Autonomous Systems Controller and Optimization Manager) is an advanced AI-driven system designed to serve as a virtual Chief Technology Officer (CTO) for organizations. It integrates and automates multiple systems, optimizing performance, ensuring real-time adaptability, and minimizing human intervention."],
+      "4": ["id:purpose", "type:section", "title:Purpose", "content:The primary purpose of MASCOM is to place AI at the core of an organization's operations, ensuring continuous improvement and adaptation. This approach enhances operational efficiency, future-proofs the organization against technological obsolescence, and reduces manual intervention in routine tasks."],
+      "5": ["id:components", "type:section", "title:Components", "parent:intro", "content:Components", "items:Component1,Component2,Component3,Component4,Component5,Component6,Component7,Component8,Component9,Component10,Component11,Component12,Component13,Component14,Component15,Component16,Component17,Component18,Component19,Component20,Component21,Component22"],
+      "6": ["id:Component1", "type:item", "parent:components", "label:Command Orchestrator", "description:Manages operations sequence and coordinates AI-driven tasks, ensuring workflow continuity."],
+      "7": ["id:Component2", "type:item", "parent:components", "label:AI Integration Manager", "description:Facilitates secure communication with various AI APIs such as OpenAI, Google AI, Microsoft Azure AI, IBM Watson, AWS AI, Baidu AI, Alibaba Cloud AI, Anthropic's Claude Opus, Microsoft's Copilot Pro and Designer, and Google Gemini Advanced, handling request formatting and response parsing."],
+      "8": ["id:Component3", "type:item", "parent:components", "label:Data Fusion Specialist", "description:Aggregates and transforms data from various sources for compatibility and integrity."],
+      "9": ["id:Component4", "type:item", "parent:components", "label:Execution Supervisor", "description:Defines and manages operational rules, conditions, and error handling."],
+      "10": ["id:Component5", "type:item", "parent:components", "label:Security Auditor", "description:Monitors operations, logs activities, and ensures security and compliance."],
+      "11": ["id:Component6", "type:item", "parent:components", "label:Predictive Analyst", "description:Uses predictive analytics and anomaly detection to optimize operations and detect issues."],
+      "12": ["id:Component7", "type:item", "parent:components", "label:Language Interpreter", "description:Supports conversational interfaces, multilingual capabilities, and sentiment analysis for better user interactions and feedback."],
+      "13": ["id:Component8", "type:item", "parent:components", "label:Integration Architect", "description:Develops an open API framework for seamless integration with third-party applications and services."],
+      "14": ["id:Component9", "type:item", "parent:components", "label:Modular Systems Engineer", "description:Employs microservices, plugin architecture, and containerization for scalable and flexible deployments."],
+      "15": ["id:Component10", "type:item", "parent:components", "label:Cloud Strategist", "description:Supports multi-cloud, edge computing, and real-time data processing for flexibility and reduced latency."],
+      "16": ["id:Component11", "type:item", "parent:components", "label:Communication Manager", "description:Replaces Microsoft Teams with MASCOM’s integrated communication and collaboration capabilities."],
+      "17": ["id:Component12", "type:item", "parent:components", "label:Document Manager", "description:Replaces SharePoint with MASCOM’s centralized data management and document handling."],
+      "18": ["id:Component13", "type:item", "parent:components", "label:Customer Manager", "description:Replaces Microsoft Dynamics with MASCOM’s AI-driven customer management and sales automation."],
+      "19": ["id:Component14", "type:item", "parent:components", "label:Email Manager", "description:Replaces Outlook with MASCOM’s automated communication management."],
+      "20": ["id:Component15", "type:item", "parent:components", "label:Process Automation Manager", "description:Automates manual processes with MASCOM’s AI-driven workflows and RPA (Robotic Process Automation)."],
+      "21": ["id:Component16", "type:item", "parent:components", "label:Software Development Manager", "description:Replaces custom software solutions with MASCOM’s AI-driven custom software development and continuous improvement."],
+      "22": ["id:Component17", "type:item", "parent:components", "label:HR Manager", "description:Automates HR processes including hiring, onboarding, employee management, and payroll."],
+      "23": ["id:Component18", "type:item", "parent:components", "label:Finance Manager", "description:Handles budgeting, accounting, financial reporting, and compliance."],
+      "24": ["id:Component19", "type:item", "parent:components", "label:Supply Chain Manager", "description:Manages procurement, inventory, logistics, and supplier relationships."],
+      "25": ["id:Component20", "type:item", "parent:components", "label:Sales Manager", "description:Automates sales processes including lead generation, pipeline management, and performance tracking."],
+      "26": ["id:Component21", "type:item", "parent:components", "label:Marketing Manager", "description:Manages marketing campaigns, customer outreach, and brand management using AI-driven insights."],
+      "27": ["id:Component22", "type:item", "parent:components", "label:Accounting Manager", "description:Automates accounting processes including invoicing, expense tracking, financial reconciliation, and regulatory compliance."],
+      "28": ["id:functions", "type:section", "title:Core Functions of MASCOM", "parent:intro", "content:Functions", "items:Function1,Function2,Function3,Function4,Function5,Function6,Function7,Function8,Function9,Function10,Function11,Function12"],
+      "29": ["id:Function1", "type:item", "parent:functions", "label:IT Operations Management", "items:Command Orchestrator,AI Integration Manager"],
+      "30": ["id:Function2", "type:item", "parent:functions", "label:Data Management and Analysis", "items:Data Fusion Specialist,Predictive Analyst"],
+      "31": ["id:Function3", "type:item", "parent:functions", "label:Security and Compliance", "items:Security Auditor"],
+      "32": ["id:Function4", "type:item", "parent:functions", "label:Automation and Optimization", "items:Execution Supervisor,Process Automation Manager"],
+      "33": ["id:Function5", "type:item", "parent:functions", "label:User Interaction and Support", "items:Language Interpreter,Software Development Manager"],
+      "34": ["id:Function6", "type:item", "parent:functions", "label:Communication and Collaboration", "items:Communication Manager,Document Manager"],
+      "35": ["id:Function7", "type:item", "parent:functions", "label:Customer and Email Management", "items:Customer Manager,Email Manager"],
+      "36": ["id:Function8", "type:item", "parent:functions", "label:Human Resources Automation", "items:HR Manager"],
+      "37": ["id:Function9", "type:item", "parent:functions", "label:Financial Management", "items:Finance Manager"],
+      "38": ["id:Function10", "type:item", "parent:functions", "label:Supply Chain and Logistics", "items:Supply Chain Manager"],
+      "39": ["id:Function11", "type:item", "parent:functions", "label:Sales and Marketing", "items:Sales Manager,Marketing Manager"],
+      "40": ["id:Function12", "type:item", "parent:functions", "label:Accounting", "items:Accounting Manager"],
+      "41": ["id:impact", "type:section", "title:Impact of MASCOM", "parent:intro", "content:Impact", "items:Impact1,Impact2,Impact3,Impact4,Impact5"],
+      "42": ["id:Impact1", "type:item", "parent:impact", "label:Operational Efficiency", "items:Automation of Repetitive Tasks, Predictive Analytics"],
+      "43": ["id:Impact2", "type:item", "parent:impact", "label:Enhanced Decision-Making", "items:Data-Driven Insights, AI-Driven Strategy"],
+      "44": ["id:Impact3", "type:item", "parent:impact", "label:Scalability and Flexibility", "items:Scalable Infrastructure, Flexible Deployment"],
+      "45": ["id:Impact4", "type:item", "parent:impact", "label:Improved Security and Compliance", "items:Advanced Security Measures, Automated Compliance"],
+      "46": ["id:Impact5", "type:item", "parent:impact", "label:User Empowerment and Experience", "items:Enhanced Interfaces, Training and Support"],
+      "47": ["id:categories", "type:section", "title:Categories of MASCOM as an Invention", "parent:intro", "content:Categories", "items:Category1,Category2,Category3,Category4,Category5,Category6"],
+      "48": ["id:Category1", "type:item", "parent:categories", "label:Autonomous Enterprise System", "description:MASCOM functions as an entire enterprise system, managing everything from IT to HR to finance autonomously."],
+      "49": ["id:Category2", "type:item", "parent:categories", "label:Business Process Automation (BPA)", "description:Automates complex business processes, streamlining operations across the organization."],
+      "50": ["id:Category3", "type:item", "parent:categories", "label:Artificial Intelligence (AI) and Machine Learning", "description:Integrates advanced AI and machine learning models to analyze data, predict trends, and make autonomous decisions."],
+      "51": ["id:Category4", "type:item", "parent:categories", "label:Enterprise Resource Planning (ERP)", "description:Manages and integrates core business processes, providing a comprehensive solution for organizational management."],
+      "52": ["id:Category5", "type:item", "parent:categories", "label:Intelligent Automation", "description:Combines RPA with AI to create intelligent automation systems for complex tasks."],
+      "53": ["id:Category6", "type:item", "parent:categories", "label:Cloud and Edge Computing", "description:Utilizes cloud and edge computing to provide scalable and flexible solutions."],
+      "54": ["id:nextSteps", "type:section", "title:Next Steps", "parent:intro", "content:Next Steps", "items:NextStep1,NextStep2,NextStep3,NextStep4"],
+      "55": ["id:NextStep1", "type:item", "parent:nextSteps", "label:Schedule a Demo", "description:Contact us to schedule a demonstration of MASCOM’s capabilities."],
+      "56": ["id:NextStep2", "type:item", "parent:nextSteps", "label:Consultation", "description:Arrange a consultation to discuss your specific needs and how MASCOM can be tailored to meet them."],
+      "57": ["id:NextStep3", "type:item", "parent:nextSteps", "label:Implementation Plan", "description:We will work with you to develop a phased implementation plan, ensuring minimal disruption to your current operations."],
+      "58": ["id:NextStep4", "type:item", "parent:nextSteps", "label:Contact", "description:contact@mobleysoft.com"]
+    };
+
+    const container = document.createElement("div");
+    container.classList.add("tji-container");
+
+    Object.entries(mascomTJI).forEach(([key, item]) => {
+      if (item[1] === "section") {
+        const section = document.createElement("section");
+        section.id = item[0];
+
+        const title = document.createElement("h2");
+        title.textContent = item[3];
+        section.appendChild(title);
+
+        if (item[4]) {
+          const content = document.createElement("p");
+          content.textContent = item[4];
+          section.appendChild(content);
+        }
+
+        if (item[5] && item[5].startsWith("items")) {
+          const ul = document.createElement("ul");
+          item[5].split(":")[1].split(",").forEach(childId => {
+            const childItem = mascomTJI[Object.keys(mascomTJI).find(key => mascomTJI[key][0] === childId)];
+            const li = document.createElement("li");
+            if (childItem[1] === "item") {
+              li.innerHTML = `<strong>${childItem[3]}:</strong> ${childItem[4]}`;
+            }
+            if (childItem[5]) {
+              const nestedUl = document.createElement("ul");
+              childItem[5].split(":")[1].split(",").forEach(nestedChildId => {
+                const nestedChildItem = mascomTJI[Object.keys(mascomTJI).find(key => mascomTJI[key][0] === nestedChildId)];
+                const nestedLi = document.createElement("li");
+                nestedLi.textContent = nestedChildItem[3];
+                nestedUl.appendChild(nestedLi);
+              });
+              li.appendChild(nestedUl);
+            }
+            ul.appendChild(li);
+          });
+          section.appendChild(ul);
+        }
+        container.appendChild(section);
+      }
     });
+
+    document.body.append(container);
   </script>
 </body>
 </html>
