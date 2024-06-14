@@ -15,21 +15,35 @@
       container.classList.add('tji-container');
       Object.entries(mascomTJI).forEach(([_, item]) => {
         try {
-          const tag = item.find(e => e.startsWith('tag:')).split(':')[1];
-          const content = item.find(e => e.startsWith('content:')).split(':')[1];
-          const element = document.createElement(tag);
-          element.innerHTML = content;
-          const parent = item.find(e => e.startsWith('parent:'))?.split(':')[1];
-          if (parent) {
-            const parentElement = container.querySelector(`[data-id="${parent}"]`);
+          const tagItem = item.find(e => e.startsWith('tag:'));
+          const contentItem = item.find(e => e.startsWith('content:'));
+          let element;
+          if (tagItem && contentItem) {
+            const tag = tagItem.split(':')[1];
+            const content = contentItem.split(':')[1];
+            element = document.createElement(tag);
+            element.innerHTML = content;
+          } else {
+            element = document.createElement('div');
+            element.classList.add('default-item');
+            element.textContent = item.join(' | ');
+          }
+          const parentItem = item.find(e => e.startsWith('parent:'));
+          if (parentItem) {
+            const parentId = parentItem.split(':')[1];
+            const parentElement = container.querySelector(`[data-id="${parentId}"]`);
             if (parentElement) {
               parentElement.appendChild(element);
             } else {
-              console.warn(`Parent element with ID ${parent} not found for item`, item);
+              console.warn(`Parent element with ID ${parentId} not found for item`, item);
+              container.appendChild(element);
             }
           } else {
-            element.id = item.find(e => e.startsWith('id:')).split(':')[1];
-            element.setAttribute('data-id', element.id);
+            const idItem = item.find(e => e.startsWith('id:'));
+            if (idItem) {
+              element.id = idItem.split(':')[1];
+              element.setAttribute('data-id', element.id);
+            }
             container.appendChild(element);
           }
         } catch (e) {
