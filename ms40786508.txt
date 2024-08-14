@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "Mobleysoft.com",
+  "Id": "52da438d-43b4-471f-8257-3204b05b4e95"
+}
