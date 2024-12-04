@@ -5,21 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobleysoft - AI Consulting SaaS</title>
     <link rel="stylesheet" href="https://mobleysoft.com/styles/crossfade.css">
-    <script type="module" src="https://mobleysoft.com/scripts/blackhole.js"></script>
     <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
 </head>
 <body>
+    <!-- Black Hole Canvas -->
     <canvas id="blackhole"></canvas>
+
+    <!-- Overlay for Pricing Table -->
     <div id="overlay" class="hidden">
-        <stripe-pricing-table pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
+        <stripe-pricing-table 
+            pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
             publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
         </stripe-pricing-table>
     </div>
+
+    <!-- Script Section -->
     <script type="module">
-        import { initBlackHoleAnimation } from "./blackhole.js";
+        import { initBlackHoleAnimation } from "https://mobleysoft.com/scripts/blackhole.js";
+        
+        // Initialize Black Hole Animation
         initBlackHoleAnimation();
 
-        // Fade interaction logic
+        // Overlay Fade Logic
         const overlay = document.getElementById("overlay");
         let idleTimer;
 
@@ -29,10 +36,11 @@
             idleTimer = setTimeout(() => overlay.classList.add("hidden"), 5000);
         }
 
+        // Event Listeners for Interaction
         document.body.addEventListener("mousemove", showControls);
         document.body.addEventListener("click", showControls);
 
-        // Show controls on page load
+        // Show controls initially
         showControls();
     </script>
 </body>
