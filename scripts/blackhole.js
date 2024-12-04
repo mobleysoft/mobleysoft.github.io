@@ -6,38 +6,72 @@ export function initBlackHoleAnimation() {
     const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("blackhole"), antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Black hole physics constants
-    const c = 1; // Speed of light
-    const G = 1; // Gravitational constant
-    const M = 50; // Black hole mass
-    const Rs = 2 * G * M / (c * c); // Schwarzschild radius
+    const vertexShader = `
+        varying vec2 vUv;
+        varying float vDist;
+        void main() {
+            vUv = uv;
+            vec4 worldPos = modelMatrix * vec4(position, 1.0);
+            vDist = length(worldPos.xz);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    `;
 
-    // Accretion disk
-    const diskGeometry = new THREE.PlaneGeometry(Rs * 10, Rs * 10, 100, 100);
-    const diskMaterial = new THREE.ShaderMaterial({
-        transparent: true,
-        vertexShader: `...`, // Add vertex shader code here
-        fragmentShader: `...`, // Add fragment shader code here
-        uniforms: { time: { value: 0 }, Rs: { value: Rs } },
-        blending: THREE.AdditiveBlending,
-        side: THREE.DoubleSide,
-    });
-    const accretionDisk = new THREE.Mesh(diskGeometry, diskMaterial);
-    accretionDisk.rotation.x = Math.PI / 3;
+    const fragmentShader = `
+        varying vec2 vUv;
+        varying float vDist;
+        uniform float time;
+        uniform float Rs;
+        
+        vec3 doppler_shift(vec3 color, float velocity) {
+            float gamma = 1.0 / sqrt(1.0 - velocity * velocity);
+            float doppler = gamma * (1.0 - velocity);
+            
+            return color * vec3(
+                clamp(1.0 / doppler, 0.0, 2.0),
+                clamp(1.0 / sqrt(doppler), 0.0, 2.0),
+                clamp(sqrt(doppler), 0.0, 2.0)
+            );
+        }
+        
+        void main() {
+            float r = vDist;
+            float v = sqrt(Rs / (2.0 * r)); // Keplerian orbital velocity
+            
+            vec3 baseColor = vec3(1.0, 0.6, 0.2);
+            vec3 shiftedColor = doppler_shift(baseColor, v);
+            
+            float intensity = smoothstep(Rs, Rs * 5.0, r) * 
+                              (1.0 - smoothstep(Rs * 5.0, Rs * 8.0, r));
+            
+            float pattern = sin(r * 20.0 - time * 2.0) * 0.5 + 0.5;
+            
+            gl_FragColor = vec4(shiftedColor * intensity * pattern, 
+                                intensity * 0.8);
+        }
+    `;
+
+    const accretionDisk = new THREE.Mesh(
+        new THREE.PlaneGeometry(100, 100, 100, 100),
+        new THREE.ShaderMaterial({
+            transparent: true,
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+                time: { value: 0 },
+                Rs: { value: 2 }, // Schwarzschild radius
+            },
+        })
+    );
+
     scene.add(accretionDisk);
 
-    // Render loop
+    camera.position.z = 10;
+
     function animate() {
         requestAnimationFrame(animate);
-        diskMaterial.uniforms.time.value += 0.01;
         renderer.render(scene, camera);
     }
-    animate();
 
-    // Handle resizing
-    window.addEventListener("resize", () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    animate();
 }
