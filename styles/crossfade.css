@@ -42,7 +42,7 @@ stripe-pricing-table {
     max-width: 300px; /* Limit the width of each table */
     min-width: 250px; /* Ensure tables are not too narrow */
     padding: 10px;
-    background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    background: transparent !important; /* Make background transparent */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
