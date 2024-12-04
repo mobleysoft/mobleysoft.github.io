@@ -38,10 +38,11 @@ canvas {
     transition: opacity 3s ease-in-out; /* Smooth fade-in/out over 3 seconds */
     opacity: 0; /* Start hidden */
     pointer-events: none; /* Disable interaction when hidden */
+    width: 1000px; /* Set width here */
 }
 
 .visible {
-    opacity: .9; /* Fade in */
+    opacity: 0.9; /* Fade in */
     pointer-events: auto; /* Enable interaction when visible */
 }
 
@@ -64,13 +65,11 @@ stripe-pricing-table:hover {
 </style>
 </head>
 <body>
-    Test13
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://mobleysoft.com/scripts/blackhole.js"></script>
-<!--script src="https://mobleysoft.com/scripts/fade.js"></script-->
 <canvas id="blackhole"></canvas>
 
-<div id="overlay" style="width:1000px!important">
+<div id="overlay">
     <stripe-pricing-table 
         pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
         publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
@@ -87,26 +86,21 @@ stripe-pricing-table:hover {
     }
 
     function hideOverlay() {
-        // Reduce opacity to 0 smoothly before removing the class
-        overlay.style.opacity = 0; // Trigger the CSS transition
-        overlay.style.pointerEvents = "none"; // Disable interactions
-        setTimeout(() => {
-            overlay.classList.remove('visible'); // Fully hide after transition
-        }, 6000); // Match the CSS transition duration (3 seconds)
+        // Smoothly reduce opacity using CSS transition
+        overlay.classList.remove('visible'); // Trigger fade-out
     }
 
     function resetIdleTimer() {
         clearTimeout(idleTimer); // Clear any existing timer
-        idleTimer = setTimeout(hideOverlay, 1500); // Start a 3-second timer for fade-out
-        // Ensure overlay is immediately interactive
-        overlay.style.pointerEvents = "auto";
-        overlay.style.opacity = .9; // Start fading in
+        idleTimer = setTimeout(hideOverlay, 3000); // Start a 3-second timer for fade-out
     }
 
+    // Event listeners for user interaction
     document.addEventListener('mousemove', showOverlay);
     document.addEventListener('click', showOverlay);
     document.addEventListener('keypress', showOverlay);
 
+    // Start with overlay hidden
     hideOverlay();
 </script>
 </body>
