@@ -38,7 +38,6 @@ canvas {
     transition: opacity 3s ease-in-out; /* Smooth fade-in/out over 3 seconds */
     opacity: 0; /* Start hidden */
     pointer-events: none; /* Disable interaction when hidden */
-    width: 1000px; /* Set width here */
 }
 
 .visible {
@@ -69,7 +68,7 @@ stripe-pricing-table:hover {
 <script src="https://mobleysoft.com/scripts/blackhole.js"></script>
 <canvas id="blackhole"></canvas>
 
-<div id="overlay">
+<div id="overlay" style="width:1000px!important">
     <stripe-pricing-table 
         pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
         publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
