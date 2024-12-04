@@ -47,7 +47,7 @@ canvas {
 
 stripe-pricing-table {
     flex: 1; /* Allow tables to resize equally */
-    max-width: 300px; /* Limit the width of each table */
+    max-width: 1000px; /* Limit the width of each table */
     min-width: 250px; /* Ensure tables are not too narrow */
     padding: 10px;
     background: transparent !important; /* Make background transparent */
@@ -64,7 +64,7 @@ stripe-pricing-table:hover {
 </style>
 </head>
 <body>
-    Test7
+    Test8
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://mobleysoft.com/scripts/blackhole.js"></script>
 <!--script src="https://mobleysoft.com/scripts/fade.js"></script-->
@@ -94,16 +94,16 @@ stripe-pricing-table:hover {
         overlay.style.pointerEvents = "none"; // Disable interactions
         setTimeout(() => {
             overlay.classList.remove('visible'); // Fully hide after transition
-        }, 3000); // Match the CSS transition duration (3 seconds)
+        }, 1500); // Match the CSS transition duration (3 seconds)
     }
 
     // Reset the idle timer on user interaction
     function resetIdleTimer() {
         clearTimeout(idleTimer); // Clear any existing timer
-        idleTimer = setTimeout(hideOverlay, 3000); // Start a 3-second timer for fade-out
+        idleTimer = setTimeout(hideOverlay, 1500); // Start a 3-second timer for fade-out
         // Ensure overlay is immediately interactive
         overlay.style.pointerEvents = "auto";
-        overlay.style.opacity = 1; // Start fading in
+        overlay.style.opacity = .9; // Start fading in
     }
 
     // Event listeners for user interaction
