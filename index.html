@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mobleysoft - AI Consulting SaaS</title>
-<link rel="stylesheet" href="https://mobleysoft.com/styles/crossfade.css">
 <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
 <style>
 body {
     margin: 0;
     overflow: hidden;
-    background:#000;
+    background: #000;
     font-family: Arial, sans-serif;
     color: white;
 }
+
 canvas {
-    display:block;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -23,6 +23,7 @@ canvas {
     height: 100%;
     z-index: -1; /* Ensures canvas stays in the background */
 }
+
 #overlay {
     display: flex; /* Align items horizontally */
     justify-content: center; /* Center items horizontally */
@@ -35,13 +36,16 @@ canvas {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 10; /* Keeps overlay above canvas */
-    transition: opacity 3s ease-in-out; /* Smooth fade-in/out effect */
-    opacity: 0; /* Fully visible by default */
-}
-.hidden {
-    opacity: 0; /* Fade out */
+    transition: opacity 3s ease-in-out; /* Smooth fade-in/out over 3 seconds */
+    opacity: 0; /* Start hidden */
     pointer-events: none; /* Disable interaction when hidden */
 }
+
+.visible {
+    opacity: 1; /* Fade in */
+    pointer-events: auto; /* Enable interaction when visible */
+}
+
 stripe-pricing-table {
     flex: 1; /* Allow tables to resize equally */
     max-width: 300px; /* Limit the width of each table */
@@ -51,6 +55,7 @@ stripe-pricing-table {
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
+
 stripe-pricing-table:hover {
     background: rgba(255, 255, 255, 0.2); /* Highlight on hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
@@ -61,8 +66,52 @@ stripe-pricing-table:hover {
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="http://mobleysoft.com/scripts/blackhole.js" ></script>
+<script src="http://mobleysoft.com/scripts/blackhole.js"></script>
 <canvas id="blackhole"></canvas>
-<div id="overlay"><stripe-pricing-table pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno" publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG"></stripe-pricing-table></div>
+
+<div id="overlay">
+    <stripe-pricing-table 
+        pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
+        publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
+    </stripe-pricing-table>
+</div>
+
+<script>
+    const overlay = document.getElementById('overlay');
+    let idleTimer;
+
+    // Function to show the overlay with smooth fade-in
+    function showOverlay() {
+        overlay.classList.add('visible'); // Add the "visible" class to fade in
+        resetIdleTimer(); // Restart the idle timer
+    }
+
+    // Function to hide the overlay with smooth fade-out
+    function hideOverlay() {
+        // Reduce opacity to 0 smoothly before removing the class
+        overlay.style.opacity = 0; // Trigger the CSS transition
+        overlay.style.pointerEvents = "none"; // Disable interactions
+        setTimeout(() => {
+            overlay.classList.remove('visible'); // Fully hide after transition
+        }, 3000); // Match the CSS transition duration (3 seconds)
+    }
+
+    // Reset the idle timer on user interaction
+    function resetIdleTimer() {
+        clearTimeout(idleTimer); // Clear any existing timer
+        idleTimer = setTimeout(hideOverlay, 3000); // Start a 3-second timer for fade-out
+        // Ensure overlay is immediately interactive
+        overlay.style.pointerEvents = "auto";
+        overlay.style.opacity = 1; // Start fading in
+    }
+
+    // Event listeners for user interaction
+    document.addEventListener('mousemove', showOverlay);
+    document.addEventListener('click', showOverlay);
+    document.addEventListener('keypress', showOverlay);
+
+    // Start with overlay hidden
+    hideOverlay();
+</script>
 </body>
 </html>
