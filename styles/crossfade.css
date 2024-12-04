@@ -14,40 +14,42 @@ canvas {
     z-index: -1; /* Ensures canvas stays in the background */
 }
 
+/* Overlay container styling */
 #overlay {
-    display: flex; /* Use flexbox for horizontal alignment */
-    justify-content: center; /* Center elements horizontally */
-    align-items: center; /* Center elements vertically */
-    gap: 20px; /* Add space between pricing tables */
+    display: flex; /* Align items horizontally */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between items */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 10; /* Keeps overlay above canvas */
-    transition: opacity 0.5s ease-in-out; /* Smooth fade-in/out */
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7); /* Optional semi-transparent background */
-    border-radius: 10px; /* Rounded corners for overlay */
+    transition: opacity 1s ease-in-out; /* Smooth fade-in/out effect */
+    opacity: 1; /* Fully visible by default */
 }
 
+/* Hide overlay when idle */
 .hidden {
-    opacity: 0;
-    pointer-events: none; /* Prevent interaction when hidden */
+    opacity: 0; /* Fade out */
+    pointer-events: none; /* Disable interaction when hidden */
 }
 
+/* Styling for individual pricing tables */
 stripe-pricing-table {
     flex: 1; /* Allow tables to resize equally */
     max-width: 300px; /* Limit the width of each table */
     min-width: 250px; /* Ensure tables are not too narrow */
     padding: 10px;
-    background: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
-    border-radius: 8px; /* Rounded corners for each table */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for separation */
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
 
+/* Hover effect for pricing tables */
 stripe-pricing-table:hover {
-    background: rgba(255, 255, 255, 0.2); /* Highlight effect on hover */
+    background: rgba(255, 255, 255, 0.2); /* Highlight on hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     transform: scale(1.02); /* Slight zoom effect */
     transition: 0.3s ease-in-out;
