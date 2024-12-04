@@ -19,6 +19,7 @@ canvas {
     display: flex; /* Align items horizontally */
     justify-content: center; /* Center items horizontally */
     align-items: center; /* Center items vertically */
+    width: 80%;
     gap: 20px; /* Space between items */
     position: absolute;
     top: 50%;
@@ -26,8 +27,8 @@ canvas {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 10; /* Keeps overlay above canvas */
-    transition: opacity 1s ease-in-out; /* Smooth fade-in/out effect */
-    opacity: 1; /* Fully visible by default */
+    transition: opacity 3s ease-in-out; /* Smooth fade-in/out effect */
+    opacity: 0; /* Fully visible by default */
 }
 
 /* Hide overlay when idle */
