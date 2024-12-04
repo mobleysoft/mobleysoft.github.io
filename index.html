@@ -41,7 +41,7 @@ canvas {
 }
 
 .visible {
-    opacity: 0.9; /* Fade in */
+    opacity: .9; /* Fade in */
     pointer-events: auto; /* Enable interaction when visible */
 }
 
@@ -64,8 +64,10 @@ stripe-pricing-table:hover {
 </style>
 </head>
 <body>
+    Test13
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://mobleysoft.com/scripts/blackhole.js"></script>
+<!--script src="https://mobleysoft.com/scripts/fade.js"></script-->
 <canvas id="blackhole"></canvas>
 
 <div id="overlay" style="width:1000px!important">
@@ -85,21 +87,26 @@ stripe-pricing-table:hover {
     }
 
     function hideOverlay() {
-        // Smoothly reduce opacity using CSS transition
-        overlay.classList.remove('visible'); // Trigger fade-out
+        // Reduce opacity to 0 smoothly before removing the class
+        overlay.style.opacity = 0; // Trigger the CSS transition
+        overlay.style.pointerEvents = "none"; // Disable interactions
+        setTimeout(() => {
+            overlay.classList.remove('visible'); // Fully hide after transition
+        }, 6000); // Match the CSS transition duration (3 seconds)
     }
 
     function resetIdleTimer() {
         clearTimeout(idleTimer); // Clear any existing timer
-        idleTimer = setTimeout(hideOverlay, 3000); // Start a 3-second timer for fade-out
+        idleTimer = setTimeout(hideOverlay, 1500); // Start a 3-second timer for fade-out
+        // Ensure overlay is immediately interactive
+        overlay.style.pointerEvents = "auto";
+        overlay.style.opacity = .9; // Start fading in
     }
 
-    // Event listeners for user interaction
     document.addEventListener('mousemove', showOverlay);
     document.addEventListener('click', showOverlay);
     document.addEventListener('keypress', showOverlay);
 
-    // Start with overlay hidden
     hideOverlay();
 </script>
 </body>
