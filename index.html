@@ -11,37 +11,20 @@
     <!-- Black Hole Canvas -->
     <canvas id="blackhole"></canvas>
 
-    <!-- Overlay for Pricing Table -->
-    <div id="overlay" class="hidden">
+    <!-- Pricing Table -->
+    <div id="overlay">
         <stripe-pricing-table 
             pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
             publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
         </stripe-pricing-table>
     </div>
 
-    <!-- Script Section -->
+    <!-- Black Hole Script -->
     <script type="module">
         import { initBlackHoleAnimation } from "https://mobleysoft.com/scripts/blackhole.js";
-        
+
         // Initialize Black Hole Animation
         initBlackHoleAnimation();
-
-        // Overlay Fade Logic
-        const overlay = document.getElementById("overlay");
-        let idleTimer;
-
-        function showControls() {
-            overlay.classList.remove("hidden");
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(() => overlay.classList.add("hidden"), 5000);
-        }
-
-        // Event Listeners for Interaction
-        document.body.addEventListener("mousemove", showControls);
-        document.body.addEventListener("click", showControls);
-
-        // Show controls initially
-        showControls();
     </script>
 </body>
 </html>
