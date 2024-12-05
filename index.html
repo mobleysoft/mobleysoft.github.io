@@ -25,9 +25,10 @@ canvas {
 }
 
 #overlay {
-    display: flex; /* Align items horizontally */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
+    display: flex; /* Stack items vertically */
+    flex-direction: column; /* Logo above the pricing table */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
     gap: 20px; /* Space between items */
     position: absolute;
     top: 50%;
@@ -35,19 +36,26 @@ canvas {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 10; /* Keeps overlay above canvas */
-    transition: opacity 1.5s ease-in-out; /* Smooth fade-in/out over 3 seconds */
+    transition: opacity 1.5s ease-in-out; /* Smooth fade-in/out over 1.5 seconds */
     opacity: 0; /* Start hidden */
     pointer-events: none; /* Disable interaction when hidden */
 }
 
 .visible {
-    opacity: .9; /* Fade in */
+    opacity: 0.9; /* Fade in */
     pointer-events: auto; /* Enable interaction when visible */
+}
+
+#pricing-container {
+    display: flex; /* Align pricing tables horizontally */
+    justify-content: center; /* Center tables horizontally */
+    gap: 20px; /* Space between pricing tables */
+    width: 100%; /* Full width of the container */
 }
 
 stripe-pricing-table {
     flex: 1; /* Allow tables to resize equally */
-    max-width: 1000px; /* Limit the width of each table */
+    max-width: 300px; /* Limit the width of each table */
     min-width: 250px; /* Ensure tables are not too narrow */
     padding: 20px;
     background: transparent !important; /* Make background transparent */
@@ -63,44 +71,44 @@ stripe-pricing-table:hover {
 }
 
 header {
-  background-color: #000711;
-  /* Black header background */
-  color: #fdfdf3;
-  /* White header text */
-  text-align: center;
-  border-bottom: 2px solid #fdfdf3;
-  /* White border */
-  align-items: center;
-}
-
-.logo-container {
-  align-items: center;
-  /* max-width: 100%; Remove this line */
-  text-align: center; /* Add this line for centering */
+    background-color: #000711; /* Black header background */
+    color: #fdfdf3; /* White header text */
+    text-align: center;
+    border-bottom: 2px solid #fdfdf3; /* White border */
+    width: 100%; /* Full width of parent container */
 }
 
 .logo-container img {
-  width: 100%;
-  height: auto;
-  max-width: 800px;
-  display: block;
-  margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 </style>
 </head>
 <body>
-    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://mobleysoft.com/scripts/blackhole.js"></script>
-<!--script src="https://mobleysoft.com/scripts/fade.js"></script-->
 <canvas id="blackhole"></canvas>
 
 <div id="overlay" style="width:1000px!important">
-    <header><div class="logo-container"><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft"></div></header>
-    <stripe-pricing-table 
-        pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
-        publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
-    </stripe-pricing-table>
+    <!-- Logo Section -->
+    <header>
+        <div class="logo-container">
+            <img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft">
+        </div>
+    </header>
+
+    <!-- Pricing Tables Section -->
+    <div id="pricing-container">
+        <stripe-pricing-table 
+            pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
+            publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
+        </stripe-pricing-table>
+
+        <!-- Add additional pricing tables here if needed -->
+    </div>
 </div>
 
 <script>
@@ -118,12 +126,12 @@ header {
         overlay.style.pointerEvents = "none"; // Disable interactions
         setTimeout(() => {
             overlay.classList.remove('visible'); // Fully hide after transition
-        }, 1500); // Match the CSS transition duration (3 seconds)
+        }, 1500); // Match the CSS transition duration (1.5 seconds)
     }
 
     function resetIdleTimer() {
         clearTimeout(idleTimer); // Clear any existing timer
-        idleTimer = setTimeout(hideOverlay, 6000); // Start a 3-second timer for fade-out
+        idleTimer = setTimeout(hideOverlay, 6000); // Start a 6-second timer for fade-out
         // Ensure overlay is immediately interactive
         overlay.style.pointerEvents = "auto";
         overlay.style.opacity = .9; // Start fading in
