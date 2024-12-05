@@ -26,6 +26,7 @@ canvas {
 
 #overlay {
     display: flex; /* Align items horizontally */
+    flex-direction: row;
     justify-content: center; /* Center items horizontally */
     align-items: center; /* Center items vertically */
     gap: 20px; /* Space between items */
@@ -69,28 +70,26 @@ header {
   /* White header text */
   text-align: center;
   border-bottom: 2px solid #fdfdf3;
-  /* White border */
-  align-items: center;
-}
-#logo {
-    max-height: 100px;
 }
 </style>
 </head>
 <body>
-    Test15
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://mobleysoft.com/scripts/blackhole.js"></script>
-<!--script src="https://mobleysoft.com/scripts/fade.js"></script-->
 <canvas id="blackhole"></canvas>
 
 <div id="overlay" style="width:1000px!important">
-    <div id="logo"><header><div><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="100px"></div></header></div>
-    
-    <stripe-pricing-table 
-        pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
-        publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
-    </stripe-pricing-table>
+    <div id="app">
+        <div id="logoRow">
+            <div id="logo"><header><div><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="100px"></div></header></div>
+        </div>
+        <div id="pricingTableRow">    
+            <stripe-pricing-table 
+                pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
+                publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
+            </stripe-pricing-table>
+        </div>
+    </div>
 </div>
 
 <script>
