@@ -61,6 +61,20 @@ stripe-pricing-table:hover {
     transform: scale(1.00); /* Slight zoom effect */
     transition: 0.0s ease-in-out;
 }
+
+header {
+  background-color: #000000;
+  /* Black header background */
+  color: #fdfdf3;
+  /* White header text */
+  text-align: center;
+  border-bottom: 2px solid #fdfdf3;
+  /* White border */
+  align-items: center;
+}
+#logo {
+    max-height: 100px;
+}
 </style>
 </head>
 <body>
@@ -71,6 +85,8 @@ stripe-pricing-table:hover {
 <canvas id="blackhole"></canvas>
 
 <div id="overlay" style="width:1000px!important">
+    <div id="logo"><header><div><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft"></div></header></div>
+    
     <stripe-pricing-table 
         pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
         publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
