@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobley Method Narrative Architecture (MMNA)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
             line-height: 1.6;
+            margin: 20px;
             background-color: #f4f4f4;
         }
-        h1, h2, h3 {
+        h1, h2 {
             color: #333;
         }
         table {
@@ -18,74 +19,39 @@
             border-collapse: collapse;
             margin-bottom: 20px;
             background-color: #fff;
-            table-layout: fixed;
         }
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
-            word-wrap: break-word;
-            vertical-align: top;
+            text-align: left;
         }
         th {
             background-color: #333;
             color: white;
-            text-align: left;
         }
-        tr:nth-child(even) {background-color: #f2f2f2;}
-        .section {
-            margin-bottom: 40px;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .code-block {
+            background-color: #e8e8e8;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
-
     <h1>Mobley Method Narrative Architecture (MMNA)</h1>
-    
-    <div class="section">
-        <h2>Introduction to MMNA</h2>
-        <p>
-            The <strong>Mobley Method Narrative Architecture (MMNA)</strong> is a structured framework designed to map the development of characters and their narratives across multiple time periods and parallel worlds. This matrix facilitates a clear visualization of each character's evolution, ensuring systematic progress and cohesive storytelling. MMNA is particularly useful for complex narratives involving dual worlds, character transformations, and intertwined destinies.
-        </p>
-    </div>
-    
-    <div class="section">
-        <h2>Purpose and Benefits</h2>
-        <h3>Purpose:</h3>
-        <ul>
-            <li>Provide a systematic approach to character and plot development across different narrative periods and parallel worlds.</li>
-            <li>Ensure consistency and depth in character arcs and their interactions within and between worlds.</li>
-            <li>Facilitate clear and organized storytelling, enhancing the reader's understanding and engagement.</li>
-        </ul>
-        <h3>Benefits:</h3>
-        <ul>
-            <li><strong>Clarity and Organization:</strong> Presents complex character developments and plot progressions in an easy-to-understand table format.</li>
-            <li><strong>Scalability:</strong> Adaptable to various narrative structures and genres beyond dual-world settings.</li>
-            <li><strong>Progress Tracking:</strong> Facilitates monitoring of character growth and plot advancements through distinct narrative periods.</li>
-            <li><strong>Stakeholder Communication:</strong> Enhances communication with collaborators by providing a concise overview of character arcs and story progression.</li>
-            <li><strong>Risk Management:</strong> Helps identify potential narrative inconsistencies and gaps, allowing for proactive adjustments.</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>Structure of MMNA Matrix</h2>
-        <p>
-            The MMNA Matrix maps each character's development through six key narrative periods across both the Real World and the fantasy realm (e.g., Aether). The matrix is organized with characters as rows and narrative periods as columns, detailing their states and transformations at each stage.
-        </p>
-        
-        <h3>Time Periods Defined</h3>
-        <ol>
-            <li><strong>Happy Past:</strong> A period of harmony, strong relationships, and creative fulfillment before the central conflict begins.</li>
-            <li><strong>Downfall:</strong> The onset of conflict, loss, and the beginning of the protagonists' struggles.</li>
-            <li><strong>Tragic Present:</strong> The current state of despair, strained relationships, and significant challenges.</li>
-            <li><strong>Adventure:</strong> The phase where the protagonist embarks on a journey or quest, facing trials and uncovering secrets.</li>
-            <li><strong>Reckoning:</strong> The climax where major confrontations occur, leading to resolutions or deeper conflicts.</li>
-            <li><strong>Revival:</strong> The resolution and restoration of harmony, growth, and the culmination of the protagonists' journeys.</li>
-        </ol>
-    </div>
-    
-    <div class="section">
-        <h2>Master MMNA Matrix</h2>
-        <table>
+    <h2>Introduction</h2>
+    <p>The Mobley Method Narrative Architecture (MMNA) is a structured framework for 
+
+mapping the development of characters and their arcs across time periods and alternate 
+
+realities. It ensures flexibility, scalability, and clarity in storytelling.</p>
+
+    <h2>Master MMNA Matrix</h2>
+    <table id="mmna-table">
+        <thead>
             <tr>
                 <th>Character</th>
                 <th>Happy Past</th>
@@ -95,209 +61,369 @@
                 <th>Reckoning</th>
                 <th>Revival</th>
             </tr>
+        </thead>
+        <tbody>
             <tr>
-                <td><strong>Max Mace</strong></td>
-                <td>real: Supported by family, strong bond with Ranger and Quinton | alt: Harmonious Aether, guided by Quill, with Nifares</td>
-                <td>real: Grief over Ranger's death, struggles with art and Sera | alt: The Dulling, fading colors, weakening artistic powers</td>
-                <td>real: Mother's alcoholism, improving bond with Sera | alt: Darkness under Regent Regnar, quest to restore Aether</td>
-                <td>real: Explores artistic powers, links to Aether | alt: Teams with Nifares, restores kingdom through art</td>
-                <td>real: Heals family relationships | alt: Confronts Regnar, seeks his redemption</td>
-                <td>real: Personal growth, mends relationships, embraces art | alt: Aether restored, heals Queen Aryl, redeems Regnar</td>
+                <td>Max Mace</td>
+                <td>Real World: Creative and supported by family; strong bond with Ranger 
+
+Mace and grandfather Quinton.<br>Aether: A budding artist in harmonious Aether; enjoys 
+
+guidance from Quill and companionship with Nifares.</td>
+                <td>Real World: Struggles with grief over Ranger’s death; academic and 
+
+artistic challenges; strained relationship with Sera.<br>Aether: The Dulling begins; 
+
+Aether’s colors fade; Max’s artistic powers begin to weaken.</td>
+                <td>Real World: Deals with his mother’s alcoholism and his own feelings of 
+
+inadequacy; relationship with Sera improves as he grows.<br>Aether: Aether is engulfed in 
+
+darkness under Regent Regnar’s rule; Max embarks on a quest to restore the kingdom and his 
+
+own creativity.</td>
+                <td>Real World: Begins to explore his artistic powers more deeply; starts 
+
+to uncover the connection between his art and Aether.<br>Aether: Max teams up with Nifares 
+
+to navigate the challenges of Aether; begins to restore parts of the kingdom through his 
+
+art.</td>
+                <td>Real World: Confronts his internal struggles and begins to take active 
+
+steps to heal his family relationships.<br>Aether: Max faces significant challenges 
+
+against Regent Regnar; uses his artistic abilities to confront and seek redemption for 
+
+Regnar.</td>
+                <td>Real World: Achieves personal growth; mends relationships with Lyra 
+
+and Sera; embraces his artistic talents fully.<br>Aether: Aether is restored to its former 
+
+glory; Max’s creative journey leads to the revival of both worlds, healing Queen Aryl and 
+
+redeeming Regent Regnar.</td>
             </tr>
             <tr>
-                <td><strong>Sera Healy / Nifares</strong></td>
-                <td>real: Supportive to Max, collaborates on projects | alt: Playful Nifares, respected in Aether</td>
-                <td>real: Judgmental of Max’s art, tension arises | alt: Nifares threatened by Mistress Nihf, strain shows</td>
-                <td>real: Supportive of Max’s struggles, strengthens bond | alt: Nifares becomes confident princess, loyal companion</td>
-                <td>real: Supports Max’s powers, bridges worlds | alt: Nifares aids Max, restores Aether’s vibrancy</td>
-                <td>real: Partners with Max, heals Lyra | alt: Nifares leads rebellion, confronts Regnar</td>
-                <td>real: Supports Max’s journey, marries Max Mace | alt: Nifares ascends as princess, Aether thrives</td>
+                <td>Serafin (Sera) Healy / Nifares</td>
+                <td>Real World: Friendly and supportive relationship with Max; 
+
+collaborates on creative projects.<br>Aether: Playful and adventurous Nifares; well-loved 
+
+and respected in Aether.</td>
+                <td>Real World: Becomes judgmental of Max’s art due to his struggles; 
+
+tension arises between them.<br>Aether: Nifares faces threats from Mistress Nihf’s 
+
+schemes; her carefree nature begins to show signs of strain.</td>
+                <td>Real World: Becomes supportive and understanding of Max’s struggles; 
+
+strengthens their bond.<br>Aether: Nifares transforms into a confident princess; becomes 
+
+Max’s loyal adventure companion.</td>
+                <td>Real World: Actively supports Max’s exploration of his powers; helps 
+
+him bridge the real world and Aether.<br>Aether: Nifares assists Max in navigating 
+
+challenges; plays a key role in restoring Aether’s vibrancy.</td>
+                <td>Real World: Partners with Max to confront family and personal issues; 
+
+helps heal Lyra’s wounds.<br>Aether: Nifares leads a rebellion against Mistress Nihf; 
+
+helps Max in the final confrontation with Regent Regnar.</td>
+                <td>Real World: Fully supports Max’s artistic journey; marries Max, 
+
+adopting the last name Mace.<br>Aether: Nifares ascends to her role as princess; Aether 
+
+thrives under restored leadership and creative spirit.</td>
             </tr>
             <tr>
-                <td><strong>Lyra Mace / Queen Aryl</strong></td>
-                <td>real: Vibrant, artistic bond with Ranger, nurtures Max | alt: Benevolent Queen Aryl, fosters creativity in Aether</td>
-                <td>real: Depression and alcoholism post-Ranger’s death | alt: Queen Aryl’s melancholy causes The Dulling</td>
-                <td>real: Distant, grappling with addiction | alt: Queen Aryl trapped in despair, needs healing</td>
-                <td>real: Seeks help, reconnects with Max | alt: Queen Aryl regains hope as Aether’s colors return</td>
-                <td>real: Heals and mends family ties | alt: Queen Aryl restores Aether, reignites kingdom</td>
-                <td>real: Recovered, loving family relationships | alt: Queen Aryl leads a flourishing Aether</td>
+                <td>Lyra Mace / Queen Aryl</td>
+                <td>Real World: Vibrant and creative; shares a deep artistic bond with 
+
+Ranger Mace; nurtures Max’s creativity.<br>Aether: Benevolent Queen Aryl; fosters 
+
+creativity and joy in Aether.</td>
+                <td>Real World: Falls into depression and alcoholism after Ranger’s death; 
+
+struggles to support the family.<br>Aether: Queen Aryl falls into deep melancholy; her 
+
+sorrow causes The Dulling and the fading of Aether’s vibrancy.</td>
+                <td>Real World: Remains distant and grappling with addiction; journey 
+
+toward healing parallels Max’s quest.<br>Aether: Queen Aryl remains trapped in despair; 
+
+Max’s mission aims to heal her spirit and restore Aether.</td>
+                <td>Real World: Begins to seek help for her addiction; slowly reconnects 
+
+with Max.<br>Aether: Queen Aryl starts to regain hope as Aether’s colors begin to return 
+
+with Max’s efforts.</td>
+                <td>Real World: Actively participates in healing and mending family ties; 
+
+supports Max’s artistic revival.<br>Aether: Queen Aryl actively participates in restoring 
+
+Aether; her regained spirit reinvigorates the kingdom.</td>
+                <td>Real World: Fully recovered from addiction; reestablishes a loving 
+
+relationship with Max and her family.<br>Aether: Queen Aryl leads Aether with renewed 
+
+strength and creativity; the kingdom flourishes under her restored rule.</td>
             </tr>
             <tr>
-                <td><strong>Quinton Mace / Quill</strong></td>
-                <td>real: Supportive grandfather, encourages art | alt: Wise Quill, guides Max with magic</td>
-                <td>real: Struggles with family's loss, appears distant | alt: Quill’s guidance crucial as Aether dulls, reveals Max’s powers</td>
-                <td>real: Pillar of wisdom, supports Max | alt: Quill mentors Max through dark Aether</td>
-                <td>real: Encourages Max’s artistic exploration | alt: Quill assists Max, grants magical feather</td>
-                <td>real: Shares insights, supports healing | alt: Quill empowers Max against Regnar</td>
-                <td>real: Supports Max’s growth, family healing | alt: Quill’s legacy fulfilled, Aether restored</td>
+                <td>Quinton Mace / Quill</td>
+                <td>Real World: Cheerful and supportive grandfather; encourages Max’s 
+
+creativity and artistic pursuits.<br>Aether: Wise and benevolent Quill; guides Max with 
+
+ancient knowledge and magical insights.</td>
+                <td>Real World: Faces personal struggles related to family’s loss; appears 
+
+distant and burdened.<br>Aether: Quill’s guidance becomes more crucial as Aether falls 
+
+into The Dulling; reveals the depth of Max’s powers and the importance of his art.</td>
+                <td>Real World: Remains a pillar of wisdom for Max; offers crucial support 
+
+despite his own challenges.<br>Aether: Quill continues to mentor Max; his wisdom helps Max 
+
+navigate the darkest parts of Aether.</td>
+                <td>Real World: Provides Max with knowledge and encouragement to explore 
+
+his artistic powers fully.<br>Aether: Quill actively assists Max in his quest; grants him 
+
+a magical feather to enhance his abilities.</td>
+                <td>Real World: Shares pivotal insights and supports Max’s journey to heal 
+
+his family.<br>Aether: Quill plays a key role in the final battles; his teachings empower 
+
+Max to confront Regent Regnar.</td>
+                <td>Real World: Continues to support Max’s growth and the healing of the 
+
+family.<br>Aether: Quill’s legacy is fulfilled as Aether is restored; his wisdom lives on 
+
+through Max’s success and the kingdom’s revival.</td>
             </tr>
             <tr>
-                <td><strong>Ranger Mace / Regent Regnar</strong></td>
-                <td>real: Loving husband and father, involved in art | alt: Just Regent Regnar, prosperous Aether alongside Aryl</td>
-                <td>real: Set aside art for family, dies in accident | alt: Regnar succumbs to despair, becomes tyrant causing The Dulling</td>
-                <td>real: Deceased, legacy influences Lyra and Max | alt: Regnar remains oppressive, needs redemption</td>
-                <td>real: Legacy inspires Max, appears in visions | alt: Regnar as antagonist, Max seeks his redemption</td>
-                <td>real: Max seeks family healing in Ranger’s memory | alt: Regnar confronts Max, seeks redemption through art</td>
-                <td>real: Honors Ranger’s legacy, revives family bonds | alt: Regnar redeemed, Aether restored, honors Ranger</td>
+                <td>Ranger Mace / Regent Regnar</td>
+                <td>Real World: Loving and supportive husband and father; deeply involved 
+
+in family’s artistic pursuits.<br>Aether: Respected and just Regent Regnar; dedicated to 
+
+Aether’s prosperity alongside Queen Aryl.</td>
+                <td>Real World: Forced to set aside his art to support the family; dies in 
+
+a construction accident.<br>Aether: Regent Regnar succumbs to despair after Ranger’s 
+
+death; transforms into a tyrannical ruler, contributing to The Dulling.</td>
+                <td>Real World: Deceased; his legacy and sacrifice influence Lyra and 
+
+Max’s journey.<br>Aether: Regent Regnar remains oppressive; Max’s mission involves 
+
+redeeming Regnar and restoring balance in Aether.</td>
+                <td>Real World: Ranger’s legacy inspires Max; Ranger appears in flashbacks 
+
+or visions guiding Max indirectly.<br>Aether: Regent Regnar is the primary antagonist; 
+
+Max’s adventure involves confronting and seeking redemption for Regnar.</td>
+                <td>Real World: Ranger’s memory drives Max to seek healing and restoration 
+
+for his family.<br>Aether: Regent Regnar faces Max in a decisive confrontation; Max uses 
+
+his artistic powers to seek Regnar’s redemption.</td>
+                <td>Real World: Ranger’s legacy is honored as Max revives his own creative 
+
+spirit and family bonds.<br>Aether: Regent Regnar is redeemed, Aether is restored; 
+
+Ranger’s legacy is symbolically honored through Max’s success and the kingdom’s 
+
+revival.</td>
             </tr>
             <tr>
-                <td><strong>Ms. Finch / Mistress Nihf</strong></td>
-                <td>real: Supportive art teacher, encourages creativity | alt: N/A</td>
-                <td>real: Supports Max despite struggles, unaware of Aether | alt: Mistress Nihf emerges, ruthless slavemonger, seeks Nifares</td>
-                <td>real: Continues support, helps Max face challenges | alt: Mistress Nihf intensifies schemes, major antagonist</td>
-                <td>real: Unaware of Aether, notices Max’s growth | alt: Mistress Nihf key adversary, impacts Max and Nifares</td>
-                <td>real: Supports Max’s artistic journey | alt: Mistress Nihf thwarted by Max and Nifares</td>
-                <td>real: Mentors Max, witnesses his growth | alt: Mistress Nihf defeated or redeemed, Aether thrives</td>
+                <td>Ms. Finch / Mistress Nihf</td>
+                <td>Real World: Eccentric and supportive art teacher; encourages Max’s 
+
+creativity.<br>Aether: N/A (Mistress Nihf is only in Aether).</td>
+                <td>Real World: Continues to support Max despite his struggles; unaware of 
+
+Aether’s existence.<br>Aether: Mistress Nihf emerges as a powerful and ruthless 
+
+slavemonger; seeks to capture Nifares for her own purposes.</td>
+                <td>Real World: Maintains her supportive role, helping Max even more as he 
+
+faces challenges.<br>Aether: Mistress Nihf's schemes intensify; she becomes a major 
+
+antagonist threatening Aether’s inhabitants.</td>
+                <td>Real World: Ms. Finch remains unaware of Aether but notices Max’s 
+
+growing confidence and creativity.<br>Aether: Mistress Nihf becomes a key adversary; her 
+
+actions directly impact Max’s journey and Nifares’ safety.</td>
+                <td>Real World: Ms. Finch supports Max’s newfound artistic journey, 
+
+fostering his growth.<br>Aether: Mistress Nihf faces consequences as Max and Nifares 
+
+thwart her plans; her role diminishes as Aether is restored.</td>
+                <td>Real World: Ms. Finch continues to mentor Max, witnessing his success 
+
+and growth.<br>Aether: Mistress Nihf is defeated or redeemed; her influence over Aether is 
+
+nullified as the kingdom thrives.</td>
             </tr>
-        </table>
-    </div>
-    
-    <div class="section">
-        <h2>Key Themes and Symbolism</h2>
-        
-        <h3>Emordnilap Naming Strategy</h3>
-        <ul>
-            <li><strong>Purpose:</strong> Emordnilap names enhance the symbolic connections between characters in the Real World and their counterparts in Aether, emphasizing duality and interconnectedness.</li>
-            <li><strong>Examples:</strong>
-                <ul>
-                    <li><strong>Serafin (Sera) Healy ↔ Nifares (Nifa):</strong> "Serafin" reversed is "Nifares," highlighting their intertwined destinies and the evolution from judgment to support. Note that Sera Healy adopts the last name Mace upon marrying Max in the Revival period.</li>
-                    <li><strong>Lyra Mace ↔ Queen Aryl (Ariel) Mace:</strong> "Lyra" reversed is "Aryl," maintaining phonetic similarity while differentiating their roles in each world.</li>
-                    <li><strong>Quinton Mace ↔ Quill:</strong> While not a direct emordnilap, "Quinton" shares phonetic elements with "Quill," symbolizing wisdom and guidance across both worlds.</li>
-                    <li><strong>Ranger Mace ↔ Regent Regnar:</strong> "Ranger" shares letters with "Regnar," indicating a corrupted transformation driven by grief.</li>
-                    <li><strong>Ms. Finch ↔ Mistress Nihf:</strong> "Finch" reversed is "Nihf," transforming from a supportive teacher to a ruthless antagonist, emphasizing the theme of hidden darkness.</li>
-                </ul>
-            </li>
-        </ul>
-        
-        <h3>Interconnected Timelines</h3>
-        <ul>
-            <li><strong>Dual Worlds Impact:</strong> Actions and transformations in one world reverberate in the other, reinforcing themes of duality, redemption, and creativity.</li>
-            <li><strong>Symbolism Through Art:</strong> Max’s artistic abilities act as a bridge between the worlds, with his creations in the Real World manifesting in Aether and vice versa.</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>How to Use the MMNA Matrix</h2>
-        <p>
-            The <strong>Mobley Method Narrative Architecture (MMNA) Matrix</strong> serves as a comprehensive guide to developing and tracking character arcs and plot progression across multiple narrative periods and parallel worlds. Here’s how to effectively utilize the MMNA Matrix in your storytelling process:
-        </p>
-        <ol>
-            <li><strong>Identify Key Characters:</strong>
-                <ul>
-                    <li>List all primary and secondary characters that play significant roles in your story.</li>
-                    <li>Define their counterparts in parallel worlds, if applicable.</li>
-                </ul>
-            </li>
-            <li><strong>Define Narrative Periods:</strong>
-                <ul>
-                    <li>Establish the six key narrative periods: Happy Past, Downfall, Tragic Present, Adventure, Reckoning, and Revival.</li>
-                    <li>Ensure these periods align with the overarching plot structure and character development.</li>
-                </ul>
-            </li>
-            <li><strong>Populate the Matrix:</strong>
-                <ul>
-                    <li>For each character, describe their state and development at each narrative period in both the Real World and parallel world.</li>
-                    <li>Highlight key events, transformations, and relationships that define their journey.</li>
-                </ul>
-            </li>
-            <li><strong>Ensure Consistency:</strong>
-                <ul>
-                    <li>Use the matrix as a reference to maintain consistency in character arcs and plot progression.</li>
-                    <li>Regularly update the matrix as your story evolves to reflect any changes or new developments.</li>
-                </ul>
-            </li>
-            <li><strong>Integrate Symbolism and Themes:</strong>
-                <ul>
-                    <li>Incorporate thematic elements and symbolic connections between characters across both worlds.</li>
-                    <li>Use character transformations to reinforce the story’s central themes, such as duality, redemption, and creativity.</li>
-                </ul>
-            </li>
-            <li><strong>Guide Scene Development:</strong>
-                <ul>
-                    <li>Utilize the matrix to plan and develop specific scenes that align with each narrative period.</li>
-                    <li>Ensure each scene contributes to the overall character arcs and plot advancement.</li>
-                </ul>
-            </li>
-            <li><strong>Review and Refine:</strong>
-                <ul>
-                    <li>Continuously review the matrix to identify any narrative gaps or inconsistencies.</li>
-                    <li>Refine character descriptions and plot points to enhance depth and coherence.</li>
-                </ul>
-            </li>
-        </ol>
-    </div>
-    
-    <div class="section">
-        <h3>Example of Implementing MMNA Matrix</h3>
-        
-        <h4>Scenario: Developing the "Adventure" Period for Max Mace</h4>
-        <p><strong>Character:</strong> Max Mace</p>
-        <table>
-            <tr>
-                <th>Time Period</th>
-                <th>Real World</th>
-                <th>Aether</th>
-            </tr>
-            <tr>
-                <td><strong>Adventure</strong></td>
-                <td>real: Begins to explore his artistic powers more deeply; starts to uncover the connection between his art and Aether.</td>
-                <td>alt: Max teams up with Nifares to navigate the challenges of Aether; begins to restore parts of the kingdom through his art.</td>
-            </tr>
-        </table>
-        
-        <h5>Scene Development:</h5>
-        <ul>
-            <li><strong>Real World:</strong> Max attends a local art exhibit where he discovers subtle signs that link his artwork to Aether. He starts experimenting with his artistic abilities, realizing that his drawings can influence the Real World and the magical realm.</li>
-            <li><strong>Aether:</strong> Max meets Nifares, who becomes his guide and adventure companion. Together, they embark on a journey to restore the fading colors of Aether, using Max’s art to bring vibrancy back to different regions of the kingdom.</li>
-        </ul>
-        
-        <h5>Integration:</h5>
-        <ul>
-            <li><strong>Symbolism:</strong> Max’s exploration of his artistic powers symbolizes his journey towards self-discovery and healing. The collaboration with Nifares represents the merging of his real-world relationships with his Aether counterparts.</li>
-            <li><strong>Themes:</strong> The Adventure period emphasizes themes of creativity, collaboration, and the impact of art on both personal growth and broader change.</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>Conclusion</h2>
-        <p>
-            The <strong>Mobley Method Narrative Architecture (MMNA)</strong> provides a structured and organized approach to developing complex narratives involving multiple time periods and parallel worlds. By mapping out character arcs and plot progression across defined narrative periods, MMNA ensures consistency, depth, and coherence in storytelling. This framework not only enhances character development but also reinforces thematic elements, making your story more engaging and impactful.
-        </p>
-        
-        <h3>Next Steps:</h3>
-        <ol>
-            <li><strong>Expand the MMNA Matrix:</strong>
-                <ul>
-                    <li>Continue detailing each character’s state during the Adventure, Reckoning, and Revival periods.</li>
-                    <li>Add any new characters and their counterparts, ensuring they fit seamlessly into the existing framework.</li>
-                </ul>
-            </li>
-            <li><strong>Develop Detailed Scenes:</strong>
-                <ul>
-                    <li>Use the matrix as a reference for writing scenes that align with each narrative period.</li>
-                    <li>Incorporate symbolic elements and thematic connections to deepen the narrative impact.</li>
-                </ul>
-            </li>
-            <li><strong>Integrate Symbolism and Themes:</strong>
-                <ul>
-                    <li>Utilize Max’s art and magical elements in Aether to symbolize the characters’ internal and external struggles.</li>
-                    <li>Reinforce themes of duality, redemption, and creativity through character interactions and plot developments outlined in the matrix.</li>
-                </ul>
-            </li>
-            <li><strong>Maintain Consistent Naming and Roles:</strong>
-                <ul>
-                    <li>Ensure all characters maintain their Real World and Aether counterparts consistently across all periods.</li>
-                    <li>Use emordnilap names and symbolic connections to enhance the duality theme.</li>
-                </ul>
-            </li>
-            <li><strong>Regularly Review and Refine:</strong>
-                <ul>
-                    <li>Continuously update the MMNA Matrix as your story evolves.</li>
-                    <li>Refine character arcs and plot points to ensure narrative coherence and depth.</li>
-                </ul>
-            </li>
-        </ol>
-    </div>
-    
+        </tbody>
+    </table>
+
+    <h2>TJI Data Representation</h2>
+    <pre class="code-block">
+const tji = {
+  "1": [
+    "id:Character1",
+    "name:Max Mace",
+    "happyPast:real:Supported by family, strong bond with Ranger and Quinton|
+
+alt:Harmonious Aether, guided by Quill, with Nifares",
+    "downfall:real:Grief over Ranger's death, struggles with art and Sera|alt:The Dulling, 
+
+fading colors, weakening artistic powers",
+    "tragicPresent:real:Mother's alcoholism, improving bond with Sera|alt:Darkness under 
+
+Regent Regnar, quest to restore Aether",
+    "adventure:real:Explores artistic powers, links to Aether|alt:Teams with Nifares, 
+
+restores kingdom through art",
+    "reckoning:real:Heals family relationships|alt:Confronts Regnar, seeks his 
+
+redemption",
+    "revival:real:Personal growth, mends relationships, embraces art|alt:Aether restored, 
+
+heals Queen Aryl, redeems Regnar"
+  ],
+  "2": [
+    "id:Character2",
+    "name:Sera Healy / Nifares",
+    "happyPast:real:Supportive to Max, collaborates on projects|alt:Playful Nifares, 
+
+respected in Aether",
+    "downfall:real        :Judgmental of Max's art, tension arises|alt:Nifares threatened 
+
+by Mistress Nihf, strain shows",
+    "tragicPresent:real:Supportive of Max, strengthens bond|alt:Nifares becomes confident 
+
+princess, loyal companion",
+    "adventure:real:Supports Max's powers, bridges worlds|alt:Nifares aids Max, restores 
+
+Aether's vibrancy",
+    "reckoning:real:Partners with Max, heals Lyra|alt:Nifares leads rebellion, confronts 
+
+Regnar",
+    "revival:real:Supports Max's journey, marries Max Mace|alt:Nifares ascends as 
+
+princess, Aether thrives"
+  ],
+  "3": [
+    "id:Character3",
+    "name:Quinton Mace / Quill",
+    "happyPast:real:Supportive grandfather, encourages art|alt:Wise Quill, guides Max with 
+
+magic",
+    "downfall:real:Struggles with family's loss, appears distant|alt:Quill's guidance 
+
+crucial as Aether dulls, reveals Max's powers",
+    "tragicPresent:real:Pillar of wisdom, supports Max|alt:Quill mentors Max through dark 
+
+Aether",
+    "adventure:real:Encourages Max's artistic exploration|alt:Quill assists Max, grants 
+
+magical feather",
+    "reckoning:real:Shares insights, supports healing|alt:Quill empowers Max against 
+
+Regnar",
+    "revival:real:Supports Max's growth, family healing|alt:Quill's legacy fulfilled, 
+
+Aether restored"
+  ],
+  "4": [
+    "id:Character4",
+    "name:Ranger Mace / Regent Regnar",
+    "happyPast:real:Loving husband and father, involved in art|alt:Just Regent Regnar, 
+
+prosperous Aether alongside Aryl",
+    "downfall:real:Set aside art for family, dies in accident|alt:Regnar succumbs to 
+
+despair, becomes tyrant causing The Dulling",
+    "tragicPresent:real:Deceased, legacy influences Lyra and Max|alt:Regnar remains 
+
+oppressive, needs redemption",
+    "adventure:real:Legacy inspires Max, appears in visions|alt:Regnar as antagonist, Max 
+
+seeks his redemption",
+    "reckoning:real:Max seeks family healing in Ranger's memory|alt:Regnar confronts Max, 
+
+seeks redemption through art",
+    "revival:real:Honors Ranger's legacy, revives family bonds|alt:Regnar redeemed, Aether 
+
+restored, honors Ranger"
+  ],
+  "5": [
+    "id:Character5",
+    "name:Lyra Mace / Queen Aryl",
+    "happyPast:real:Vibrant, artistic bond with Ranger, nurtures Max|alt:Benevolent Queen 
+
+Aryl, fosters creativity in Aether",
+    "downfall:real:Depression and alcoholism post-Ranger's death|alt:Queen Aryl's 
+
+melancholy causes The Dulling",
+    "tragicPresent:real:Distant, grappling with addiction|alt:Queen Aryl trapped in 
+
+despair, needs healing",
+    "adventure:real:Seeks help, reconnects with Max|alt:Queen Aryl regains hope as 
+
+Aether's colors return",
+    "reckoning:real:Heals and mends family ties|alt:Queen Aryl restores Aether, reignites 
+
+kingdom",
+    "revival:real:Recovered, loving family relationships|alt:Queen Aryl leads a 
+
+flourishing Aether"
+  ],
+  "6": [
+    "id:Character6",
+    "name:Ms. Finch / Mistress Nihf",
+    "happyPast:real:Supportive art teacher, encourages creativity|alt:N/A",
+    "downfall:real:Supports Max despite struggles, unaware of Aether|alt:Mistress Nihf 
+
+emerges, ruthless slavemonger, seeks Nifares",
+    "tragicPresent:real:Continues support, helps Max face challenges|alt:Mistress Nihf 
+
+intensifies schemes, major antagonist",
+    "adventure:real:Unaware of Aether, notices Max's growth|alt:Mistress Nihf key 
+
+adversary, impacts Max and Nifares",
+    "reckoning:real:Supports Max's artistic journey|alt:Mistress Nihf thwarted by Max and 
+
+Nifares",
+    "revival:real:Mentors Max, witnesses his growth|alt:Mistress Nihf defeated or 
+
+redeemed, Aether thrives"
+  ]
+};
+</pre>
+
+<h2>Rendering Logic</h2>
+<pre class="code-block">
+function tji2mmna(tji) {
+    const tableBody = document.querySelector('#mmna-table tbody');
+    for (const [_, data] of Object.entries(tji)) {
+        const row = document.createElement('tr');
+        const name = data.find(e => e.startsWith('name:')).split(':')[1];
+        row.innerHTML = `<td>${name}</td>` + data.filter(e => e.includes('|')).map(e => {
+            const [real, alt] = e.split('|').map(s => s.split(':')[1]);
+            return `<td>Real: ${real}<br>Alt: ${alt}</td>`;
+        }).join('');
+        tableBody.appendChild(row);
+    }
+}
+tji2mmna(tji);
+</pre>
 </body>
 </html>
+
