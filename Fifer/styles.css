@@ -182,8 +182,5 @@ a {
     }
 }
 .video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0; /* Adds spacing above and below the video */
+padding-left:6rem;
 }
