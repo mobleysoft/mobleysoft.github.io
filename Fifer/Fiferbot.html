@@ -139,9 +139,14 @@
     </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+document.body.innerHTML = document.body.innerHTML
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")  // Convert bold text
+    .replace(/\*(.*?)\*/g, "<em>$1</em>");  // Convert italic text
+});
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
-}
+}  
 </script>
 </body>
 </html>
