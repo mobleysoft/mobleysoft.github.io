@@ -180,3 +180,9 @@ a {
         gap: 0.5rem;
     }
 }
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Adds spacing above and below the video */
+}
