@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiferbot: A Sheet Metal Fabrication Humanoid Robot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="toolbar-container">
+        <button class="button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button class="font-button" onclick="adjustFontSize(1.1)">Increase Font Size</button>
+        <button class="font-button" onclick="adjustFontSize(0.9)">Decrease Font Size</button>
+    </div>
+    <div class="content">
+        <h1>Fiferbot: A Sheet Metal Fabrication Humanoid Robot</h1>
+        <h2>Designed for Production at Fifer Sheet Metal, Powered by Mobleysoft</h2>
+
+        <h3>1. Introduction</h3>
+        <p>
+            The **Fiferbot** is a **humanoid robotic worker** designed to assist in **sheet metal fabrication** and **industrial automation**. 
+            Unlike high-cost proprietary robots, **Fiferbot is designed to be manufacturable in-house at Fifer Sheet Metal**, using their 
+            existing **laser-cutting, bending, and fabrication capabilities**. 
+        </p>
+        <p>
+            By **minimizing external dependencies**, **leveraging off-the-shelf components**, and running on **Mobleysoft’s AGI-powered software**, 
+            Fiferbot provides a **scalable, affordable, and efficient** robotic workforce for **industrial labor augmentation**.
+        </p>
+
+        <h3>2. Design Principles: What Can Fifer Build In-House?</h3>
+        <p>The **Fiferbot** design prioritizes:</p>
+        <ul>
+            <li>🔹 **Modular Sheet Metal Chassis** – Laser-cut, folded, and welded using Fifer’s existing machines.</li>
+            <li>🔹 **Linear Actuators & Servos** – Readily available for humanoid movement and machine operation.</li>
+            <li>🔹 **Pneumatics (where needed)** – Used for high-force applications like gripping heavy sheet metal.</li>
+            <li>🔹 **Minimal External Electronics** – Runs on **Raspberry Pi 5** or **Jetson Nano** with **Mobleysoft control software**.</li>
+            <li>🔹 **Battery-Powered & Wireless** – Uses **standard 24V lithium-ion packs** with modular charging.</li>
+        </ul>
+
+        <h3>3. Mechanical Design: Sheet Metal Skeleton</h3>
+        <p>The **Fiferbot frame** consists of:</p>
+        <ul>
+            <li>✅ **Aluminum 5052 or mild steel** sheet metal panels, laser-cut and bent in-house.</li>
+            <li>✅ **Ball bearings & bushings** for smooth joint movement.</li>
+            <li>✅ **Damping pads** to absorb shock and prevent frame stress.</li>
+            <li>✅ **Modular panelized construction**, allowing quick replacement of damaged parts.</li>
+        </ul>
+
+        <h3>4. Actuation: Muscles & Motion</h3>
+        <p>Fiferbot's movement is powered by **electric actuators, servo motors, and pneumatics**:</p>
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Actuator Type</th>
+                <th>Off-the-Shelf Option</th>
+            </tr>
+            <tr>
+                <td>Arms (Shoulder & Elbow)</td>
+                <td>Linear Actuators</td>
+                <td>Firgelli 12V/24V Heavy Duty</td>
+            </tr>
+            <tr>
+                <td>Hands & Fingers</td>
+                <td>High-Torque Servos</td>
+                <td>Dynamixel X-Series</td>
+            </tr>
+            <tr>
+                <td>Torso Rotation</td>
+                <td>Stepper Motor + Gearbox</td>
+                <td>NEMA 23 High Torque</td>
+            </tr>
+            <tr>
+                <td>Legs (Hip & Knee)</td>
+                <td>Linear Actuators</td>
+                <td>Progressive Automations PA-14</td>
+            </tr>
+            <tr>
+                <td>Feet (Balance)</td>
+                <td>IMU + Servo-Controlled Plates</td>
+                <td>MPU6050 + Smart Servos</td>
+            </tr>
+            <tr>
+                <td>Gripping / Lifting</td>
+                <td>Pneumatic Grippers</td>
+                <td>SMC / Festo Pneumatic</td>
+            </tr>
+        </table>
+
+        <h3>5. Control System: What Runs the Code?</h3>
+        <p><b>Computing Unit:</b></p>
+        <ul>
+            <li>🔹 **Raspberry Pi 5 (Preferred)** – Handles control logic, sensor processing.</li>
+            <li>🔹 **NVIDIA Jetson Nano (Optional)** – Adds AI-powered object recognition for CNC operations.</li>
+        </ul>
+        <p><b>Software Stack:</b></p>
+        <ul>
+            <li>✅ **Mobleysoft Robotics OS** – Lightweight Linux-based control software.</li>
+            <li>✅ **ROS2 (Robot Operating System)** – Manages motor control, sensor integration.</li>
+            <li>✅ **AI-Powered Task Execution** – Real-time decision-making and automation.</li>
+        </ul>
+
+        <h3>6. Power System</h3>
+        <p>Fiferbot is designed to be **battery-powered and wireless**, using:</p>
+        <ul>
+            <li>🔋 **Swappable 24V Lithium-Ion Battery Pack** (Makita/Dewalt or custom 18650 pack).</li>
+            <li>🔌 **DC-to-DC Step-Down Converter** for 12V and 5V components.</li>
+            <li>🔄 **Modular Charging Dock** for fast recharging.</li>
+        </ul>
+
+        <h3>7. Key Capabilities for Fifer Sheet Metal</h3>
+        <ul>
+            <li>✅ **Material Handling** – Moving sheet metal safely and efficiently.</li>
+            <li>✅ **Machine Tending** – Operating press brakes, laser cutters, CNC machines.</li>
+            <li>✅ **Precision Welding** – Using automated MIG/TIG welding arms.</li>
+            <li>✅ **Assembly Support** – Positioning and fastening components.</li>
+        </ul>
+
+        <h3>8. Minimal External Dependencies</h3>
+        <p>To keep Fiferbot **affordable and easy to maintain**, it:</p>
+        <ul>
+            <li>✔ **Uses Fifer’s own fabrication machines** to manufacture most parts.</li>
+            <li>✔ **Relies on widely available actuators, motors, and controllers**.</li>
+            <li>✔ **Runs on Mobleysoft’s AI-powered control software**.</li>
+        </ul>
+
+        <h3>9. The Future: Scaling & Advanced Versions</h3>
+        <p>🚀 **Fiferbot Mark 1** is the foundation for future humanoid robot advancements:</p>
+        <ul>
+            <li>**Mark 2** – Adds AI-driven **vision** for part recognition.</li>
+            <li>**Mark 3** – Improves **dexterity** with advanced robotic hands.</li>
+            <li>**Mark 4** – Introduces **self-replicating modular construction**.</li>
+        </ul>
+
+        <h3>10. Conclusion: A Humanoid Robot Fifer Can Build Today</h3>
+        <p>Fiferbot isn’t a concept—it’s a **practical humanoid robot designed for real industrial work**.</p>
+        <p>With **minimal investment**, Fiferbot can be **prototyped, tested, and deployed in Fifer Sheet Metal’s operations**, creating an efficient robotic workforce.</p>
+
+        <p><b>🚀 Ready to build? Mobleysoft can assist with first prototypes.</b></p>
+    </div>
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+</body>
+</html>
 
