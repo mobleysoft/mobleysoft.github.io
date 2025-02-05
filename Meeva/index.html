@@ -37,10 +37,32 @@
     </div>
 
     <script>
+        function decryptKey(encryptedKey, passcode) {
+            let decoded = atob(encryptedKey);
+            return decoded.split('').map((char, index) => 
+                String.fromCharCode(char.charCodeAt(0) ^ passcode.charCodeAt(index % passcode.length))
+            ).join('');
+        }
+
         async function startMeeva() {
             console.log("Initializing Meeva...");
             try {
-                let response = await fetch("http://localhost:8085/session");
+                let encryptedKey = "PASTE_ENCRYPTED_KEY_HERE"; // Replace with encrypted key from PowerShell script
+                let passcode = prompt("Enter the CFO passcode:");
+                let openaiKey = decryptKey(encryptedKey, passcode);
+                
+                let response = await fetch("https://api.openai.com/v1/realtime/sessions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${openaiKey}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4o-realtime-preview-2024-12-17",
+                        voice: "verse"
+                    })
+                });
+                
                 let data = await response.json();
                 let ephemeralKey = data.client_secret.value;
                 console.log("Ephemeral Key Retrieved: ", ephemeralKey);
