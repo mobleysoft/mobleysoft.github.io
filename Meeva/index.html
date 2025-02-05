@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeva - The Future of AGI Mental Health</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f4f4f4; }
+        h1 { color: #333; }
+        .container { max-width: 800px; margin: auto; padding: 20px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+        .button { display: inline-block; padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
+        .button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meeva: The First AGI Mental Health Companion</h1>
+        <p><strong>Empowering Minds, One Step at a Time.</strong></p>
+        <p>Meeva is an <strong>AGI-driven mental health agent</strong> that provides real-time, personalized support to individuals facing emotional challenges. Leveraging cutting-edge AGI technology, Meeva offers daily check-ins, mood tracking, and emotional intervention to promote resilience and well-being.</p>
+
+        <h2>Why Meeva?</h2>
+        <ul>
+            <li>🌍 AI-Powered Emotional Intelligence</li>
+            <li>🧠 Personalized AGI Coaching</li>
+            <li>📈 Real-Time Mood Tracking</li>
+            <li>💡 Adaptive Cognitive Interventions</li>
+        </ul>
+
+        <h2>Investor Opportunity</h2>
+        <p>The mental health market is worth <strong>$400B+</strong>, and Meeva is positioned as the **first-mover AGI** in the space. Investors have the opportunity to back a technology that will <strong>revolutionize human well-being</strong> through autonomous AGI-driven coaching.</p>
+
+        <button class="button" onclick="startMeeva()">Start Meeva Demo</button>
+
+        <h2>Live AI Assistant</h2>
+        <p>Meeva is listening... say something!</p>
+        <audio id="meevaAudio" controls></audio>
+    </div>
+
+    <script>
+        async function startMeeva() {
+            console.log("Initializing Meeva...");
+            try {
+                let response = await fetch("http://localhost:8085/session");
+                let data = await response.json();
+                let ephemeralKey = data.client_secret.value;
+                console.log("Ephemeral Key Retrieved: ", ephemeralKey);
+                
+                let pc = new RTCPeerConnection();
+                let audioEl = document.getElementById("meevaAudio");
+                audioEl.autoplay = true;
+                pc.ontrack = e => audioEl.srcObject = e.streams[0];
+
+                let ms = await navigator.mediaDevices.getUserMedia({ audio: true });
+                pc.addTrack(ms.getTracks()[0]);
+
+                let dc = pc.createDataChannel("oai-events");
+                dc.addEventListener("message", (e) => console.log("Meeva says: ", JSON.parse(e.data)));
+
+                let offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+
+                let baseUrl = "https://api.openai.com/v1/realtime";
+                let model = "gpt-4o-realtime-preview-2024-12-17";
+                let sdpResponse = await fetch(`${baseUrl}?model=${model}`, {
+                    method: "POST",
+                    body: offer.sdp,
+                    headers: { "Authorization": `Bearer ${ephemeralKey}`, "Content-Type": "application/sdp" }
+                });
+
+                let answer = { type: "answer", sdp: await sdpResponse.text() };
+                await pc.setRemoteDescription(answer);
+            } catch (error) {
+                console.error("Meeva failed to start:", error);
+                alert("Meeva encountered an error. Please check the console for details.");
+            }
+        }
+    </script>
+</body>
+</html>
