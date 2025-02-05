@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeva Fundraiser - Investor Demo</title>
+    <script>
+        async function hashPasscode(passcode) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(passcode);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function unlockMeeva() {
+            const storedHash = "PASTE_PRECOMPUTED_HASH_HERE"; // Replace with precomputed SHA-256 hash of "2025"
+            const passcode = prompt("Enter access passcode:");
+            const enteredHash = await hashPasscode(passcode);
+
+            if (enteredHash !== storedHash) {
+                alert("Incorrect passcode");
+                return;
+            }
+            
+            console.log("🔑 Passcode Verified Successfully");
+            startMeeva();
+        }
+
+        async function startMeeva() {
+            console.log("🚀 Initializing Meeva with Ephemeral Key...");
+            const encryptedKey = "PASTE_YOUR_ENCRYPTED_API_KEY_HERE";
+            const apiKey = decryptKey(encryptedKey);
+            
+            const response = await fetch("https://api.openai.com/v1/realtime/sessions", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${apiKey}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    model: "gpt-4o-mini-realtime-preview-2024-12-17",
+                    voice: "verse"
+                })
+            });
+            const data = await response.json();
+            const ephemeralKey = data.client_secret.value;
+            console.log("✅ Ephemeral Key Retrieved: ", ephemeralKey);
+            runMeeva(ephemeralKey);
+        }
+
+        async function decryptKey(encryptedKey) {
+            return atob(encryptedKey); // Simplified decryption for demonstration
+        }
+
+        async function runMeeva(ephemeralKey) {
+            console.log("🎤 Meeva Fundraiser AI is Live...");
+            alert("Meeva is now ready for the investor demo!");
+        }
+    </script>
+</head>
+<body onload="unlockMeeva()">
+    <h1>Meeva Fundraiser - Investor Demo</h1>
+    <p>Empowering the Future of AGI Mental Health.</p>
+    <p>Meeva is initializing...</p>
+</body>
+</html>
