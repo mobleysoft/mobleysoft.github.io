@@ -1,3 +1,5 @@
+# Create an HTML file for VS Code Tunnel extraction
+html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,30 +8,35 @@
     <title>VS Code Tunnel Link</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        h1 { color: #333; }
-        #tunnel-link { margin: 20px 0; padding: 10px; width: 80%; border: 1px solid #ccc; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #output { margin-top: 20px; font-size: 18px; color: blue; word-wrap: break-word; }
     </style>
 </head>
 <body>
-    <h1>Get Your VS Code Tunnel Link</h1>
-    <p>Run the following command in your terminal:</p>
-    <pre><code>code tunnel</code></pre>
-    <p>Copy and paste the generated link below and send it to your team.</p>
-    <input type="text" id="tunnel-link" placeholder="Paste your tunnel link here" readonly>
-    <br>
-    <button onclick="copyToClipboard()">Copy Link</button>
-    <p id="copied-message" style="color: green; display: none;">Copied to clipboard!</p>
+    <h2>VS Code Tunnel Link Generator</h2>
+    <p>Click the button below to generate your VS Code Tunnel link.</p>
+    <button onclick="getTunnelLink()">Run VS Code Tunnel</button>
+    <p id="output"></p>
 
     <script>
-        function copyToClipboard() {
-            var copyText = document.getElementById("tunnel-link");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // For mobile devices
-            document.execCommand("copy");
-
-            document.getElementById("copied-message").style.display = "block";
+        function getTunnelLink() {
+            fetch('/run_tunnel')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('output').innerHTML = 
+                        "Your VS Code Tunnel Link: <br><a href='" + data + "' target='_blank'>" + data + "</a>";
+                })
+                .catch(error => alert("Error: " + error));
         }
     </script>
 </body>
 </html>
+"""
+
+# Save the HTML file
+file_path = "/mnt/data/vscode_tunnel_generator.html"
+with open(file_path, "w") as file:
+    file.write(html_content)
+
+# Provide the file to the user
+file_path
