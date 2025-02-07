@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gurulke</title>
+    <title>Gurukle/title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +22,7 @@
         .container {
             padding: 20px;
         }
-        select, button {
+        select, button, input {
             padding: 10px;
             margin: 10px;
             font-size: 16px;
@@ -42,40 +42,111 @@
             padding: 10px;
             background: rgba(0, 0, 0, 0.3);
         }
+        .success-stories {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <header>Welcome to EdTech Global Connect</header>
     <div class="container">
-        <h2>Select Your Course & Topic</h2>
-        <select id="course">
-            <option value="computer-science">Computer Science</option>
-            <option value="business">Business Management</option>
-            <option value="data-science">Data Science</option>
-            <option value="medicine">Medicine</option>
+        <h2>Select Your Subject & Category</h2>
+        <select id="category">
+            <option value="engineering">Engineering</option>
+            <option value="arts">Arts & Humanities</option>
+            <option value="business">Business & Management</option>
+            <option value="medical">Medical & Healthcare</option>
+            <option value="law">Law</option>
+            <option value="science">Natural Sciences</option>
+            <option value="education">Education</option>
+            <option value="social-sciences">Social Sciences</option>
+            <option value="it">Information Technology</option>
+            <option value="architecture">Architecture & Planning</option>
+            <option value="sports">Sports & Physical Education</option>
+            <option value="psychology">Psychology</option>
+            <option value="finance">Finance & Accounting</option>
+            <option value="hospitality">Hospitality & Tourism</option>
+            <option value="agriculture">Agriculture & Forestry</option>
+            <option value="journalism">Journalism & Media</option>
+            <option value="design">Design & Fashion</option>
+            <option value="environmental">Environmental Sciences</option>
+            <option value="political-science">Political Science</option>
+            <option value="philosophy">Philosophy & Ethics</option>
+            <option value="linguistics">Linguistics & Language Studies</option>
+            <option value="anthropology">Anthropology & Sociology</option>
+            <option value="communications">Communications & Public Relations</option>
+            <option value="biotechnology">Biotechnology & Life Sciences</option>
+            <option value="astronomy">Astronomy & Space Sciences</option>
+            <option value="energy">Energy & Sustainable Development</option>
+            <option value="history">History & Archaeology</option>
+            <option value="economics">Economics & Development Studies</option>
+            <option value="music">Music & Performing Arts</option>
+            <option value="theology">Theology & Religious Studies</option>
         </select>
-        <select id="topic">
+        <select id="subcategory">
             <option value="ai">Artificial Intelligence</option>
-            <option value="marketing">Digital Marketing</option>
-            <option value="big-data">Big Data Analytics</option>
-            <option value="surgery">Robotic Surgery</option>
+            <option value="marketing">Marketing</option>
+            <option value="civil">Civil Engineering</option>
+            <option value="medicine">Medicine</option>
+            <option value="data-science">Data Science</option>
+            <option value="graphic-design">Graphic Design</option>
+            <option value="film-studies">Film Studies</option>
+            <option value="robotics">Robotics</option>
+            <option value="nutrition">Nutrition Science</option>
+            <option value="finance-analytics">Finance Analytics</option>
+            <option value="software-engineering">Software Engineering</option>
+            <option value="cybersecurity">Cybersecurity</option>
+            <option value="marine-biology">Marine Biology</option>
+            <option value="urban-planning">Urban Planning</option>
+            <option value="clinical-psychology">Clinical Psychology</option>
+            <option value="game-development">Game Development</option>
+            <option value="nanotechnology">Nanotechnology</option>
+            <option value="quantum-computing">Quantum Computing</option>
+            <option value="renewable-energy">Renewable Energy</option>
+            <option value="public-policy">Public Policy</option>
         </select>
+        <select id="geo-location">
+            <option value="global">Global</option>
+            <option value="usa">USA</option>
+            <option value="europe">Europe</option>
+            <option value="asia">Asia</option>
+            <option value="australia">Australia</option>
+            <option value="africa">Africa</option>
+        </select>
+        <br>
+        <input type="text" id="searchQuery" placeholder="Search for a specific topic...">
+        <button onclick="searchQuery()">Search</button>
         <br>
         <button onclick="connectUniversity()">Find Universities</button>
         <p id="result"></p>
     </div>
+    <div class="success-stories">
+        <h2>Student Success Stories</h2>
+        <p>"Thanks to EdTech Global Connect, I found my dream university in Europe!" - Alex</p>
+        <p>"The best platform for connecting with top institutions worldwide!" - Maria</p>
+    </div>
     <footer>Connecting Students with Universities Globally</footer>
-
     <script>
         function connectUniversity() {
-            const course = document.getElementById('course').value;
-            const topic = document.getElementById('topic').value;
-            document.getElementById('result').innerText = `Searching universities for ${topic} in ${course}...`;
+            const category = document.getElementById('category').value;
+            const subcategory = document.getElementById('subcategory').value;
+            const geoLocation = document.getElementById('geo-location').value;
+            document.getElementById('result').innerText = `Searching universities for ${subcategory} in ${category} (${geoLocation})...`;
             setTimeout(() => {
-                document.getElementById('result').innerText = `Universities connected successfully for ${topic} in ${course}!`;
+                document.getElementById('result').innerText = `Universities connected successfully for ${subcategory} in ${category} (${geoLocation})!`;
             }, 2000);
+        }
+        function searchQuery() {
+            const query = document.getElementById('searchQuery').value;
+            if (query) {
+                document.getElementById('result').innerText = `Searching results for: ${query}...`;
+                setTimeout(() => {
+                    document.getElementById('result').innerText = `Results found for: ${query}`;
+                }, 2000);
+            }
         }
     </script>
 </body>
 </html>
-
