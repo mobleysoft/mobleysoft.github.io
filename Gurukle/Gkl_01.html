@@ -11,10 +11,13 @@
             text-align: center;
             padding: 20px;
         }
-        select, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
+        .header {
+            color: #fff;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
         }
         .container {
             background: white;
@@ -24,12 +27,29 @@
             margin: auto;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
         }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
         h1 {
             color: #333;
+        }
+        .image-container {
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
+    <div class="header">Welcome to Gurukle</div>
+    <div class="image-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Guru_teaching_under_a_banyan_tree.jpg" alt="Teacher teaching a pupil under a banyan tree">
+    </div>
     <div class="container">
         <h1>Select Your Course</h1>
         <label for="category">Category:</label>
@@ -75,78 +95,5 @@
         <button onclick="findUniversities()">Find Universities</button>
         <p id="results"></p>
     </div>
-
-    <script>
-        const data = {
-            science: {
-                "Physics": ["Quantum Mechanics", "Thermodynamics", "Astrophysics", "Nuclear Physics"],
-                "Biology": ["Genetics", "Evolution", "Microbiology", "Neuroscience"]
-            },
-            arts: {
-                "History": ["Ancient Civilizations", "Modern History", "World Wars", "Renaissance Art"],
-                "Literature": ["Poetry", "Shakespeare", "Modern Novels", "Drama"]
-            },
-            business: {
-                "Marketing": ["Digital Marketing", "Brand Strategy", "Consumer Behavior", "E-Commerce"],
-                "Finance": ["Investment", "Risk Management", "Corporate Finance", "Accounting"]
-            },
-            engineering: {
-                "Mechanical Engineering": ["Thermodynamics", "Fluid Mechanics", "Robotics", "Machine Design"],
-                "Electrical Engineering": ["Power Systems", "Control Systems", "Electronics", "Embedded Systems"]
-            },
-            medicine: {
-                "General Medicine": ["Anatomy", "Pathology", "Physiology", "Surgery"],
-                "Dentistry": ["Orthodontics", "Endodontics", "Periodontics", "Oral Surgery"]
-            },
-            law: {
-                "Corporate Law": ["Business Regulations", "Contracts", "Taxation Law", "Intellectual Property"],
-                "Criminal Law": ["Forensic Science", "Human Rights", "Cyber Law", "Evidence Law"]
-            },
-            computer_science: {
-                "Software Development": ["Java", "Python", "Web Development", "Mobile Apps"],
-                "Artificial Intelligence": ["Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing"]
-            },
-            mathematics: {
-                "Algebra": ["Linear Algebra", "Abstract Algebra", "Group Theory", "Number Theory"],
-                "Statistics": ["Probability", "Data Analysis", "Bayesian Statistics", "Regression Analysis"]
-            },
-            social_sciences: {
-                "Psychology": ["Cognitive Psychology", "Behavioral Therapy", "Clinical Psychology", "Neuroscience"],
-                "Sociology": ["Cultural Studies", "Urban Sociology", "Political Sociology", "Gender Studies"]
-            },
-            humanities: {
-                "Philosophy": ["Ethics", "Metaphysics", "Logic", "Aesthetics"],
-                "Linguistics": ["Syntax", "Semantics", "Phonetics", "Historical Linguistics"]
-            }
-        };
-
-        function updateSubcategories() {
-            let category = document.getElementById("category").value;
-            let subcategory = document.getElementById("subcategory");
-            subcategory.innerHTML = '<option value="">-- Select --</option>';
-            
-            if (category && data[category]) {
-                Object.keys(data[category]).forEach(sub => {
-                    let option = new Option(sub, sub);
-                    subcategory.add(option);
-                });
-            }
-            updateTopics();
-        }
-
-        function updateTopics() {
-            let category = document.getElementById("category").value;
-            let subcategory = document.getElementById("subcategory").value;
-            let topic = document.getElementById("topic");
-            topic.innerHTML = '<option value="">-- Select --</option>';
-            
-            if (category && subcategory && data[category][subcategory]) {
-                data[category][subcategory].forEach(top => {
-                    let option = new Option(top, top);
-                    topic.add(option);
-                });
-            }
-        }
-    </script>
 </body>
 </html>
