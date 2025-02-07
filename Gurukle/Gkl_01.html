@@ -91,16 +91,16 @@
     <footer>Connecting Students with Universities Globally</footer>
     <script>
         const subcategories = {
-            engineering: ["Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Software Engineering"],
-            arts: ["Literature", "Performing Arts", "Fine Arts", "History"],
-            business: ["Marketing", "Finance", "Entrepreneurship", "International Business"],
-            medical: ["Medicine", "Pharmacy", "Dentistry", "Nursing"],
-            law: ["Corporate Law", "Criminal Law", "International Law", "Human Rights Law"],
-            science: ["Physics", "Chemistry", "Biology", "Environmental Science"],
-            education: ["Primary Education", "Secondary Education", "Special Education", "Educational Technology"],
-            social-sciences: ["Psychology", "Sociology", "Anthropology", "Political Science"],
-            it: ["Cybersecurity", "Data Science", "Artificial Intelligence", "Game Development"],
-            architecture: ["Urban Planning", "Interior Design", "Landscape Architecture", "Structural Engineering"]
+            engineering: ["Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Software Engineering", "Aerospace Engineering", "Biomedical Engineering"],
+            arts: ["Literature", "Performing Arts", "Fine Arts", "History", "Philosophy", "Linguistics"],
+            business: ["Marketing", "Finance", "Entrepreneurship", "International Business", "Supply Chain Management", "Human Resources"],
+            medical: ["Medicine", "Pharmacy", "Dentistry", "Nursing", "Veterinary Medicine", "Public Health"],
+            law: ["Corporate Law", "Criminal Law", "International Law", "Human Rights Law", "Intellectual Property Law", "Environmental Law"],
+            science: ["Physics", "Chemistry", "Biology", "Environmental Science", "Astronomy", "Geology"],
+            education: ["Primary Education", "Secondary Education", "Special Education", "Educational Technology", "Curriculum Development", "Adult Education"],
+            social-sciences: ["Psychology", "Sociology", "Anthropology", "Political Science", "Economics", "Cultural Studies"],
+            it: ["Cybersecurity", "Data Science", "Artificial Intelligence", "Game Development", "Cloud Computing", "Software Development"],
+            architecture: ["Urban Planning", "Interior Design", "Landscape Architecture", "Structural Engineering", "Sustainable Design", "Heritage Conservation"]
         };
 
         function updateSubcategories() {
@@ -124,6 +124,7 @@
                 document.getElementById('result').innerText = `Universities connected successfully for ${subcategory} in ${category} (${geoLocation})!`;
             }, 2000);
         }
+
         function searchQuery() {
             const query = document.getElementById('searchQuery').value;
             if (query) {
