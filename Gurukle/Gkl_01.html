@@ -53,7 +53,7 @@
     <header>Welcome to Gurukle</header>
     <div class="container">
         <h2>Select Your Subject & Category</h2>
-        <select id="category">
+        <select id="category" onchange="updateSubcategories()">
             <option value="engineering">Engineering</option>
             <option value="arts">Arts & Humanities</option>
             <option value="business">Business & Management</option>
@@ -64,48 +64,9 @@
             <option value="social-sciences">Social Sciences</option>
             <option value="it">Information Technology</option>
             <option value="architecture">Architecture & Planning</option>
-            <option value="sports">Sports & Physical Education</option>
-            <option value="psychology">Psychology</option>
-            <option value="finance">Finance & Accounting</option>
-            <option value="hospitality">Hospitality & Tourism</option>
-            <option value="agriculture">Agriculture & Forestry</option>
-            <option value="journalism">Journalism & Media</option>
-            <option value="design">Design & Fashion</option>
-            <option value="environmental">Environmental Sciences</option>
-            <option value="political-science">Political Science</option>
-            <option value="philosophy">Philosophy & Ethics</option>
-            <option value="linguistics">Linguistics & Language Studies</option>
-            <option value="anthropology">Anthropology & Sociology</option>
-            <option value="communications">Communications & Public Relations</option>
-            <option value="biotechnology">Biotechnology & Life Sciences</option>
-            <option value="astronomy">Astronomy & Space Sciences</option>
-            <option value="energy">Energy & Sustainable Development</option>
-            <option value="history">History & Archaeology</option>
-            <option value="economics">Economics & Development Studies</option>
-            <option value="music">Music & Performing Arts</option>
-            <option value="theology">Theology & Religious Studies</option>
         </select>
         <select id="subcategory">
-            <option value="ai">Artificial Intelligence</option>
-            <option value="marketing">Marketing</option>
-            <option value="civil">Civil Engineering</option>
-            <option value="medicine">Medicine</option>
-            <option value="data-science">Data Science</option>
-            <option value="graphic-design">Graphic Design</option>
-            <option value="film-studies">Film Studies</option>
-            <option value="robotics">Robotics</option>
-            <option value="nutrition">Nutrition Science</option>
-            <option value="finance-analytics">Finance Analytics</option>
-            <option value="software-engineering">Software Engineering</option>
-            <option value="cybersecurity">Cybersecurity</option>
-            <option value="marine-biology">Marine Biology</option>
-            <option value="urban-planning">Urban Planning</option>
-            <option value="clinical-psychology">Clinical Psychology</option>
-            <option value="game-development">Game Development</option>
-            <option value="nanotechnology">Nanotechnology</option>
-            <option value="quantum-computing">Quantum Computing</option>
-            <option value="renewable-energy">Renewable Energy</option>
-            <option value="public-policy">Public Policy</option>
+            <!-- Subcategories will be populated dynamically -->
         </select>
         <select id="geo-location">
             <option value="global">Global</option>
@@ -129,6 +90,31 @@
     </div>
     <footer>Connecting Students with Universities Globally</footer>
     <script>
+        const subcategories = {
+            engineering: ["Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Software Engineering"],
+            arts: ["Literature", "Performing Arts", "Fine Arts", "History"],
+            business: ["Marketing", "Finance", "Entrepreneurship", "International Business"],
+            medical: ["Medicine", "Pharmacy", "Dentistry", "Nursing"],
+            law: ["Corporate Law", "Criminal Law", "International Law", "Human Rights Law"],
+            science: ["Physics", "Chemistry", "Biology", "Environmental Science"],
+            education: ["Primary Education", "Secondary Education", "Special Education", "Educational Technology"],
+            social-sciences: ["Psychology", "Sociology", "Anthropology", "Political Science"],
+            it: ["Cybersecurity", "Data Science", "Artificial Intelligence", "Game Development"],
+            architecture: ["Urban Planning", "Interior Design", "Landscape Architecture", "Structural Engineering"]
+        };
+
+        function updateSubcategories() {
+            const category = document.getElementById("category").value;
+            const subcategorySelect = document.getElementById("subcategory");
+            subcategorySelect.innerHTML = "";
+            subcategories[category].forEach(subcat => {
+                const option = document.createElement("option");
+                option.value = subcat.toLowerCase().replace(/ /g, "-");
+                option.textContent = subcat;
+                subcategorySelect.appendChild(option);
+            });
+        }
+        
         function connectUniversity() {
             const category = document.getElementById('category').value;
             const subcategory = document.getElementById('subcategory').value;
@@ -147,6 +133,8 @@
                 }, 2000);
             }
         }
+        
+        updateSubcategories(); // Initialize with the first category's subcategories
     </script>
 </body>
 </html>
