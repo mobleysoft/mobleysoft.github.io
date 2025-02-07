@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdTech Global Connect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+        }
+        header {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            padding: 20px;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e73370;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>Welcome to EdTech Global Connect</header>
+    <div class="container">
+        <h2>Select Your Course & Topic</h2>
+        <select id="course">
+            <option value="computer-science">Computer Science</option>
+            <option value="business">Business Management</option>
+            <option value="data-science">Data Science</option>
+            <option value="medicine">Medicine</option>
+        </select>
+        <select id="topic">
+            <option value="ai">Artificial Intelligence</option>
+            <option value="marketing">Digital Marketing</option>
+            <option value="big-data">Big Data Analytics</option>
+            <option value="surgery">Robotic Surgery</option>
+        </select>
+        <br>
+        <button onclick="connectUniversity()">Find Universities</button>
+        <p id="result"></p>
+    </div>
+    <footer>Connecting Students with Universities Globally</footer>
+
+    <script>
+        function connectUniversity() {
+            const course = document.getElementById('course').value;
+            const topic = document.getElementById('topic').value;
+            document.getElementById('result').innerText = `Searching universities for ${topic} in ${course}...`;
+            setTimeout(() => {
+                document.getElementById('result').innerText = `Universities connected successfully for ${topic} in ${course}!`;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
 
