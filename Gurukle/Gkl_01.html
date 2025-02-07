@@ -3,139 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gurukle</title>
+    <title>EdTech Course Selector</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
-            color: white;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
             text-align: center;
-        }
-        header {
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .container {
             padding: 20px;
         }
-        select, button, input {
+        select, button {
             padding: 10px;
             margin: 10px;
             font-size: 16px;
-            border-radius: 5px;
-            border: none;
         }
-        button {
-            background-color: #ff4081;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #e73370;
-        }
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .success-stories {
-            background: rgba(255, 255, 255, 0.2);
+        .container {
+            background: white;
             padding: 20px;
-            margin-top: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <header>Welcome to Gurukle</header>
     <div class="container">
-        <h2>Select Your Subject & Category</h2>
+        <h1>Select Your Course</h1>
+        <label for="category">Category:</label>
         <select id="category" onchange="updateSubcategories()">
+            <option value="">-- Select --</option>
+            <option value="science">Science</option>
+            <option value="arts">Arts</option>
+            <option value="business">Business</option>
             <option value="engineering">Engineering</option>
-            <option value="arts">Arts & Humanities</option>
-            <option value="business">Business & Management</option>
-            <option value="medical">Medical & Healthcare</option>
+            <option value="medicine">Medicine</option>
             <option value="law">Law</option>
-            <option value="science">Natural Sciences</option>
-            <option value="education">Education</option>
-            <option value="social-sciences">Social Sciences</option>
-            <option value="it">Information Technology</option>
-            <option value="architecture">Architecture & Planning</option>
+            <option value="computer_science">Computer Science</option>
+            <option value="mathematics">Mathematics</option>
+            <option value="social_sciences">Social Sciences</option>
+            <option value="humanities">Humanities</option>
         </select>
-        <select id="subcategory">
-            <!-- Subcategories will be populated dynamically -->
+
+        <label for="subcategory">Subject:</label>
+        <select id="subcategory" onchange="updateTopics()">
+            <option value="">-- Select --</option>
         </select>
-        <select id="geo-location">
-            <option value="global">Global</option>
-            <option value="usa">USA</option>
-            <option value="europe">Europe</option>
-            <option value="asia">Asia</option>
+
+        <label for="topic">Topic:</label>
+        <select id="topic">
+            <option value="">-- Select --</option>
+        </select>
+
+        <label for="location">Location:</label>
+        <select id="location">
+            <option value="">-- Select --</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="canada">Canada</option>
+            <option value="india">India</option>
+            <option value="germany">Germany</option>
             <option value="australia">Australia</option>
-            <option value="africa">Africa</option>
+            <option value="china">China</option>
+            <option value="japan">Japan</option>
+            <option value="france">France</option>
+            <option value="brazil">Brazil</option>
         </select>
-        <br>
-        <input type="text" id="searchQuery" placeholder="Search for a specific topic...">
-        <button onclick="searchQuery()">Search</button>
-        <br>
-        <button onclick="connectUniversity()">Find Universities</button>
-        <p id="result"></p>
+
+        <button onclick="findUniversities()">Find Universities</button>
+        <p id="results"></p>
     </div>
-    <div class="success-stories">
-        <h2>Student Success Stories</h2>
-        <p>"Thanks to Gurukle, I found my dream university in Europe!" - Alex</p>
-        <p>"The best platform for connecting with top institutions worldwide!" - Maria</p>
-    </div>
-    <footer>Connecting Students with Universities Globally</footer>
+
     <script>
-        const subcategories = {
-            engineering: ["Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Software Engineering", "Aerospace Engineering", "Biomedical Engineering"],
-            arts: ["Literature", "Performing Arts", "Fine Arts", "History", "Philosophy", "Linguistics"],
-            business: ["Marketing", "Finance", "Entrepreneurship", "International Business", "Supply Chain Management", "Human Resources"],
-            medical: ["Medicine", "Pharmacy", "Dentistry", "Nursing", "Veterinary Medicine", "Public Health"],
-            law: ["Corporate Law", "Criminal Law", "International Law", "Human Rights Law", "Intellectual Property Law", "Environmental Law"],
-            science: ["Physics", "Chemistry", "Biology", "Environmental Science", "Astronomy", "Geology"],
-            education: ["Primary Education", "Secondary Education", "Special Education", "Educational Technology", "Curriculum Development", "Adult Education"],
-            social-sciences: ["Psychology", "Sociology", "Anthropology", "Political Science", "Economics", "Cultural Studies"],
-            it: ["Cybersecurity", "Data Science", "Artificial Intelligence", "Game Development", "Cloud Computing", "Software Development"],
-            architecture: ["Urban Planning", "Interior Design", "Landscape Architecture", "Structural Engineering", "Sustainable Design", "Heritage Conservation"]
+        const data = {
+            science: {
+                "Physics": ["Quantum Mechanics", "Thermodynamics", "Astrophysics", "Nuclear Physics"],
+                "Biology": ["Genetics", "Evolution", "Microbiology", "Neuroscience"]
+            },
+            arts: {
+                "History": ["Ancient Civilizations", "Modern History", "World Wars", "Renaissance Art"],
+                "Literature": ["Poetry", "Shakespeare", "Modern Novels", "Drama"]
+            },
+            business: {
+                "Marketing": ["Digital Marketing", "Brand Strategy", "Consumer Behavior", "E-Commerce"],
+                "Finance": ["Investment", "Risk Management", "Corporate Finance", "Accounting"]
+            },
+            engineering: {
+                "Mechanical Engineering": ["Thermodynamics", "Fluid Mechanics", "Robotics", "Machine Design"],
+                "Electrical Engineering": ["Power Systems", "Control Systems", "Electronics", "Embedded Systems"]
+            },
+            medicine: {
+                "General Medicine": ["Anatomy", "Pathology", "Physiology", "Surgery"],
+                "Dentistry": ["Orthodontics", "Endodontics", "Periodontics", "Oral Surgery"]
+            },
+            law: {
+                "Corporate Law": ["Business Regulations", "Contracts", "Taxation Law", "Intellectual Property"],
+                "Criminal Law": ["Forensic Science", "Human Rights", "Cyber Law", "Evidence Law"]
+            },
+            computer_science: {
+                "Software Development": ["Java", "Python", "Web Development", "Mobile Apps"],
+                "Artificial Intelligence": ["Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing"]
+            },
+            mathematics: {
+                "Algebra": ["Linear Algebra", "Abstract Algebra", "Group Theory", "Number Theory"],
+                "Statistics": ["Probability", "Data Analysis", "Bayesian Statistics", "Regression Analysis"]
+            },
+            social_sciences: {
+                "Psychology": ["Cognitive Psychology", "Behavioral Therapy", "Clinical Psychology", "Neuroscience"],
+                "Sociology": ["Cultural Studies", "Urban Sociology", "Political Sociology", "Gender Studies"]
+            },
+            humanities: {
+                "Philosophy": ["Ethics", "Metaphysics", "Logic", "Aesthetics"],
+                "Linguistics": ["Syntax", "Semantics", "Phonetics", "Historical Linguistics"]
+            }
         };
 
         function updateSubcategories() {
-            const category = document.getElementById("category").value;
-            const subcategorySelect = document.getElementById("subcategory");
-            subcategorySelect.innerHTML = "";
-            subcategories[category].forEach(subcat => {
-                const option = document.createElement("option");
-                option.value = subcat.toLowerCase().replace(/ /g, "-");
-                option.textContent = subcat;
-                subcategorySelect.appendChild(option);
-            });
-        }
-        
-        function connectUniversity() {
-            const category = document.getElementById('category').value;
-            const subcategory = document.getElementById('subcategory').value;
-            const geoLocation = document.getElementById('geo-location').value;
-            document.getElementById('result').innerText = `Searching universities for ${subcategory} in ${category} (${geoLocation})...`;
-            setTimeout(() => {
-                document.getElementById('result').innerText = `Universities connected successfully for ${subcategory} in ${category} (${geoLocation})!`;
-            }, 2000);
+            let category = document.getElementById("category").value;
+            let subcategory = document.getElementById("subcategory");
+            subcategory.innerHTML = '<option value="">-- Select --</option>';
+            
+            if (category && data[category]) {
+                Object.keys(data[category]).forEach(sub => {
+                    let option = new Option(sub, sub);
+                    subcategory.add(option);
+                });
+            }
+            updateTopics();
         }
 
-        function searchQuery() {
-            const query = document.getElementById('searchQuery').value;
-            if (query) {
-                document.getElementById('result').innerText = `Searching results for: ${query}...`;
-                setTimeout(() => {
-                    document.getElementById('result').innerText = `Results found for: ${query}`;
-                }, 2000);
+        function updateTopics() {
+            let category = document.getElementById("category").value;
+            let subcategory = document.getElementById("subcategory").value;
+            let topic = document.getElementById("topic");
+            topic.innerHTML = '<option value="">-- Select --</option>';
+            
+            if (category && subcategory && data[category][subcategory]) {
+                data[category][subcategory].forEach(top => {
+                    let option = new Option(top, top);
+                    topic.add(option);
+                });
             }
         }
-        
-        updateSubcategories(); // Initialize with the first category's subcategories
     </script>
 </body>
 </html>
