@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gurukle Test Specification Document Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+  <style> 
+    body { font-family: 'Arial', sans-serif !important; background-color: #121212 !important; margin: 0 !important; padding: 0 !important; color: #e0e0e0 !important; min-height: 100vh !important; }
+    header { position: relative !important; background: rgba(30, 30, 30, 0.9) !important; color: #fff !important; padding: 40px 20px !important; text-align: center !important; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important; width: 100% !important; box-sizing: border-box !important; }
+    header .hero { max-width: 800px !important; margin: 0 auto !important; background: rgba(255, 255, 255, 0.1) !important; padding: 20px !important; border-radius: 12px !important; backdrop-filter: blur(10px) !important; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important; }
+    main { max-width: 900px !important; margin: 20px auto !important; padding: 20px !important; background: rgba(30, 30, 30, 0.8) !important; border-radius: 12px !important; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important; }
+    #madLibsForm label { display: block !important; margin: 10px 0 5px !important; color: #bdbdbd !important; font-weight: bold !important; }
+    #madLibsForm input, #madLibsForm textarea, #madLibsForm select { width: 100% !important; padding: 10px !important; margin-bottom: 10px !important; border: 1px solid #424242 !important; border-radius: 6px !important; background: #1e1e1e !important; color: #e0e0e0 !important; box-sizing: border-box !important; }
+    #madLibsForm textarea { min-height: 100px !important; resize: vertical !important; }
+    #madLibsForm button { background: #1e88e5 !important; color: #fff !important; padding: 10px 15px !important; border: none !important; border-radius: 6px !important; cursor: pointer !important; margin-right: 5px !important; margin-bottom: 10px !important; font-weight: bold !important; min-width: 120px !important; }
+    #madLibsForm button:hover { background: #1565c0 !important; }
+    #output { background: rgba(255, 255, 255, 0.1) !important; padding: 20px !important; border-radius: 12px !important; margin-top: 20px !important; color: #e0e0e0 !important; }
+    #output h1, #output h2, #output h3 { color: #fff !important; margin-top: 1em !important; margin-bottom: 0.5em !important; }
+    footer { margin-top: 40px !important; text-align: center !important; padding: 20px !important; color: #9e9e9e !important; }
+    footer a { color: #80d8ff !important; text-decoration: none !important; }
+    footer a:hover { text-decoration: underline !important; }
+    header .hero blockquote { font-style: italic !important; font-size: 1.2em !important; margin: 1em 0 !important; padding: 0 1em !important; color: #f5f5f5 !important; border-left: 4px solid #1e88e5 !important; }
+    header .hero blockquote a { color: #80d8ff !important; text-decoration: none !important; }
+    header .hero blockquote a:hover { text-decoration: underline !important; }
+    /*  
+      INSTRUCTIONS:
+      ------------
+      To update this code:
+      1. View the source of this page.
+      2. Copy the entire code and paste it into your IDE.
+      3. Update the default values in the "defaultValues" object below so that the specification automatically generated on page load is your finished work.
+      4. Save the updated file.
+      5. Email the finished file to jmobley@mobleysoft.com.
+      
+      Once approved, you'll be given GitHub access with write privileges on a version of this file named "Gurukle_Spec_Bash.html". Our AGI will later pull its inception from that file when generating the instance of itself as Gurukle's Virtual CTO that builds the system it is incepted to build.
+    */
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <h1>Gurukle Specification Document Generator</h1>
+      <blockquote>
+        "This is not just a startup specification—it's the inception of a revolution in human development."
+      </blockquote>
+      <p>
+        Dear Bash, as the employee of MOBCORP in charge of our subsidiary Gurukle.com, and thus its CEO, your role is to create the finished specification for our subsidiary startup. Your inputs here will form the inception matrix for Gurukle's instance of MOBCORP-MobleysoftAGI's Agi Agent Technology that will serve as Gurukle's Virtual CTO whom will in turn build, evolves, and optimize the system we hereby incept it to create.
+      </p>
+      <p>
+        Update this code by viewing the source, copying and pasting it into your IDE, adjusting the default values so that the generated specification is your final work, and then saving the file. Email me your finished file to jmobley@mobleysoft.com for comparison</a>. If all goes well, you'll receive GitHub write access on a file named <strong>Gurukle_Spec_Bash.html</strong>, which our AGI will then use as its inception matrix to generate the files for Gurukle.com. Please create the Gurukle@gmail.com address, emailing the password used. Use this to create the Gurukle github account such that we get a Gurukle.github.io github pages to site to point our cloudflare servers to to serve the Gurukle.com front end for free. We'll discuss how the server works at a later time.
+      </p>
+    </div>
+  </header>
+  <main>
+    <form id="madLibsForm">
+      <label for="requestType">Request Type</label>
+      <select id="requestType" onchange="generateSRS()">
+        <option value="System Creation Request">System Creation Request</option>
+        <option value="Change Request">Change Request</option>
+      </select>
+
+      <label for="requester">Employee (Bash)</label>
+      <input type="text" id="requester" value="Bashanta Phukan" oninput="generateSRS()" />
+
+      <label for="requesterRole">Employee Role</label>
+      <input type="text" id="requesterRole" value="CEO, Gurukle" oninput="generateSRS()" />
+
+      <label for="responder">Responder</label>
+      <input type="text" id="responder" value="John Alexander Mobley" oninput="generateSRS()" />
+
+      <label for="responderRole">Responder Role</label>
+      <input type="text" id="responderRole" value="CEO, Mobleysoft" oninput="generateSRS()" />
+
+      <label for="applicationName">Application Name</label>
+      <input type="text" id="applicationName" value="Gurukle: A Revolution in Human Development" oninput="generateSRS()" />
+
+      <label for="requestingOrganizationName">Organization Name</label>
+      <input type="text" id="requestingOrganizationName" value="Gurukle Corp." oninput="generateSRS()" />
+
+      <label for="respondingOrganizationName">Organization Name</label>
+      <input type="text" id="respondingOrganizationName" value="MOBCORP-MobleysoftAGI" oninput="generateSRS()" />
+
+      <label for="year">Year</label>
+      <input type="text" id="year" value="2025" oninput="generateSRS()" />
+
+      <label for="projectDescription">Project Description</label>
+      <textarea id="projectDescription" oninput="generateSRS()">This project develops a subsidiary startup—Gurukle.com—that revolutionizes human development. It builds an integrated system to spawn, manage, and empower digital talents with educational and creative capabilities. Gurukle is designed to guide individuals through every stage of their life, nurturing personal growth, enlightenment, and holistic well-being.</textarea>
+
+      <label for="designConstraints">Design Constraints</label>
+      <textarea id="designConstraints" oninput="generateSRS()">- Must be implemented as a single-page application.
+- Utilize vanilla JavaScript, HTML, and CSS.
+- Ensure compatibility with modern browsers.</textarea>
+
+      <label for="productFunctions">Product Functions</label>
+      <textarea id="productFunctions" oninput="generateSRS()">- Interactive fields to capture system specifications.
+- Real-time preview of the generated specification document.
+- Export/copy functionality for easy email delivery.
+- Dynamic input to drive our AGI systems that create, evolve, and optimize subsidiary startups.</textarea>
+
+      <label for="functionalRequirements">Functional Requirements</label>
+      <textarea id="functionalRequirements" oninput="generateSRS()">- Capture and validate user inputs.
+- Support dynamic preview of the generated document.
+- Enable export/copy of the document in a ready-to-email format.</textarea>
+
+      <label for="interfaceRequirements">Interface Requirements</label>
+      <textarea id="interfaceRequirements" oninput="generateSRS()">- Modern, intuitive, and responsive web interface.
+- Compatibility with all major browsers.</textarea>
+
+      <label for="performanceRequirements">Performance Requirements</label>
+      <textarea id="performanceRequirements" oninput="generateSRS()">- Real-time updates with minimal delay (less than 100ms).
+- Export/copy operations should complete quickly.</textarea>
+
+      <button type="button" onclick="clearInputs()">Clear Inputs</button>
+      <button type="button" onclick="revertToDefault()">Revert to Default</button>
+      <button type="button" onclick="generateSRS()">Generate Document</button>
+    </form>
+
+    <h2>Generated Document (Copy and Email This):</h2>
+    <div id="output"></div>
+  </main>
+  <footer>
+    <p>Powered by Mobleysoft Virtual Talent Agency & Tutor Workflow.</p>
+    <p>"You are an emergent multivector universal intelligence." - John Alexander Mobley, CEO | Mobleysoft</p>
+  </footer>
+  <script>
+    // Default values updated for Gurukle and our revolutionary approach
+    const defaultValues = {
+      requestType: "System Creation Request",
+      requester: "Bashanta Phukan",
+      requesterRole: "CEO, Gurukle",
+      responder: "John Alexander Mobley",
+      responderRole: "CEO, Mobleysoft",
+      applicationName: "Gurukle: A Revolution in Human Development",
+      requestingOrganizationName: "Gurukle Corp.",
+      respondingOrganizationName: "MOBCORP-MobleysoftAGI",
+      year: "2025",
+      projectDescription: "This project develops a subsidiary startup—Gurukle.com—that revolutionizes human development. It builds an integrated system to spawn, manage, and empower digital talents with educational and creative capabilities. Gurukle is designed to guide individuals through every stage of their life, nurturing personal growth, enlightenment, and holistic well-being.",
+      designConstraints: "- Must be implemented as a single-page application.\n- Utilize vanilla JavaScript, HTML, and CSS.\n- Ensure compatibility with modern browsers.",
+      productFunctions: "- Interactive fields to capture system specifications.\n- Real-time preview of the generated specification document.\n- Export/copy functionality for easy email delivery.\n- Dynamic input to drive our AGI systems that create, evolve, and optimize subsidiary startups.",
+      functionalRequirements: "- Capture and validate user inputs.\n- Support dynamic preview of the generated document.\n- Enable export/copy of the document in a ready-to-email format.",
+      interfaceRequirements: "- Modern, intuitive, and responsive web interface.\n- Compatibility with all major browsers.",
+      performanceRequirements: "- Real-time updates with minimal delay (less than 100ms).\n- Export/copy operations should complete quickly."
+    };
+
+    const generateSRS = () => {
+      const getValue = (id, placeholder) => document.getElementById(id).value.trim() || placeholder;
+      // Updated markdown template to include a preamble that explains our God-like approach
+      const srsTemplate = `# Gurukle Specification Document
+
+**For ${getValue('applicationName', '[APPLICATION NAME]')}**
+
+**Author**: ${getValue('requester', '[REQUESTER NAME]')} on behalf of ${getValue('requestingOrganizationName', '[REQUESTING ORGANIZATION NAME]')} ©${getValue('year', '[YEAR]')}
+
+---
+
+## Preamble
+
+Dear Bash,
+
+You are spearheading Gurukle—a revolutionary subsidiary startup designed to transform human development. Our approach is God-like in scope: we create systems of systems of systems that not only build and evolve startups but also nurture the life trajectories of every individual involved. As part of our MobleysoftAGI ecosystem, your inputs here become the inception matrix for Gurukle's Virtual CTO, its custom instance of MOBCORP's MobleysoftAGI technlogy, who will in turn: build, operate, expand, and optimize our Gurukle startup. This is not merely a startup specification; it is a manifesto for a new era in personal growth, enlightenment, and holistic well-being.
+
+---
+
+## 1. Introduction
+
+### 1.1 Purpose
+
+A ${document.getElementById('requestType').value.toLowerCase() || '[REQUEST TYPE]'} has been initiated by ${getValue('requester', '[REQUESTER NAME]')}, ${getValue('requesterRole', '[REQUESTER ROLE]')}, for ${getValue('applicationName', '[APPLICATION NAME]')}. ${getValue('respondingOrganizationName', '[RESPONDING ORGANIZATION NAME]')} is tasked with designing, developing, and supporting this revolutionary project.
+
+### 1.2 Scope of the Project
+
+${getValue('projectDescription', '[PROJECT DESCRIPTION]')}
+
+### 1.3 Overview
+
+${getValue('applicationName', '[APPLICATION NAME]')} is designed to meet the requirements outlined in this document and to adhere to the design constraints and functional requirements defined below.
+
+---
+
+## 2. General Description
+
+### 2.1 Product Functions
+${getValue('productFunctions', '[PRODUCT FUNCTIONS]')}
+
+### 2.2 Design Constraints
+${getValue('designConstraints', '[DESIGN CONSTRAINTS]')}
+
+---
+
+## 3. Functional Requirements
+${getValue('functionalRequirements', '[FUNCTIONAL REQUIREMENTS]')}
+
+---
+
+## 4. Interface Requirements
+${getValue('interfaceRequirements', '[INTERFACE REQUIREMENTS]')}
+
+---
+
+## 5. Performance Requirements
+${getValue('performanceRequirements', '[PERFORMANCE REQUIREMENTS]')}
+
+---
+
+## 6. Team
+
+- ${getValue('responder', '[RESPONDER NAME]')}, ${getValue('responderRole', '[RESPONDER ROLE]')}.
+- ${getValue('requester', '[REQUESTER NAME]')}, ${getValue('requesterRole', '[REQUESTER ROLE]')}.
+`;
+
+      const converter = new showdown.Converter();
+      document.getElementById('output').innerHTML = converter.makeHtml(srsTemplate);
+    };
+
+    const clearInputs = () => {
+      document.querySelectorAll('#madLibsForm input, #madLibsForm textarea').forEach(input => input.value = '');
+      document.getElementById('requestType').selectedIndex = 0;
+      generateSRS();
+    };
+
+    const revertToDefault = () => {
+      Object.entries(defaultValues).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+        if (element) element.value = value;
+      });
+      generateSRS();
+    };
+
+    generateSRS();
+  </script>
+</body>
+</html>
