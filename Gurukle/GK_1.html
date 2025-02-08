@@ -1,0 +1,82 @@
+<html> 
+<script> 
+// Backend: Express.js (Node.js) + MongoDB
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => console.log("MongoDB Connected")).catch(err => console.log(err));
+
+// Models
+const User = mongoose.model('User', new mongoose.Schema({
+  name: String,
+  email: String,
+  interests: [String],
+  savedUniversities: [String],
+}));
+
+const Category = mongoose.model('Category', new mongoose.Schema({
+  name: String,
+  subcategories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SubCategory' }],
+}));
+
+const SubCategory = mongoose.model('SubCategory', new mongoose.Schema({
+  name: String,
+  parentCategory: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+}));
+
+const University = mongoose.model('University', new mongoose.Schema({
+  name: String,
+  country: String,
+  rank: Number,
+  programs: [String],
+}));
+
+// Routes
+app.get('/categories', async (req, res) => {
+  const categories = await Category.find().populate('subcategories');
+  res.json(categories);
+});
+
+app.get('/universities', async (req, res) => {
+  const { category } = req.query;
+  const universities = await University.find(category ? { programs: category } : {});
+  res.json(universities);
+});
+
+app.post('/register', async (req, res) => {
+  const { name, email, interests } = req.body;
+  const user = new User({ name, email, interests, savedUniversities: [] });
+  await user.save();
+  res.json({ message: 'User registered', user });
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Frontend: Next.js + TailwindCSS
+// pages/index.js
+import Link from 'next/link';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold">Student Guidance Platform</h1>
+      <Link href="/categories">
+        <button className="mt-4 p-3 bg-blue-500 text-white rounded-lg">Explore Categories</button>
+      </Link>
+    </div>
+  );
+}
+
+</script>
+</html>
