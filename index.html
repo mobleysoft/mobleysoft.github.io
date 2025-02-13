@@ -18,71 +18,12 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
 .footer-link{text-decoration:none;padding:3px 8px;color:#ffcc00;border:1px solid #ffcc00;font-weight:normal;background:none;}
 .footer-link.devtoolbx{background-color:#ffcc00;color:#000;font-weight:bold;}
 .footer-separator{padding:0 5px;color:#ffcc00;}
-#wireframe{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #ffcc00;
-    box-shadow: 0 0 10px #ffcc00;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s, transform 0.5s;
-}
-#subapp-container{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    background: black;
-    padding: 20px;
-    color: white;
-    text-align: center;
-    display: none;
-    border: 2px solid #ffcc00;
-    box-shadow: 0 0 10px #ffcc00;
-}
-#closeSubApp{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    color: #ffcc00;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}
-.startup-footer {
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    background: #000;
-    padding: 3px;
-    font-size: 14px;
-    flex-wrap: wrap; /* Allows dynamic row expansion */
-}
-
-.startup-logo {
-    font-weight: bold;
-    font-size: 16px;
-    color: #ffcc00;
-    margin-right: 10px;
-}
-
-.startup-link {
-    text-decoration: none;
-    padding: 0px 0px;
-    color: #ffcc00;
-    border: 1px solid #ffcc00;
-    font-weight: normal;
-    background: none;
-    cursor: pointer;
-    margin: 0px;
-    white-space: nowrap; /* Prevents button text from breaking */
-}
+#wireframe{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid #ffcc00; box-shadow: 0 0 10px #ffcc00; opacity: 0; pointer-events: none; transition: opacity 0.5s, transform 0.5s; }
+#subapp-container{ position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform: translate(-50%, -50%); background: black; padding: 20px; color: white; text-align: center; display: none; border: 2px solid #ffcc00; box-shadow: 0 0 10px #ffcc00; }
+#closeSubApp{ position: absolute; top: 10px; right: 10px; background: none; color: #ffcc00; border: none; font-size: 20px; cursor: pointer; }
+.startup-footer { display: flex; justify-content: left; align-items: left; background: #000; padding: 3px; font-size: 14px; flex-wrap: wrap; /* Allows dynamic row expansion */ }
+.startup-logo { font-weight: bold; font-size: 16px; color: #ffcc00; margin-right: 10px; }
+.startup-link { text-decoration: none; padding: 0px 0px; color: #ffcc00; border: 1px solid #ffcc00; font-weight: normal; background: none; cursor: pointer; margin: 0px; white-space: nowrap; /* Prevents button text from breaking */ }
 .startup-link.MobCorp{background-color:#ffcc00;color:#000;font-weight:bold;}
 </style>
 </head>
@@ -90,18 +31,10 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://mobleysoft.com/scripts/blackhole.js"></script>
 <canvas id="blackhole"></canvas>
-
 <div id="overlay" style="width:1000px!important">
     <div id="app">
-        <div id="logoRow">
-            <div id="logo"><header><div><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="100px"></div></header></div>
-        </div>
-        <div id="pricingTableRow">    
-            <stripe-pricing-table 
-                pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
-                publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
-            </stripe-pricing-table>
-        </div>
+        <div id="logoRow"><div id="logo"><header><div><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="100px"></div></header></div></div>
+        <div id="pricingTableRow"><stripe-pricing-table pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno" publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG"></stripe-pricing-table></div>
     </div>
     <div class="footer-bar">
         <span class="footer-logo">MobleysoftAGI</span>
@@ -116,16 +49,9 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
         <a href="#" class="footer-link" onclick="activateTool('FirmSmith200')">FirmSmith200</a>
         <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a>
     </div>
-<div class="startup-footer" id="startup-toolbar">
-    <span class="startup-link MobCorp">MobCorp</span>
+    <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
+<div id="wireframe"></div><div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div>
 </div>
-
-    <div id="wireframe"></div>
-<div id="subapp-container">
-    <button id="closeSubApp" onclick="closeSubApp()">✖</button>
-</div>
-</div>
-
 <script>
     async function loadStartups() {
     try {
@@ -160,18 +86,15 @@ document.addEventListener('DOMContentLoaded', loadStartups);
         subappContainer.innerHTML = `<button id="closeSubApp" onclick="closeSubApp()">✖</button><h2>${toolName}</h2><p>Now running ${toolName}.</p>`;
     }, 500);
 }
-
 function closeSubApp() {
     document.getElementById('subapp-container').style.display = 'none';
 }
     const overlay = document.getElementById('overlay');
     let idleTimer;
-
     function showOverlay() {
         overlay.classList.add('visible'); // Add the "visible" class to fade in
         resetIdleTimer(); // Restart the idle timer
     }
-
     function hideOverlay() {
         // Reduce opacity to 0 smoothly before removing the class
         overlay.style.opacity = 0; // Trigger the CSS transition
@@ -180,7 +103,6 @@ function closeSubApp() {
             overlay.classList.remove('visible'); // Fully hide after transition
         }, 1500); // Match the CSS transition duration (3 seconds)
     }
-
     function resetIdleTimer() {
         clearTimeout(idleTimer); // Clear any existing timer
         idleTimer = setTimeout(hideOverlay, 6000); // Start a 3-second timer for fade-out
@@ -188,12 +110,7 @@ function closeSubApp() {
         overlay.style.pointerEvents = "auto";
         overlay.style.opacity = .9; // Start fading in
     }
-
-    document.addEventListener('mousemove', showOverlay);
-    document.addEventListener('click', showOverlay);
-    document.addEventListener('keypress', showOverlay);
-
-    hideOverlay();
+    document.addEventListener('mousemove', showOverlay); document.addEventListener('click', showOverlay); document.addEventListener('keypress', showOverlay); hideOverlay();
 </script>
 </body>
 </html>
