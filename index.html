@@ -143,9 +143,30 @@ header {
         <a href="#" class="footer-link" onclick="activateTool('FirmSmith200')">FirmSmith200</a>
         <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a>
     </div>
+    <div id="wireframe"></div>
+<div id="subapp-container">
+    <button id="closeSubApp" onclick="closeSubApp()">✖</button>
+</div>
 </div>
 
 <script>
+    function activateTool(toolName) {
+    const wireframe = document.getElementById('wireframe');
+    const subappContainer = document.getElementById('subapp-container');
+    wireframe.style.opacity = 1;
+    wireframe.style.transform = 'scale(1.05)';
+
+    setTimeout(() => {
+        wireframe.style.opacity = 0;
+        wireframe.style.transform = 'scale(1)';
+        subappContainer.style.display = 'block';
+        subappContainer.innerHTML = `<button id="closeSubApp" onclick="closeSubApp()">✖</button><h2>${toolName}</h2><p>Now running ${toolName}.</p>`;
+    }, 500);
+}
+
+function closeSubApp() {
+    document.getElementById('subapp-container').style.display = 'none';
+}
     const overlay = document.getElementById('overlay');
     let idleTimer;
 
