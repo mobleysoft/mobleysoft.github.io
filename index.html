@@ -189,11 +189,13 @@ header {
         const startupList = text.split(',').map(item => item.trim());
         const toolbar = document.getElementById('startup-toolbar');
         startupList.forEach(startup => {
-            const button = document.createElement('a');
-            button.className = 'footer-link';
-            button.textContent = startup;
-            button.onclick = () => activateTool(startup);
-            toolbar.appendChild(button);
+            if (!startup.includes("HTML")) {  // Corrected 'contians' to 'includes'
+                const button = document.createElement('a');
+                button.className = 'footer-link';
+                button.textContent = startup;
+                button.onclick = () => activateTool(startup);
+                toolbar.appendChild(button);
+            }
         });
     } catch (error) {
         console.error('Error loading startups:', error);
