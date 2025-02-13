@@ -74,6 +74,43 @@ header {
 .footer-link{text-decoration:none;padding:3px 8px;color:#ffcc00;border:1px solid #ffcc00;font-weight:normal;background:none;}
 .footer-link.devtoolbx{background-color:#ffcc00;color:#000;font-weight:bold;}
 .footer-separator{padding:0 5px;color:#ffcc00;}
+#wireframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px #ffcc00;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s, transform 0.5s;
+}
+#subapp-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 824px;
+    transform: translate(-50%, -50%);
+    background: black;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    display: none;
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px #ffcc00;
+}
+#closeSubApp{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    color: #ffcc00;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -95,16 +132,16 @@ header {
     </div>
     <div class="footer-bar">
         <span class="footer-logo">MobleysoftAGI</span>
-        <a href="https://devtoolbx.com" class="footer-link devtoolbx">DevToolBx</a>
-        <a href="https://devtoolai.com" class="footer-link">DevToolAI</a>
-        <a href="https://halside.com" class="footer-link">HalsIDE</a>
-        <a href="https://devducky.com" class="footer-link">DevDucky</a>
-        <a href="https://fystz.com" class="footer-link">Fystz</a>
-        <a href="https://extraterran.com" class="footer-link">Extraterran</a>
-        <a href="https://helmdir.com" class="footer-link">HelmDir</a>
-        <a href="#" class="footer-link">ToolMaker20</a>
-        <a href="#" class="footer-link">FirmSmith200</a>
-        <a href="#" class="footer-link">IndustryPress2k</a>
+        <a href="#" class="footer-link devtoolbx" onclick="activateTool('DevToolBx')">DevToolBx</a>
+        <a href="#" class="footer-link" onclick="activateTool('DevToolAI')">DevToolAI</a>
+        <a href="#" class="footer-link" onclick="activateTool('HalsIDE')">HalsIDE</a>
+        <a href="#" class="footer-link" onclick="activateTool('DevDucky')">DevDucky</a>
+        <a href="#" class="footer-link" onclick="activateTool('Fystz')">Fystz</a>
+        <a href="#" class="footer-link" onclick="activateTool('Extraterran')">Extraterran</a>
+        <a href="#" class="footer-link" onclick="activateTool('HelmDir')">HelmDir</a>
+        <a href="#" class="footer-link" onclick="activateTool('ToolMaker20')">ToolMaker20</a>
+        <a href="#" class="footer-link" onclick="activateTool('FirmSmith200')">FirmSmith200</a>
+        <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a>
     </div>
 </div>
 
