@@ -63,8 +63,8 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
     </div>
     <br/>
     <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
-<div id="wireframe"></div><div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div>
 </div>
+    <div id="wireframe"></div><div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div>
 <script>
     async function loadStartups() {
     try {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', loadStartups);
     const wireframe = document.getElementById('wireframe');
     const subappContainer = document.getElementById('subapp-container');
     wireframe.style.opacity = 1;
-    wireframe.style.transform = 'scale(1.37)';
+    wireframe.style.transform = 'scale(1.04)';
 
     setTimeout(() => {
         wireframe.style.opacity = 0;
