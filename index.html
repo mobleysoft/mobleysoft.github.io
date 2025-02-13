@@ -62,7 +62,7 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
         startupList.forEach(startup => {
             if (!startup.includes("HTML")) {  // Corrected 'contians' to 'includes'
                 const button = document.createElement('a');
-                button.className = 'footer-link';
+                button.className = 'startup-link';
                 button.textContent = startup;
                 button.onclick = () => activateTool(startup);
                 toolbar.appendChild(button);
