@@ -111,6 +111,34 @@ header {
     font-size: 20px;
     cursor: pointer;
 }
+.startup-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    padding: 3px;
+    font-size: 14px;
+    flex-wrap: wrap; /* Allows dynamic row expansion */
+}
+
+.startup-logo {
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffcc00;
+    margin-right: 10px;
+}
+
+.startup-link {
+    text-decoration: none;
+    padding: 3px 8px;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
+    font-weight: normal;
+    background: none;
+    cursor: pointer;
+    margin: 2px;
+    white-space: nowrap; /* Prevents button text from breaking */
+}
 </style>
 </head>
 <body>
@@ -142,6 +170,10 @@ header {
         <a href="#" class="footer-link" onclick="activateTool('ToolMaker20')">ToolMaker20</a>
         <a href="#" class="footer-link" onclick="activateTool('FirmSmith200')">FirmSmith200</a>
         <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a>
+        <div class="startup-footer" id="startup-toolbar">
+    <span class="startup-logo">Mobcorp MobleysoftAGI</span>
+</div>
+
     </div>
     <div id="wireframe"></div>
 <div id="subapp-container">
