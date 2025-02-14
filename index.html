@@ -99,9 +99,40 @@ document.addEventListener('DOMContentLoaded', loadStartups);
         subappContainer.innerHTML = `<button id="closeSubApp" onclick="closeSubApp()">✖</button><h2>${toolName}</h2><p>Now running ${toolName}.</p>`;
     }, 500);
 }
-function closeSubApp() {
-    document.getElementById('subapp-container').style.display = 'none';
+function activateTool(toolName) {
+    const subappContainer = document.getElementById('subapp-container');
+
+    // Get screen width and height
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    // Set position dynamically (prevents scaling issues)
+    subappContainer.style.width = `${screenWidth - 40}px`;
+    subappContainer.style.height = `${screenHeight - 40}px`;
+    subappContainer.style.top = `${screenHeight / 2}px`;
+    subappContainer.style.left = `${screenWidth / 2}px`;
+    subappContainer.style.transform = "translate(-50%, -50%)";
+
+    // Show it
+    subappContainer.style.opacity = "1";
+    subappContainer.style.pointerEvents = "auto";
+
+    // Inject content
+    subappContainer.innerHTML = `
+        <button id="closeSubApp" onclick="closeSubApp()">✖</button>
+        <h2>${toolName}</h2>
+        <p>Now running ${toolName}.</p>
+    `;
 }
+
+function closeSubApp() {
+    const subappContainer = document.getElementById('subapp-container');
+
+    // Hide it
+    subappContainer.style.opacity = "0";
+    subappContainer.style.pointerEvents = "none";
+}
+
     const overlay = document.getElementById('overlay');
     let idleTimer;
     function showOverlay() {
