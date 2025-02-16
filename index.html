@@ -43,7 +43,7 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://mobleysoft.com/1Holder/Assests/scripts/blackhole.js"></script>
+<script src="https://mobleysoft.com/1Holder/Assets/scripts/blackhole.js"></script>
 <canvas id="blackhole"></canvas>
 <div id="overlay" style="width:1000px!important">
     <div id="app">
@@ -69,7 +69,7 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
 <script>
     async function loadStartups() {
     try {
-        const response = await fetch('https://mobleysoft.com/Startups/');
+        const response = await fetch('https://mobleysoft.com/Webware/Startups/');
         const text = await response.text();
         const startupList = text.split(',').map(item => item.trim());
         const toolbar = document.getElementById('startup-toolbar');
