@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zork - File List</title>
+    <title>Files in Zork/Divs/</title>
 </head>
 <body>
     <h1>Files in Zork/Divs/</h1>
@@ -13,7 +13,8 @@
             let res = await fetch("https://mobleysoft.com/Zork/Divs/index.html"),
                 text = res.ok ? (await res.text()).trim() : null;
             document.getElementById("file-list").innerHTML = text ?
-                text.split(/\s+/).map(f => f.trim()).filter(Boolean).map(f => `<li><a href="https://mobleysoft.com/Zork/Divs/${f}">${f}</a></li>`).join("")
+                text.split(",").map(f => f.trim()).filter(Boolean).map(f => 
+                    `<li><a href="https://mobleysoft.com/Zork/Divs/${f}">${f}</a></li>`).join("")
                 : "<li>Failed to load files</li>";
         })();
     </script>
