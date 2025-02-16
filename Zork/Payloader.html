@@ -13,15 +13,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
+            padding: 20px;
             overflow: auto;
         }
         #container {
-            width: 80%;
+            width: 100%;
             max-width: 1200px;
-            border: 2px solid #ffffff;
             padding: 20px;
+            border: 2px solid #fff;
+            box-sizing: border-box;
         }
         .embedded-payload {
             margin-bottom: 20px;
@@ -34,18 +36,27 @@
 <body>
     <h1>EC6 - The Perfect Skeleton</h1>
     <div id="container">
-        <!-- Embed divs here directly -->
-        <div class="embedded-payload">
-            <h2>First Embedded Payload</h2>
-            <p>This is an example content.</p>
-        </div>
-
-        <div class="embedded-payload">
-            <h2>Second Embedded Payload</h2>
-            <p>More data incoming...</p>
-        </div>
-
-        <!-- Continue embedding divs as needed -->
+        <!-- Content will be dynamically loaded here -->
     </div>
+
+    <script>
+        // Function to load and insert content into the container
+        function loadDivContent(filePath) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    // Insert the content into the #container
+                    document.getElementById('container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading div:', error));
+        }
+
+        // Example usage: calling the function to load the content
+        loadDivContent('mobleysoft/mobleysoft.github.io/Zork/000.div');  // Replace 'xx.div' with the actual file path
+
+        // You can call this function repeatedly with different file paths if needed
+        // loadDivContent('another-file.div');
+        // loadDivContent('yet-another-file.div');
+    </script>
 </body>
 </html>
