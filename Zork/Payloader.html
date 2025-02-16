@@ -52,16 +52,17 @@ async function loadAllDivs() {
 
         const files = await response.json();
 
-        // Filter & sort div files
+        // Convert API URLs to raw content URLs
         let divFiles = files
             .filter(file => file.name.match(/^\d{3}.*\.html$/)) // Match "001_intro.html"
-            .sort((a, b) => parseInt(a.name.substring(0, 3)) - parseInt(b.name.substring(0, 3)));
+            .sort((a, b) => parseInt(a.name.substring(0, 3)) - parseInt(b.name.substring(0, 3)))
+            .map(file => file.download_url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/"));
 
-        console.log("Div files sorted:", divFiles.map(f => f.name));
+        console.log("Div files sorted:", divFiles);
 
         // Load each div file
-        for (let file of divFiles) {
-            await loadDivContent(file.download_url);
+        for (let fileUrl of divFiles) {
+            await loadDivContent(fileUrl);
         }
 
         // Reinitialize event listeners & scripts
