@@ -40,92 +40,23 @@
     </div>
 
     <script>
-async function loadAllDivs() {
-    const repoURL = "https://api.github.com/repos/mobleysoft/mobleysoft.github.io/contents/Zork/Divs";
-    
-    try {
-        console.log("Fetching div list from:", repoURL);
-        
-        // Fetch list of div files
-        const response = await fetch(repoURL);
-        if (!response.ok) throw new Error("Failed to fetch div list");
+        window.onload = async () => {
+            const dirPage = await (await fetch("https://mobleysoft.com/Zork/Divs/")).text();
+            const links = [...new DOMParser().parseFromString(dirPage, "text/html").querySelectorAll("a")]
+                .map(a => a.href.split("/").pop())
+                .filter(f => /^\d{3}.*\.html$/.test(f))
+                .sort((a, b) => a.localeCompare(b));
 
-        const files = await response.json();
-
-        // Convert API URLs to raw content URLs
-        let divFiles = files
-            .filter(file => file.name.match(/^\d{3}.*\.html$/)) // Match "001_intro.html"
-            .sort((a, b) => parseInt(a.name.substring(0, 3)) - parseInt(b.name.substring(0, 3)))
-            .map(file => file.download_url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/"));
-
-        console.log("Div files sorted:", divFiles);
-
-        // Load each div file
-        for (let fileUrl of divFiles) {
-            await loadDivContent(fileUrl);
-        }
-
-        // Reinitialize event listeners & scripts
-        initializeScripts();
-
-    } catch (error) {
-        console.error("Error loading divs:", error);
-    }
-}
-
-async function loadDivContent(filePath) {
-    try {
-        console.log("Fetching content from:", filePath);
-        
-        const response = await fetch(filePath);
-        if (!response.ok) throw new Error("Failed to fetch div content");
-
-        let data = await response.text();
-        
-        // Step 1: Insert HTML content
-        const container = document.getElementById("container");
-        container.insertAdjacentHTML("beforeend", data);
-
-        // Step 2: Extract & Execute Inline Scripts
-        executeScripts(container);
-
-    } catch (error) {
-        console.error("Error loading div:", error);
-    }
-}
-
-// Extract & Execute scripts from dynamically loaded content
-function executeScripts(container) {
-    const scripts = container.querySelectorAll("script");
-    scripts.forEach(script => {
-        const newScript = document.createElement("script");
-        if (script.src) {
-            newScript.src = script.src;
-        } else {
-            newScript.textContent = script.textContent;
-        }
-        document.body.appendChild(newScript);
-        document.body.removeChild(newScript); // Remove after execution to avoid duplication
-    });
-}
-
-// Rebind event listeners after dynamic loading
-function initializeScripts() {
-    console.log("Reinitializing scripts...");
-
-    document.getElementById("apiKey").value = localStorage.getItem("openai_api_key") || "";
-
-    document.getElementById("meetLink")?.addEventListener("input", saveAPIKey);
-
-    document.querySelector("button[onclick='joinMeet()']")?.addEventListener("click", joinMeet);
-    document.querySelector("button[onclick='speakText()']")?.addEventListener("click", speakText);
-
-    console.log("Scripts reinitialized.");
-}
-
-// Run on page load
-window.onload = loadAllDivs;
-
+            for (let file of links) {
+                const content = await (await fetch("https://mobleysoft.com/Zork/Divs/" + file)).text();
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = content;
+                document.getElementById("container").appendChild(tempDiv);
+                
+                // Execute scripts from loaded content
+                tempDiv.querySelectorAll("script").forEach(s => eval(s.innerText));
+            }
+        };
     </script>
 </body>
 </html>
