@@ -15,14 +15,13 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            overflow: hidden;
+            overflow: auto;
         }
         #container {
             width: 80%;
             max-width: 1200px;
             border: 2px solid #ffffff;
             padding: 20px;
-            overflow: auto;
         }
         .embedded-payload {
             margin-bottom: 20px;
@@ -34,15 +33,19 @@
 </head>
 <body>
     <h1>EC6 - The Perfect Skeleton</h1>
-    <div id="container">Test</div>
+    <div id="container">
+        <!-- Embed divs here directly -->
+        <div class="embedded-payload">
+            <h2>First Embedded Payload</h2>
+            <p>This is an example content.</p>
+        </div>
 
-    <script>
-        function embedPayload(payloadHTML) {
-            let div = document.createElement("div");
-            div.className = "embedded-payload";
-            div.innerHTML = payloadHTML;
-            document.getElementById("container").appendChild(div);
-        }
-</script>
+        <div class="embedded-payload">
+            <h2>Second Embedded Payload</h2>
+            <p>More data incoming...</p>
+        </div>
+
+        <!-- Continue embedding divs as needed -->
+    </div>
 </body>
 </html>
