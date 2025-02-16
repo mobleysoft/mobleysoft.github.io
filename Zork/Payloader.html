@@ -44,25 +44,27 @@ async function loadAllDivs() {
     const repoURL = "https://api.github.com/repos/mobleysoft/mobleysoft.github.io/contents/Zork/Divs";
     
     try {
-        // Step 1: Fetch the list of div files
+        console.log("Fetching div list from:", repoURL);
+        
+        // Fetch list of div files
         const response = await fetch(repoURL);
         if (!response.ok) throw new Error("Failed to fetch div list");
 
         const files = await response.json();
 
-        // Step 2: Filter for only .html or .txt div files (assuming they're in that format)
+        // Filter & sort div files
         let divFiles = files
-            .filter(file => file.name.match(/^\d{3}.*\.html$/)) // Match files like "001_intro.html"
-            .sort((a, b) => {
-                return parseInt(a.name.substring(0, 3)) - parseInt(b.name.substring(0, 3));
-            });
+            .filter(file => file.name.match(/^\d{3}.*\.html$/)) // Match "001_intro.html"
+            .sort((a, b) => parseInt(a.name.substring(0, 3)) - parseInt(b.name.substring(0, 3)));
 
-        // Step 3: Load and append each div file
+        console.log("Div files sorted:", divFiles.map(f => f.name));
+
+        // Load each div file
         for (let file of divFiles) {
             await loadDivContent(file.download_url);
         }
 
-        // Step 4: Reinitialize event listeners & scripts
+        // Reinitialize event listeners & scripts
         initializeScripts();
 
     } catch (error) {
@@ -72,31 +74,51 @@ async function loadAllDivs() {
 
 async function loadDivContent(filePath) {
     try {
+        console.log("Fetching content from:", filePath);
+        
         const response = await fetch(filePath);
         if (!response.ok) throw new Error("Failed to fetch div content");
 
-        const data = await response.text();
+        let data = await response.text();
         
-        // Step 1: Insert content properly
-        document.getElementById("container").insertAdjacentHTML("beforeend", data);
+        // Step 1: Insert HTML content
+        const container = document.getElementById("container");
+        container.insertAdjacentHTML("beforeend", data);
+
+        // Step 2: Extract & Execute Inline Scripts
+        executeScripts(container);
 
     } catch (error) {
         console.error("Error loading div:", error);
     }
 }
 
-// Reinitialize scripts after dynamic loading
+// Extract & Execute scripts from dynamically loaded content
+function executeScripts(container) {
+    const scripts = container.querySelectorAll("script");
+    scripts.forEach(script => {
+        const newScript = document.createElement("script");
+        if (script.src) {
+            newScript.src = script.src;
+        } else {
+            newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+        document.body.removeChild(newScript); // Remove after execution to avoid duplication
+    });
+}
+
+// Rebind event listeners after dynamic loading
 function initializeScripts() {
     console.log("Reinitializing scripts...");
-    
-    // Rebind event listeners if needed
+
     document.getElementById("apiKey").value = localStorage.getItem("openai_api_key") || "";
 
     document.getElementById("meetLink")?.addEventListener("input", saveAPIKey);
 
     document.querySelector("button[onclick='joinMeet()']")?.addEventListener("click", joinMeet);
     document.querySelector("button[onclick='speakText()']")?.addEventListener("click", speakText);
-    
+
     console.log("Scripts reinitialized.");
 }
 
