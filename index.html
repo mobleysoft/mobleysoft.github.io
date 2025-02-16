@@ -69,7 +69,7 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
 <script>
     async function loadStartups() {
     try {
-        const response = await fetch('https://mobleysoft.com/Webware/Startups/');
+        const response = await fetch('https://mobleysoft.com/1Holder/Webware/Startups/');
         const text = await response.text();
         const startupList = text.split(',').map(item => item.trim());
         const toolbar = document.getElementById('startup-toolbar');
