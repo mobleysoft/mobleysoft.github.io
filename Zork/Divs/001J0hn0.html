@@ -1,3 +1,4 @@
+<html>
 <div class="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-4">
     <h2 class="text-xl font-bold text-gray-900">🤖 AI Meeting Agent</h2>
     
@@ -26,7 +27,7 @@
         <button onclick="speakText()"
             class="flex-1 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700">🎤 Speak</button>
     </div>
-</div>
+
 
 <script>
     document.getElementById('apiKey').value = localStorage.getItem('openai_api_key') || '';
@@ -77,3 +78,5 @@
         audio.play();
     }
 </script>
+</div>
+</html>
