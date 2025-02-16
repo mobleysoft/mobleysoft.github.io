@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files in Zork/Divs/</title>
+</head>
+<body>
+    <h1>Files in Zork/Divs/</h1>
+    <ul id="file-list"></ul>
+    <div id="content-container"></div>
+
+    <script>
+        (async () => {
+            let res = await fetch("https://mobleysoft.com/Zork/Divs/index.html"),
+                text = res.ok ? (await res.text()).trim() : null,
+                files = text ? text.split(",").map(f => f.trim()).filter(Boolean) : [];
+
+            document.getElementById("file-list").innerHTML = files.map(f =>
+                `<li><a href="https://mobleysoft.com/Zork/Divs/${f}" onclick="loadFile(event, '${f}')">${f}</a></li>`
+            ).join("");
+
+            // Auto-load all files into the content container
+            for (let file of files) {
+                let fileRes = await fetch(`https://mobleysoft.com/Zork/Divs/${file}`);
+                if (fileRes.ok) {
+                    let content = await fileRes.text();
+                    let container = document.createElement("div");
+                    container.innerHTML = content;
+                    document.getElementById("content-container").appendChild(container);
+
+                    // Execute scripts inside the loaded content
+                    container.querySelectorAll("script").forEach(script => {
+                        let newScript = document.createElement("script");
+                        if (script.src) {
+                            newScript.src = script.src;
+                            newScript.async = true;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript);
+                    });
+                }
+            }
+        })();
+
+        function loadFile(event, file) {
+            event.preventDefault(); // Stop navigation
+            alert(`Loaded: ${file}`); // Just to indicate it's already loaded
+        }
+    </script>
+</body>
+</html>
