@@ -41,20 +41,30 @@
 
     <script>
         window.onload = async () => {
-            const dirPage = await (await fetch("https://mobleysoft.com/Zork/Divs/")).text();
+            const baseDir = "https://mobleysoft.com/Zork/Divs/";
+            const dirPage = await (await fetch(baseDir)).text();
             const links = [...new DOMParser().parseFromString(dirPage, "text/html").querySelectorAll("a")]
                 .map(a => a.href.split("/").pop())
                 .filter(f => /^\d{3}.*\.html$/.test(f))
                 .sort((a, b) => a.localeCompare(b));
 
             for (let file of links) {
-                const content = await (await fetch("https://mobleysoft.com/Zork/Divs/" + file)).text();
+                const content = await (await fetch(baseDir + file)).text();
                 const tempDiv = document.createElement("div");
                 tempDiv.innerHTML = content;
                 document.getElementById("container").appendChild(tempDiv);
                 
-                // Execute scripts from loaded content
-                tempDiv.querySelectorAll("script").forEach(s => eval(s.innerText));
+                // Execute inline scripts & properly load <script src="">
+                tempDiv.querySelectorAll("script").forEach(script => {
+                    const newScript = document.createElement("script");
+                    if (script.src) {
+                        newScript.src = script.src; // Handle external scripts
+                        newScript.async = true;
+                    } else {
+                        newScript.textContent = script.textContent; // Handle inline scripts
+                    }
+                    document.body.appendChild(newScript);
+                });
             }
         };
     </script>
