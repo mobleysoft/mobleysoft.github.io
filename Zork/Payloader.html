@@ -61,6 +61,10 @@ async function loadAllDivs() {
         for (let file of divFiles) {
             await loadDivContent(file.download_url);
         }
+
+        // Step 4: Reinitialize event listeners & scripts
+        initializeScripts();
+
     } catch (error) {
         console.error("Error loading divs:", error);
     }
@@ -72,10 +76,28 @@ async function loadDivContent(filePath) {
         if (!response.ok) throw new Error("Failed to fetch div content");
 
         const data = await response.text();
-        document.getElementById("container").innerHTML += data;
+        
+        // Step 1: Insert content properly
+        document.getElementById("container").insertAdjacentHTML("beforeend", data);
+
     } catch (error) {
         console.error("Error loading div:", error);
     }
+}
+
+// Reinitialize scripts after dynamic loading
+function initializeScripts() {
+    console.log("Reinitializing scripts...");
+    
+    // Rebind event listeners if needed
+    document.getElementById("apiKey").value = localStorage.getItem("openai_api_key") || "";
+
+    document.getElementById("meetLink")?.addEventListener("input", saveAPIKey);
+
+    document.querySelector("button[onclick='joinMeet()']")?.addEventListener("click", joinMeet);
+    document.querySelector("button[onclick='speakText()']")?.addEventListener("click", speakText);
+    
+    console.log("Scripts reinitialized.");
 }
 
 // Run on page load
