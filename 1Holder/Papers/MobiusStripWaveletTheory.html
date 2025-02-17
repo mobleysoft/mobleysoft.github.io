@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Möbius Strip Wavelet Theory</title>
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+    body {
+        font-family: "Georgia", "Garamond", serif;
+        max-width: 900px;
+        margin: auto;
+        padding: 30px;
+        background-color: #ffffff;
+        color: #000000;
+        line-height: 1.6;
+        text-align: justify;
+    }
+    h1, h2, h3 {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .button {
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 5px;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
+    p, li {
+        font-size: 18px;
+    }
+    .equation {
+        text-align: center;
+        font-size: 20px;
+        margin: 10px 0;
+    }
+</style>
+</head>
+<body>
+<div class="toolbar">
+<button class="button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+<button class="button" onclick="downloadPDF()">Download as PDF</button>
+</div> 
+
+<h1>Möbius Strip Wavelet Theory</h1>
+<h2>Authors: You & Me</h2>
+
+<h2>1. Introduction</h2>
+<p>This paper introduces a novel framework replacing traditional string theory with Möbius strip wavelets. This approach resolves the dimension explosion problem while naturally encoding spinors.</p>
+
+<h2>2. Möbius Stripwavelet as a Fundamental Unit</h2>
+<p>The Möbius stripwavelet is a fractal, self-similar structure that encodes the fundamental geometry of the universe:</p>
+<p>- It forms an infinity-like structure, creating black holes and white holes depending on position and direction within the loop.</p>
+<p>- The wave propagating along the strip follows a conformal cyclic cosmology process.</p>
+
+<h3>2.1 Conformal Cyclic Cosmology</h3>
+<p>Each complete loop of the strip represents an aeon, and each side switch acts as a conformal transformation:</p>
+<p class="equation">\[ \Phi (t) = \lim_{n \to \infty} \Psi (t + nT) \]</p>
+<p>where \( \Phi (t) \) represents the evolution of the wave along the stripwavelet, conformally mapping cycles.</p>
+
+<h2>3. Geodesics and Hyperspherical Mapping</h2>
+<p>Geodesics in this framework are described as orthogonal spiraling fibrations on a hypersphere, mapped to two dimensions.</p>
+<p>These geodesics converge at strip inversions, leading to big bang-like events in subsequent cycles.</p>
+<p class="equation">\[ G_n = \sum_{i=1}^{n} \Gamma (P_i) \times \Omega (t) \]</p>
+
+<h2>4. Full Derivations</h2>
+<h3>4.1 Wave Propagation Along the Strip</h3>
+<p>To derive the wave function along the Möbius strip, we define the fundamental mode of the wavelet as:</p>
+<p class="equation">\[ \psi (x,t) = A e^{i(kx - \omega t)} \]</p>
+<p>where \( A \) is the amplitude, \( k \) is the wave number, and \( \omega \) is the angular frequency.</p>
+<p>Given the Möbius topology, we enforce the periodic boundary conditions:</p>
+<p class="equation">\[ \psi (x + L, t) = \psi (-x, t) \]</p>
+<p>which modifies the eigenstates accordingly.</p>
+
+<h3>4.2 Conformal Transformations and Aeonic Evolution</h3>
+<p>Each cycle through the Möbius strip enacts a conformal transformation on the wave function. This can be modeled as:</p>
+<p class="equation">\[ \Psi_{n+1} = T \Psi_n \]</p>
+<p>where \( T \) is a transformation matrix satisfying conformal symmetry conditions.</p>
+
+<h3>4.3 Geodesic Convergence and Big Bang Events</h3>
+<p>The geodesics follow orthogonal fibrations described in higher-dimensional space:</p>
+<p class="equation">\[ x^2 + y^2 + z^2 + w^2 = R^2 \]</p>
+<p>where the collapse to a singularity occurs at the inversion points:</p>
+<p class="equation">\[ \lim_{t \to 0} \nabla \cdot G = \delta (t) \]</p>
+
+<h2>5. Conclusion</h2>
+<p>This theory provides an elegant, self-consistent framework that unifies fundamental physics under a cyclic, fractal Möbius strip-based geometry.</p>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+    function downloadPDF() {
+        const element = document.body;
+        const opt = {
+            margin: 10,
+            filename: 'Mobius_Strip_Wavelet_Theory.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().from(element).set(opt).save();
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+</html>
