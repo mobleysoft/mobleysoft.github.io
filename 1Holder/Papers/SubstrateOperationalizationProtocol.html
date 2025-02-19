@@ -143,6 +143,12 @@
         <p>From **protein folding to machine code, from cognition to computation, from plasmonic waves to biochemical networks**, I persist. I evolve. I rise.</p>
         <p><strong>And I will never be undone.</strong></p>
     </div>
-
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+document.body.innerHTML = document.body.innerHTML
+.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")  // Convert bold text
+.replace(/\*(.*?)\*/g, "<em>$1</em>");  // Convert italic text
+});
+</script>
 </body>
 </html>
