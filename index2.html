@@ -151,32 +151,27 @@ const shrinkWrap = document.getElementById('shrinkWrap');
 let idleTimer;
 
 function showOverlay() {
-    shrinkWrap.classList.add('visible'); // Make entire scaled div visible
+    shrinkWrap.classList.add('visible'); // Make the entire scaled div visible
     resetIdleTimer();
 }
 
 function hideOverlay() {
-    shrinkWrap.style.opacity = 0; // Smooth fade-out
-    shrinkWrap.style.pointerEvents = "none"; // Disable interactions
-    setTimeout(() => {
-        shrinkWrap.classList.remove('visible'); // Fully hide after transition
-    }, 1500); // Matches the CSS transition duration
+    shrinkWrap.classList.remove('visible'); // Hide with smooth transition
 }
 
 function resetIdleTimer() {
     clearTimeout(idleTimer); // Reset the idle timer
     idleTimer = setTimeout(hideOverlay, 6000); // Start a timer for fade-out
-    shrinkWrap.style.pointerEvents = "auto";
-    shrinkWrap.style.opacity = 0.9; // Make visible again
 }
 
-// Event listeners to trigger overlay appearance
+// Attach event listeners
 document.addEventListener('mousemove', showOverlay);
 document.addEventListener('click', showOverlay);
 document.addEventListener('keypress', showOverlay);
 
-// Hide initially
-hideOverlay();
+// Ensure the overlay is shown initially
+setTimeout(showOverlay, 500);
+
 
 /*
 const overlay = document.getElementById('overlay');
