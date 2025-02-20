@@ -179,21 +179,25 @@ function adjustShrinkWrapScale() {
     const viewportHeight = window.innerHeight;
     const contentHeight = shrinkWrap.scrollHeight;
 
-    // Calculate necessary scale factor
+    // Compute scale factor based on height ratio
     let scaleFactor = viewportHeight / contentHeight;
+
+    // Apply a slight buffer (e.g., 90% of max scale) to avoid over-expansion
+    scaleFactor *= 0.95;
 
     // Ensure we don't scale larger than 1:1
     if (scaleFactor > 1) scaleFactor = 1;
 
-    // Apply scaling without breaking interactions
+    // Apply dynamic scaling
     shrinkWrap.style.transform = `translate(-50%, -50%) scale(${scaleFactor})`;
-    shrinkWrap.style.opacity = "0.9"; // Ensure visibility
-    shrinkWrap.style.pointerEvents = "auto"; // Keep interactions alive
+    shrinkWrap.style.opacity = "0.9"; // Keep visibility
+    shrinkWrap.style.pointerEvents = "auto"; // Ensure buttons remain clickable
 }
 
 // Apply scaling after DOM loads and on resize
 window.addEventListener("load", adjustShrinkWrapScale);
 window.addEventListener("resize", adjustShrinkWrapScale);
+
 
 
 /*
