@@ -221,11 +221,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://mobleysoft.com/1Holder/Assets/Scripts/Blackhole.js"></script>
     <canvas id="blackhole"></canvas>
-    <div>
-        <div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div>
+    <div id="main">
         <div id="overlay" style="width:1000px!important">
             <div id="shrinkWrap">
-                <div id="wireframe"></div>
                 <div id="app">
                     <div id="logoRow">
                         <div id="logo">
@@ -256,6 +254,8 @@
                 <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
             </div>
         </div>
+        <div id="wireframe"></div>
+        <div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div>
     </div>
     <script>
         async function loadStartups() {
