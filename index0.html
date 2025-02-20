@@ -221,38 +221,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://mobleysoft.com/1Holder/Assets/Scripts/Blackhole.js"></script>
     <canvas id="blackhole"></canvas>
-    <div id="shrinkWrap">
+    <div>
+        <div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div>
         <div id="overlay" style="width:1000px!important">
-            <div id="app">
-                <div id="logoRow">
-                    <div id="logo">
-                        <header>
-                            <div><img
-                                    src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png"
-                                    alt="Mobleysoft" height="100px"></div>
-                        </header>
+            <div id="shrinkWrap">
+                <div id="wireframe"></div>
+                <div id="app">
+                    <div id="logoRow">
+                        <div id="logo">
+                            <header>
+                                <div><img
+                                        src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png"
+                                        alt="Mobleysoft" height="100px"></div>
+                            </header>
+                        </div>
+                    </div>
+                    <div id="pricingTableRow"><stripe-pricing-table pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
+                            publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG"></stripe-pricing-table>
                     </div>
                 </div>
-                <div id="pricingTableRow"><stripe-pricing-table pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
-                        publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG"></stripe-pricing-table>
+                <div class="footer-bar">
+                    <span class="footer-logo">MobleysoftAGI</span>
+                    <a href="#" class="footer-link devtoolbx" onclick="activateTool('DevToolBx')">DevToolBx</a>
+                    <a href="#" class="footer-link" onclick="activateTool('DevToolAI')">DevToolAI</a>
+                    <a href="#" class="footer-link" onclick="activateTool('HalsIDE')">HalsIDE</a>
+                    <a href="#" class="footer-link" onclick="activateTool('DevDucky')">DevDucky</a>
+                    <a href="#" class="footer-link" onclick="activateTool('Fystz')">Fystz</a>
+                    <a href="#" class="footer-link" onclick="activateTool('Extraterran')">Extraterran</a>
+                    <a href="#" class="footer-link" onclick="activateTool('HelmDir')">HelmDir</a>
+                    <a href="#" class="footer-link" onclick="activateTool('ToolMaker20')">ToolMaker20</a>
+                    <a href="#" class="footer-link" onclick="activateTool('FirmSmith200')">FirmSmith200</a>
+                    <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a>
                 </div>
+                <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
             </div>
-            <div class="footer-bar">
-                <span class="footer-logo">MobleysoftAGI</span>
-                <a href="#" class="footer-link devtoolbx" onclick="activateTool('DevToolBx')">DevToolBx</a>
-                <a href="#" class="footer-link" onclick="activateTool('DevToolAI')">DevToolAI</a>
-                <a href="#" class="footer-link" onclick="activateTool('HalsIDE')">HalsIDE</a>
-                <a href="#" class="footer-link" onclick="activateTool('DevDucky')">DevDucky</a>
-                <a href="#" class="footer-link" onclick="activateTool('Fystz')">Fystz</a>
-                <a href="#" class="footer-link" onclick="activateTool('Extraterran')">Extraterran</a>
-                <a href="#" class="footer-link" onclick="activateTool('HelmDir')">HelmDir</a>
-                <a href="#" class="footer-link" onclick="activateTool('ToolMaker20')">ToolMaker20</a>
-                <a href="#" class="footer-link" onclick="activateTool('FirmSmith200')">FirmSmith200</a>
-                <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a>
-            </div>
-            <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
-            <div id="wireframe"></div>
-            <div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div>
         </div>
     </div>
     <script>
