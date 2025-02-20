@@ -189,37 +189,9 @@ function adjustShrinkWrapScale() {
     shrinkWrap.style.opacity = "0.9"; // Keep visibility
     shrinkWrap.style.pointerEvents = "auto"; // Ensure buttons remain clickable
 }
-
 // Apply scaling after DOM loads and on resize
 window.addEventListener("load", adjustShrinkWrapScale);
 window.addEventListener("resize", adjustShrinkWrapScale);
-
-
-
-/*
-const overlay = document.getElementById('overlay');
-let idleTimer;
-function showOverlay() {
-    overlay.classList.add('visible'); // Add the "visible" class to fade in
-    resetIdleTimer(); // Restart the idle timer
-}
-function hideOverlay() {
-    // Reduce opacity to 0 smoothly before removing the class
-    overlay.style.opacity = 0; // Trigger the CSS transition
-    overlay.style.pointerEvents = "none"; // Disable interactions
-    setTimeout(() => {
-        overlay.classList.remove('visible'); // Fully hide after transition
-    }, 1500); // Match the CSS transition duration (3 seconds)
-}
-function resetIdleTimer() {
-    clearTimeout(idleTimer); // Clear any existing timer
-    idleTimer = setTimeout(hideOverlay, 6000); // Start a 3-second timer for fade-out
-    // Ensure overlay is immediately interactive
-    overlay.style.pointerEvents = "auto";
-    overlay.style.opacity = .9; // Start fading in
-}
-document.addEventListener('mousemove', showOverlay); document.addEventListener('click', showOverlay); document.addEventListener('keypress', showOverlay); hideOverlay();
-*/
 </script>
 </body>
 </html>
