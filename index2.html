@@ -139,28 +139,62 @@ document.addEventListener('DOMContentLoaded', loadStartups);
 function closeSubApp() {
     document.getElementById('subapp-container').style.display = 'none';
 }
-    const overlay = document.getElementById('overlay');
-    let idleTimer;
-    function showOverlay() {
-        overlay.classList.add('visible'); // Add the "visible" class to fade in
-        resetIdleTimer(); // Restart the idle timer
-    }
-    function hideOverlay() {
-        // Reduce opacity to 0 smoothly before removing the class
-        overlay.style.opacity = 0; // Trigger the CSS transition
-        overlay.style.pointerEvents = "none"; // Disable interactions
-        setTimeout(() => {
-            overlay.classList.remove('visible'); // Fully hide after transition
-        }, 1500); // Match the CSS transition duration (3 seconds)
-    }
-    function resetIdleTimer() {
-        clearTimeout(idleTimer); // Clear any existing timer
-        idleTimer = setTimeout(hideOverlay, 6000); // Start a 3-second timer for fade-out
-        // Ensure overlay is immediately interactive
-        overlay.style.pointerEvents = "auto";
-        overlay.style.opacity = .9; // Start fading in
-    }
-    document.addEventListener('mousemove', showOverlay); document.addEventListener('click', showOverlay); document.addEventListener('keypress', showOverlay); hideOverlay();
+
+const shrinkWrap = document.getElementById('shrinkWrap');
+let idleTimer;
+
+function showOverlay() {
+    shrinkWrap.classList.add('visible'); // Make entire scaled div visible
+    resetIdleTimer();
+}
+
+function hideOverlay() {
+    shrinkWrap.style.opacity = 0; // Smooth fade-out
+    shrinkWrap.style.pointerEvents = "none"; // Disable interactions
+    setTimeout(() => {
+        shrinkWrap.classList.remove('visible'); // Fully hide after transition
+    }, 1500); // Matches the CSS transition duration
+}
+
+function resetIdleTimer() {
+    clearTimeout(idleTimer); // Reset the idle timer
+    idleTimer = setTimeout(hideOverlay, 6000); // Start a timer for fade-out
+    shrinkWrap.style.pointerEvents = "auto";
+    shrinkWrap.style.opacity = 0.9; // Make visible again
+}
+
+// Event listeners to trigger overlay appearance
+document.addEventListener('mousemove', showOverlay);
+document.addEventListener('click', showOverlay);
+document.addEventListener('keypress', showOverlay);
+
+// Hide initially
+hideOverlay();
+
+/*
+const overlay = document.getElementById('overlay');
+let idleTimer;
+function showOverlay() {
+    overlay.classList.add('visible'); // Add the "visible" class to fade in
+    resetIdleTimer(); // Restart the idle timer
+}
+function hideOverlay() {
+    // Reduce opacity to 0 smoothly before removing the class
+    overlay.style.opacity = 0; // Trigger the CSS transition
+    overlay.style.pointerEvents = "none"; // Disable interactions
+    setTimeout(() => {
+        overlay.classList.remove('visible'); // Fully hide after transition
+    }, 1500); // Match the CSS transition duration (3 seconds)
+}
+function resetIdleTimer() {
+    clearTimeout(idleTimer); // Clear any existing timer
+    idleTimer = setTimeout(hideOverlay, 6000); // Start a 3-second timer for fade-out
+    // Ensure overlay is immediately interactive
+    overlay.style.pointerEvents = "auto";
+    overlay.style.opacity = .9; // Start fading in
+}
+document.addEventListener('mousemove', showOverlay); document.addEventListener('click', showOverlay); document.addEventListener('keypress', showOverlay); hideOverlay();
+*/
 </script>
 </body>
 </html>
