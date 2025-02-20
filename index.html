@@ -58,8 +58,8 @@ header { background-color: #000000; color: #fdfdf3; text-align: center; border-b
 #wireframe{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid #ffcc00; box-shadow: 0 0 10px #ffcc00; opacity: 0; pointer-events: none; transition: opacity 0.5s, transform 0.5s; }
 #subapp-container {
     position: fixed;
-    top: -60px;
-    left: -400px;
+    top: -48px;
+    left: -360px;
     height: 120%;
     width: 160%;
     background: black;
@@ -172,6 +172,7 @@ document.addEventListener("mousemove", showOverlay);
 document.addEventListener("click", showOverlay);
 document.addEventListener("keydown", showOverlay);
 document.addEventListener("touchstart", showOverlay);
+document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeSubApp(); });
 
 function adjustShrinkWrapScale() {
     const shrinkWrap = document.getElementById("shrinkWrap");
