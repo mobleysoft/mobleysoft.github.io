@@ -52,7 +52,7 @@
         }
 
         #shrinkWrap.visible {
-            opacity: 0.9 !important;
+            opacity: 1 !important;
             pointer-events: auto !important;
         }
 
@@ -67,12 +67,12 @@
             text-align: center;
             z-index: 10;
             transition: opacity 1.5s ease-in-out;
-            opacity: 1.0;
+            opacity: 1;
             pointer-events: auto;
         }
 
         .visible {
-            opacity: .9;
+            opacity: 1;
             pointer-events: auto;
         }
 
@@ -254,6 +254,7 @@
         </div>
     </div>
     <script>
+        var closeSubAppClicked = false;
         var keepVisible = true;
         async function loadStartups() {
             try {
@@ -287,11 +288,13 @@
                 subappContainer.style.display = 'block';
                 subappContainer.innerHTML = `<button id="closeSubApp" onclick="closeSubApp()">✖</button><h2>${toolName}</h2><p>Now running ${toolName}.</p>`;
                 keepVisible=true;
+                closeSubAppClicked=false;
             }, 500);
         }
         function closeSubApp() {
             document.getElementById('subapp-container').style.display = 'none';
             keepVisible=false;
+            closeSubAppClicked=true;
         }
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -308,6 +311,7 @@
             shrinkWrap.style.opacity = "1"; 
             keepVisible=true;
             subappContainer.style.opacity = "1"; 
+            resetIdleTimer();
         }
 
         function hideOverlay() {
@@ -319,7 +323,7 @@
         }
 
         function resetIdleTimer() {
-            if(!keepVisible){
+            if(!keepVisible&&closeSubAppClicked){
                 clearTimeout(idleTimer);
                 idleTimer = setTimeout(hideOverlay, 6000);
             }
