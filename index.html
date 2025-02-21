@@ -329,7 +329,7 @@
             else if(keepVisible||keepAlive||!closeSubAppClicked){
                 showOverlay();
             }
-            else if(!keepVisible&&!keepAlive$&&closeSubAppClicked){
+            else if(!keepVisible&&!keepAlive&&closeSubAppClicked){
                 clearTimeout(idleTimer);
                 idleTimer = setTimeout(hideOverlay, 6000);
             }
