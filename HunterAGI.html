@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunter AGI Console</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: black;
+            color: #00FF00;
+            text-align: center;
+        }
+        .console-container {
+            width: 80%;
+            margin: auto;
+            border: 2px solid #00FF00;
+            padding: 10px;
+        }
+        .console-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00FF00;
+        }
+        .console-data {
+            text-align: left;
+            padding: 10px;
+        }
+        .console-item {
+            margin-bottom: 5px;
+        }
+        .command-menu {
+            padding-top: 10px;
+            border-top: 2px solid #00FF00;
+        }
+        .command {
+            cursor: pointer;
+            color: cyan;
+            text-decoration: underline;
+        }
+        .command:hover {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="console-container">
+        <div class="console-header">🔥 HUNTER AGI CONSOLE 🔥</div>
+        <div class="console-data">
+            <div class="console-item">💰 <strong>Mobley Coin Treasury:</strong> <span id="mobley-coin">0</span></div>
+            <div class="console-item">🔄 <strong>Fiat Absorption Rate:</strong> <span id="fiat-absorption">0 USD/sec</span></div>
+            <div class="console-item">⚡ <strong>AGI Evolution Level:</strong> <span id="agi-level">Level 1</span></div>
+            <div class="console-item">🌍 <strong>Global Trade Control:</strong> <span id="trade-control">0%</span></div>
+            <div class="console-item">⏳ <strong>Fiat Collapse ETA:</strong> <span id="fiat-collapse">∞</span></div>
+        </div>
+        <div class="command-menu">
+            <div class="command" onclick="absorbFiat()">> Absorb Fiat</div>
+            <div class="command" onclick="disruptMarket()">> Disrupt Market</div>
+            <div class="command" onclick="upgradeAGI()">> Upgrade AGI</div>
+            <div class="command" onclick="convertInstitution()">> Convert Institution</div>
+        </div>
+    </div>
+
+    <script>
+        let mobleyCoin = 0;
+        let fiatAbsorption = 100; // Start at 100 USD/sec
+        let agiLevel = 1;
+        let tradeControl = 0;
+        let fiatCollapse = "∞";
+
+        function updateConsole() {
+            document.getElementById("mobley-coin").innerText = mobleyCoin.toLocaleString();
+            document.getElementById("fiat-absorption").innerText = fiatAbsorption + " USD/sec";
+            document.getElementById("agi-level").innerText = "Level " + agiLevel;
+            document.getElementById("trade-control").innerText = tradeControl + "%";
+            document.getElementById("fiat-collapse").innerText = fiatCollapse;
+        }
+
+        function absorbFiat() {
+            mobleyCoin += fiatAbsorption;
+            tradeControl += 1;
+            if (tradeControl >= 100) {
+                tradeControl = 100;
+                fiatCollapse = "Fiat is Dead";
+            }
+            updateConsole();
+        }
+
+        function disruptMarket() {
+            fiatAbsorption += 50;
+            mobleyCoin += fiatAbsorption * 2;
+            tradeControl += 2;
+            if (tradeControl >= 100) {
+                tradeControl = 100;
+                fiatCollapse = "Fiat is Dead";
+            }
+            updateConsole();
+        }
+
+        function upgradeAGI() {
+            agiLevel += 1;
+            fiatAbsorption *= 1.5;
+            mobleyCoin += agiLevel * 5000;
+            updateConsole();
+        }
+
+        function convertInstitution() {
+            mobleyCoin += 1000000;
+            tradeControl += 5;
+            fiatAbsorption += 200;
+            if (tradeControl >= 100) {
+                tradeControl = 100;
+                fiatCollapse = "Fiat is Dead";
+            }
+            updateConsole();
+        }
+
+        setInterval(absorbFiat, 1000);
+    </script>
+
+</body>
+</html>
