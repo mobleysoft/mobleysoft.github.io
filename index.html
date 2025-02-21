@@ -280,19 +280,19 @@
             wireframe.style.opacity = 1;
             wireframe.style.transform = 'scale(1.37)';
 
-            setTimeout(() => {
-                wireframe.style.opacity = 0;
-                wireframe.style.transform = 'scale(1)';
-                subappContainer.style.display = 'block';
-                subappContainer.innerHTML = `<button id="closeSubApp" onclick="closeSubApp()">✖</button><h2>${toolName}</h2><p>Now running ${toolName}.</p>`;
-            }, -1);
+            // setTimeout(() => {
+            //     wireframe.style.opacity = 0;
+            //     wireframe.style.transform = 'scale(1)';
+            //     subappContainer.style.display = 'block';
+            //     subappContainer.innerHTML = `<button id="closeSubApp" onclick="closeSubApp()">✖</button><h2>${toolName}</h2><p>Now running ${toolName}.</p>`;
+            // }, -1);
         }
         function closeSubApp() {
             document.getElementById('subapp-container').style.display = 'none';
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(showOverlay, 500);
+            //setTimeout(showOverlay, 500);
         });
 
         const shrinkWrap = document.getElementById("shrinkWrap");
@@ -305,20 +305,20 @@
                 return;
             }
             else {
-                resetIdleTimer();
+                //resetIdleTimer();
             }
         }
 
         function hideOverlay() {
             shrinkWrap.style.opacity = "0"; // Smooth fade-out
-            setTimeout(() => {
-                shrinkWrap.classList.remove("visible"); // Fully hide after transition
-            }, 1500);
+            // setTimeout(() => {
+            //     shrinkWrap.classList.remove("visible"); // Fully hide after transition
+            // }, 1500);
         }
 
         function resetIdleTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(hideOverlay, 6000);
+            //clearTimeout(idleTimer);
+            //idleTimer = setTimeout(hideOverlay, 6000);
         }
 
         // Improve event responsiveness
