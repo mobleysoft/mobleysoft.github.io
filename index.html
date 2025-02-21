@@ -300,7 +300,13 @@
 
         function showOverlay() {
             shrinkWrap.classList.add("visible");
-            resetIdleTimer();
+            const subappContainer = document.getElementById('subapp-container');
+            if (subappContainer.style.display === "block"){ 
+                return;
+            }
+            else {
+                resetIdleTimer();
+            }
         }
 
         function hideOverlay() {
@@ -312,11 +318,6 @@
 
         function resetIdleTimer() {
             clearTimeout(idleTimer);
-
-            // Check if a tool is open and do NOT hide the UI if active
-            const subappContainer = document.getElementById('subapp-container');
-            if (subappContainer.style.display === "block") return;
-
             idleTimer = setTimeout(hideOverlay, 6000);
         }
 
