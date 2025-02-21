@@ -309,8 +309,6 @@
             shrinkWrap.classList.add("visible");
             shrinkWrap.style.opacity = "1"; 
             subappContainer.style.opacity = "1"; 
-            keepVisible=true;
-            keepAlive=false;
             resetIdleTimer();
         }
 
@@ -328,10 +326,10 @@
                 keepVisible=false;
                 keepAlive=false;
             }
-            if(keepVisible&&keepAlive){
+            else if(keepVisible||keepAlive||!closeSubAppClicked){
                 showOverlay();
             }
-            else{
+            else if(!keepVisible&&!keepAlive$&&closeSubAppClicked){
                 clearTimeout(idleTimer);
                 idleTimer = setTimeout(hideOverlay, 6000);
             }
