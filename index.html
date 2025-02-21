@@ -300,13 +300,14 @@
         });
 
         const shrinkWrap = document.getElementById("shrinkWrap");
+        const subappContainer = document.getElementById('subapp-container');
         let idleTimer;
 
         function showOverlay() {
             shrinkWrap.classList.add("visible");
+            shrinkWrap.style.opacity = "1"; 
             keepVisible=true;
-            const subappContainer = document.getElementById('subapp-container');
-            resetIdleTimer();
+            subappContainer.style.opacity = "1"; 
         }
 
         function hideOverlay() {
