@@ -254,6 +254,7 @@
         </div>
     </div>
     <script>
+        var keepVisible = true;
         async function loadStartups() {
             try {
                 const response = await fetch('https://mobleysoft.com/1Holder/Webware/Startups/');
@@ -285,14 +286,17 @@
                 wireframe.style.transform = 'scale(1)';
                 subappContainer.style.display = 'block';
                 subappContainer.innerHTML = `<button id="closeSubApp" onclick="closeSubApp()">✖</button><h2>${toolName}</h2><p>Now running ${toolName}.</p>`;
-            }, 50);
+                keepVisible=true;
+            }, 500);
         }
         function closeSubApp() {
             document.getElementById('subapp-container').style.display = 'none';
+            keepVisible=false;
         }
 
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(showOverlay, 500);
+            keepVisible=false;
         });
 
         const shrinkWrap = document.getElementById("shrinkWrap");
@@ -300,13 +304,9 @@
 
         function showOverlay() {
             shrinkWrap.classList.add("visible");
+            keepVisible=true;
             const subappContainer = document.getElementById('subapp-container');
-            if (subappContainer.style.display === "block"){ 
-                return;
-            }
-            else {
-                resetIdleTimer();
-            }
+            resetIdleTimer();
         }
 
         function hideOverlay() {
@@ -314,11 +314,14 @@
             setTimeout(() => {
                 shrinkWrap.classList.remove("visible"); // Fully hide after transition
             }, 1500);
+            keepVisible=false;
         }
 
         function resetIdleTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(hideOverlay, 6000);
+            if(!keepVisible){
+                clearTimeout(idleTimer);
+                idleTimer = setTimeout(hideOverlay, 6000);
+            }
         }
 
         // Improve event responsiveness
@@ -342,7 +345,7 @@
             scaleFactor *= 0.83;
             // Apply dynamic scaling
             shrinkWrap.style.transform = `translate(-50%, -50%) scale(${scaleFactor})`;
-            shrinkWrap.style.opacity = "0.9"; // Keep visibility
+            shrinkWrap.style.opacity = "1"; // Keep visibility
             shrinkWrap.style.pointerEvents = "auto"; // Ensure buttons remain clickable
         }
         // Apply scaling after DOM loads and on resize
