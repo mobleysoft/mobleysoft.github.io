@@ -328,7 +328,7 @@
         }
 
         function resetIdleTimer() {
-            if(!keepVisible||closeSubAppClicked){
+            if(closeSubAppClicked){
                 clearTimeout(idleTimer);
                 idleTimer = setTimeout(hideOverlay, 6000);
             }
