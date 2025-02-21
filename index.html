@@ -300,6 +300,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(showOverlay, 500);
             keepVisible=false;
+            closeSubAppClicked=true;
         });
 
         const shrinkWrap = document.getElementById("shrinkWrap");
@@ -309,7 +310,11 @@
         function showOverlay() {
             shrinkWrap.classList.add("visible");
             shrinkWrap.style.opacity = "1"; 
-            keepVisible=true;
+            if(closeSubAppClicked){
+                keepVisible=false;
+            }else{ 
+                keepVisible=true; 
+            }
             subappContainer.style.opacity = "1"; 
             resetIdleTimer();
         }
@@ -323,7 +328,7 @@
         }
 
         function resetIdleTimer() {
-            if(!keepVisible&&closeSubAppClicked){
+            if(!keepVisible||closeSubAppClicked){
                 clearTimeout(idleTimer);
                 idleTimer = setTimeout(hideOverlay, 6000);
             }
