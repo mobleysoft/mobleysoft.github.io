@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube AGI FTP</title>
+    <script defer>
+        const CLIENT_ID = 'YOUR_CLIENT_ID';
+        const SCOPES = 'https://www.googleapis.com/auth/youtube.upload';
+        let tokenClient;
+        let accessToken;
+
+        function initAuth() {
+            tokenClient = google.accounts.oauth2.initTokenClient({
+                client_id: CLIENT_ID,
+                scope: SCOPES,
+                callback: (tokenResponse) => {
+                    accessToken = tokenResponse.access_token;
+                    document.getElementById('status').innerText = 'Authenticated';
+                },
+            });
+        }
+
+        function authenticate() {
+            tokenClient.requestAccessToken();
+        }
+
+        async function uploadVideo(file) {
+            if (!accessToken) {
+                alert('Authenticate first!');
+                return;
+            }
+
+            const metadata = {
+                snippet: {
+                    title: file.name,
+                    description: 'AGI generated video',
+                    tags: ['AGI', 'Machine Intelligence'],
+                    categoryId: '22',
+                },
+                status: {
+                    privacyStatus: 'public',
+                },
+            };
+
+            const formData = new FormData();
+            formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+            formData.append('file', file);
+
+            const request = new XMLHttpRequest();
+            request.open('POST', 'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=multipart&part=snippet,status', true);
+            request.setRequestHeader('Authorization', `Bearer ${accessToken}`);
+            
+            request.onload = function () {
+                if (request.status >= 200 && request.status < 300) {
+                    alert('Video uploaded successfully!');
+                } else {
+                    alert('Upload failed.');
+                }
+            };
+            
+            request.send(formData);
+        }
+    </script>
+</head>
+<body>
+    <h1>YouTube AGI FTP</h1>
+    <button id="auth" onclick="authenticate()">Authenticate</button>
+    <input type="file" id="upload" onchange="uploadVideo(this.files[0])">
+    <p id="status">Not authenticated</p>
+</body>
+</html>
