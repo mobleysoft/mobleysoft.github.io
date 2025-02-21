@@ -322,17 +322,18 @@
         }
 
         function resetIdleTimer() {
-            if(closeSubAppClicked){
-                keepVisible=false;
-                keepAlive=false;
+            clearTimeout(idleTimer); // Always clear existing timer before setting a new one
+
+            if (closeSubAppClicked) {
+                keepVisible = false;
+                keepAlive = false;
+            } else if (keepVisible || keepAlive) {
+                showOverlay(); // Keeps the UI active if a subapp is open
+                return;
             }
-            else if(keepVisible||keepAlive||!closeSubAppClicked){
-                showOverlay();
-            }
-            else if(!keepVisible&&!keepAlive&&closeSubAppClicked){
-                clearTimeout(idleTimer);
-                idleTimer = setTimeout(hideOverlay, 6000);
-            }
+
+            // If nothing is keeping it alive, start the timeout to hide
+            idleTimer = setTimeout(hideOverlay, 6000);
         }
 
         // Improve event responsiveness
