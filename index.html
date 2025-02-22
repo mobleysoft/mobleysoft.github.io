@@ -84,9 +84,7 @@
     }
     document.addEventListener('DOMContentLoaded', loadStartups);
     function activateTool(toolName) {keepVisible=true;keepAlive=true;closeSubAppClicked=false;const wireframe=document.getElementById('wireframe');const subappContainer=document.getElementById('subapp-container');wireframe.style.opacity = 1;wireframe.style.transform='scale(2)';subappContainer.style.display ='block';
-    subappContainer.innerHTML = `
-        <iframe src="${toolName}" width="800" height="600" style="border:none;"> <button id="closeSubApp" onclick="closeSubApp()">✖</button></iframe>
-    `;}
+    subappContainer.innerHTML = `<iframe src="${toolName}" width="800" height="600" style="border:none;"><button id="closeSubApp" onclick="closeSubApp()">✖</button></iframe>`;}
     function closeSubApp(){document.getElementById('subapp-container').style.display = 'none';keepVisible=false;keepAlive=false;closeSubAppClicked=true;resetIdleTimer();}
     document.addEventListener("DOMContentLoaded",()=>{setTimeout(showOverlay, 500);keepVisible=true;closeSubAppClicked=true;});
     const shrinkWrap = document.getElementById("shrinkWrap");const subappContainer = document.getElementById('subapp-container');let idleTimer;
