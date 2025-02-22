@@ -38,59 +38,12 @@
     <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a></div>
 <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
 <div id="wireframe"></div><div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div></div></div><script>
-    var domains = []; 
-    async function getCloudflareDomains() {
-        try {
-            const response = await fetch("https://getdomains.johnmobley99.workers.dev/");
-            const data = await response.json();
-            if (data.success && Array.isArray(data.result)) {
-                domains = data.result.map(zone => zone.name); 
-                console.log("Your Cloudflare domains:", domains);
-            } else {
-                console.error("Failed to fetch domains or invalid response format:", data);
-            }
-        } catch (error) {
-            console.error("Error fetching domains:", error);
-        }
-    }
-    document.addEventListener("DOMContentLoaded", async () => {
-        await getCloudflareDomains();
-        loadStartups(); 
-    });
-    var closeSubAppClicked = true;var keepVisible = false;var keepAlive = false;
-    async function loadStartups() {
-        try {
-            if (!Array.isArray(domains) || domains.length === 0) {
-                console.warn("Domains list is empty or not yet loaded.");
-                return;
-            }
-            const toolbar = document.getElementById('startup-toolbar');
-            toolbar.innerHTML = ""; 
-            domains.forEach(domain => {
-                if (!domain.includes("HTML")) {
-                    const button = document.createElement('a');
-                    button.className = 'startup-link';
-                    button.textContent = domain;
-                    button.onclick = () => activateTool(domain);
-                    toolbar.appendChild(button);
-                }
-            });
-
-            console.log("Startups loaded from Cloudflare:", domains);
-        } catch (error) {
-            console.error("Error loading startups:", error);
-        }
-    }
-    document.addEventListener('DOMContentLoaded', loadStartups);
-    function activateTool(toolName){keepVisible=true;keepAlive=true;closeSubAppClicked=false;const wireframe=document.getElementById('wireframe');const subappContainer=document.getElementById('subapp-container');wireframe.style.opacity = 1;wireframe.style.transform='scale(2)';subappContainer.style.display ='block';
-    subappContainer.innerHTML=`<iframe src="${toolName}" width="800" height="600" style="border:none;"></iframe><button id="closeSubApp" onclick="closeSubApp()">✖</button>`;}
-    function closeSubApp(){document.getElementById('subapp-container').style.display = 'none';keepVisible=false;keepAlive=false;closeSubAppClicked=true;resetIdleTimer();}
-    document.addEventListener("DOMContentLoaded",()=>{setTimeout(showOverlay, 500);keepVisible=true;closeSubAppClicked=true;});
-    const shrinkWrap = document.getElementById("shrinkWrap");const subappContainer = document.getElementById('subapp-container');let idleTimer;
+    var domains = [];async function getCloudflareDomains(){try{const response=await fetch("https://getdomains.johnmobley99.workers.dev/");const data = await response.json();if (data.success && Array.isArray(data.result)){domains=data.result.map(zone =>zone.name); console.log("Your Cloudflare domains:", domains);}else{console.error("Failed to fetch domains or invalid response format:",data);}} catch (error) {console.error("Error fetching domains:", error);}}document.addEventListener("DOMContentLoaded", async () => {await getCloudflareDomains();loadStartups(); });var closeSubAppClicked = true;var keepVisible = false;var keepAlive = false;
+    async function loadStartups(){try{if (!Array.isArray(domains)||domains.length===0){console.warn("Domains list is empty or not yet loaded.");return;}const toolbar = document.getElementById('startup-toolbar');toolbar.innerHTML = ""; domains.forEach(domain => {if (!domain.includes("HTML")) {const button = document.createElement('a');button.className = 'startup-link';button.textContent = domain;button.onclick = () => activateTool(domain);toolbar.appendChild(button);}});console.log("Startups loaded from Cloudflare:", domains);}catch(error){console.error("Error loading startups:",error);}}document.addEventListener('DOMContentLoaded', loadStartups);
+    function activateTool(toolName){keepVisible=true;keepAlive=true;closeSubAppClicked=false;const wireframe=document.getElementById('wireframe');const subappContainer=document.getElementById('subapp-container');wireframe.style.opacity = 1;wireframe.style.transform='scale(2)';subappContainer.style.display ='block';subappContainer.innerHTML=`<iframe src="${toolName}" width="800" height="600" style="border:none;"></iframe><button id="closeSubApp" onclick="closeSubApp()">✖</button>`;}
+    function closeSubApp(){document.getElementById('subapp-container').style.display = 'none';keepVisible=false;keepAlive=false;closeSubAppClicked=true;resetIdleTimer();}document.addEventListener("DOMContentLoaded",()=>{setTimeout(showOverlay, 500);keepVisible=true;closeSubAppClicked=true;});const shrinkWrap = document.getElementById("shrinkWrap");const subappContainer = document.getElementById('subapp-container');let idleTimer;
     function showOverlay(){shrinkWrap.classList.add("visible");shrinkWrap.style.opacity = "1";subappContainer.style.opacity = "1"; resetIdleTimer();}
     function hideOverlay(){shrinkWrap.style.opacity = "0";keepVisible=false;keepAlive=false;setTimeout(()=>{shrinkWrap.classList.remove("visible");},1500);}
-    function resetIdleTimer(){clearTimeout(idleTimer);if (!keepVisible && !keepAlive && closeSubAppClicked){idleTimer = setTimeout(hideOverlay, 6000);}}
-    document.addEventListener("mousemove", showOverlay);document.addEventListener("click", showOverlay);document.addEventListener("keydown", showOverlay);document.addEventListener("touchstart", showOverlay);document.addEventListener("keydown",(event)=>{if(event.key==="Escape")closeSubApp();});
-    function adjustShrinkWrapScale() {const shrinkWrap=document.getElementById("shrinkWrap");if(!shrinkWrap){return;}const viewportHeight=window.innerHeight;const contentHeight=shrinkWrap.scrollHeight;let scaleFactor=viewportHeight/contentHeight;if(scaleFactor>1){scaleFactor=1;}scaleFactor*=0.83;shrinkWrap.style.transform=`translate(-50%,-50%)scale(${scaleFactor})`;shrinkWrap.style.opacity = "1";shrinkWrap.style.pointerEvents = "auto";}
-    window.addEventListener("load", adjustShrinkWrapScale);window.addEventListener("resize", adjustShrinkWrapScale);
+    function resetIdleTimer(){clearTimeout(idleTimer);if (!keepVisible && !keepAlive && closeSubAppClicked){idleTimer = setTimeout(hideOverlay, 6000);}}document.addEventListener("mousemove", showOverlay);document.addEventListener("click", showOverlay);document.addEventListener("keydown", showOverlay);document.addEventListener("touchstart", showOverlay);document.addEventListener("keydown",(event)=>{if(event.key==="Escape")closeSubApp();});
+    function adjustShrinkWrapScale() {const shrinkWrap=document.getElementById("shrinkWrap");if(!shrinkWrap){return;}const viewportHeight=window.innerHeight;const contentHeight=shrinkWrap.scrollHeight;let scaleFactor=viewportHeight/contentHeight;if(scaleFactor>1){scaleFactor=1;}scaleFactor*=0.83;shrinkWrap.style.transform=`translate(-50%,-50%)scale(${scaleFactor})`;shrinkWrap.style.opacity = "1";shrinkWrap.style.pointerEvents = "auto";}window.addEventListener("load", adjustShrinkWrapScale);window.addEventListener("resize", adjustShrinkWrapScale);
 </script></body></html>
