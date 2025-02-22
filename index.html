@@ -85,14 +85,7 @@
     document.addEventListener('DOMContentLoaded', loadStartups);
     function activateTool(toolName) {keepVisible=true;keepAlive=true;closeSubAppClicked=false;const wireframe=document.getElementById('wireframe');const subappContainer=document.getElementById('subapp-container');wireframe.style.opacity = 1;wireframe.style.transform='scale(2)';subappContainer.style.display ='block';
     subappContainer.innerHTML = `
-        <button id="closeSubApp" onclick="closeSubApp()">✖</button>
-        <h2>${toolName}</h2>
-        <p>Now running ${toolName}.</p>
-        <iframe src="https://example.com" width="800" height="600" style="border:none;"></iframe>
-        <footer>
-            <p>Author: John A. Mobley And GigiAGI</p><br/>
-            <p><a href="mailto:Founders@Mobleysoft.com">founders@mobleysoft.com</a></p>
-        </footer>
+        <iframe src="${toolName}" width="800" height="600" style="border:none;"> <button id="closeSubApp" onclick="closeSubApp()">✖</button></iframe>
     `;}
     function closeSubApp(){document.getElementById('subapp-container').style.display = 'none';keepVisible=false;keepAlive=false;closeSubAppClicked=true;resetIdleTimer();}
     document.addEventListener("DOMContentLoaded",()=>{setTimeout(showOverlay, 500);keepVisible=true;closeSubAppClicked=true;});
