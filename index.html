@@ -37,36 +37,50 @@
     <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a></div>
 <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
 <div id="wireframe"></div><div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div></div></div><script>
-    var domains = "" 
+    var domains = []; 
+    var domains = []; 
     async function getCloudflareDomains() {
         try {
             const response = await fetch("https://getdomains.johnmobley99.workers.dev/");
             const data = await response.json();
-
-            if (data.success) {
-                console.log("Your Cloudflare domains:", data.result);
-
-                // Display domains in the UI
-                const domainList = document.createElement('ul');
-                data.result.forEach(zone => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = zone.name; // Display domain name
-                    domainList.appendChild(listItem);
-                });
-                domains=domainList; // Append to body (or another container)
+            if (data.success && Array.isArray(data.result)) {
+                domains = data.result.map(zone => zone.name); 
+                console.log("Your Cloudflare domains:", domains);
             } else {
-                console.error("Failed to fetch domains:", data.errors);
+                console.error("Failed to fetch domains or invalid response format:", data);
             }
         } catch (error) {
             console.error("Error fetching domains:", error);
         }
     }
     document.addEventListener("DOMContentLoaded", async () => {
-        await getCloudflareDomains(); // Wait for domain data
-        loadStartups(); // Use domains to populate the UI
+        await getCloudflareDomains();
+        loadStartups(); 
     });
     var closeSubAppClicked = true;var keepVisible = false;var keepAlive = false;
-    async function loadStartups(){try{if(!domains||domains.length===0){console.warn("Domains list is empty or not yet loaded.");return;}const toolbar=document.getElementById('startup-toolbar');toolbar.innerHTML="";domains.forEach(domain=>{if(!domain.includes("HTML")){const button=document.createElement('a');button.className='startup-link';button.textContent=domain;button.onclick=()=>activateTool(domain);toolbar.appendChild(button);}});console.log("Startups loaded from Cloudflare:",domains);}catch(error){console.error('Error loading startups:',error);}}
+    async function loadStartups() {
+        try {
+            if (!Array.isArray(domains) || domains.length === 0) {
+                console.warn("Domains list is empty or not yet loaded.");
+                return;
+            }
+            const toolbar = document.getElementById('startup-toolbar');
+            toolbar.innerHTML = ""; 
+            domains.forEach(domain => {
+                if (!domain.includes("HTML")) {
+                    const button = document.createElement('a');
+                    button.className = 'startup-link';
+                    button.textContent = domain;
+                    button.onclick = () => activateTool(domain);
+                    toolbar.appendChild(button);
+                }
+            });
+
+            console.log("Startups loaded from Cloudflare:", domains);
+        } catch (error) {
+            console.error("Error loading startups:", error);
+        }
+    }
     document.addEventListener('DOMContentLoaded', loadStartups);
     function activateTool(toolName) {keepVisible=true;keepAlive=true;closeSubAppClicked=false;const wireframe=document.getElementById('wireframe');const subappContainer=document.getElementById('subapp-container');wireframe.style.opacity = 1;wireframe.style.transform='scale(2)';subappContainer.style.display ='block';
     subappContainer.innerHTML=`<button id="closeSubApp" onclick="closeSubApp()">✖</button>
