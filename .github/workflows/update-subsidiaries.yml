@@ -1,0 +1,25 @@
+name: Update AI Memory
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * 0" # Runs once a week
+
+jobs:
+  update-memory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "jmobleyworks"
+          git config --global user.email "jmobleyworks@gmail.com"
+
+      - name: Commit Changes
+        run: |
+          git add subsidiaries/
+          git commit -m "Automated AI Memory Update" || exit 0
+          git push
