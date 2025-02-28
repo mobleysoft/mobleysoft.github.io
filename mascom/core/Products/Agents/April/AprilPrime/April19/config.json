@@ -1,0 +1,50 @@
+{
+    "author": "April Carter",
+    "paths": {
+        "books": "Books",
+        "temp": "temp",
+        "checkpoints": "temp/checkpoints",
+        "cache": "temp/cache",
+        "metrics": "metrics"
+    },
+    "generation": {
+        "defaultBooksToGenerate": 1,
+        "maxRetries": 3,
+        "validationThresholds": {
+            "character": 0.7,
+            "plot": 0.8,
+            "theme": 0.7,
+            "world": 0.8
+        },
+        "openai": {
+            "systemPrompt": "You are a master storyteller.",
+            "temperature": 0.7,
+            "maxTokens": 2000
+        }
+    },
+    "context": {
+        "maxCacheAge": "24:00:00",
+        "maxContextSize": 8000,
+        "compressionThreshold": 10000,
+        "relevanceThreshold": 0.5
+    },
+    "validation": {
+        "minSceneScore": 0.7,
+        "characterConsistencyWeight": 0.3,
+        "plotProgressionWeight": 0.3,
+        "thematicResonanceWeight": 0.2,
+        "worldConsistencyWeight": 0.2
+    },
+    "api": {
+        "timeout": 30,
+        "maxConcurrent": 2,
+        "retryDelay": 5,
+        "maxRetries": 3
+    },
+    "monitoring": {
+        "logLevel": "Info",
+        "enableMetrics": true,
+        "metricsInterval": 10,
+        "consoleOutput": true
+    }
+}
