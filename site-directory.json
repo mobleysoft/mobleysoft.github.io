@@ -1111,6 +1111,7 @@
     },
     "index.html": "file"
   },
+  "site-directory.json": "file",
   "subsidiaries": {
     "AutomatedFirmRecipeTemplate.json": "file",
     "SkeletonKing.html": "file"
