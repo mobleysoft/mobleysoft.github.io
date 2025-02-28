@@ -1060,7 +1060,14 @@
       "My Shining Star.mp3": "file"
     },
     "rock": {
-      "Come with me (7).mp3": "file"
+      "Come with me (7).mp3": "file",
+      "Come with me (8).mp3": "file",
+      "Come with me (9).mp3": "file",
+      "I Might Decide.mp3": "file",
+      "crescendo  (2).mp3": "file"
+    },
+    "vibe": {
+      "Come with me (21).mp3": "file"
     }
   },
   "site-directory.json": "file",
