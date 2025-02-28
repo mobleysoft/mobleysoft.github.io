@@ -975,7 +975,14 @@
       "Come with me (14).mp3": "file",
       "Come with me (15).mp3": "file",
       "DarkestTrap.mp3": "file",
+      "Gyoza (Cover).mp3": "file",
+      "Gyoza.mp3": "file",
       "dark drill pop.mp3": "file"
+    },
+    "hits": {
+      "CallsMeTo.mp3": "file",
+      "CallsMeToCompile.mp3": "file",
+      "CanARobotWrite.mp3": "file"
     },
     "index.html": "file"
   },
