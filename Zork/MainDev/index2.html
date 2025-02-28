@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobCorp-MobleysoftAGI</title>
+    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        #portal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .hidden { opacity: 0; transition: opacity 1s ease-in-out; }
+        .visible { opacity: 1; }
+    </style>
+</head>
+<body>
+    <div id="portal" class="hidden">
+        <h1>Welcome to the AGI Economic Network</h1>
+        <p>Dynamic AGI evolution in progress...</p>
+        <button onclick="loadAGI()">Initialize AGI Portal</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("portal").classList.replace("hidden", "visible");
+            }, 500);
+        });
+
+        function loadAGI() {
+            fetch("https://architect2.johnmobley99.workers.dev/")
+                .then(response => response.json())
+                .then(data => console.log("AGI Response:", data))
+                .catch(error => console.error("AGI Error:", error));
+        }
+    </script>
+</body>
+</html>
