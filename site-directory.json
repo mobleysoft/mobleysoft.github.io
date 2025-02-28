@@ -1023,7 +1023,13 @@
       "gimme all the cash.mp3": "file"
     },
     "index.html": "file",
-    "indexNEO.html": "file"
+    "indexNEO.html": "file",
+    "latin": {
+      "Eres Magia (1).mp3": "file",
+      "Eres Magia.mp3": "file",
+      "Eterna Melodía (1).mp3": "file",
+      "Eterna Melodía.mp3": "file"
+    }
   },
   "site-directory.json": "file",
   "subsidiaries": {
