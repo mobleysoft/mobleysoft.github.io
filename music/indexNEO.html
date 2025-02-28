@@ -8,31 +8,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #111; color: #fff; padding: 20px; }
-        #genre-list { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
-        .genre-container { margin: 10px; padding: 10px; background: #222; border-radius: 5px; }
-        .genre-button { display: block; padding: 10px; background: #444; color: white; border: none; cursor: pointer; width: 150px; margin-bottom: 5px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #111; color: #fff; overflow: hidden; }
+        #main-container { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+        #threejs-container { width: 100vw; height: 50vh; }
+        #player { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
+        #genre-list { display: flex; gap: 10px; margin-bottom: 10px; }
+        .genre-button { padding: 10px; background: #444; color: white; border: none; cursor: pointer; }
         .genre-button:hover { background: #666; }
-        .track-list { list-style: none; padding: 0; text-align: left; }
-        .track-list li { cursor: pointer; padding: 5px; background: #333; margin: 2px 0; border-radius: 3px; }
-        .track-list li:hover { background: #555; }
-        #player { margin-top: 20px; }
-        #current-track { font-size: 18px; margin-top: 10px; color: #0f0; }
-        canvas { width: 100%; height: 200px; background: black; margin-top: 20px; }
-        #console-output { margin-top: 20px; color: #0f0; font-size: 14px; text-align: left; padding: 10px; background: #222; border-radius: 5px; max-width: 80%; margin-left: auto; margin-right: auto; }
-        #threejs-container { width: 100%; height: 600px; margin-top: 20px; }
+        #current-track { font-size: 18px; color: #0f0; margin-bottom: 10px; }
+        #visualizer { width: 100vw; height: 25vh; background: black; }
+        #console-output { position: absolute; bottom: 10px; left: 10px; color: lime; font-size: 14px; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 5px; }
     </style>
 </head>
 <body>
-    <h1>Mobleysoft Radio</h1>
-    <div id="threejs-container"></div>
-    <div id="genre-list"></div>
-    <div id="player">
-        <p id="current-track">Loading first track...</p>
-        <audio id="audio" controls autoplay></audio>
+    <div id="main-container">
+        <div id="threejs-container"></div>
+        <div id="player">
+            <div id="genre-list"></div>
+            <p id="current-track">Loading first track...</p>
+            <audio id="audio" controls autoplay></audio>
+        </div>
+        <canvas id="visualizer"></canvas>
+        <div id="console-output"></div>
     </div>
-    <canvas id="visualizer"></canvas>
-    <div id="console-output"></div>
     
     <script>
         class MobleysoftMusicPlayer {
@@ -41,7 +40,6 @@
                 this.audio = document.getElementById("audio");
                 this.musicData = {};
                 this.currentGenre = null;
-                this.currentIndex = 0;
                 this.currentTrackDisplay = document.getElementById("current-track");
                 this.consoleOutput = document.getElementById("console-output");
                 this.init();
@@ -82,16 +80,11 @@
             setupGenres() {
                 const genreList = document.getElementById("genre-list");
                 Object.keys(this.musicData).forEach(genre => {
-                    const genreContainer = document.createElement("div");
-                    genreContainer.classList.add("genre-container");
-                    
                     const button = document.createElement("button");
                     button.classList.add("genre-button");
                     button.textContent = genre;
-                    button.addEventListener("click", () => this.displayTracks(genre, genreContainer));
-                    
-                    genreContainer.appendChild(button);
-                    genreList.appendChild(genreContainer);
+                    button.addEventListener("click", () => this.playTrack(genre, this.musicData[genre][0]));
+                    genreList.appendChild(button);
                 });
                 this.logMessage("Genres loaded.");
             }
