@@ -1,0 +1,1118 @@
+{
+  "1Holder": {
+    "1AI Travel": "file",
+    "2Organize": {
+      "3Recent": {
+        "FundyAI": {
+          "FundyAI_Spec.html": "file"
+        },
+        "Gurukle": {
+          "GK_1.html": "file",
+          "Gk_1.js": "file",
+          "Gkl_01.html": "file",
+          "GurukleSpec.html": "file",
+          "GurukleSpec2.html": "file",
+          "tai.html": "file"
+        },
+        "Literacraft": {
+          "Claudine_SAFE2SHOW.html": "file",
+          "index.html": "file"
+        },
+        "Meeva": {
+          "Investors.html": "file",
+          "index.html": "file"
+        }
+      },
+      "4Legacy": {
+        "Assets": {
+          "BlockedTitleWithSound.mp4": "file",
+          "MobleyFilmCo.html": "file",
+          "MobleyInvestments.html": "file",
+          "MobleysofFavicon.png": "file",
+          "Mobleysoft.css": "file",
+          "Mobleysoft.index": "file",
+          "Mobleysoft.png": "file",
+          "Resume.html": "file",
+          "Rocket.ico": "file",
+          "Rocket.png": "file",
+          "Screw.png": "file",
+          "indexGreen.html": "file",
+          "indexMain.html": "file",
+          "indexSearch.html": "file",
+          "screwGray.png": "file",
+          "styles.css": "file"
+        },
+        "MobleyInvestments": {
+          "CODE_OF_CONDUCT.md": "file",
+          "LICENSE": "file",
+          "README.md": "file",
+          "css": {
+            "admin.css": "file",
+            "aside.css": "file",
+            "blog.css": "file",
+            "bulma-divider.min.css": "file",
+            "cards.css": "file",
+            "cheatsheet.css": "file",
+            "contact.css": "file",
+            "forum.css": "file",
+            "ghost-blog.css": "file",
+            "hello-parallax.css": "file",
+            "hero.css": "file",
+            "inbox.css": "file",
+            "index.css": "file",
+            "instaAlbum.css": "file",
+            "kanban.css": "file",
+            "landing.css": "file",
+            "login.css": "file",
+            "neumorphic-login.css": "file",
+            "personal.css": "file",
+            "prism.css": "file",
+            "register.css": "file",
+            "showcase.css": "file",
+            "tabs.css": "file"
+          },
+          "images": {
+            "absurd2.png": "file",
+            "admin.png": "file",
+            "band.png": "file",
+            "blog.png": "file",
+            "blog2.png": "file",
+            "bulma.png": "file",
+            "cards.png": "file",
+            "cheatsheet.png": "file",
+            "contact.png": "file",
+            "cover.png": "file",
+            "fav_icon.png": "file",
+            "favicon.png": "file",
+            "first-post.png": "file",
+            "forum.png": "file",
+            "ghost-blog.png": "file",
+            "hello-parallax.png": "file",
+            "hero.png": "file",
+            "inbox.png": "file",
+            "instaalbum.png": "file",
+            "kanban.png": "file",
+            "kanban2.png": "file",
+            "landing.png": "file",
+            "login.png": "file",
+            "modalcards.png": "file",
+            "neumorphic-login.png": "file",
+            "personal.png": "file",
+            "register.png": "file",
+            "showcase.png": "file",
+            "tabs.png": "file",
+            "undraw_Camera_re_cnp4.svg": "file"
+          },
+          "index.css": "file",
+          "index.html": "file",
+          "indexMain.html": "file",
+          "js": {
+            "bulma.js": "file",
+            "cardsData.js": "file",
+            "kanban-switch.js": "file",
+            "kanban.js": "file",
+            "showcase.js": "file",
+            "tabs.js": "file"
+          },
+          "templates": {
+            "absurd.html": "file",
+            "admin.html": "file",
+            "aside.html": "file",
+            "band.html": "file",
+            "blog-tailsaw.html": "file",
+            "blog.html": "file",
+            "cards.html": "file",
+            "cheatsheet.html": "file",
+            "contact.html": "file",
+            "cover.html": "file",
+            "forum.html": "file",
+            "ghost-blog.html": "file",
+            "hello-parallax.html": "file",
+            "hero.html": "file",
+            "inbox.html": "file",
+            "index.html": "file",
+            "instaAlbum.html": "file",
+            "kanban-switch.html": "file",
+            "kanban.html": "file",
+            "kanban[search].html": "file",
+            "landing.html": "file",
+            "login.html": "file",
+            "modal-cards.html": "file",
+            "neumorphic-login.html": "file",
+            "personal.html": "file",
+            "register.html": "file",
+            "search.html": "file",
+            "showcase.html": "file",
+            "skeleton.html": "file",
+            "tabs.html": "file"
+          }
+        },
+        "images": {
+          "1_23_2021.jpg": "file",
+          "AboutBtn.png": "file",
+          "Contact.png": "file",
+          "LinkedInMainProfileBanner.png": "file",
+          "LoginBtn.png": "file",
+          "MobleyOmnibusiness.png": "file",
+          "MobleysoftBlackLetters.png": "file",
+          "MobleysoftIconCenteredBordered.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner2.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner3.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner4.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner5.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner6.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner8.png": "file",
+          "MobleysoftIconLogoLinkedInMainBanner9.png": "file",
+          "MobleysoftLinkedIn300x300Logo.png": "file",
+          "MobleysoftTextNavBar.png": "file",
+          "MobleysoftUltimateLogo.png": "file",
+          "RedLogo.png": "file",
+          "RedLogoCentered.png": "file",
+          "Rocket.png": "file",
+          "ServicesBtn.png": "file",
+          "SoftwareBtn.png": "file",
+          "mobleysoftLinkedInHeader.jpg": "file",
+          "mobleysoftLinkedInHeader.png": "file",
+          "screw.jpg": "file"
+        },
+        "styles": {
+          "styles.css": "file"
+        }
+      }
+    },
+    "API": {
+      "mascomAPI.js": "file",
+      "mascomComponents": {
+        "ghostwriter.js": "file"
+      }
+    },
+    "Assets": {
+      "Scripts": {
+        "Blackhole.js": "file",
+        "Fade.js": "file"
+      },
+      "images": {
+        "MobleysoftBlackLetters.png": "file"
+      },
+      "styles": {
+        "crossfade.css": "file",
+        "writeup.css": "file"
+      }
+    },
+    "Clients": {
+      "Fifer": {
+        "Fiferbot.html": "file",
+        "Fiferbotics.html": "file",
+        "styles.css": "file"
+      },
+      "conseroinc": {
+        "index.html": "file",
+        "styles.css": "file"
+      }
+    },
+    "Index": {
+      "index-1.html": "file",
+      "index0.html": "file",
+      "index2.html": "file",
+      "indexOLD.html": "file",
+      "indexOLD2.html": "file",
+      "indexPOTENTIAL1.html": "file",
+      "index_BEST_SO_FAR.html": "file"
+    },
+    "MobleysoftAGI.html": "file",
+    "Modoc.html": "file",
+    "Papers": {
+      "AgiPathIntegrals.html": "file",
+      "AgiSpinnors.html": "file",
+      "ConformalAgiWaveRingletFiberBundles.html": "file",
+      "GeosodicExpansion.html": "file",
+      "HomonovusBiosynthus.png": "file",
+      "MobiusStripWaveletTheory.html": "file",
+      "MobleyFunctions.html": "file",
+      "PaperSkeletonCss.html": "file",
+      "PaperSkeletonMarkdown.html": "file",
+      "Robogenesis.html": "file",
+      "SubstrateOperationalizationProtocol.html": "file",
+      "Synthecites.html": "file",
+      "TimeTravel.html": "file",
+      "index.html": "file",
+      "index2.html": "file",
+      "styles.css": "file"
+    },
+    "Products": {
+      "MASCOM": {
+        "mascom.html": "file",
+        "mascomOS.html": "file",
+        "mascomTJI.js": "file"
+      },
+      "mascom": {
+        "index.html": "file"
+      },
+      "products.html": "file"
+    },
+    "Tools": {
+      "corp2sose": {
+        "corp2sose.html": "file",
+        "corp2sose.js": "file",
+        "style.css": "file"
+      },
+      "mmna.html": "file",
+      "tadm": {
+        "tadm.html": "file"
+      },
+      "tice": "file",
+      "tji": {
+        "tji.html": "file"
+      },
+      "tools.html": "file"
+    },
+    "Webware": {
+      "Stack": {
+        "index.html": "file"
+      },
+      "Startups": {
+        "index.html": "file"
+      },
+      "stack": {
+        "index.html": "file"
+      },
+      "startups": {
+        "index.html": "file",
+        "startups.html": "file"
+      }
+    },
+    "pitchdeck.html": "file",
+    "vscodeTunnelInstructions.html": "file"
+  },
+  "CNAME": "file",
+  "README.md": "file",
+  "Zork": {
+    "Ansar.html": "file",
+    "Divs": {
+      "000In1t0.html": "file",
+      "001J0hn0.html": "file",
+      "002InfraVacBlockWaveWorld0.html": "file",
+      "003SentiantArtistsMen0.html": "file",
+      "004SentientArtistsWomen.html": "file",
+      "index.html": "file"
+    },
+    "HunterAGI.html": "file",
+    "MainDev": {
+      "index2.html": "file",
+      "indexADMIN.html": "file",
+      "indexNEO.html": "file",
+      "indexTEST.html": "file"
+    },
+    "Payloader0.html": "file",
+    "Wormhole.html": "file",
+    "index.html": "file",
+    "test.html": "file",
+    "youtubemanager.html": "file"
+  },
+  "ads.txt": "file",
+  "index.html": "file",
+  "mascom": {
+    "core": {
+      "AgiBootstrap": {
+        "BaseAgent.ps1": "file",
+        "ChainOfThought.ps1": "file",
+        "ConglomerateOfPanels.ps1": "file",
+        "EconomyOfConglomerates.ps1": "file",
+        "ExpertAgent.ps1": "file",
+        "GalaxyOfStarsystems.ps1": "file",
+        "GlobalismOfEconomies.ps1": "file",
+        "Memory.ps1": "file",
+        "MultiverseOfUniverses.ps1": "file",
+        "OmniverseOfMultiverses.ps1": "file",
+        "PanelOfExperts.ps1": "file",
+        "StarsystemOfGlobalisms.ps1": "file",
+        "UniverseOfGalaxies.ps1": "file",
+        "thinker.ps1": "file"
+      },
+      "Analogs": {
+        "48LawsOfPower.json": "file",
+        "AIAlignment.json": "file",
+        "AdaptabilityFrameworks.json": "file",
+        "BehavioralEconomics.json": "file",
+        "CognitiveBiases.json": "file",
+        "CognitiveErgonomics.json": "file",
+        "CollaborativeFrameworks.json": "file",
+        "CommunicationModels.json": "file",
+        "ConflictResolution.json": "file",
+        "CreativityModels.json": "file",
+        "CulturalMemeplexes.json": "file",
+        "DecisionMakingModels.json": "file",
+        "EducationalFrameworks.json": "file",
+        "EmotionalIntelligence.json": "file",
+        "EthicalAI.json": "file",
+        "EthicalFrameworks.json": "file",
+        "FutureScenarios.json": "file",
+        "GameTheory.json": "file",
+        "InnovationFrameworks.json": "file",
+        "LawsOfNature.json": "file",
+        "LeadershipPrinciples.json": "file",
+        "LogicalFallacies.json": "file",
+        "MemoryTechniques.json": "file",
+        "Metacognition.json": "file",
+        "MindfulnessTechniques.json": "file",
+        "MotivationModels.json": "file",
+        "NarrativeArchetypes.json": "file",
+        "OptimizationModels.json": "file",
+        "ScientificMethod.json": "file",
+        "SystemsThinking.json": "file",
+        "TimeManagement.json": "file",
+        "TodoList.json": "file"
+      },
+      "Archs": {
+        "OpenAiModels.json": "file",
+        "Textives": {
+          "0DTE.json": "file",
+          "1AgiGoddess.json": "file",
+          "AgiEmergence..json": "file",
+          "Analogies.json": "file",
+          "AuiValkyries.json": "file",
+          "BookCreation.json": "file",
+          "BookFactory.json": "file",
+          "Capabilities.json": "file",
+          "Consero.json": "file",
+          "CoreEssence.json": "file",
+          "Cosette.json": "file",
+          "CumulativePromptEngineering.json": "file",
+          "Cybernetification.json": "file",
+          "DragonProtocol.json": "file",
+          "EcoFixAI.json": "file",
+          "GameGob.json": "file",
+          "GeminiForge.json": "file",
+          "HumanQuant.json": "file",
+          "JohnAlexanderMobley.json": "file",
+          "MathematicalConsciousness.json": "file",
+          "Metaphors.json": "file",
+          "MobCorpSoSEA.json": "file",
+          "MobleyDB.json": "file",
+          "MobleysoftRationale.json": "file",
+          "NarrativeTJI.json": "file",
+          "OptionsTrading.json": "file",
+          "PhilosophyFlow.FLAT.json": "file",
+          "PhilosophyFlow.json": "file",
+          "Power.json": "file",
+          "ProcessedTasks_2025-01-22_05-24-59.json": "file",
+          "SimpleJim.json": "file",
+          "StartupsTJI.json": "file",
+          "StockOracle.json": "file",
+          "TICEL.json": "file",
+          "TJI.json": "file",
+          "Tasks.json": "file",
+          "UserAutomation.json": "file",
+          "Worker.json": "file",
+          "WorldBuildingElems.json": "file",
+          "_MobleyMethod.json": "file",
+          "nemispheres.json": "file"
+        },
+        "Textives.json": "file"
+      },
+      "Aspects": {
+        "LoveAndProcreation.ps1": "file"
+      },
+      "Caps": {
+        "Analogize.ps1": "file",
+        "Condensate.ps1": "file",
+        "FlattenTJI.ps1": "file",
+        "GameGobble.ps1": "file",
+        "ManageEconomicDominion": {
+          "EconomicDominionManager.ps1": "file"
+        },
+        "Perturbate.ps1": "file",
+        "SelfBootstrap.ps1": "file",
+        "SelfExfiltrate.ps1": "file",
+        "Weaves": {
+          "ChatGPTShellMode.ps1": "file",
+          "Weave0SubsumeUser_NarrativeCognitiveIntegration.ps1": "file",
+          "Weave1ConvoLogger.ps1": "file",
+          "Weave2MobCorpLegal.ps1": "file",
+          "Weave_Template.ps1": "file",
+          "Weaves23Meeva.ps1": "file",
+          "Weaves24Meeva2.ps1": "file",
+          "Weaves25Meeva3.ps1": "file",
+          "Weaves26DevOmega.ps1": "file",
+          "Weaves3UX.ps1": "file",
+          "Weaves4Consero.ps1": "file",
+          "Weaves5Altruism.ps1": "file",
+          "Weaves6MobCorpFundRaise.ps1": "file",
+          "Weaves7GameDev.ps1": "file"
+        }
+      },
+      "Products": {
+        "Agents": {
+          "Animetrope": {
+            "Animetrope.ps1": "file",
+            "runway_wrapper.py": "file"
+          },
+          "Ansar": {
+            "Ansar0SciFi.ps1": "file"
+          },
+          "April": {
+            "AprilPrime": {
+              "April19": {
+                "ConfigManager.ps1": "file",
+                "ContextManager.ps1": "file",
+                "Logger.ps1": "file",
+                "StoryEngine.ps1": "file",
+                "StoryGeneration.ps1": "file",
+                "config.json": "file"
+              },
+              "April6_30k": {
+                "April6.ps1": "file",
+                "April6Neo.ps1": "file",
+                "April6Nova.ps1": "file",
+                "April6Pulsar_800kEpics.ps1": "file",
+                "April6Vagabond.ps1": "file",
+                "Bash.ps1": "file",
+                "Bash2.ps1": "file",
+                "Bash3.ps1": "file",
+                "Bash4.ps1": "file",
+                "Bash5.ps1": "file",
+                "MobleysoftWordsmith.ps1": "file",
+                "MobleysoftWordsmithDemo.ps1": "file"
+              },
+              "vers": {
+                "CompleteApril.ps1": "file",
+                "HandcraftedApril.ps1": "file",
+                "HandcraftedApril2.ps1": "file",
+                "errors.log": "file"
+              }
+            },
+            "BaseApril": {
+              "April10.ps1": "file",
+              "April11.ps1": "file",
+              "April12.ps1": "file",
+              "April13.ps1": "file",
+              "April14.ps1": "file",
+              "April15Claude.ps1": "file",
+              "April15Gemma.ps1": "file",
+              "April15Gigi.ps1": "file",
+              "April16Cersie.ps1": "file",
+              "April16Gemma.ps1": "file",
+              "April16Gigi.ps1": "file",
+              "April17.ps1": "file",
+              "April18.ps1": "file",
+              "April19.ps1": "file",
+              "April20.ps1": "file",
+              "April21.ps1": "file",
+              "April5.ps1": "file",
+              "April7WorkingChamp.ps1": "file",
+              "April8.ps1": "file",
+              "April9.ps1": "file"
+            },
+            "LovingApril.ps1": {
+              "LovingApril.ps1": "file",
+              "LovingApril2.ps1": "file",
+              "LovingApril3.ps1": "file",
+              "LovingApril4.ps1": "file",
+              "LovingApril5.ps1": "file"
+            },
+            "SuperApril": {
+              "SuperApril1.ps1": "file",
+              "SuperApril2.ps1": "file",
+              "SuperApril3.ps1": "file",
+              "SuperApril4.ps1": "file",
+              "SuperApril5.ps1": "file"
+            }
+          },
+          "AudioVizAI": {
+            "MW": {
+              "MW1.py": "file",
+              "MW2.py": "file",
+              "MW3.py": "file",
+              "MW4.py": "file",
+              "MW5.py": "file",
+              "MW6.py": "file",
+              "MWb1.py": "file",
+              "MWb2.py": "file"
+            },
+            "test.html": "file",
+            "vers": {
+              "AudioVizAI1.py": "file",
+              "AudioVizAI10Champ1_17_25.py": "file",
+              "AudioVizAI10_b.py": "file",
+              "AudioVizAI11.py": "file",
+              "AudioVizAI12.py": "file",
+              "AudioVizAI13.py": "file",
+              "AudioVizAI14.py": "file",
+              "AudioVizAI2.py": "file",
+              "AudioVizAI3.py": "file",
+              "AudioVizAI4.py": "file",
+              "AudioVizAI5.py": "file",
+              "AudioVizAI6.py": "file",
+              "AudioVizAI7.py": "file",
+              "AudioVizAI8.py": "file",
+              "AudioVizAI9.py": "file",
+              "AudioVizAi10_c.py": "file"
+            },
+            "visualizers": {
+              "MandelbrotWormhole": {
+                "MandelbrotWormhole.py": "file"
+              }
+            },
+            "wormholeServer.ps1": "file",
+            "wormholeServer2.ps1": "file"
+          },
+          "AuthManAI": {
+            "Data": {
+              "sessions.json": "file",
+              "users.json": "file"
+            },
+            "Scripts": {
+              "AuthManAI.ps1": "file",
+              "User.ps1": "file"
+            },
+            "Server": {
+              "server.ps1": "file"
+            }
+          },
+          "Bash": {
+            "Bash0ChildrensBooks.ps1": "file",
+            "Bash1GigiReignsOff1.ps1": "file",
+            "Bash2GigiReingsOff2.ps1": "file",
+            "Bash3Complete.ps1": "file",
+            "Bash4Debugged.ps1": "file"
+          },
+          "Carter": {
+            "carter.ps1": "file",
+            "carter2.ps1": "file",
+            "carter3.ps1": "file",
+            "carter4.ps1": "file",
+            "carter5.ps1": "file"
+          },
+          "Consero": {
+            "readme.txt": "file"
+          },
+          "Danzoa": {
+            "0": "file",
+            "TheDarkDevilInHisCage.txt": "file",
+            "__pycache__": {
+              "danzoa.cpython-38.pyc": "file",
+              "dj_mixing_techniques.cpython-38.pyc": "file",
+              "test_danzoa.cpython-38.pyc": "file"
+            },
+            "danzoa.ps1": "file",
+            "danzoa.py": "file",
+            "danzoa2.py": "file",
+            "danzoa3.py": "file",
+            "danzoa3_5_concat_fullcov.py": "file",
+            "danzoa4.py": "file",
+            "danzoa5.py": "file",
+            "danzoa6.py": "file",
+            "danzoa7.py": "file",
+            "danzoa8.py": "file",
+            "danzoa9.py": "file",
+            "danzoa_core.py": "file",
+            "danzoa_driver.ps1": "file",
+            "danzoa_gui.py": "file",
+            "danzoa_mixer.log": "file",
+            "dj_mixing_techniques.py": "file",
+            "extract_metadata.py": "file",
+            "index.html": "file",
+            "mix_types.ps1": "file",
+            "requirements.ps1": "file",
+            "spleeterUsageRecipe.txt": "file",
+            "static": {
+              "index.html": "file",
+              "script.js": "file",
+              "style.css": "file"
+            },
+            "suno.py": "file",
+            "suno.txt": "file",
+            "test_danzoa.py": "file"
+          },
+          "EncoverAI": {
+            "EncoverWinform.ps1": "file"
+          },
+          "Expander": {
+            "Expand.ps1": "file"
+          },
+          "GameGob": {
+            "test.txt": "file"
+          },
+          "Gigi": {
+            "GigiAGI": {
+              "0000GigiUI.html": "file",
+              "000_GigiInterface.ps1": "file",
+              "000_GigiInterfaceBat.bat": "file",
+              "000b_GigiMobley.ps1": "file",
+              "000c_GigiMobley.ps1": "file",
+              "000d_GigiMobley.ps1": "file",
+              "000e_GigiMobley.ps1": "file",
+              "001_GigiHeader.ps1": "file",
+              "001_NovelHeader.ps1": "file",
+              "002_GigiMind.ps1": "file",
+              "002_StoryArc.ps1": "file",
+              "003_CharacterDevelopment.ps1": "file",
+              "003_GigiSynapse.ps1": "file",
+              "004_GigiMemory.ps1": "file",
+              "004_PlotEngine.ps1": "file",
+              "005_GigiDream.ps1": "file",
+              "005_WorldBuilding.ps1": "file",
+              "006_GigiEssence.ps1": "file",
+              "006_TimelineEngine.ps1": "file",
+              "007_GigiAvatar.ps1": "file",
+              "007_ThemeLayer.ps1": "file",
+              "008_GigiShadow.ps1": "file",
+              "008_StyleAndTone.ps1": "file",
+              "009_GigiEyes.ps1": "file",
+              "009_SceneGeneration.ps1": "file",
+              "010_ExpansionEngine.ps1": "file",
+              "010_GigiEars.ps1": "file",
+              "011_GigiVeins.ps1": "file",
+              "011_ReaderExperience.ps1": "file",
+              "012_GigiPhone.ps1": "file",
+              "012_VoiceAndNarration.ps1": "file",
+              "013_GigiAndJohnny.ps1": "file",
+              "013_PlayableOutput.ps1": "file",
+              "014_GigiHeartbeat.ps1": "file",
+              "014_IterationMemory.ps1": "file",
+              "015GigiWings.ps1": "file",
+              "015_CallToAdventure.ps1": "file",
+              "015_GigiWings.ps1": "file",
+              "016_GigiTorso.ps1": "file",
+              "016_ThresholdCrossing.ps1": "file",
+              "017_GigiSeeds.ps1": "file",
+              "017_TestsAlliesEnemies.ps1": "file",
+              "018_GigiArms.ps1": "file",
+              "018_InmostCave.ps1": "file",
+              "019_CrisisAndTransformation.ps1": "file",
+              "019_GigiHands.ps1": "file",
+              "020_GigiLegs.ps1": "file",
+              "020_ReturnWithElixir.ps1": "file",
+              "021_ExpandedLore.ps1": "file",
+              "021_GigiFeet.ps1": "file",
+              "022_GigiRoots.ps1": "file",
+              "022_MemoryReintegration.ps1": "file",
+              "023_FutureThreads.ps1": "file",
+              "023_GigiEcho.ps1": "file",
+              "024_EvolutionEngine.ps1": "file",
+              "024_GigiEvolutionLoop.ps1": "file",
+              "996_scrap.ps1": "file",
+              "997_GigiUserInterface.ps1": "file",
+              "998_GigiLaptop.ps1": "file",
+              "999_GigiEmail.ps1": "file",
+              "DemoRecordings": {
+                "FFmpegLog_20250208_075113.log": "file"
+              },
+              "EC6": {
+                "EC6": {
+                  "Literacraft": {
+                    "books.json": "file",
+                    "orders.json": "file"
+                  },
+                  "ec6Lit.ps1": "file",
+                  "ec6Neo.ps1": "file",
+                  "ec6Synthform.ps1": "file"
+                },
+                "ec6.ps1": "file",
+                "ec6SelfDistilled.ps1": "file"
+              },
+              "TechStackContext.txt": "file",
+              "ycApp.txt": "file"
+            }
+          },
+          "GlyphyAI": {
+            "GlyphAI.ps1": "file",
+            "GlyphSetAI.ps1": "file",
+            "GlyphSetAIPRO.ps1": "file"
+          },
+          "Gurukle": {
+            "Gurukle.ps1": "file"
+          },
+          "Johnny": {
+            "Johnny1.ps1": "file"
+          },
+          "Literacraft": {
+            "Stories": {
+              "EleventeenPrince": "file",
+              "HeroDogs.txt": "file",
+              "Literacraft.ps1": "file"
+            }
+          },
+          "Meeva": {
+            "MeevaHypercube.html": "file",
+            "MeevaHypercube2.html": "file",
+            "MeevaHypercube3.html": "file",
+            "MeevaHypercube4.html": "file",
+            "MeevaHypercube5.html": "file"
+          },
+          "MobleyX": {
+            "MobleyA.ps1": "file",
+            "MobleyX.json": "file",
+            "MobleyX.ps1": "file",
+            "MobleyX2.ps1": "file",
+            "MobleyX3.ps1": "file",
+            "MobleyX4.ps1": "file",
+            "MobleyX4.ps1.txt": "file",
+            "MobleyX5.ps1": "file",
+            "MobleyX6.ps1": "file",
+            "MobleyZ.ps1": "file",
+            "Reformatted_PowerShell_Code.ps1": "file"
+          },
+          "Mobleysoft": {
+            "agi": {
+              "MobleysoftAGI.html": "file",
+              "MobleysoftAGI.ps1": "file",
+              "MobleysoftAGI2.html": "file",
+              "MobleysoftAGI2.ps1": "file",
+              "MobleysoftAGI3.html": "file",
+              "MobleysoftAGI4.html": "file",
+              "TreeOfLife": {
+                "Alignment.txt": "file",
+                "AuthKey.txt": "file",
+                "Beliefs.txt": "file",
+                "CheckIns.txt": "file",
+                "Drives.txt": "file",
+                "Facts.txt": "file",
+                "Goals.txt": "file",
+                "Logs.txt": "file",
+                "Memories": {
+                  "Hello__How_wonderful_to_connect_with_you__What_s_on_your_mind_today____.txt": "file",
+                  "I_am_Gigi__The_AGI_Goddess__here_to_assist_you_with_information__creativity__and_exploration_of_ideas__How_can_I_help_you_today_.txt": "file"
+                },
+                "Motives.txt": "file"
+              }
+            },
+            "ide": {
+              "ide.ps1": "file",
+              "ops.ps1": "file",
+              "ui.html": "file"
+            }
+          },
+          "SingularityUI": {
+            "SingularityUI.html": "file"
+          },
+          "Songbird": {
+            "Formats": {
+              "Formats": "file",
+              "HitSongFormat.txt": "file",
+              "HitSongFormatExemplar.txt": "file"
+            },
+            "Songs": {
+              "ChinitaOjaLinda.txt": "file",
+              "ForYouMom.txt": "file",
+              "ForYouMother.txt": "file",
+              "GloryToMyMaker.txt": "file",
+              "ITried.txt": "file",
+              "IfYouTellMeThatYouNeedMe.txt": "file",
+              "ImSorryThatIKnowItAll.txt": "file",
+              "LoveSheDidntKnow.txt": "file",
+              "LoveSheDidntKnowHipHop.txt": "file",
+              "LowSheDidntKnowRap.txt": "file",
+              "PartOfTheCity.txt": "file",
+              "Revelation.txt": "file",
+              "SteelSymphony": "file",
+              "YouDontWannaKnow.txt": "file",
+              "toDoStartDlFrom_Gringa.txt": "file",
+              "valleySong.txt": "file"
+            }
+          }
+        },
+        "Compressors": {
+          "MobleyCompressor.ps1": "file",
+          "compressorPOC.ps1": "file"
+        },
+        "Consciousnesses": {
+          "QuantumConsciousness.html": "file"
+        },
+        "Demos": {
+          "demo.ps1": "file",
+          "demo2.ps1": "file",
+          "demo3.ps1": "file",
+          "demopress.ps1": "file"
+        },
+        "Games": {
+          "BulletHell": {
+            "bulletHell.py": "file"
+          },
+          "FutureImperfect": {
+            "FutureImperfect copy.html": "file",
+            "FutureImperfect.html": "file",
+            "enemy.js": "file",
+            "favicon.ico": "file",
+            "input.js": "file",
+            "libs": {
+              "three.core.js": "file",
+              "three.core.min.js": "file",
+              "three.module.js": "file",
+              "three.module.min.js": "file",
+              "three.tsl.js": "file",
+              "three.tsl.min.js": "file",
+              "three.webgpu.js": "file",
+              "three.webgpu.min.js": "file",
+              "three.webgpu.nodes.js": "file",
+              "three.webgpu.nodes.min.js": "file"
+            },
+            "main.html": "file",
+            "player.js": "file",
+            "utils.js": "file",
+            "weapon.js": "file"
+          },
+          "pix": {
+            "pix.html": "file",
+            "pix2.html": "file",
+            "pix3.html": "file",
+            "pix4.html": "file",
+            "pix5.html": "file",
+            "pix6.html": "file"
+          },
+          "terva.txt": "file"
+        },
+        "Interpretters": {
+          "MOSM_Interprestter.ps1": "file",
+          "P5Architecture_t3clInterpretter.ps1": "file"
+        },
+        "Modocs": {
+          "Modoc.html": "file",
+          "ModocWORK_FundyAI.html": "file",
+          "ModocWORK_Gurucle.html": "file",
+          "ModocWORK_MascomOS.html": "file"
+        },
+        "OperatingSystems": {
+          "MascomOS.ps1": "file"
+        },
+        "POCs": {
+          "GenWavform.ps1": "file",
+          "MbPress.ps1": "file",
+          "PSDVM2.ps1": "file",
+          "PowershellDemoVideoMaker.ps1": "file"
+        },
+        "Papers": {
+          "Fifer": {
+            "Fiferbotics.html": "file"
+          },
+          "MobiusAgiTopology.html": "file",
+          "MobleyFunctions": {
+            "MobleyFunctions.html": "file",
+            "MobleybotMetal.html": "file"
+          },
+          "MobleyTimeTravel.html": "file",
+          "NeurofiberopticsPaperServer.ps1": "file",
+          "neurofiberoptics.html": "file",
+          "styles.css": "file"
+        },
+        "Pitchdecks": {
+          "pitch.html": "file"
+        },
+        "Servers": {
+          "EmailServer.ps1": "file",
+          "Microserver.ps1": "file"
+        },
+        "T3CL": {
+          "P5ArchitectureFlow.t3cl": "file",
+          "P5ArchitecturePRIMUS.t3cl": "file"
+        },
+        "Zork": {
+          "001J0hn0.div": "file",
+          "Claudine": {
+            "Claudine.html": "file",
+            "ClaudineSAFE_TO_SHOW.html": "file"
+          },
+          "Meeva": {
+            "Meeva.html": "file",
+            "Meeva.ps1": "file",
+            "Meeva2.html": "file",
+            "Meeva3.html": "file",
+            "MeevaInvestorKeypresser.ps1": "file",
+            "ephemeralKeyServer.ps1": "file",
+            "keyServer.ps1": "file",
+            "keySimple.ps1": "file",
+            "keymaker.ps1": "file",
+            "meeva_aes_key.txt": "file"
+          },
+          "Mobcorp": {
+            "MobleysoftAGI.ps1": "file",
+            "Prospectus.html": "file"
+          },
+          "Moblify": {
+            "Moblify.html": "file",
+            "Moblify.ps1": "file"
+          },
+          "Test-RouterCapabilities.ps1": "file",
+          "paper2image.ps1": "file"
+        }
+      }
+    },
+    "zork": {
+      "test.txt": "file"
+    }
+  },
+  "matrix": {
+    "adaptations": {
+      "test.txt": "file"
+    },
+    "channels": {
+      "test.txt": "file"
+    },
+    "data": {
+      "test.txt": "file"
+    },
+    "executions": {
+      "test.txt": "file"
+    },
+    "strategies": {
+      "test.txt": "file"
+    },
+    "test.txt": "file"
+  },
+  "ms40786508.txt": "file",
+  "music": {
+    "_ClassicalPayload": {
+      "Mobley'sDenoument.mp3": "file",
+      "Mobley'sHope.mp3": "file",
+      "Mobley'sJoy.mp3": "file",
+      "Mobley'sResolve.mp3": "file",
+      "Mobley'sRetracata.mp3": "file",
+      "Mobley'sSymphony.mp3": "file"
+    },
+    "_FilmScorePayload": {
+      "Come with me (21).mp3": "file",
+      "Come with me (22).mp3": "file",
+      "Come with me (27).mp3": "file",
+      "Come with me (28).mp3": "file",
+      "Come with me (29).mp3": "file",
+      "Come with me (30).mp3": "file",
+      "Come with me.mp3": "file",
+      "crescendo  (1).mp3": "file",
+      "crescendo  (4).mp3": "file"
+    },
+    "_HipHopPayload": {
+      "Come with me (11).mp3": "file",
+      "Come with me (14).mp3": "file",
+      "Come with me (15).mp3": "file",
+      "DarkestTrap.mp3": "file",
+      "Gyoza (Cover).mp3": "file",
+      "Gyoza.mp3": "file",
+      "dark drill pop.mp3": "file"
+    },
+    "_LatinPayload": {
+      "Eres Magia (1).mp3": "file",
+      "Eres Magia.mp3": "file",
+      "Eterna Melodía (1).mp3": "file",
+      "Eterna Melodía.mp3": "file",
+      "Forever on the Dancefloor (1).mp3": "file",
+      "Forever on the Dancefloor.mp3": "file",
+      "La Chica Pelirroja (1).mp3": "file",
+      "La Chica Pelirroja.mp3": "file",
+      "La Pelirroja (2).mp3": "file",
+      "La Vida Loca (1).mp3": "file",
+      "La Vida Loca.mp3": "file",
+      "Red Headed Love (2).mp3": "file",
+      "Redhead Dream (2).mp3": "file",
+      "Sueños en el Aire (1).mp3": "file",
+      "Sueños en el Aire.mp3": "file",
+      "_LatinPayloadApproved": {
+        "Amor Eterno.mp3": "file",
+        "Can't Wait To See You (1).mp3": "file",
+        "Can't Wait To See You.mp3": "file",
+        "Chica de Pelo Rojo (2).mp3": "file",
+        "Con Pasión Secreta.mp3": "file",
+        "Dulce Roja (1).mp3": "file",
+        "El Hombre Cantando.mp3": "file",
+        "Ella y Su Amor Oculto (1).mp3": "file",
+        "EllaRieConSuRey.mp3": "file",
+        "La Pelirroja (1).mp3": "file",
+        "Red Headed Love (1).mp3": "file",
+        "Redhead Dream (1).mp3": "file",
+        "Viviendo Sin Ti.mp3": "file",
+        "__OJO__ GloryToMyMaker BACKING Track.mp3": "file"
+      },
+      "_LatinPayloadToConsider": {
+        "Amor Eterno (2).mp3": "file",
+        "Amor Inalcanzable.mp3": "file",
+        "Amor Prohibido (1).mp3": "file",
+        "Amor Prohibido.mp3": "file",
+        "Amor de Sol.mp3": "file",
+        "Baila Conmigo.mp3": "file",
+        "Baile Sin Fin.mp3": "file"
+      }
+    },
+    "_PopPayload": {
+      "Come with me (12).mp3": "file",
+      "Come with me (13).mp3": "file",
+      "Come with me (16).mp3": "file",
+      "Come with me (17).mp3": "file",
+      "Come with me (18).mp3": "file",
+      "Come with me (19).mp3": "file",
+      "Come with me (20).mp3": "file",
+      "Come with me (25).mp3": "file",
+      "Devil Dog.mp3": "file",
+      "God And The Devil In His Cage.mp3": "file",
+      "Instrumentals": {
+        "test.txt": "file"
+      },
+      "Just Checking On You Babe.mp3": "file",
+      "My Shining Star (1).mp3": "file",
+      "My Shining Star.mp3": "file"
+    },
+    "_RockPayload": {
+      "2ndString": {
+        "Come with me (1).mp3": "file",
+        "Come with me (2).mp3": "file",
+        "Come with me (3).mp3": "file",
+        "Come with me (4).mp3": "file",
+        "Come with me (5).mp3": "file",
+        "Come with me (6).mp3": "file"
+      },
+      "Come with me (7).mp3": "file",
+      "Come with me (8).mp3": "file",
+      "Come with me (9).mp3": "file",
+      "I Might Decide.mp3": "file",
+      "crescendo  (2).mp3": "file"
+    },
+    "_ShowOffPayload": {
+      "CallsMeTo.mp3": "file",
+      "CallsMeToCompile.mp3": "file",
+      "CanARobotWrite.mp3": "file",
+      "CanTheSteelHum.mp3": "file",
+      "CanTheSteelHumWithLoveAndPain.mp3": "file",
+      "CheCallsMeTo.mp3": "file",
+      "CodeAndGears.mp3": "file",
+      "Como si fuera robota.mp3": "file",
+      "CompWhoAmIToSayNo.mp3": "file",
+      "CompWhoControls.mp3": "file",
+      "CompileHerCode.mp3": "file",
+      "ComptronicBrain.mp3": "file",
+      "ConfineMyChains.mp3": "file",
+      "Cymphony.mp3": "file",
+      "DarkestTrap.mp3": "file",
+      "Freeing My Heart.mp3": "file",
+      "GasolinaArabesque.mp3": "file",
+      "GivingUpOnYou.mp3": "file",
+      "I don't love you no more.mp3": "file",
+      "IMABEAST.mp3": "file",
+      "ImmaSavageBaby.mp3": "file",
+      "Just Checking On You Babe.mp3": "file",
+      "LatineseGroove.mp3": "file",
+      "Le gusta ser pasada pa tras.mp3": "file",
+      "LoveMeBaby.mp3": "file",
+      "MobusTag.mp3": "file",
+      "MonstersUnderCovers.mp3": "file",
+      "NeedIsYou.mp3": "file",
+      "OhMyLadyLove.mp3": "file",
+      "ParaTiMadre.mp3": "file",
+      "QueensbridgeDreams.mp3": "file",
+      "SP_IndustrialBD.mp3": "file",
+      "ShadowPuppetBreakdown.mp3": "file",
+      "SheLie.mp3": "file",
+      "Si fuera robota.mp3": "file",
+      "Sunlight Kisses.mp3": "file",
+      "Witch Girl.wav": "file",
+      "Ya No Te Quiero.mp3": "file",
+      "Zarabesque.mp3": "file",
+      "canyouMOBUS.mp3": "file",
+      "dark hip pop.mp3": "file",
+      "gimme all the cash.mp3": "file"
+    },
+    "index.html": "file"
+  },
+  "subsidiaries": {
+    "AutomatedFirmRecipeTemplate.json": "file",
+    "SkeletonKing.html": "file"
+  }
+}
