@@ -1051,7 +1051,16 @@
       "Come with me (20).mp3": "file",
       "Come with me (25).mp3": "file",
       "Devil Dog.mp3": "file",
-      "God And The Devil In His Cage.mp3": "file"
+      "God And The Devil In His Cage.mp3": "file",
+      "Instrumentals": {
+        "test.txt": "file"
+      },
+      "Just Checking On You Babe.mp3": "file",
+      "My Shining Star (1).mp3": "file",
+      "My Shining Star.mp3": "file"
+    },
+    "rock": {
+      "Come with me (7).mp3": "file"
     }
   },
   "site-directory.json": "file",
