@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>T3CL DSL: D'Ariano-Faggin Consciousness Theory Implementation</title>
+  <!-- Load Polyfill for ES6 features -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <!-- Load MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        // Force MathJax to process <pre> and <code> blocks
+        ignoreHtmlClass: "no-mathjax",
+        processHtmlClass: "mathjax-process"
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #f8f8f8;
+      padding: 1em;
+    }
+    pre {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 1em;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    .mathjax-process {
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<h1>T3CL DSL: D'Ariano–Faggin Consciousness Theory Implementation</h1>
+<p>This page displays our PowerShell implementation of the D'Ariano–Faggin theory of consciousness with inline mathematical equations. The equations (delimited by <code>$$ ... $$</code>) are rendered by MathJax.</p>
+
+<!-- Ensure MathJax processes this section -->
+<div class="mathjax-process">
+  <p>We represent the canvas as a string:</p>
+  <p>$$ s \in \Sigma^* $$</p>
+  <p>Example: $$ s_0 = \mathtt{PURE\_STATE:1010} $$</p>
+  
+  <p>The canvas is modeled as a mapping:</p>
+  <p>$$ s: \{1, 2, \dots, n\} \to \Sigma $$</p>
+</div>
+
+<!-- Code Block -->
+<pre class="mathjax-process"><code>
+# T3CL DSL Model of the D'Ariano–Faggin Theory of Consciousness
+#
+# We represent the canvas as a string:
+# $$ s \in \Sigma^* $$
+# Example: $$ s_0 = \mathtt{PURE\_STATE:1010} $$
+
+Class Canvas {
+    [char[]] $Text
+
+    # Constructor: initialize the canvas from an input string.
+    # $$ s_0 = \text{input string converted to } s(1)s(2)\cdots s(n) $$
+    Canvas ([string]$input) {
+        $this.Text = $input.ToCharArray()
+    }
+
+    # Returns the string representation of the canvas.
+    # $$ \text{ToString}(s) = s(1)s(2)\cdots s(n) $$
+    [string] ToString() {
+        return -join $this.Text
+    }
+}
+</code></pre>
+
+<!-- Button to Reprocess MathJax -->
+<button onclick="MathJax.typesetPromise()">Render MathJax</button>
+
+</body>
+</html>
