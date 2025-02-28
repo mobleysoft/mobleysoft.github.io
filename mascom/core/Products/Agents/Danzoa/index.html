@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danzoa DJ Mix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        label, button {
+            display: block;
+            margin: 15px 0;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danzoa DJ Mix Generator</h1>
+    <form id="mix-form">
+        <label for="folder-select">Select Track Folder:</label>
+        <select id="folder-select">
+            <option value="AllAtOnce">AllAtOnce</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <label for="mix-type">Select Mix Type:</label>
+        <select id="mix-type">
+            <option value="crossfade">Crossfade</option>
+            <option value="filter">Filter Transition</option>
+            <option value="reverb">Reverb</option>
+            <option value="backspin">Backspin</option>
+            <option value="looproll">Loop Roll</option>
+        </select>
+
+        <button type="button" id="generate-mix">Generate Mix</button>
+    </form>
+
+    <script>
+        document.getElementById('generate-mix').addEventListener('click', () => {
+            const folder = document.getElementById('folder-select').value;
+            const mixType = document.getElementById('mix-type').value;
+
+            fetch(`http://localhost:8080/api/generate?folder=${folder}&mixType=${mixType}`)
+                .then(response => {
+                    if (response.ok) {
+                        alert('Mix generated successfully!');
+                    } else {
+                        alert('Failed to generate mix. Please try again.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
