@@ -1,0 +1,46 @@
+﻿```json
+{
+    "0": {
+        "id": "InnovationFrameworks",
+        "type": "collection",
+        "name": "Innovation Frameworks",
+        "description": "A comprehensive collection of strategies for fostering innovation, including TRIZ, design thinking, and lateral thinking."
+    },
+    "1": {
+        "id": "TRIZ",
+        "type": "framework",
+        "name": "TRIZ",
+        "description": "A problem-solving, analysis, and forecasting tool derived from the study of patterns of invention in the global patent literature."
+    },
+    "2": {
+        "id": "DesignThinking",
+        "type": "framework",
+        "name": "Design Thinking",
+        "description": "A user-centered approach to innovation that integrates the needs of people, the possibilities of technology, and the requirements for business success."
+    },
+    "3": {
+        "id": "LateralThinking",
+        "type": "framework",
+        "name": "Lateral Thinking",
+        "description": "A creative problem-solving technique that involves looking at a situation from different angles and perspectives."
+    },
+    "4": {
+        "id": "TRIZPrinciples",
+        "type": "sub-framework",
+        "name": "TRIZ Principles",
+        "description": "The 40 inventive principles used in TRIZ to generate innovative solutions."
+    },
+    "5": {
+        "id": "DesignThinkingPhases",
+        "type": "sub-framework",
+        "name": "Design Thinking Phases",
+        "description": "The five phases of design thinking: Empathize, Define, Ideate, Prototype, and Test."
+    },
+    "6": {
+        "id": "LateralThinkingTechniques",
+        "type": "sub-framework",
+        "name": "Lateral Thinking Techniques",
+        "description": "Various techniques used in lateral thinking, such as random entry, provocation, and challenge."
+    }
+}
+```

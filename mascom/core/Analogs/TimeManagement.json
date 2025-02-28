@@ -1,0 +1,70 @@
+﻿```json
+{
+    "0": {
+        "id": "TimeManagementModels",
+        "type": "collection",
+        "name": "Time Management Models",
+        "description": "A comprehensive framework for optimizing time and productivity through various methodologies and techniques."
+    },
+    "1": {
+        "id": "PomodoroTechnique",
+        "type": "model",
+        "name": "Pomodoro Technique",
+        "description": "A time management method that uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks."
+    },
+    "2": {
+        "id": "EisenhowerMatrix",
+        "type": "model",
+        "name": "Eisenhower Matrix",
+        "description": "A decision-making tool that helps prioritize tasks by urgency and importance, dividing them into four quadrants."
+    },
+    "3": {
+        "id": "GettingThingsDone",
+        "type": "model",
+        "name": "Getting Things Done (GTD)",
+        "description": "A productivity methodology that encourages capturing tasks and organizing them to increase efficiency and reduce stress."
+    },
+    "4": {
+        "id": "TimeBlocking",
+        "type": "model",
+        "name": "Time Blocking",
+        "description": "A technique that schedules specific blocks of time for different tasks or activities, promoting focus and productivity."
+    },
+    "5": {
+        "id": "ABCMethod",
+        "type": "model",
+        "name": "ABC Method",
+        "description": "A prioritization technique that classifies tasks into three categories: A (most important), B (important), and C (least important)."
+    },
+    "6": {
+        "id": "SMARTGoals",
+        "type": "model",
+        "name": "SMART Goals",
+        "description": "A framework for setting clear and achievable goals using the criteria of Specific, Measurable, Achievable, Relevant, and Time-bound."
+    },
+    "7": {
+        "id": "Kanban",
+        "type": "model",
+        "name": "Kanban",
+        "description": "A visual workflow management method that helps track tasks and manage work in progress through boards and cards."
+    },
+    "8": {
+        "id": "BatchProcessing",
+        "type": "model",
+        "name": "Batch Processing",
+        "description": "A technique that involves grouping similar tasks together to reduce setup time and improve efficiency."
+    },
+    "9": {
+        "id": "TwoMinuteRule",
+        "type": "model",
+        "name": "Two-Minute Rule",
+        "description": "A principle that suggests if a task takes less than two minutes, it should be done immediately rather than deferred."
+    },
+    "10": {
+        "id": "WeeklyReview",
+        "type": "model",
+        "name": "Weekly Review",
+        "description": "A scheduled time to review goals, tasks, and priorities to stay organized and focused on important activities."
+    }
+}
+```

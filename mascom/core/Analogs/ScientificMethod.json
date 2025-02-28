@@ -1,0 +1,17 @@
+﻿{
+"0": { "id": "ScientificMethod", "type": "collection", "name": "Scientific Method", "description": "A comprehensive framework outlining the steps and principles of scientific inquiry." },
+"1": { "id": "Step1", "type": "step", "name": "Observation", "description": "Make observations and identify a problem or question." },
+"2": { "id": "Step2", "type": "step", "name": "Research", "description": "Conduct background research to understand the existing knowledge and gaps." },
+"3": { "id": "Step3", "type": "step", "name": "Hypothesis", "description": "Formulate a hypothesis that provides a tentative explanation or prediction." },
+"4": { "id": "Step4", "type": "step", "name": "Experiment", "description": "Design and conduct experiments to test the hypothesis." },
+"5": { "id": "Step5", "type": "step", "name": "Analysis", "description": "Analyze the data collected from experiments to determine if they support the hypothesis." },
+"6": { "id": "Step6", "type": "step", "name": "Conclusion", "description": "Draw conclusions based on the analysis and determine if the hypothesis is supported." },
+"7": { "id": "Step7", "type": "step", "name": "Communication", "description": "Share results with the scientific community and the public." },
+"8": { "id": "Principle1", "type": "principle", "name": "Empiricism", "description": "Knowledge is derived from sensory experience and evidence." },
+"9": { "id": "Principle2", "type": "principle", "name": "Skepticism", "description": "Maintain a questioning attitude towards knowledge, facts, or opinions." },
+"10": { "id": "Principle3", "type": "principle", "name": "Replication", "description": "Experiments must be repeatable to ensure reliability of results." },
+"11": { "id": "Principle4", "type": "principle", "name": "Falsifiability", "description": "Hypotheses must be testable and able to be proven false." },
+"12": { "id": "Principle5", "type": "principle", "name": "Peer Review", "description": "Research findings should be subjected to scrutiny by other experts in the field." },
+"13": { "id": "Principle6", "type": "principle", "name": "Objectivity", "description": "Research should be conducted without bias or subjective influence." }
+}
+

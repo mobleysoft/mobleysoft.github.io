@@ -1,0 +1,26 @@
+﻿```json
+{
+    "0": { "id": "UniversalMorality", "type": "collection", "name": "Universal Morality", "description": "A comprehensive guide to ethical decision-making frameworks including utilitarianism, virtue ethics, deontology, and more." },
+    "1": { "id": "Utilitarianism", "type": "framework", "name": "Utilitarianism", "description": "An ethical theory that evaluates the morality of actions based on their consequences, aiming for the greatest happiness for the greatest number." },
+    "2": { "id": "VirtueEthics", "type": "framework", "name": "Virtue Ethics", "description": "An ethical approach focused on the character of the moral agent rather than rules or consequences." },
+    "3": { "id": "Deontology", "type": "framework", "name": "Deontology", "description": "An ethical theory that emphasizes duties and rules, asserting that actions are morally right if they adhere to established rules." },
+    "4": { "id": "SocialContractTheory", "type": "framework", "name": "Social Contract Theory", "description": "A theory that posits moral and political obligations are dependent upon a contract or agreement among individuals." },
+    "5": { "id": "CareEthics", "type": "framework", "name": "Care Ethics", "description": "An ethical perspective that emphasizes interpersonal relationships and the importance of care and compassion in moral decision-making." },
+    "6": { "id": "Egoism", "type": "framework", "name": "Egoism", "description": "An ethical theory that posits that moral agents should act in their own self-interest." },
+    "7": { "id": "Relativism", "type": "framework", "name": "Relativism", "description": "The view that moral standards are not absolute but vary based on culture or individual preference." },
+    "8": { "id": "DivineCommandTheory", "type": "framework", "name": "Divine Command Theory", "description": "An ethical theory that posits that morality is grounded in the commands of a divine being." },
+    "9": { "id": "PragmaticEthics", "type": "framework", "name": "Pragmatic Ethics", "description": "An approach to ethics that evaluates the practical consequences and applications of moral theories in real-world scenarios." },
+    "10": { "id": "FeministEthics", "type": "framework", "name": "Feminist Ethics", "description": "An ethical approach that critiques traditional ethical theories from a feminist perspective, emphasizing the importance of gender and power dynamics." },
+    "11": { "id": "EnvironmentalEthics", "type": "framework", "name": "Environmental Ethics", "description": "A branch of ethics that studies the moral relationship of human beings to the environment and its non-human contents." },
+    "12": { "id": "MoralRealism", "type": "framework", "name": "Moral Realism", "description": "The view that there are objective moral facts and values that exist independently of human beliefs or perceptions." },
+    "13": { "id": "MoralSubjectivism", "type": "framework", "name": "Moral Subjectivism", "description": "The ethical theory that moral judgments are based on personal feelings and opinions rather than objective truths." },
+    "14": { "id": "Consequentialism", "type": "framework", "name": "Consequentialism", "description": "An ethical theory that judges whether or not something is right by what its consequences are." },
+    "15": { "id": "MoralIntuitionism", "type": "framework", "name": "Moral Intuitionism", "description": "The theory that moral truths are known through intuitive judgment rather than reason or emotional response." },
+    "16": { "id": "Stoicism", "type": "framework", "name": "Stoicism", "description": "An ancient philosophy that teaches the development of self-control and fortitude as a means to overcome destructive emotions." },
+    "17": { "id": "ExistentialEthics", "type": "framework", "name": "Existential Ethics", "description": "A philosophical approach that emphasizes individual freedom, choice, and responsibility in moral decision-making." },
+    "18": { "id": "TranshumanistEthics", "type": "framework", "name": "Transhumanist Ethics", "description": "A moral framework that advocates for the ethical implications of using technology to enhance human capacities." },
+    "19": { "id": "HolisticEthics", "type": "framework", "name": "Holistic Ethics", "description": "An approach to ethics that considers the whole system, including individuals, communities, and the environment." },
+    "20": { "id": "InterculturalEthics", "type": "framework", "name": "Intercultural Ethics", "description": "The study of how ethical principles can vary across different cultures and the implications for global interactions." },
+    "21": { "id": "MetaEthics", "type": "framework", "name": "Meta-Ethics", "description": "The branch of philosophy that analyzes the nature, status, and foundations of ethical concepts and theories." }
+}
+```

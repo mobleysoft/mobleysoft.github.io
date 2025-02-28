@@ -1,0 +1,23 @@
+﻿{
+    "0": { "id": "CognitiveBiases", "type": "collection", "name": "Cognitive Biases", "description": "List of biases and counter-strategies to improve reasoning." },
+    "1": { "id": "ConfirmationBias", "type": "bias", "name": "Confirmation Bias", "description": "The tendency to search for, interpret, and remember information that confirms one's preconceptions." },
+    "2": { "id": "CounterConfirmationBias", "type": "strategy", "name": "Seek Disconfirming Evidence", "description": "Actively look for information that contradicts your beliefs to challenge your assumptions." },
+    "3": { "id": "AnchoringBias", "type": "bias", "name": "Anchoring Bias", "description": "The reliance on the first piece of information encountered when making decisions." },
+    "4": { "id": "CounterAnchoringBias", "type": "strategy", "name": "Consider Multiple Perspectives", "description": "Evaluate different viewpoints to reduce the impact of initial anchors." },
+    "5": { "id": "HindsightBias", "type": "bias", "name": "Hindsight Bias", "description": "The inclination to see events as having been predictable after they have already occurred." },
+    "6": { "id": "CounterHindsightBias", "type": "strategy", "name": "Document Predictions", "description": "Record predictions before events occur to evaluate accuracy later." },
+    "7": { "id": "OverconfidenceBias", "type": "bias", "name": "Overconfidence Bias", "description": "The tendency to overestimate one's abilities or the accuracy of one's knowledge." },
+    "8": { "id": "CounterOverconfidenceBias", "type": "strategy", "name": "Seek Feedback", "description": "Regularly ask for feedback from others to gain an objective view of your capabilities." },
+    "9": { "id": "AvailabilityHeuristic", "type": "bias", "name": "Availability Heuristic", "description": "Relying on immediate examples that come to mind when evaluating a specific topic." },
+    "10": { "id": "CounterAvailabilityHeuristic", "type": "strategy", "name": "Research Data", "description": "Gather comprehensive data and statistics to make informed decisions instead of relying on memory." },
+    "11": { "id": "BandwagonEffect", "type": "bias", "name": "Bandwagon Effect", "description": "The tendency to adopt beliefs or behaviors because others are doing so." },
+    "12": { "id": "CounterBandwagonEffect", "type": "strategy", "name": "Independent Evaluation", "description": "Make decisions based on personal values and research rather than peer influence." },
+    "13": { "id": "SelfServingBias", "type": "bias", "name": "Self-Serving Bias", "description": "The habit of attributing positive events to one's own character, but attributing negative events to external factors." },
+    "14": { "id": "CounterSelfServingBias", "type": "strategy", "name": "Reflect on Failures", "description": "Acknowledge and analyze personal mistakes to promote accountability." },
+    "15": { "id": "SunkCostFallacy", "type": "bias", "name": "Sunk Cost Fallacy", "description": "The tendency to continue an endeavor once an investment in money, effort, or time has been made." },
+    "16": { "id": "CounterSunkCostFallacy", "type": "strategy", "name": "Assess Future Value", "description": "Evaluate decisions based on future benefits rather than past investments." },
+    "17": { "id": "FramingEffect", "type": "bias", "name": "Framing Effect", "description": "The way information is presented can influence decisions and judgments." },
+    "18": { "id": "CounterFramingEffect", "type": "strategy", "name": "Reframe the Information", "description": "Look at the information from different angles to avoid biased interpretations." },
+    "19": { "id": "DunningKrugerEffect", "type": "bias", "name": "Dunning-Kruger Effect", "description": "The cognitive bias in which people with low ability at a task overestimate their ability." },
+    "20": { "id": "CounterDunningKrugerEffect", "type": "strategy", "name": "Continuous Learning", "description": "Commit to lifelong learning and skill development to gain a realistic view of your abilities." }
+}

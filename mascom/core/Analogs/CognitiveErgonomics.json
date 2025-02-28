@@ -1,0 +1,24 @@
+﻿```json
+{
+    "0": { "id": "CognitiveErgonomics", "type": "collection", "name": "Cognitive Ergonomics", "description": "Designing systems for human-AI collaboration, focusing on optimizing human cognitive capabilities and improving interaction with AI systems." },
+    "1": { "id": "PrinciplesOfCognitiveErgonomics", "type": "principle", "name": "User-Centric Design", "description": "Prioritize user needs and cognitive abilities in the design process." },
+    "2": { "id": "Principle2", "type": "principle", "name": "Feedback Mechanisms", "description": "Implement systems that provide real-time feedback to users to enhance understanding and control." },
+    "3": { "id": "Principle3", "type": "principle", "name": "Cognitive Load Management", "description": "Design to minimize unnecessary cognitive load, allowing users to focus on essential tasks." },
+    "4": { "id": "Principle4", "type": "principle", "name": "Transparency", "description": "Ensure clarity in AI actions and decisions to build trust and improve user experience." },
+    "5": { "id": "Principle5", "type": "principle", "name": "Intuitive Interfaces", "description": "Create interfaces that align with usersâ cognitive processes and are easy to navigate." },
+    "6": { "id": "Principle6", "type": "principle", "name": "Error Recovery", "description": "Design systems that support easy recovery from errors, reducing user frustration." },
+    "7": { "id": "Principle7", "type": "principle", "name": "Adaptive Systems", "description": "Develop AI that adapts to individual user preferences and cognitive styles." },
+    "8": { "id": "SupportingResearch", "type": "research", "name": "Cognitive Load Theory", "description": "Research on cognitive load to inform system design decisions." },
+    "9": { "id": "SupportingResearch2", "type": "research", "name": "Human-AI Interaction Studies", "description": "Studies focused on how humans interact with AI systems and the implications for design." },
+    "10": { "id": "SupportingResearch3", "type": "research", "name": "User Experience Research", "description": "Research methods to assess user experience and satisfaction with AI systems." },
+    "11": { "id": "CaseStudies", "type": "caseStudy", "name": "Successful AI Collaboration", "description": "Examples of effective human-AI collaboration that enhance cognitive ergonomics." },
+    "12": { "id": "CaseStudy1", "type": "caseStudy", "name": "AI in Healthcare", "description": "Case study demonstrating AIâs role in assisting medical professionals." },
+    "13": { "id": "CaseStudy2", "type": "caseStudy", "name": "AI in Education", "description": "Exploring how AI tools support teachers and learners." },
+    "14": { "id": "FutureTrends", "type": "trend", "name": "Cognitive Ergonomics in AI Development", "description": "Emerging trends in designing AI that prioritizes cognitive ergonomics." },
+    "15": { "id": "Trend1", "type": "trend", "name": "Personalized AI Assistants", "description": "The rise of AI that adapts to individual cognitive styles and preferences." },
+    "16": { "id": "Trend2", "type": "trend", "name": "Interdisciplinary Approaches", "description": "Integration of cognitive science, design, and AI for better ergonomics." },
+    "17": { "id": "ImplementationGuidelines", "type": "guideline", "name": "Best Practices for Design", "description": "Guidelines for implementing cognitive ergonomics in AI design." },
+    "18": { "id": "Guideline1", "type": "guideline", "name": "Conduct User Testing", "description": "Regularly test designs with users to gather feedback." },
+    "19": { "id": "Guideline2", "type": "guideline", "name": "Iterative Design Process", "description": "Apply iterative design principles to refine AI systems." }
+}
+```

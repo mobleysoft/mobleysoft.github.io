@@ -1,0 +1,21 @@
+﻿```json
+{
+    "0": { "id": "BehavioralEconomics", "type": "collection", "name": "Behavioral Economics", "description": "A comprehensive framework for understanding how psychological factors influence economic decision-making." },
+    "1": { "id": "UtilityTheory", "type": "concept", "name": "Utility Theory", "description": "A model that represents how individuals make choices to maximize their satisfaction." },
+    "2": { "id": "ProspectTheory", "type": "concept", "name": "Prospect Theory", "description": "Describes how people make decisions involving risk, highlighting the value of potential losses and gains." },
+    "3": { "id": "NudgeTheory", "type": "concept", "name": "Nudge Theory", "description": "Explores how subtle changes in the environment can significantly alter behavior." },
+    "4": { "id": "AnchoringEffect", "type": "bias", "name": "Anchoring Effect", "description": "The tendency to rely heavily on the first piece of information encountered when making decisions." },
+    "5": { "id": "FramingEffect", "type": "bias", "name": "Framing Effect", "description": "The way information is presented can influence decision-making and judgment." },
+    "6": { "id": "LossAversion", "type": "bias", "name": "Loss Aversion", "description": "The principle that losses weigh heavier on decision-making than equivalent gains." },
+    "7": { "id": "MentalAccounting", "type": "concept", "name": "Mental Accounting", "description": "The cognitive process where individuals categorize, evaluate, and keep track of financial activities." },
+    "8": { "id": "HerdBehavior", "type": "concept", "name": "Herd Behavior", "description": "The tendency for individuals to mimic the actions of a larger group." },
+    "9": { "id": "OverconfidenceBias", "type": "bias", "name": "Overconfidence Bias", "description": "The tendency for people to overestimate their own abilities and knowledge." },
+    "10": { "id": "ConfirmationBias", "type": "bias", "name": "Confirmation Bias", "description": "The tendency to search for, interpret, and remember information that confirms oneâs preconceptions." },
+    "11": { "id": "SunkCostFallacy", "type": "fallacy", "name": "Sunk Cost Fallacy", "description": "The misconception that one must continue an endeavor once an investment in money, effort, or time has been made." },
+    "12": { "id": "StatusQuoBias", "type": "bias", "name": "Status Quo Bias", "description": "The preference to keep things the same rather than change." },
+    "13": { "id": "ChoiceParadox", "type": "concept", "name": "Choice Paradox", "description": "The phenomenon where having too many options can lead to paralysis and dissatisfaction." },
+    "14": { "id": "TemporalDiscounting", "type": "concept", "name": "Temporal Discounting", "description": "The tendency to prefer smaller, immediate rewards over larger, delayed rewards." },
+    "15": { "id": "BehavioralFinance", "type": "concept", "name": "Behavioral Finance", "description": "The study of the influence of psychology on the behavior of financial practitioners." },
+    "16": { "id": "EthicalConsiderations", "type": "concept", "name": "Ethical Considerations in Behavioral Economics", "description": "Understanding the ethical implications of influencing consumer behavior." }
+}
+```

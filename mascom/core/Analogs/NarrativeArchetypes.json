@@ -1,0 +1,70 @@
+﻿```json
+{
+    "0": {
+        "id": "NarrativeArchetypes",
+        "type": "collection",
+        "name": "Narrative Archetypes",
+        "description": "A comprehensive guide to universal story structures and beats that underpin effective narratives across cultures."
+    },
+    "1": {
+        "id": "Hero'sJourney",
+        "type": "archetype",
+        "name": "Hero's Journey",
+        "description": "A narrative pattern involving a hero who goes on an adventure, faces a crisis, and returns transformed."
+    },
+    "2": {
+        "id": "Quest",
+        "type": "archetype",
+        "name": "The Quest",
+        "description": "A story where the main character sets out to achieve a specific goal, often involving challenges and obstacles."
+    },
+    "3": {
+        "id": "OvercomingTheMonster",
+        "type": "archetype",
+        "name": "Overcoming the Monster",
+        "description": "A narrative where the hero faces a great evil or monster, ultimately overcoming it to restore order."
+    },
+    "4": {
+        "id": "RagsToRiches",
+        "type": "archetype",
+        "name": "Rags to Riches",
+        "description": "A story of a protagonist who rises from humble beginnings to greatness, often facing and overcoming adversity."
+    },
+    "5": {
+        "id": "VoyageAndReturn",
+        "type": "archetype",
+        "name": "Voyage and Return",
+        "description": "A story in which the hero travels to an unfamiliar world, faces challenges, and returns home transformed."
+    },
+    "6": {
+        "id": "Tragedy",
+        "type": "archetype",
+        "name": "Tragedy",
+        "description": "A narrative that depicts the downfall of the protagonist, usually due to a character flaw or fate."
+    },
+    "7": {
+        "id": "Comedy",
+        "type": "archetype",
+        "name": "Comedy",
+        "description": "A light-hearted narrative often involving misunderstandings and mistaken identities, leading to a happy resolution."
+    },
+    "8": {
+        "id": "Rebirth",
+        "type": "archetype",
+        "name": "Rebirth",
+        "description": "A story where the main character experiences a transformation, often after a period of darkness or despair."
+    },
+    "9": {
+        "id": "ComingOfAge",
+        "type": "archetype",
+        "name": "Coming of Age",
+        "description": "A narrative that focuses on the growth and development of a protagonist as they transition from youth to adulthood."
+    },
+    "10": {
+        "id": "FoolTriumphs",
+        "type": "archetype",
+        "name": "The Fool Triumphant",
+        "description": "A story where an underestimated character succeeds against the odds, often using wit or unconventional methods."
+    }
+}
+```

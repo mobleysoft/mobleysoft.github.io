@@ -1,0 +1,19 @@
+﻿```json
+{
+    "0": { "id": "EmotionalIntelligence", "type": "collection", "name": "Emotional Intelligence Models", "description": "A comprehensive framework for understanding and managing emotions effectively." },
+    "1": { "id": "SelfAwareness", "type": "model", "name": "Self-Awareness", "description": "The ability to recognize and understand one's own emotions, thoughts, and values." },
+    "2": { "id": "SelfRegulation", "type": "model", "name": "Self-Regulation", "description": "The ability to manage one's emotions and impulses in a healthy way." },
+    "3": { "id": "Motivation", "type": "model", "name": "Intrinsic Motivation", "description": "The drive to pursue goals for internal satisfaction rather than external rewards." },
+    "4": { "id": "Empathy", "type": "model", "name": "Empathy", "description": "The ability to understand and share the feelings of others." },
+    "5": { "id": "SocialSkills", "type": "model", "name": "Social Skills", "description": "The skills needed to interact and communicate effectively with others." },
+    "6": { "id": "EmotionalManagement", "type": "model", "name": "Emotional Management", "description": "Techniques for managing emotional responses in self and others." },
+    "7": { "id": "CognitiveEmpathy", "type": "submodel", "name": "Cognitive Empathy", "description": "Understanding another's perspective and emotions intellectually." },
+    "8": { "id": "EmotionalEmpathy", "type": "submodel", "name": "Emotional Empathy", "description": "Feeling what another person is feeling, sharing their emotional experience." },
+    "9": { "id": "ConflictResolutionSkills", "type": "submodel", "name": "Conflict Resolution Skills", "description": "Skills to effectively resolve disagreements and conflicts." },
+    "10": { "id": "EffectiveCommunication", "type": "submodel", "name": "Effective Communication", "description": "The ability to convey thoughts and feelings clearly and respectfully." },
+    "11": { "id": "EmotionalAgility", "type": "submodel", "name": "Emotional Agility", "description": "The ability to navigate life's challenges with emotional flexibility." },
+    "12": { "id": "Resilience", "type": "submodel", "name": "Resilience", "description": "The capacity to recover quickly from difficulties and adapt to change." },
+    "13": { "id": "InterpersonalRelationships", "type": "submodel", "name": "Interpersonal Relationships", "description": "Building and maintaining healthy relationships through emotional intelligence." },
+    "14": { "id": "EmotionalIntelligenceTraining", "type": "program", "name": "Emotional Intelligence Training", "description": "Programs designed to enhance emotional intelligence skills in individuals." }
+}
+```

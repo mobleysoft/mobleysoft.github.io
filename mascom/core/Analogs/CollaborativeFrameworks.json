@@ -1,0 +1,70 @@
+﻿```json
+{
+    "0": {
+        "id": "CollaborativeFrameworks",
+        "type": "collection",
+        "name": "Collaborative Frameworks",
+        "description": "Models for teamwork and co-creation that enhance collaborative efforts across various domains."
+    },
+    "1": {
+        "id": "TeamRoles",
+        "type": "model",
+        "name": "Team Roles Model",
+        "description": "Framework outlining different roles within a team to optimize collaboration and productivity."
+    },
+    "2": {
+        "id": "ConsensusBuilding",
+        "type": "model",
+        "name": "Consensus Building Process",
+        "description": "Steps and strategies for achieving agreement among diverse team members."
+    },
+    "3": {
+        "id": "CollaborativeDecisionMaking",
+        "type": "model",
+        "name": "Collaborative Decision-Making",
+        "description": "Framework for making joint decisions through collective input and analysis."
+    },
+    "4": {
+        "id": "CoCreationTechniques",
+        "type": "model",
+        "name": "Co-Creation Techniques",
+        "description": "Methods for fostering innovation through collaborative engagement with stakeholders."
+    },
+    "5": {
+        "id": "FeedbackLoops",
+        "type": "model",
+        "name": "Feedback Loops in Teams",
+        "description": "Processes for providing and integrating feedback to enhance team performance."
+    },
+    "6": {
+        "id": "ConflictManagement",
+        "type": "model",
+        "name": "Conflict Management Strategies",
+        "description": "Approaches for resolving disputes and enhancing collaboration within teams."
+    },
+    "7": {
+        "id": "SharedVision",
+        "type": "model",
+        "name": "Creating a Shared Vision",
+        "description": "Techniques for developing a common goal that unites team members."
+    },
+    "8": {
+        "id": "TrustBuilding",
+        "type": "model",
+        "name": "Trust Building Framework",
+        "description": "Strategies to cultivate trust among team members for improved collaboration."
+    },
+    "9": {
+        "id": "DiversityInTeams",
+        "type": "model",
+        "name": "Leveraging Diversity in Teams",
+        "description": "Framework for utilizing diverse perspectives to enhance collaboration and creativity."
+    },
+    "10": {
+        "id": "VirtualCollaboration",
+        "type": "model",
+        "name": "Virtual Collaboration Techniques",
+        "description": "Best practices for maintaining effective teamwork in virtual environments."
+    }
+}
+```

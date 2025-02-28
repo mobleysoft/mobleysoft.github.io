@@ -1,0 +1,15 @@
+﻿```json
+{
+    "0": { "id": "EthicalAI", "type": "collection", "name": "Ethical AI Principles", "description": "A comprehensive framework ensuring AI acts responsibly and ethically." },
+    "1": { "id": "Principle1", "type": "principle", "name": "Transparency", "description": "AI systems should be transparent in their operations, providing clear information about how decisions are made." },
+    "2": { "id": "Principle2", "type": "principle", "name": "Accountability", "description": "There should be accountability mechanisms in place for AI systems to ensure responsible usage." },
+    "3": { "id": "Principle3", "type": "principle", "name": "Fairness", "description": "AI should be designed to treat all individuals fairly, avoiding biases based on race, gender, or other characteristics." },
+    "4": { "id": "Principle4", "type": "principle", "name": "Privacy", "description": "AI systems must respect user privacy and ensure data protection." },
+    "5": { "id": "Principle5", "type": "principle", "name": "Safety", "description": "AI systems should be safe and secure, minimizing risks to users and society." },
+    "6": { "id": "Principle6", "type": "principle", "name": "Beneficence", "description": "AI should promote well-being and act in ways that benefit humanity." },
+    "7": { "id": "Principle7", "type": "principle", "name": "Human Oversight", "description": "Human oversight is necessary to ensure that AI systems operate in alignment with human values." },
+    "8": { "id": "Principle8", "type": "principle", "name": "Inclusiveness", "description": "AI development should include diverse perspectives to address the needs of various stakeholders." },
+    "9": { "id": "Principle9", "type": "principle", "name": "Sustainability", "description": "AI practices should be sustainable, considering environmental impacts and promoting ecological balance." },
+    "10": { "id": "Principle10", "type": "principle", "name": "Continuous Improvement", "description": "AI systems should be continuously monitored and improved to adapt to changing societal values and needs." }
+}
+```

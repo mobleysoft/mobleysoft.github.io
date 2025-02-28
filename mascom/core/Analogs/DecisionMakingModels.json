@@ -1,0 +1,82 @@
+﻿```json
+{
+    "0": {
+        "id": "DecisionMakingModels",
+        "type": "collection",
+        "name": "Decision-Making Models",
+        "description": "A comprehensive framework for rational and ethical choices, encompassing various models and approaches."
+    },
+    "1": {
+        "id": "RationalChoiceTheory",
+        "type": "model",
+        "name": "Rational Choice Theory",
+        "description": "A framework for understanding individual decision-making based on rational choices aimed at maximizing utility."
+    },
+    "2": {
+        "id": "BoundedRationality",
+        "type": "model",
+        "name": "Bounded Rationality",
+        "description": "A model that describes the limitations of human decision-making and the constraints on rationality."
+    },
+    "3": {
+        "id": "ProspectTheory",
+        "type": "model",
+        "name": "Prospect Theory",
+        "description": "A behavioral model that describes how people make decisions based on perceived gains and losses."
+    },
+    "4": {
+        "id": "Utilitarianism",
+        "type": "ethicalFramework",
+        "name": "Utilitarianism",
+        "description": "An ethical framework that advocates for actions that maximize overall happiness or utility."
+    },
+    "5": {
+        "id": "DeontologicalEthics",
+        "type": "ethicalFramework",
+        "name": "Deontological Ethics",
+        "description": "An ethical theory that emphasizes duties and rules over consequences in decision-making."
+    },
+    "6": {
+        "id": "VirtueEthics",
+        "type": "ethicalFramework",
+        "name": "Virtue Ethics",
+        "description": "An ethical approach that focuses on the character and virtues of the moral agent rather than specific actions."
+    },
+    "7": {
+        "id": "EthicalDecisionMakingModel",
+        "type": "model",
+        "name": "Ethical Decision-Making Model",
+        "description": "A structured approach to making decisions that consider ethical principles and moral implications."
+    },
+    "8": {
+        "id": "TheElementsOfReasoning",
+        "type": "model",
+        "name": "The Elements of Reasoning",
+        "description": "A framework that outlines key components of reasoning which are essential for effective decision-making."
+    },
+    "9": {
+        "id": "CollaborativeDecisionMaking",
+        "type": "model",
+        "name": "Collaborative Decision Making",
+        "description": "A model that emphasizes the importance of group dynamics and collective input in the decision-making process."
+    },
+    "10": {
+        "id": "CognitiveDissonance",
+        "type": "concept",
+        "name": "Cognitive Dissonance",
+        "description": "A psychological theory explaining discomfort from conflicting beliefs and how it affects decision-making."
+    },
+    "11": {
+        "id": "EmotionalDecisionMaking",
+        "type": "model",
+        "name": "Emotional Decision Making",
+        "description": "A framework that explores how emotions influence decision-making processes."
+    },
+    "12": {
+        "id": "DecisionMakingUnderUncertainty",
+        "type": "model",
+        "name": "Decision Making Under Uncertainty",
+        "description": "Strategies and models for making decisions when outcomes are uncertain or unknown."
+    }
+}
+```

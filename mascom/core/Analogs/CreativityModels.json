@@ -1,0 +1,106 @@
+﻿```json
+{
+    "0": {
+        "id": "CreativityModels",
+        "type": "collection",
+        "name": "Creativity Models",
+        "description": "A comprehensive exploration of frameworks and techniques to foster creativity in both human and AI systems."
+    },
+    "1": {
+        "id": "DivergentThinking",
+        "type": "model",
+        "name": "Divergent Thinking",
+        "description": "A cognitive process used to generate creative ideas by exploring many possible solutions."
+    },
+    "2": {
+        "id": "ConvergentThinking",
+        "type": "model",
+        "name": "Convergent Thinking",
+        "description": "The process of bringing together different ideas to find a single, effective solution."
+    },
+    "3": {
+        "id": "CreativeProblemSolving",
+        "type": "model",
+        "name": "Creative Problem Solving (CPS)",
+        "description": "A structured approach to problem solving that encourages creativity and innovation."
+    },
+    "4": {
+        "id": "TRIZ",
+        "type": "model",
+        "name": "TRIZ (Theory of Inventive Problem Solving)",
+        "description": "A methodology for systematic innovation and problem solving based on the study of patterns in inventions."
+    },
+    "5": {
+        "id": "DesignThinking",
+        "type": "model",
+        "name": "Design Thinking",
+        "description": "A user-centered approach to innovation that integrates the needs of people, the possibilities of technology, and the requirements for business success."
+    },
+    "6": {
+        "id": "LateralThinking",
+        "type": "model",
+        "name": "Lateral Thinking",
+        "description": "A problem-solving approach that involves looking at the problem from new and different angles."
+    },
+    "7": {
+        "id": "MindMapping",
+        "type": "technique",
+        "name": "Mind Mapping",
+        "description": "A visual representation of thoughts and ideas that helps to organize information and stimulate creativity."
+    },
+    "8": {
+        "id": "Brainstorming",
+        "type": "technique",
+        "name": "Brainstorming",
+        "description": "A group creativity technique designed to generate a large number of ideas for the solution to a problem."
+    },
+    "9": {
+        "id": "SCAMPER",
+        "type": "technique",
+        "name": "SCAMPER",
+        "description": "A creative thinking technique that uses a structured approach to explore ideas and solutions."
+    },
+    "10": {
+        "id": "SixThinkingHats",
+        "type": "technique",
+        "name": "Six Thinking Hats",
+        "description": "A tool for group discussion and individual thinking that allows people to look at problems from different perspectives."
+    },
+    "11": {
+        "id": "RolePlaying",
+        "type": "technique",
+        "name": "Role Playing",
+        "description": "A technique that encourages creative thinking by allowing individuals to explore different perspectives in a safe environment."
+    },
+    "12": {
+        "id": "Storytelling",
+        "type": "technique",
+        "name": "Storytelling",
+        "description": "Using narrative to inspire and foster creativity by connecting ideas and emotions."
+    },
+    "13": {
+        "id": "CollaborativeCreativity",
+        "type": "model",
+        "name": "Collaborative Creativity",
+        "description": "A framework for fostering creativity through collaboration between individuals and teams."
+    },
+    "14": {
+        "id": "AICreativity",
+        "type": "model",
+        "name": "AI Creativity Models",
+        "description": "Exploring how AI can enhance and contribute to creative processes."
+    },
+    "15": {
+        "id": "FeedbackLoop",
+        "type": "model",
+        "name": "Creative Feedback Loop",
+        "description": "A process where feedback is used to refine and enhance creative ideas and solutions."
+    },
+    "16": {
+        "id": "ImprovTechniques",
+        "type": "technique",
+        "name": "Improvisational Techniques",
+        "description": "Techniques that promote spontaneous thinking and creativity through unplanned interactions."
+    }
+}
+```

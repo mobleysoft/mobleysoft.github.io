@@ -1,0 +1,63 @@
+﻿{
+    "0": {
+        "id": "MemoryTechniques",
+        "type": "collection",
+        "name": "Memory Techniques",
+        "description": "A comprehensive guide to methods for improving recall and retention."
+    },
+    "1": {
+        "id": "MnemonicDevices",
+        "type": "technique",
+        "name": "Mnemonic Devices",
+        "description": "Techniques that aid memory retention through association."
+    },
+    "2": {
+        "id": "MethodOfLoci",
+        "type": "technique",
+        "name": "Method of Loci",
+        "description": "A memory enhancement technique that involves visualizing items to be remembered in specific locations."
+    },
+    "3": {
+        "id": "Chunking",
+        "type": "technique",
+        "name": "Chunking",
+        "description": "Breaking down information into smaller, manageable units to enhance memory."
+    },
+    "4": {
+        "id": "SpacedRepetition",
+        "type": "technique",
+        "name": "Spaced Repetition",
+        "description": "A learning technique that involves increasing intervals of review to enhance durability of memory."
+    },
+    "5": {
+        "id": "Visualization",
+        "type": "technique",
+        "name": "Visualization",
+        "description": "Creating mental images to represent information, aiding in recall."
+    },
+    "6": {
+        "id": "Storytelling",
+        "type": "technique",
+        "name": "Storytelling",
+        "description": "Using narrative structures to memorize information more effectively."
+    },
+    "7": {
+        "id": "Association",
+        "type": "technique",
+        "name": "Association",
+        "description": "Linking new information to existing memories to enhance recall."
+    },
+    "8": {
+        "id": "ActiveRecall",
+        "type": "technique",
+        "name": "Active Recall",
+        "description": "Testing oneself on the material, enhancing memory retention through retrieval practice."
+    },
+    "9": {
+        "id": "SleepAndMemory",
+        "type": "technique",
+        "name": "Sleep and Memory",
+        "description": "Understanding the role of sleep in memory consolidation and recall."
+    }
+}
+

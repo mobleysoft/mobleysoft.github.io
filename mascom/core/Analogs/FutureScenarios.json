@@ -1,0 +1,100 @@
+﻿```json
+{
+    "0": {
+        "id": "FutureScenarios",
+        "type": "collection",
+        "name": "Future Scenarios",
+        "description": "A structured approach to anticipating and planning for future developments."
+    },
+    "1": {
+        "id": "ScenarioPlanning",
+        "type": "scenario",
+        "name": "Scenario Planning",
+        "description": "Developing multiple, plausible scenarios to prepare for different future possibilities."
+    },
+    "2": {
+        "id": "TrendAnalysis",
+        "type": "scenario",
+        "name": "Trend Analysis",
+        "description": "Identifying and analyzing trends to understand potential future impacts."
+    },
+    "3": {
+        "id": "RiskAssessment",
+        "type": "scenario",
+        "name": "Risk Assessment",
+        "description": "Evaluating potential risks and their implications for future developments."
+    },
+    "4": {
+        "id": "Visioning",
+        "type": "scenario",
+        "name": "Visioning",
+        "description": "Creating a shared vision of the future to guide strategic planning."
+    },
+    "5": {
+        "id": "Backcasting",
+        "type": "scenario",
+        "name": "Backcasting",
+        "description": "Working backwards from a desired future outcome to identify necessary steps."
+    },
+    "6": {
+        "id": "FuturesWheel",
+        "type": "scenario",
+        "name": "Futures Wheel",
+        "description": "A visual tool for exploring the implications of possible future events."
+    },
+    "7": {
+        "id": "SWOTAnalysis",
+        "type": "scenario",
+        "name": "SWOT Analysis",
+        "description": "Assessing strengths, weaknesses, opportunities, and threats related to future scenarios."
+    },
+    "8": {
+        "id": "StakeholderAnalysis",
+        "type": "scenario",
+        "name": "Stakeholder Analysis",
+        "description": "Identifying and analyzing stakeholders' interests and influences on future developments."
+    },
+    "9": {
+        "id": "DelphiMethod",
+        "type": "scenario",
+        "name": "Delphi Method",
+        "description": "A structured communication technique used to gather expert opinions on future trends."
+    },
+    "10": {
+        "id": "InnovationForecasting",
+        "type": "scenario",
+        "name": "Innovation Forecasting",
+        "description": "Predicting future technological advancements and their impacts."
+    },
+    "11": {
+        "id": "ScenarioNarratives",
+        "type": "scenario",
+        "name": "Scenario Narratives",
+        "description": "Crafting detailed stories to illustrate potential future scenarios."
+    },
+    "12": {
+        "id": "CausalLayeredAnalysis",
+        "type": "scenario",
+        "name": "Causal Layered Analysis",
+        "description": "A method to explore the different layers of causality affecting future scenarios."
+    },
+    "13": {
+        "id": "CrossImpactAnalysis",
+        "type": "scenario",
+        "name": "Cross-Impact Analysis",
+        "description": "Analyzing how different future events might influence one another."
+    },
+    "14": {
+        "id": "StrategicForesight",
+        "type": "scenario",
+        "name": "Strategic Foresight",
+        "description": "A comprehensive approach to anticipating and preparing for future changes."
+    },
+    "15": {
+        "id": "EnvironmentalScanning",
+        "type": "scenario",
+        "name": "Environmental Scanning",
+        "description": "Monitoring external environments for signals and indicators of future change."
+    }
+}
+```

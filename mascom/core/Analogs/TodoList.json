@@ -1,0 +1,219 @@
+﻿{
+    "0": {
+        "id": "DimensionallyReduceFrameworks",
+        "type": "collection",
+        "name": "Dimensionally Reduce Frameworks",
+        "description": "A prioritized list of frameworks to encode into MobleyDB for universal cognitive utility."
+    },
+    "1": {
+        "id": "ScientificMethod",
+        "type": "framework",
+        "name": "Scientific Method",
+        "description": "Steps and principles of scientific inquiry.",
+        "priority": "High"
+    },
+    "2": {
+        "id": "CognitiveBiases",
+        "type": "framework",
+        "name": "Cognitive Biases",
+        "description": "List of biases and counter-strategies to improve reasoning.",
+        "priority": "High"
+    },
+    "3": {
+        "id": "LogicalFallacies",
+        "type": "framework",
+        "name": "Logical Fallacies",
+        "description": "Common fallacies and how to avoid them.",
+        "priority": "High"
+    },
+    "4": {
+        "id": "GameTheory",
+        "type": "framework",
+        "name": "Game Theory",
+        "description": "Principles of strategic decision-making.",
+        "priority": "High"
+    },
+    "5": {
+        "id": "EthicalFrameworks",
+        "type": "framework",
+        "name": "Universal Morality",
+        "description": "Ethical decision-making frameworks (utilitarianism, virtue ethics, etc.).",
+        "priority": "High"
+    },
+    "6": {
+        "id": "InnovationFrameworks",
+        "type": "framework",
+        "name": "Innovation Frameworks",
+        "description": "TRIZ, design thinking, and lateral thinking strategies.",
+        "priority": "High"
+    },
+    "7": {
+        "id": "MotivationModels",
+        "type": "framework",
+        "name": "Human Motivation Models",
+        "description": "Models like Maslowâs hierarchy and Self-Determination Theory.",
+        "priority": "High"
+    },
+    "8": {
+        "id": "SystemsThinking",
+        "type": "framework",
+        "name": "Systems Thinking",
+        "description": "Principles for understanding and managing complex systems.",
+        "priority": "High"
+    },
+    "9": {
+        "id": "LawsOfNature",
+        "type": "framework",
+        "name": "Universal Laws of Nature",
+        "description": "Physics, chemistry, and biological principles.",
+        "priority": "High"
+    },
+    "10": {
+        "id": "NarrativeArchetypes",
+        "type": "framework",
+        "name": "Narrative Archetypes",
+        "description": "Universal story structures and beats.",
+        "priority": "High"
+    },
+    "11": {
+        "id": "CulturalMemeplexes",
+        "type": "framework",
+        "name": "Cultural Memeplexes",
+        "description": "Cultural universals and cross-cultural memes.",
+        "priority": "Medium"
+    },
+    "12": {
+        "id": "DecisionMakingModels",
+        "type": "framework",
+        "name": "Decision-Making Models",
+        "description": "Frameworks for rational and ethical choices.",
+        "priority": "Medium"
+    },
+    "13": {
+        "id": "ConflictResolution",
+        "type": "framework",
+        "name": "Conflict Resolution",
+        "description": "Strategies for managing and resolving disputes.",
+        "priority": "Medium"
+    },
+    "14": {
+        "id": "LeadershipPrinciples",
+        "type": "framework",
+        "name": "Leadership Principles",
+        "description": "Frameworks for effective leadership and management.",
+        "priority": "Medium"
+    },
+    "15": {
+        "id": "EducationalFrameworks",
+        "type": "framework",
+        "name": "Educational Frameworks",
+        "description": "Principles of learning and teaching.",
+        "priority": "Medium"
+    },
+    "16": {
+        "id": "Metacognition",
+        "type": "framework",
+        "name": "Metacognition",
+        "description": "Thinking about thinking for improved learning and reasoning.",
+        "priority": "Medium"
+    },
+    "17": {
+        "id": "CommunicationModels",
+        "type": "framework",
+        "name": "Communication Models",
+        "description": "Effective frameworks for human and AI interaction.",
+        "priority": "Medium"
+    },
+    "18": {
+        "id": "CognitiveErgonomics",
+        "type": "framework",
+        "name": "Cognitive Ergonomics",
+        "description": "Designing systems for human-AI collaboration.",
+        "priority": "Medium"
+    },
+    "19": {
+        "id": "AdaptabilityFrameworks",
+        "type": "framework",
+        "name": "Adaptability Frameworks",
+        "description": "Principles for adapting to changing environments.",
+        "priority": "Medium"
+    },
+    "20": {
+        "id": "BehavioralEconomics",
+        "type": "framework",
+        "name": "Behavioral Economics",
+        "description": "Understanding decision-making in economic contexts.",
+        "priority": "Medium"
+    },
+    "21": {
+        "id": "TimeManagement",
+        "type": "framework",
+        "name": "Time Management Models",
+        "description": "Frameworks for optimizing time and productivity.",
+        "priority": "Medium"
+    },
+    "22": {
+        "id": "MindfulnessTechniques",
+        "type": "framework",
+        "name": "Mindfulness Techniques",
+        "description": "Strategies for focus and awareness.",
+        "priority": "Medium"
+    },
+    "23": {
+        "id": "MemoryTechniques",
+        "type": "framework",
+        "name": "Memory Techniques",
+        "description": "Methods for improving recall and retention.",
+        "priority": "Medium"
+    },
+    "24": {
+        "id": "EmotionalIntelligence",
+        "type": "framework",
+        "name": "Emotional Intelligence Models",
+        "description": "Understanding and managing emotions effectively.",
+        "priority": "Medium"
+    },
+    "25": {
+        "id": "AIAlignment",
+        "type": "framework",
+        "name": "AI Alignment Principles",
+        "description": "Ensuring AI systems align with human values.",
+        "priority": "Medium"
+    },
+    "26": {
+        "id": "CollaborativeFrameworks",
+        "type": "framework",
+        "name": "Collaborative Frameworks",
+        "description": "Models for teamwork and co-creation.",
+        "priority": "Medium"
+    },
+    "27": {
+        "id": "CreativityModels",
+        "type": "framework",
+        "name": "Creativity Models",
+        "description": "Fostering creativity in human and AI systems.",
+        "priority": "Medium"
+    },
+    "28": {
+        "id": "OptimizationModels",
+        "type": "framework",
+        "name": "Optimization Models",
+        "description": "Frameworks for resource and system efficiency.",
+        "priority": "Medium"
+    },
+    "29": {
+        "id": "EthicalAI",
+        "type": "framework",
+        "name": "Ethical AI Principles",
+        "description": "Ensuring AI acts responsibly and ethically.",
+        "priority": "Medium"
+    },
+    "30": {
+        "id": "FutureScenarios",
+        "type": "framework",
+        "name": "Future Scenarios",
+        "description": "Anticipating and planning for future developments.",
+        "priority": "Medium"
+    }
+}
+

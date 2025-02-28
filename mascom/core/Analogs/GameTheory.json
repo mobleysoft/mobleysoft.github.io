@@ -1,0 +1,21 @@
+﻿```json
+{
+    "0": { "id": "GameTheory", "type": "collection", "name": "Game Theory", "description": "A comprehensive framework exploring the principles of strategic decision-making among rational agents." },
+    "1": { "id": "Definition", "type": "concept", "name": "Definition of Game Theory", "description": "Game theory is the study of mathematical models of conflict and cooperation between intelligent rational decision-makers." },
+    "2": { "id": "TypesOfGames", "type": "concept", "name": "Types of Games", "description": "Different classifications of games, including cooperative vs. non-cooperative, zero-sum vs. non-zero-sum, and simultaneous vs. sequential games." },
+    "3": { "id": "NashEquilibrium", "type": "concept", "name": "Nash Equilibrium", "description": "A situation in a game where no player can benefit by changing strategies while the other players keep theirs unchanged." },
+    "4": { "id": "DominantStrategy", "type": "concept", "name": "Dominant Strategy", "description": "A strategy that is optimal for a player, regardless of the strategies chosen by the other players." },
+    "5": { "id": "ParetoEfficiency", "type": "concept", "name": "Pareto Efficiency", "description": "A state of resource allocation where it is impossible to make any one individual better off without making someone else worse off." },
+    "6": { "id": "PrisonersDilemma", "type": "example", "name": "Prisoner's Dilemma", "description": "A standard example of a game theory scenario that demonstrates why two individuals might not cooperate, even if it appears that it is in their best interest." },
+    "7": { "id": "ZeroSumGames", "type": "concept", "name": "Zero-Sum Games", "description": "Games in which one player's gain is exactly balanced by the losses of other player(s)." },
+    "8": { "id": "MixedStrategy", "type": "concept", "name": "Mixed Strategy", "description": "A strategy that involves randomizing over two or more pure strategies." },
+    "9": { "id": "ExtensiveFormGames", "type": "concept", "name": "Extensive Form Games", "description": "Games represented by a tree structure that shows the sequential nature of choices made by players." },
+    "10": { "id": "RepeatedGames", "type": "concept", "name": "Repeated Games", "description": "Games that are played multiple times, allowing for the possibility of cooperation and strategy evolution." },
+    "11": { "id": "EvolutionaryGameTheory", "type": "concept", "name": "Evolutionary Game Theory", "description": "A framework for evolving strategies in biological contexts, focusing on how strategies evolve over time." },
+    "12": { "id": "BayesianGameTheory", "type": "concept", "name": "Bayesian Game Theory", "description": "A game theory framework that incorporates incomplete information among players, allowing them to hold beliefs about unknown variables." },
+    "13": { "id": "Applications", "type": "concept", "name": "Applications of Game Theory", "description": "Uses of game theory in economics, politics, biology, and social sciences." },
+    "14": { "id": "KeyFigures", "type": "concept", "name": "Key Figures in Game Theory", "description": "Notable contributors to game theory, including John von Neumann, Oskar Morgenstern, and John Nash." },
+    "15": { "id": "Critiques", "type": "concept", "name": "Critiques of Game Theory", "description": "Common critiques and limitations of game theory as a model for real-world decision-making." },
+    "16": { "id": "FutureDirections", "type": "concept", "name": "Future Directions in Game Theory", "description": "Emerging trends and future research areas in game theory, including applications in AI and machine learning." }
+}
+```

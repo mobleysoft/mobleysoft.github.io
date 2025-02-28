@@ -1,0 +1,15 @@
+﻿```json
+{
+    "0": { "id": "ConflictResolution", "type": "collection", "name": "Conflict Resolution Strategies", "description": "A comprehensive framework for managing and resolving disputes effectively." },
+    "1": { "id": "UnderstandingConflict", "type": "strategy", "name": "Understanding Conflict", "description": "Recognizing the root causes of conflict and the dynamics involved." },
+    "2": { "id": "ActiveListening", "type": "strategy", "name": "Active Listening", "description": "Engaging in active listening to ensure all parties feel heard and understood." },
+    "3": { "id": "OpenCommunication", "type": "strategy", "name": "Open Communication", "description": "Encouraging honest and open dialogue to express concerns and viewpoints." },
+    "4": { "id": "Empathy", "type": "strategy", "name": "Empathy", "description": "Practicing empathy to understand the perspectives and feelings of others." },
+    "5": { "id": "CollaborativeProblemSolving", "type": "strategy", "name": "Collaborative Problem Solving", "description": "Working together to find mutually beneficial solutions." },
+    "6": { "id": "Mediation", "type": "strategy", "name": "Mediation", "description": "Utilizing a neutral third party to facilitate discussions and negotiations." },
+    "7": { "id": "Compromise", "type": "strategy", "name": "Compromise", "description": "Finding a middle ground where each party makes concessions." },
+    "8": { "id": "ConflictTransformation", "type": "strategy", "name": "Conflict Transformation", "description": "Transforming the conflict into a constructive dialogue for growth." },
+    "9": { "id": "Agreement", "type": "strategy", "name": "Formal Agreement", "description": "Documenting agreements reached to ensure accountability and clarity." },
+    "10": { "id": "FollowUp", "type": "strategy", "name": "Follow-Up", "description": "Checking in post-resolution to ensure ongoing satisfaction and address any lingering issues." }
+}
+```

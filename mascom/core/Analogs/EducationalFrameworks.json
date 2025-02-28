@@ -1,0 +1,24 @@
+﻿```json
+{
+    "0": { "id": "EducationalFrameworks", "type": "collection", "name": "Educational Frameworks", "description": "A comprehensive overview of principles of learning and teaching." },
+    "1": { "id": "Constructivism", "type": "principle", "name": "Constructivism", "description": "Learners construct their own understanding and knowledge of the world through experiencing things and reflecting on those experiences." },
+    "2": { "id": "Behaviorism", "type": "principle", "name": "Behaviorism", "description": "Learning is viewed as a change in behavior, influenced by the environment and reinforcement." },
+    "3": { "id": "Cognitivism", "type": "principle", "name": "Cognitivism", "description": "Focuses on the inner mental activities and recognizes the importance of understanding how people think." },
+    "4": { "id": "Humanism", "type": "principle", "name": "Humanism", "description": "Emphasizes personal growth and the development of the whole person; learning is self-directed." },
+    "5": { "id": "Connectivism", "type": "principle", "name": "Connectivism", "description": "Learning in the digital age where knowledge is distributed across a network of connections." },
+    "6": { "id": "ExperientialLearning", "type": "principle", "name": "Experiential Learning", "description": "Learning through experience, reflection, and application in real-world situations." },
+    "7": { "id": "MultipleIntelligences", "type": "principle", "name": "Multiple Intelligences", "description": "Recognizes that individuals have different kinds of intelligences and learning styles." },
+    "8": { "id": "SocialLearningTheory", "type": "principle", "name": "Social Learning Theory", "description": "Learning occurs in a social context and can happen through observation and imitation." },
+    "9": { "id": "Scaffolding", "type": "principle", "name": "Scaffolding", "description": "Support provided to students to help them achieve learning goals, gradually removed as they become more proficient." },
+    "10": { "id": "InquiryBasedLearning", "type": "principle", "name": "Inquiry-Based Learning", "description": "Encourages students to ask questions, explore, and research to learn." },
+    "11": { "id": "DifferentiatedInstruction", "type": "principle", "name": "Differentiated Instruction", "description": "Tailoring instruction to meet individual students' needs." },
+    "12": { "id": "CollaborativeLearning", "type": "principle", "name": "Collaborative Learning", "description": "Learning that occurs through group work and collaboration among peers." },
+    "13": { "id": "FormativeAssessment", "type": "principle", "name": "Formative Assessment", "description": "Ongoing assessments used to monitor student learning and provide feedback for improvement." },
+    "14": { "id": "SummativeAssessment", "type": "principle", "name": "Summative Assessment", "description": "Evaluation of student learning at the end of an instructional unit by comparing it against some standard or benchmark." },
+    "15": { "id": "MotivationTheory", "type": "principle", "name": "Motivation Theory", "description": "Understanding what drives individuals to learn and how to foster that drive." },
+    "16": { "id": "Feedback", "type": "principle", "name": "Feedback", "description": "Information provided to learners about their performance to help them improve." },
+    "17": { "id": "TransformativeLearning", "type": "principle", "name": "Transformative Learning", "description": "Learning that changes the way individuals understand themselves and their world." },
+    "18": { "id": "SelfDirectedLearning", "type": "principle", "name": "Self-Directed Learning", "description": "Learners take the initiative in diagnosing their learning needs, formulating goals, identifying resources, and evaluating learning outcomes." },
+    "19": { "id": "DigitalLiteracy", "type": "principle", "name": "Digital Literacy", "description": "The ability to effectively find, evaluate, create, and communicate information using digital technologies." }
+}
+```

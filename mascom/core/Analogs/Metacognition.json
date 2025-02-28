@@ -1,0 +1,112 @@
+﻿```json
+{
+    "0": {
+        "id": "Metacognition",
+        "type": "collection",
+        "name": "Metacognition Framework",
+        "description": "A framework for understanding and improving thinking processes to enhance learning and reasoning."
+    },
+    "1": {
+        "id": "Definition",
+        "type": "concept",
+        "name": "Definition of Metacognition",
+        "description": "Awareness and understanding of oneâs own thought processes."
+    },
+    "2": {
+        "id": "Importance",
+        "type": "concept",
+        "name": "Importance of Metacognition",
+        "description": "Enhances learning strategies, self-regulation, and academic performance."
+    },
+    "3": {
+        "id": "Components",
+        "type": "concept",
+        "name": "Components of Metacognition",
+        "description": "Includes metacognitive knowledge and metacognitive regulation."
+    },
+    "4": {
+        "id": "MetacognitiveKnowledge",
+        "type": "subconcept",
+        "name": "Metacognitive Knowledge",
+        "description": "Knowledge about oneself as a learner and about the strategies available."
+    },
+    "5": {
+        "id": "MetacognitiveRegulation",
+        "type": "subconcept",
+        "name": "Metacognitive Regulation",
+        "description": "Processes used to control learning, including planning, monitoring, and evaluating."
+    },
+    "6": {
+        "id": "Planning",
+        "type": "strategy",
+        "name": "Planning",
+        "description": "Setting goals and selecting strategies before engaging in a task."
+    },
+    "7": {
+        "id": "Monitoring",
+        "type": "strategy",
+        "name": "Monitoring",
+        "description": "Self-assessing understanding and progress during a task."
+    },
+    "8": {
+        "id": "Evaluating",
+        "type": "strategy",
+        "name": "Evaluating",
+        "description": "Reflecting on the effectiveness of strategies and outcomes after completing a task."
+    },
+    "9": {
+        "id": "MetacognitiveStrategies",
+        "type": "collection",
+        "name": "Metacognitive Strategies",
+        "description": "Techniques to enhance metacognitive awareness and regulation."
+    },
+    "10": {
+        "id": "SelfQuestioning",
+        "type": "strategy",
+        "name": "Self-Questioning",
+        "description": "Asking oneself questions about understanding and strategy use."
+    },
+    "11": {
+        "id": "ThinkAloud",
+        "type": "strategy",
+        "name": "Think Aloud",
+        "description": "Verbalizing thoughts during problem-solving to clarify thinking."
+    },
+    "12": {
+        "id": "GoalSetting",
+        "type": "strategy",
+        "name": "Goal Setting",
+        "description": "Establishing clear, achievable objectives to guide learning."
+    },
+    "13": {
+        "id": "Reflection",
+        "type": "strategy",
+        "name": "Reflection",
+        "description": "Regularly reviewing oneâs own performance and learning strategies."
+    },
+    "14": {
+        "id": "Applications",
+        "type": "collection",
+        "name": "Applications of Metacognition",
+        "description": "Real-world uses of metacognitive strategies in various contexts."
+    },
+    "15": {
+        "id": "Education",
+        "type": "application",
+        "name": "Education",
+        "description": "Using metacognitive strategies to enhance student learning and self-regulation."
+    },
+    "16": {
+        "id": "Workplace",
+        "type": "application",
+        "name": "Workplace",
+        "description": "Applying metacognition for problem-solving and decision-making in professional settings."
+    },
+    "17": {
+        "id": "PersonalDevelopment",
+        "type": "application",
+        "name": "Personal Development",
+        "description": "Utilizing metacognitive strategies for self-improvement and personal growth."
+    }
+}
+```
