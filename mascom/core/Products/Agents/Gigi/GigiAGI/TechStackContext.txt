@@ -1,0 +1,24 @@
+Our web and desktop application build stack is AGI evolved, tasked with optimizing it's own scalability, automation, capability, and polymorphism:
+
+MobleysoftAGI FLOW: [F]ront end SPA's , [L] (our crypto coin), [O]penAI API calls, and [W]orkers (Cloudflare).
+
+For each startup in our list of owned domains (44), our AGI generates the following:
+
+Local Morphisms:
+
+- Json Form: Auto-generated json structures to be consumed to generate Powershell and Html/Javascript Forms. Instanced at runtime as Javascript objects, they contain all functions and variable required to drive the product's desired functionalities in the sequence they need to be called to do so (this is the most directly useful token-adjacent form AI's can currently output).
+ 
+- Powershell Form: PowerShell full-stack application serving string containing SPA front end site html served via http listener for local contained testing.
+
+Bridge Morphisms:
+
+-Html form: Auto Generated from Json Form, same functionalities as auto generated powershell purely in client side javascript. Powershell forms deploy and dismiss cloudflare workers to support their Html forms to assure control is local and maintained.
+
+-Custom MobleyDB Table Form: An entry in our AGI infrastructure that drives all of the above from a query in MobleyQL. 
+
+-Mobcorp is a MobleyDB Schema.
+-MobleysoftAGI is a MobleyDB Metaschema
+
+-In  MobleyDB, all queries, tables, database instances, schemas, and metaschemas are polymorphic (Json Forms outlined above).
+
+MobleyDB is an AGI search engine uses to instance and test points in the solution space of possible AGI implementations driving MobleysoftAGI evolution.

@@ -1,0 +1,7 @@
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+function Write-ThroughputAndConsole { param ([string]$Message) [System.IO.File]::AppendAllText($ThroughputFile, "$Message`n", [System.Text.Encoding]::UTF8) ; Write-Host $Message}
+function Write-OutputAndConsole { param ([string]$Message) [System.IO.File]::AppendAllText($OutputFile, "$Message`n", [System.Text.Encoding]::UTF8) ; Write-Host $Message }
+function Invoke-OpenAI { param ([string]$Prompt,[string]$SystemPrompt) $Body = @{ model = "gpt-4o-mini" ; messages = @( @{ role = "system"; content = $SystemPrompt },  @{ role = "user"; content = $Prompt } ) } | ConvertTo-Json -Depth 10 ; $Response = Invoke-RestMethod -Uri "https://api.openai.com/v1/chat/completions" -Method POST -Headers @{"Authorization" = "Bearer $env:OPENAI_API_KEY" ;"Accept-Charset" = "utf-8"} -Body ([System.Text.Encoding]::UTF8.GetBytes($Body)) -ContentType "application/json; charset=utf-8" ; return [System.Text.Encoding]::UTF8.GetString([System.Text.Encoding]::GetEncoding("ISO-8859-1").GetBytes($Response.choices[0].message.content))}
+$BasePath = "C:\Users\Owner\mascom\Johnny\Output" ; if (-not (Test-Path $BasePath)) { New-Item -ItemType Directory -Path $BasePath | Out-Null }
+$OutputFilePath = "C:\Users\Owner\mascom\Johnny\Output\Output.//" ; if (-not (Test-Path $OutputFilePath)) {}
+Write-OutputAndConsole Invoke-OpenAI "You are a comedian that is about to film thier comedy special" "Perform your special"

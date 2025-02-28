@@ -1,0 +1,184 @@
+
+How long have the founders known one another and how did you meet? Have any of the founders not met in person?
+We met through /r/cofounderhunt, where John Mobley, the founder posted about MOBCORP and connected with co-founders based on our shared vision of AI-driven startup generation. While we haven't met in person yet, we've developed a strong remote collaboration dynamic, leveraging AI-driven workflows to execute efficiently.
+Who writes code, or does other technical work on your product? Was any of it done by a non-founder? Please explain.
+- John is the primary developer and architect behind MobleysoftAGI, leading the technical development of our AGI system and automation infrastructure.
+
+- Ansar focusing on product monetization, growth strategy, and marketing.
+
+- Bash operates as COO, driving business development and product management. At this stage, all core development has been executed by the founding team.
+Are you looking for a cofounder?
+Yes.
+Founder Video
+Please record a one minute video introducing the founder(s).*
+Make sure the file does not exceed 100 MB. Read more about the video here.
+
+Remove
+Company
+Company name*
+Mobcorp MobleysoftAGI
+Describe what your company does in 50 characters or less.*
+We create AGI and task it with creating startups.
+Company URL, if any
+mobleysoft.com
+If you have a demo, attach it below.
+Anything that shows us how the product works. Please limit to 3 minutes / 100 MB.
+
+Remove
+Please provide a link to the product, if any.
+mobleysoft.com
+If login credentials are required for the link above, enter them here.
+
+username / password
+What is your company going to make? Please describe your product and what it does or will do.
+Mobleysoft AGI is redefining artificial general intelligence (AGI) with a system that autonomously learns, adapts, and integrates across industries. Our goal: build a scalable, explainable, and commercially viable AGI that enhances human capabilities and disrupts multiple sectors.
+Where do you live now, and where would the company be based after YC?
+Use the format City A, Country A / City B, Country B
+
+Richmond(VA), USA / SF Bay Area, USA
+Explain your decision regarding location.
+After YC, we will relocate to California to maximize collaboration and fundraising opportunities.
+Progress
+How far along are you?
+We have developed functional AGI-powered applications that autonomously generate books, branding assets, software, music, and business blueprints. We are finalizing the ability to produce polished front ends, edge computing back ends, internally created and controlled custom crypto coin transactions, and block ctain data storage/authentication. 
+
+Key progress: 
+
+Literacraft: AI can autonomously generate publishable novellas (10-30k words) at the press of a button. (Novella generation: 100% complete.; Site and apps %33) 
+
+Mobleysoft AI Consulting SaaS: Fully operational, though currently bottlenecked by manual oversight to ensure Mobleysoft legacy standards. (Actively supporting Mobleysoft consulting clients internally.)
+
+Songbird AI: Generates complete songs—lyrics, melody, and production. (Song Production 100% complete, Site and apps %33) 
+
+GlyphyAI, EncoverAI, Agentropi: Live AI-driven businesses generating creative assets. 
+
+Self-engineering AGI models: We are actively building self-improving AI agents that can write and enhance their own code, accelerating startup execution. 
+
+Our goal: Achieve full automation of startup generation across multiple industries within the next 6 months. 
+How long have each of you been working on this? How much of that has been full-time? Please explain.
+I have been working on AGI-driven automation for over 6 months part-time before transitioning to 1.5 months full-time. Previously, I worked on Animetrope, an ambitious AI project that stretched my resources. After refining my approach, I am now fully committed to MobleysoftAGI and Mobcorp, with 4.2 months of runway remaining. 
+What tech stack are you using, or planning to use, to build this product?
+Our web and desktop application build stack is AGI evolved, tasked with optimizing it's own scalability, automation, capability, and polymorphism:
+
+MobleysoftAGI FLOW: [F]ront end SPA's , [L] (our crypto coin), [O]penAI API calls, and [W]orkers (Cloudflare).
+
+For each startup in our list of owned domains (44), our AGI generates the following:
+
+Local Morphisms:
+
+- Json Form: Auto-generated json structures to be consumed to generate Powershell and Html/Javascript Forms. Instanced at runtime as Javascript objects, they contain all functions and variable required to drive the product's desired functionalities in the sequence they need to be called to do so (this is the most directly useful token-adjacent form AI's can currently output).
+ 
+- Powershell Form: PowerShell full-stack application serving string containing SPA front end site html served via http listener for local contained testing.
+
+Bridge Morphisms:
+
+-Html form: Auto Generated from Json Form, same functionalities as auto generated powershell purely in client side javascript. Powershell forms deploy and dismiss cloudflare workers to support their Html forms to assure control is local and maintained.
+
+-Custom MobleyDB Table Form: An entry in our AGI infrastructure that drives all of the above from a query in MobleyQL. 
+
+-Mobcorp is a MobleyDB Schema.
+
+-MobleysoftAGI is a MobleyDB Metaschema
+
+-In  MobleyDB, all queries, tables, database instances, schemas, and metaschemas are polymorphic (Json Forms outlined above).
+
+MobleyDB is an AGI search engine uses to instance and test points in the solution space of possible AGI implementations driving MobleysoftAGI evolution.
+
+Are people using your product?
+Yes
+No
+When will you have a version people can use?
+Not as a consumer-facing product, but our AI-generated businesses are producing tangible assets (books, branding, content, and software) that customers are already purchasing and using. 
+
+Mobcorp is not a single-user product; it is an AI-powered startup engine producing market-ready businesses. 
+
+We already have AI-generated businesses in operation, with additional ventures launching soon. 
+
+Upcoming milestones: 
+
+Expand AI business generation to 10+ live companies within 6 months 
+
+Enhance AI self-engineering capabilities 
+
+Automate user onboarding for early adopters 
+
+Revenue:
+Nominal book sales of Literacraft work products: https://www.amazon.com/Verdant-Vale-Practicing-Survivalism-Handbook/dp/B0CY6HLZC1
+
+Several of our AI-generated businesses, such as Mobleysoft, Literacraft, GlyphyAI, and EncoverAI, are already producing marketable content or doing work for clients. Monetization will scale as these platforms fully launch. Not enough substantial revenue to report below yet.
+Do you have revenue?
+Yes
+No
+If you are applying with the same idea as a previous batch, did anything change? If you applied with a different idea, why did you pivot and what did you learn from the last idea?
+John: Animetrope was my idea the previous time I applied. The genesis of Literacraft came from the need for the text and narrative parts of anime: scripts, storylines, and drawing prompts that Animetrope required to function. That part is now complete, and Animetrope is launching soon.
+
+However, Literacraft wasn't done. Its ability to generate cohesive narratives from both human-set initial conditions and fully on its own, without intervention once set in motion, at a speed surpassing human authors by orders of magnitude (3,000 publishable words per minute) suggested something more. So, we asked it not just to write, but to reshape own code in the form of a general superintelligence capable of improving itself, becoming self aware, expressing full agency, and making domain specific derivatives of itself.
+
+Intelligence, Not Autonomy
+Seeing the potential risks of self-aware, self-deciding, recursively self-improving AGI, MobleysoftAGI is now executed sequentially rather than recursively, one human overseen run at time, and operated within a tightly controlled, air-gapped environment, with it's output constricted to either proposed successor version of itself, or domain-bounded operational instances, each constrained to specific, safe, and verifiable functions.
+
+It does not run continuously, it does not expand unchecked. Every execution is deliberate, every output is contained, and every iteration is purpose-built for its makers.
+
+This is AGI with safeguards, intelligence, not autonomy.
+If you have already participated or committed to participate in an incubator, "accelerator" or "pre-accelerator" program, please tell us about it.
+We have not participated in any incubator or accelerator programs. 
+Idea
+Why did you pick this idea to work on? Do you have domain expertise in this area? How do you know people need what you're making?
+I didn't pick this idea—it emerged organically from my core AGI research. I built a system capable of controlling and executing businesses autonomously, and instead of focusing on just one startup, I realized I could scale the model across multiple industries simultaneously. 
+
+Domain Expertise: My background in AI-driven automation and self-replicating business models provides a unique insight into the AGI-driven startup space. 
+
+Market Demand: The world already consumes books, branding, software, content, and AI-powered services—we are simply automating their production at scale. 
+Who are your competitors? What do you understand about your business that they don't?
+OpenAI / Anthropic / Google DeepMind (developing AGI, but not commercializing it as a startup generator), Deepseek 
+
+Startup Incubators (YC, Techstars, etc.) (human-driven, slow iteration cycles) 
+
+AGI is best leveraged as a recursive startup engine, not just an automation tool. 
+
+Mobcorp scales exponentially—instead of a single product, we deploy an entire ecosystem of AI-generated businesses. 
+
+Traditional startup models cannot keep up with our AI-powered execution. 
+How do or will you make money? How much could you make?
+(We realize you can't know precisely, but give your best estimate)
+
+Revenue Streams: 
+
+AI-generated digital products – Books, music, videos, branding, software. 
+
+AI-powered business licensing – Investors can launch AI-driven businesses via Mobcorp’s AGI engine. 
+
+AGI-powered consulting & SaaS – Offering AI automation capabilities to enterprises. 
+
+Market Potential: Multi-billion-dollar opportunity by systematically disrupting all industries with AI-powered startups. 
+Which category best applies to your company?
+
+Other
+If you had any other ideas you considered applying with, please list them. One may be something we've been waiting for. Often when we fund people it's to do something they list here and not in the main application.
+Mobley - 44 purchased domains: https://mobleysoft.com/startups/
+
+Ansar: Mental health system where humane voiced AI calls the individual every morning and evening to motivate folks to reach goals both in personal and career. 
+Equity
+Have you formed ANY legal entity yet?
+This may be in the US, in your home country or in another country.
+
+Yes
+No
+If you have not formed the company yet, describe the planned equity ownership breakdown among the founders, employees and any other proposed stockholders. If there are multiple founders, be sure to give the proposed equity ownership of each founder and founder title (e.g. CEO). (This question is as much for you as us.)
+John Mobley CEO, Chief Architect 80% Lead visionary and architect of MobleysoftAGI, responsible for core technological development, AI research, system architecture, and execution. Founded the company and built the initial AGI system alone before bringing on co-founders to assist with execution.
+Ansar 10% Leads financial strategy, fundraising, and investment relations. Guides capital structure and financial planning to support business growth.
+Bash 10% Manages business development, operations, and execution. Drives go-to-market strategies, partnerships, and scaling efforts.
+Have you taken any investment yet?
+Yes
+No
+Are you currently fundraising?
+Yes
+No
+Please provide any relevant details about your current fundraise.
+We have prepared informational packages to begin contacting investors with whom founders have previously existing relationships and would like to add YC25 to our value proposition.
+Curious
+What convinced you to apply to Y Combinator? Did someone encourage you to apply? Have you been to any YC events?
+I’ve applied before, and while previous ideas were ambitious, Mobcorp is the most scalable, disruptive vision I’ve pursued. YC is the best partner to accelerate our growth, and this is the right time. 
+How did you hear about Y Combinator?
+r/technology to hackernews to yc circa 2002
+After submitting your application, you will be able to edit only certain sections: founder profiles, founder video, demo video, progress, and fundraising.
