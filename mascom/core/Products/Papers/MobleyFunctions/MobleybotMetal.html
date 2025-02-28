@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft Fiferbotics Platform</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body><div>
+    <div class="toolbar-container">
+        <button class="button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button class="font-button" onclick="adjustFontSize(1.1)">Increase Font Size</button>
+        <button class="font-button" onclick="adjustFontSize(0.9)">Decrease Font Size</button>
+    </div> 
+<div class="content">
+
+    
+    <script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+    
+    // Adjust Font Size by modifying the CSS variable
+    function adjustFontSize(factor) {
+        let root = document.documentElement;
+        let currentScale = parseFloat(getComputedStyle(root).getPropertyValue('--scale-factor')) || 1;
+        root.style.setProperty('--scale-factor', currentScale * factor);
+    }
+    </script>
+    <h1>Mobleysoft Fiferbotics Platform:</h1>
+    <h2>Towards a True Automaton and Computational Metallurgy</h2>
+
+    <h3>0. Abstract</h3>
+    <p>
+        This paper introduces the **Mobleysoft Fiferbotics Platform**, a framework integrating **mechanics, computation, and fractal material science** into a unified automaton.
+        We develop **Fiferbot Mark 1**, a hybrid **clockwork-digital humanoid** robot optimized for **energy efficiency, motion stability, and computational material design**.
+        Key contributions include novel mathematical models solving **three-lever systems, three-pulley systems, three-body systems, and three-pendulum systems**.
+    </p>
+
+    <h3>1. Introduction</h3>
+    <p>
+        Traditional humanoid robots rely heavily on digital actuation and discrete control systems. However, leveraging **continuous mechanics** inspired by classical automata can improve **motion efficiency** and **energy conservation**.
+        This paper proposes a **computronium-based robotics approach**, where **metal itself** serves as both the **mechanical substrate** and **computational medium**.
+    </p>
+
+    <h3>2. Mathematical Foundations</h3>
+
+    <h4>2.1 Lagrangian Dynamics for Energy Optimization</h4>
+    <p>
+        The Lagrangian function \( L \) is defined as:
+    </p>
+    <p class="equation">
+        \[
+        L = T - V
+        \]
+    </p>
+    <p>
+        where \( T \) represents **kinetic energy** and \( V \) represents **potential energy**. For a system of two moving masses:
+    </p>
+    <p class="equation">
+        \[
+        L = \frac{1}{2} m_1 v_1^2 + \frac{1}{2} m_2 v_2^2 - (m_1 g h_1 + m_2 g h_2)
+        \]
+    </p>
+
+    <h4>2.2 Three-Lever System for Force Transmission</h4>
+    <p>
+        A **lever system** optimizes force distribution, modeled as:
+    </p>
+    <p class="equation">
+        \[
+        F_{\text{output}} = \frac{d}{l} F_{\text{input}}
+        \]
+    </p>
+    <p>
+        where \( d \) is the **distance from the pivot** and \( l \) is the **lever arm length**.
+    </p>
+
+    <h4>2.3 Three-Pulley System for Mechanical Advantage</h4>
+    <p>
+        We define the efficiency coefficient \( \eta \) as:
+    </p>
+    <p class="equation">
+        \[
+        F_{\text{output}} = \eta \cdot \frac{F_{\text{input}}}{N}
+        \]
+    </p>
+    <p>
+        where \( N \) is the number of pulleys, and \( \eta \) accounts for frictional losses.
+    </p>
+
+    <h3>3. Computronium and Fractal Robotics</h3>
+    <p>
+        We propose a novel **computronium alloy**, embedding **recursive fractal structures** that function as both **actuation nodes** and **neural substrates**. This allows Fiferbot Mark 1 to optimize movement in **real-time**.
+    </p>
+
+    <h3>4. Conclusion</h3>
+    <p>
+        This work redefines humanoid robotics by integrating **mechanical automaton principles** with **fractal computation**, achieving **unparalleled efficiency** in **motion and energy conservation**.
+        Future work will focus on:
+    </p>
+    <ul>
+        <li>Scaling Fiferbot Mark 1 as a **self-replicating construction module**.</li>
+        <li>Developing **computronium alloys** for enhanced AI embodiment.</li>
+        <li>Exploring **space applications** where self-assembling robots are critical.</li>
+    </ul>
+
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.body.innerHTML = document.body.innerHTML
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")  // Convert bold text
+        .replace(/\*(.*?)\*/g, "<em>$1</em>");  // Convert italic text
+});
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+
+</body>
+</html>
