@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeva Voice Assistant</title>
+</head>
+<body>
+    <h1>Meeva is Listening...</h1>
+    <script>
+        async function startMeeva() {
+            console.log("📢 Initializing Meeva...");
+
+            // Step 1: Fetch ephemeral API key from local server
+            let ephemeralKey;
+            try {
+                const response = await fetch("http://localhost:8085/session");
+                const data = await response.json();
+                if (data.client_secret && data.client_secret.value) {
+                    ephemeralKey = data.client_secret.value;
+                    console.log("🔑 Ephemeral Key Retrieved:", ephemeralKey);
+                } else {
+                    throw new Error("Failed to get ephemeral key.");
+                }
+            } catch (error) {
+                console.error("❌ Cannot reach the key server:", error);
+                alert("Cannot reach the key server. Make sure 'ephemeralKeyServer.ps1' is running.");
+                return;
+            }
+
+            // Step 2: Initialize WebRTC connection
+            console.log("🌍 Connecting to OpenAI Realtime API via WebRTC...");
+            const pc = new RTCPeerConnection();
+
+            // Step 3: Handle AI-generated audio output
+            const audioEl = document.createElement("audio");
+            audioEl.autoplay = true;
+            pc.ontrack = (e) => {
+                console.log("🔊 Playing AI-generated audio...");
+                audioEl.srcObject = e.streams[0];
+            };
+
+            // Step 4: Capture microphone input
+            try {
+                const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                pc.addTrack(micStream.getTracks()[0]);
+                console.log("🎤 Microphone access granted.");
+            } catch (error) {
+                console.error("🚫 Microphone access denied:", error);
+                alert("Microphone access is required for Meeva to work.");
+                return;
+            }
+
+            // Step 5: Set up data channel for real-time messages
+            const dc = pc.createDataChannel("oai-events");
+            dc.addEventListener("message", (e) => {
+                console.log("📩 Received Realtime Event:", JSON.parse(e.data));
+            });
+
+            // Step 6: Start session using SDP
+            try {
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+
+                const apiUrl = "https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview-2024-12-17";
+                const sdpResponse = await fetch(apiUrl, {
+                    method: "POST",
+                    body: offer.sdp,
+                    headers: {
+                        Authorization: `Bearer ${ephemeralKey}`,
+                        "Content-Type": "application/sdp"
+                    },
+                });
+
+                const answer = { type: "answer", sdp: await sdpResponse.text() };
+                await pc.setRemoteDescription(answer);
+                console.log("✅ WebRTC connection established successfully.");
+            } catch (error) {
+                console.error("❌ WebRTC connection failed:", error);
+            }
+        }
+
+        // Auto-start Meeva on page load
+        window.onload = startMeeva;
+    </script>
+</body>
+</html>

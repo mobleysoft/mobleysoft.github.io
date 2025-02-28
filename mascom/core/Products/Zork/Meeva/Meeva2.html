@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Athena Heals | Medical Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #00ffcc;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+        .transparent-panel {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-text {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+        }
+        .price-card {
+            background: rgba(0, 20, 30, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-card:hover {
+            transform: translateY(-4px);
+            background: rgba(0, 20, 30, 0.3);
+        }
+        .price-button {
+            margin-top: auto;
+        }
+        .price-pill {
+            background: rgba(0, 20, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 200, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .price-pill:hover {
+            background: rgba(0, 20, 30, 0.6);
+            border-color: rgba(0, 255, 200, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <canvas id="bgCanvas"></canvas>
+    <main class="min-h-screen flex flex-col items-center justify-center pt-2 px-2">
+        <nav class="mx-2 mt-2 z-20 transparent-panel rounded-xl">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="text-3xl logo tracking-widest">MEEVA . |</div>
+                <div class="flex space-x-6 text-lg">
+                    <span>&nbsp;&nbsp;</span>
+                    <a onclick="togglePanel('login')" class="text-cyan-300 hover:text-cyan-100"><u>M</u>ental-Care For <u>E</u>veryone, <u>E</u>verywhere. A <u>V</u>oice <u>A</u>gent For Humanity</a>
+                    <span>&nbsp;|&nbsp;</span>
+                    <a onclick="togglePanel('login')" class="text-cyan-300 hover:text-cyan-100">About</a>
+                    <span>&nbsp;|&nbsp;</span>
+                    <a onclick="togglePanel('login')" class="text-cyan-300 hover:text-cyan-100">Services</a>
+                    <span>&nbsp;|&nbsp;</span>
+                    <a onclick="togglePanel('login')" class="text-cyan-300 hover:text-cyan-100">Pricing</a>
+                    <span>&nbsp;|&nbsp;</span>
+                    <a onclick="togglePanel('login')" class="text-cyan-300 hover:text-cyan-100">Sign-Up</a>
+                </div>
+            </div>
+        <div class="transparent-panel w-full max-w-6xl p-12 m-8 text-center">
+            <div class="meeva-app transparent-panel p-6 flex flex-col items-center">
+                <div class="price-pill rounded-full py-3 px-6 text-4xl font-bold text-white mb-6 mx-auto"><button onclick="startMeeva()" class="mt-4 bg-cyan-700 px-6 py-3 rounded-full text-white">♥ Push Me To Start! ♥</button></div> 
+                <h1 class="hero-text text-5xl font-bold mb-6 tracking-wide">Daily Check-Ins | Insights | Support</h1>    
+                <p class="text-xl text-cyan-300">Free Initial Treatment Sessions ♥ Complimentary Treatment Plans</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="price-card rounded-2xl p-8">
+                        <h3 class="hero-text text-2xl font-bold text-cyan-300 mb-4">ESTABLISH</h3>
+                        <p class="text-gray-300 mb-6">Get Help.</p>
+                        <div class="price-pill rounded-full py-3 px-6 text-4xl font-bold text-white mb-6 mx-auto">$90</div>
+                        <button class="price-button w-full py-3 bg-cyan-900/20 hover:bg-cyan-800/30 text-cyan-300 rounded-xl">Initialize treatment to get a personalized treatment plan.</button>
+                    </div>
+                    <div class="price-card rounded-2xl p-8">
+                        <h3 class="hero-text text-2xl font-bold text-cyan-300 mb-4">PARTAKE</h3>
+                        <p class="text-gray-300 mb-6">Continue Treatment</p>
+                        <div class="price-pill rounded-full py-3 px-6 text-4xl font-bold text-white mb-6 mx-auto">$50</div>
+                        <button class="price-button w-full py-3 bg-cyan-900/20 hover:bg-cyan-800/30 text-cyan-300 rounded-xl">Continue personalized treatment plans directly with Meeva.</button>
+                    </div>
+                    <div class="price-card rounded-2xl p-8">
+                        <h3 class="hero-text text-2xl font-bold text-cyan-300 mb-4">ELEVATE</h3>
+                        <p class="text-gray-300 mb-6">Help Others</p>
+                        <div class="price-pill rounded-full py-3 px-6 text-4xl font-bold text-white mb-6 mx-auto">$115</div>
+                        <button class="price-button w-full py-3 bg-cyan-900/20 hover:bg-cyan-800/30 text-cyan-300 rounded-xl">Bring in a human therapist, join a group session, or help others.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </main>
+         <div id="signup" class="panel"> <h2>Sign Up</h2> <p>Create an account to get started.</p> </div>
+        <div id="login" class="panel"> <h2>Login</h2> <p>Access your Meeva account.</p> </div>
+        <div id="pricing" class="panel"> <h2>Pricing</h2> <p>Explore our subscription plans.</p> </div>    
+    <script>
+        function togglePanel(panelId) {
+            const panel = document.getElementById(panelId);
+            document.querySelectorAll('.panel').forEach(p => {
+                if (p !== panel) p.classList.remove('open');
+            });
+            panel.classList.toggle('open');
+        }
+        
+        function startMeeva() {
+            alert("Meeva AI simulation starting...");
+        }
+    </script>
+    <script>
+        // [Previous animation code remains exactly the same]
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let rotation = 0;
+
+        function drawFlower() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const size = Math.min(canvas.width, canvas.height) * 0.8;
+
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(rotation);
+
+            for (let layer = 0; layer < 3; layer++) {
+                const radius = size * (0.3 - layer * 0.05);
+                ctx.strokeStyle = `rgba(0, ${255 - layer * 40}, ${204 + layer * 20}, ${0.4 - layer * 0.1})`;
+                ctx.lineWidth = 4 - layer;
+
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, Math.PI * 2);
+                ctx.stroke();
+
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i / 6) * Math.PI * 2;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                const outerRadius = radius * 2;
+                for (let i = 0; i < 12; i++) {
+                    const angle = (i / 12) * Math.PI * 2;
+                    const x = Math.cos(angle) * outerRadius;
+                    const y = Math.sin(angle) * outerRadius;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+
+            ctx.restore();
+            rotation += 0.001;
+            requestAnimationFrame(drawFlower);
+        }
+
+        drawFlower();
+    </script>
+</body>
+</html>

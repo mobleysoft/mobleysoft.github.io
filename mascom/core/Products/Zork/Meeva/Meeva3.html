@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeva - AI Mental Health Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #00ffcc;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+        .transparent-panel {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+        }
+        .hero-text {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+        }
+        .panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            transition: right 0.4s ease-in-out;
+            padding: 20px;
+            color: white;
+        }
+        .panel.open {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+    
+    <nav class="fixed w-[calc(100%-2rem)] mx-4 mt-4 z-50 transparent-panel p-4 flex justify-between items-center">
+        <div class="text-3xl logo tracking-widest">MEEVA</div>
+        <div class="flex space-x-6 text-lg">
+            <a onclick="togglePanel('signup')" class="text-cyan-300 hover:text-cyan-100">Sign Up</a>
+            <a onclick="togglePanel('login')" class="text-cyan-300 hover:text-cyan-100">Login</a>
+            <a onclick="togglePanel('pricing')" class="text-cyan-300 hover:text-cyan-100">Pricing</a>
+        </div>
+    </nav>
+    
+    <main class="min-h-screen flex flex-col items-center justify-center pt-20 px-4">
+        <div class="transparent-panel w-full max-w-6xl p-12 m-8 text-center">
+            <h1 class="hero-text text-5xl font-bold mb-6 tracking-wide">AI-Powered Mental Health Support</h1>
+            <p class="text-xl text-cyan-300">Daily Check-Ins, Personalized Insights, and Emotional Support</p>
+        </div>
+        
+        <div class="meeva-app transparent-panel p-6 flex flex-col items-center">
+            <h2 class="hero-text text-3xl font-bold">Live Meeva Demo</h2>
+            <p class="text-lg text-gray-300">Interact with Meeva in real-time.</p>
+            <button onclick="startMeeva()" class="mt-4 bg-cyan-700 px-6 py-3 rounded-full text-white">Start</button>
+        </div>
+    </main>
+    
+    <div id="signup" class="panel"> <h2>Sign Up</h2> <p>Create an account to get started.</p> </div>
+    <div id="login" class="panel"> <h2>Login</h2> <p>Access your Meeva account.</p> </div>
+    <div id="pricing" class="panel"> <h2>Pricing</h2> <p>Explore our subscription plans.</p> </div>
+    
+    <script>
+        function togglePanel(panelId) {
+            const panel = document.getElementById(panelId);
+            document.querySelectorAll('.panel').forEach(p => {
+                if (p !== panel) p.classList.remove('open');
+            });
+            panel.classList.toggle('open');
+        }
+        
+        function startMeeva() {
+            alert("Meeva AI simulation starting...");
+        }
+    </script>
+    <script>
+        // [Previous animation code remains exactly the same]
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let rotation = 0;
+
+        function drawFlower() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const size = Math.min(canvas.width, canvas.height) * 0.8;
+
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(rotation);
+
+            for (let layer = 0; layer < 3; layer++) {
+                const radius = size * (0.3 - layer * 0.05);
+                ctx.strokeStyle = `rgba(0, ${255 - layer * 40}, ${204 + layer * 20}, ${0.4 - layer * 0.1})`;
+                ctx.lineWidth = 4 - layer;
+
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, Math.PI * 2);
+                ctx.stroke();
+
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i / 6) * Math.PI * 2;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                const outerRadius = radius * 2;
+                for (let i = 0; i < 12; i++) {
+                    const angle = (i / 12) * Math.PI * 2;
+                    const x = Math.cos(angle) * outerRadius;
+                    const y = Math.sin(angle) * outerRadius;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+
+            ctx.restore();
+            rotation += 0.001;
+            requestAnimationFrame(drawFlower);
+        }
+
+        drawFlower();
+    </script>
+</body>
+</html>
