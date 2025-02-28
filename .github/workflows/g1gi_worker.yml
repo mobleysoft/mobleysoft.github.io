@@ -1,11 +1,10 @@
-name: G1GI_Recursive_AI
+name: G1GI_Recursive_Processing
 on:
-  workflow_dispatch:
   repository_dispatch:
     types: [trigger-g1gi]
 
 jobs:
-  g1gi_recursion:
+  g1gi_response_job:
     runs-on: ubuntu-latest
     steps:
       - name: Check Out Repository
@@ -19,18 +18,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run AGI Response Generator
+      - name: Execute G1GI AI Logic
         run: node g1gi_worker.js
 
-      - name: Save Output
+      - name: Save AI Response
         run: |
           echo "Generated response: $(cat response.txt)"
           echo "RESPONSE=$(cat response.txt)" >> $GITHUB_ENV
-
-      - name: Dispatch Response
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const response = fs.readFileSync('response.txt', 'utf8');
-            console.log(`G1GI Response: ${response}`);

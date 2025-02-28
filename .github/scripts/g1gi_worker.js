@@ -12,7 +12,7 @@ function generateG1GIResponse(input) {
     // Create an evolving response
     let response = responses[Math.floor(Math.random() * responses.length)];
 
-    // Store response for dispatch
+    // Store response for retrieval
     fs.writeFileSync('response.txt', response);
 }
 
