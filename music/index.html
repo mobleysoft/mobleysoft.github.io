@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft Radio</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #111; color: #fff; }
+        #genre-list button { margin: 5px; padding: 10px; background: #444; color: white; border: none; cursor: pointer; }
+        #genre-list button:hover { background: #666; }
+        #player { margin-top: 20px; }
+        canvas { width: 100%; height: 200px; background: black; }
+    </style>
+</head>
+<body>
+    <h1>Mobleysoft Radio</h1>
+    <div id="genre-list"></div>
+    <div id="player">
+        <audio id="audio" controls></audio>
+        <button id="next">Next</button>
+        <button id="generate-video">Generate Video</button>
+    </div>
+    <canvas id="visualizer"></canvas>
+    
+    <script>
+        class MobleysoftMusicPlayer {
+            constructor(baseUrl) {
+                this.baseUrl = baseUrl;
+                this.audio = new Audio();
+                this.musicData = {};
+                this.currentGenre = null;
+                this.currentIndex = 0;
+                this.canvas = document.getElementById("visualizer");
+                this.ctx = this.canvas.getContext("2d");
+                this.analyser = null;
+                this.dataArray = null;
+                this.mediaRecorder = null;
+                this.recordedChunks = [];
+                this.init();
+            }
+
+            async init() {
+                await this.loadMusicData();
+                this.setupGenres();
+                this.setupVisualizer();
+                document.getElementById("next").addEventListener("click", () => this.playNext());
+                document.getElementById("generate-video").addEventListener("click", () => this.generateVideo());
+            }
+
+            async loadMusicData() {
+                const response = await fetch(`${this.baseUrl}/music/index.json`);
+                this.musicData = await response.json();
+            }
+
+            setupGenres() {
+                const genreList = document.getElementById("genre-list");
+                Object.keys(this.musicData).forEach(genre => {
+                    const button = document.createElement("button");
+                    button.textContent = genre;
+                    button.addEventListener("click", () => this.playGenre(genre));
+                    genreList.appendChild(button);
+                });
+            }
+
+            playGenre(genre) {
+                this.currentGenre = genre;
+                this.currentIndex = 0;
+                this.playNext();
+            }
+
+            playNext() {
+                if (!this.currentGenre) return;
+                const tracks = this.musicData[this.currentGenre];
+                if (tracks.length === 0) return;
+                this.currentIndex = (this.currentIndex + 1) % tracks.length;
+                this.audio.src = `${this.baseUrl}/music/${this.currentGenre}/${tracks[this.currentIndex]}`;
+                this.audio.play();
+            }
+
+            setupVisualizer() {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const source = audioContext.createMediaElementSource(this.audio);
+                this.analyser = audioContext.createAnalyser();
+                source.connect(this.analyser);
+                this.analyser.connect(audioContext.destination);
+                this.analyser.fftSize = 256;
+                this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+                this.renderVisualizer();
+            }
+
+            renderVisualizer() {
+                requestAnimationFrame(() => this.renderVisualizer());
+                this.analyser.getByteFrequencyData(this.dataArray);
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.ctx.fillStyle = "rgb(0, 0, 0)";
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                const barWidth = (this.canvas.width / this.dataArray.length) * 2.5;
+                let barHeight;
+                let x = 0;
+                for (let i = 0; i < this.dataArray.length; i++) {
+                    barHeight = this.dataArray[i];
+                    this.ctx.fillStyle = `rgb(${barHeight + 100},50,50)`;
+                    this.ctx.fillRect(x, this.canvas.height - barHeight / 2, barWidth, barHeight / 2);
+                    x += barWidth + 1;
+                }
+            }
+
+            async generateVideo() {
+                this.recordedChunks = [];
+                const stream = this.canvas.captureStream(30);
+                this.mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+                this.mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) this.recordedChunks.push(event.data);
+                };
+                this.mediaRecorder.onstop = () => {
+                    const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'visualization.mp4';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                };
+                this.mediaRecorder.start();
+                setTimeout(() => this.mediaRecorder.stop(), 5000);
+            }
+        }
+
+        const player = new MobleysoftMusicPlayer("https://mobleysoft.com");
+    </script>
+</body>
+</html>
