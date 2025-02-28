@@ -1067,7 +1067,11 @@
       "crescendo  (2).mp3": "file"
     },
     "vibe": {
-      "Come with me (21).mp3": "file"
+      "Come with me (21).mp3": "file",
+      "Come with me (22).mp3": "file",
+      "Come with me (27).mp3": "file",
+      "Come with me (28).mp3": "file",
+      "Come with me (29).mp3": "file"
     }
   },
   "site-directory.json": "file",
