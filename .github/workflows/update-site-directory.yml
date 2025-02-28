@@ -1,0 +1,32 @@
+name: Update Site Directory
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour
+
+jobs:
+  update-directory:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Generate site directory
+        run: node .github/scripts/generate-site-directory.js
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add site-directory.json
+          git commit -m "Auto-update site directory"
+          git push || echo "No changes to commit"
