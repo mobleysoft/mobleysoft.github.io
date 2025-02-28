@@ -970,6 +970,10 @@
       "Mobley'sRetracata.mp3": "file",
       "Mobley'sSymphony.mp3": "file"
     },
+    "hiphop": {
+      "Come with me (11).mp3": "file",
+      "Come with me (14).mp3": "file"
+    },
     "index.html": "file"
   },
   "site-directory.json": "file",
