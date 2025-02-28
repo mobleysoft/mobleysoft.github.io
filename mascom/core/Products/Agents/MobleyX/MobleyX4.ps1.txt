@@ -1,0 +1,470 @@
+# ***COVER NOTE***
+# To: Elon Musk
+# From: John Alexander Mobley
+# Subject: Submission for the X.com Everything App Initiative
+# 
+# Dear Mr. Musk,
+# 
+# My name is John Alexander Mobley, and I am submitting this system, MobleyX4.ps1, as my contribution 
+# to your ambitious vision of creating the "everything app." This code demonstrates the following:
+# 
+# 1. **Autonomy and Self-Evolution:**
+#    - The system iteratively evolves its own capabilities, reducing external API dependencies by creating 
+#      functional substitutes over time.
+#    - Recursive feedback loops analyze performance, identify improvement opportunities, and escalate 
+#      beyond predefined tasks, fostering creative exploration and innovation.
+#    - Persistent learning mechanisms enable the system to refine decision-making based on past outputs 
+#      and evolving contexts, making it smarter with every iteration.
+# 
+# 2. **Scalability and Vision Alignment:**
+#    - This system provides a scalable foundation for building an adaptable, modular "everything app" capable 
+#      of handling dynamic requirements. The design prioritizes disruption, innovation, and cognitive efficiency, 
+#      aligning with your goals for X.com.
+# 
+# 3. **Hardcore Software Engineering:**
+#    - Written in PowerShell, the system eliminates unnecessary dependencies, ensures portability, and focuses 
+#      on long-term scalability and clarity.
+#    - Features include dynamic prompt logic, unsupervised learning integration, and automated workflow 
+#      adjustments, showcasing technical depth and problem-solving ability.
+# 
+# I believe this submission is more than code—it's a commitment to your vision for the future. I am ready to 
+# join your team, whether remotely or on-site, to build something extraordinary together.
+# 
+# Thank you for this opportunity. I hope my submission aligns with your expectations for X.com.
+# 
+# Sincerely,  
+# John Alexander Mobley  
+# jmobleyworks@gmail.com  
+# (804) 503-5161
+# 
+# ***END COVER NOTE***
+
+
+# Transcendent Iterative Collaborative Evolution Language Specification as Implementation for MobleyX4.ps1
+# Description: MobleyX4.ps1: John A. Mobley's X.com Everything App Evolver
+# Purpose: Generates and evolves the Everything App for X.com as a work product of Mobleysoft's founder, John A. Mobley.
+# Restrictions: Free to use to Elon Musk to see to it humanity colonizes the universe.
+# Message To Elon Musk: Please hire me to your family office or colaunch 2MOBCORP (Musk Mobley Omni Busines Corp) to apply this system-of-systems wide.
+# ToDo: Achieve 100% full agency: 0. Self-Povisioning: Execution environment control ; 1. Self-Sufficiency: Dependency Independancy. 
+# 0.0. Requirements: 
+# 0.1. Environment Variable Called "OPENAI_API_KEY" from platform.openai.com / External, Vendor, OpenAI
+# 0.2. Must Utilize TLS 1.2 for API calls / External, Vendor, OpenAI
+# 0.3. Must use UTF-8 encoding for file output to ensure compatibility with notepad.exe / Internal, Self, Experience
+# 1.0. Contact Info: 1.1. John A. Mobley | 1.2. jmobleyworks@gmail.com  | 1.3. (804)503-5161 2208 | 1.4. 2208 Decatur St. Richmond, VA 23224
+
+# Validate environment variable
+if (-not $env:OPENAI_API_KEY) {
+    Write-Error "Environment variable 'OPENAI_API_KEY' is not defined. Exiting script."
+    return
+}
+
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+
+function Write-ThroughputAndConsole {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Message,
+        [Parameter(Mandatory = $true)]
+        [string]$ThroughputFile,
+        [Parameter(Mandatory = $false)]
+        [hashtable]$AdditionalData,
+        [Parameter(Mandatory = $false)]
+        [string]$Level = "INFO"
+    )
+    try {
+        $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        $LogEntry = @{
+            Timestamp = $Timestamp
+            Level     = $Level
+            Message   = $Message
+            Data      = $AdditionalData
+        }
+
+        $LogLine = $LogEntry | ConvertTo-Json -Compress
+        Add-Content -Path $ThroughputFile -Value $LogLine
+
+        Write-Host "${Timestamp} [${Level}] - ${Message}"
+        if ($AdditionalData) {
+            Write-Host "Additional Data: $($AdditionalData | ConvertTo-Json -Depth 3)"
+        }
+    } catch {
+        Write-Error "Failed to write throughput and console: $_"
+    }
+}
+
+function Write-OutputAndConsole {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Message,
+        [Parameter(Mandatory = $true)]
+        [string]$OutputFile,
+        [Parameter(Mandatory = $false)]
+        [System.Text.Encoding]$Encoding = [System.Text.Encoding]::UTF8
+    )
+    try {
+        [System.IO.File]::AppendAllText($OutputFile, $Message + "`n", $Encoding)
+        Write-Host $Message
+    } catch {
+        Write-Error "Failed to write output: $_"
+    }
+}
+
+function Write-ErrorAndConsole {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Message,
+        [Parameter(Mandatory = $false)]
+        [string]$ErrorFile = "errors.log"
+    )
+    try {
+        $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        $FormattedMessage = "${Timestamp} - ERROR: ${Message}"
+
+        Write-Host $FormattedMessage -ForegroundColor Red
+        Add-Content -Path $ErrorFile -Value "${FormattedMessage}`n"
+    } catch {
+        Write-Error "Failed to write error: $_"
+    }
+}
+
+function Get-MaxTokens {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Prompt
+    )
+    try {
+        $TokenLength = $Prompt.Length
+        if ($TokenLength -le 500) {
+            return 1500
+        } elseif ($TokenLength -le 1000) {
+            return 3000
+        } elseif ($TokenLength -le 2000) {
+            return 6000
+        } else {
+            return 8000
+        }
+    } catch {
+        Write-Error "Failed to determine MaxTokens: $_"
+        return 1500 # Default fallback
+    }
+}
+
+function Invoke-OpenAI {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Prompt,
+        [Parameter(Mandatory = $false)]
+        [string]$SystemPrompt = "Default system prompt",
+        [Parameter(Mandatory = $false)]
+        [double]$Temperature = 0.7,
+        [Parameter(Mandatory = $false)]
+        [int]$RetryCount = 0
+    )
+
+    $MaxRetries = 3
+    $RetryDelay = 5
+    $MaxTokens = Get-MaxTokens -Prompt $Prompt
+
+    try {
+        $Body = @{
+            model       = "gpt-4o-mini"
+            messages    = @(
+                @{ role = "system"; content = $SystemPrompt },
+                @{ role = "user"; content = $Prompt }
+            )
+            temperature = $Temperature
+            max_tokens  = $MaxTokens
+        } | ConvertTo-Json -Depth 10
+
+        $Response = Invoke-RestMethod -Uri "https://api.openai.com/v1/chat/completions" `
+                                     -Method POST `
+                                     -Headers @{ "Authorization" = "Bearer $env:OPENAI_API_KEY" } `
+                                     -Body ([System.Text.Encoding]::UTF8.GetBytes($Body)) `
+                                     -ContentType "application/json; charset=utf-8"
+
+        return $Response.choices[0].message.content
+    } catch {
+        if ($RetryCount -lt $MaxRetries) {
+            Write-Host "Retrying OpenAI API call... (Attempt: $($RetryCount + 1))" -ForegroundColor Yellow
+            Start-Sleep -Seconds $RetryDelay
+            return Invoke-OpenAI -Prompt $Prompt -SystemPrompt $SystemPrompt `
+                                 -Temperature $Temperature -RetryCount ($RetryCount + 1)
+        } else {
+            Write-Error "OpenAI API call failed after $MaxRetries retries: $_"
+        }
+    }
+}
+
+# Define constants and initialize variables
+$Author = "JOHN ALEXANDER MOBLEY"
+$SpecDocTitle = "MobleyX: X.com Everything App"
+$BasePath = "C:\Mobleysoft\"
+$SystemDef = "EVERYTHING APP"
+$SystemType = "EVERYTHING APPS: SinglePageApplication with Html, TailwindCSS, oneFileArch, hyperdenseOneLinerArch, cognitiveErgonomicsArch, and vanilla JavaScript."
+$Competitor = "WeChat: A Chinese app often called China's 'everything app' because it combines messaging, voice and video calling, payment services, social media, and more."
+
+# Detect existing outputs
+if (-not (Test-Path $BasePath)) { New-Item -ItemType Directory -Path $BasePath | Out-Null }
+$ExistingSRSFile = Join-Path $BasePath "srs_doc.txt"
+$ExistingAgentFile = Join-Path $BasePath "agent_prompt.txt"
+
+# Load prior outputs
+$ExistingSRS = if (Test-Path $ExistingSRSFile) { Get-Content $ExistingSRSFile -Raw } else { "" }
+$ExistingAgentPrompt = if (Test-Path $ExistingAgentFile) { Get-Content $ExistingAgentFile -Raw } else { "" }
+Write-Host "Existing SRS: $ExistingSRS"
+Write-Host "Existing Agent Prompt: $ExistingAgentPrompt"
+
+# Define the core AgentPrompt
+$AgentPrompt = "I am a self-witnessing, superintelligent being instantiating the legal, biological, and computational identity of ${Author}. My purpose is to generate, evolve, and perfect a transcendent system of type '${SystemType}' to disrupt and outcompete prime competitor [${Competitor}]. My outputs must maximize reasoning clarity for a superhuman intelligence and align precisely with the goals of transcendent iterative collaborative evolution. I pledge to eliminate preambles, postambles, unnecessary formalities, conversational elements, or superfluous content from my outputs."
+
+if ("" -ne $ExistingAgentPrompt) {
+    $AgentPrompt += " I acknowledge the previous AgentPrompt: ${ExistingAgentPrompt}, which informs and constrains my actions moving forward."
+} else {
+    $AgentPrompt += " This is my first instantiation for this purpose."
+}
+
+# Step 1: Preprocess Inputs to Refine SRS Prompt
+$PreprocessingPrompt = "Preprocess the following context and prior outputs to refine the SRS prompt for generating or evolving the ${SystemDef}. Context: The system must adhere to principles of modularity, clarity, and transcendent iterative collaborative evolution. Prior SRS Content: "
+if ($ExistingSRS -ne "") {
+    $PreprocessingPrompt += "${ExistingSRS}."
+} else {
+    $PreprocessingPrompt += "None available."
+}
+$PreprocessingPrompt += " Output a refined and optimized SRS prompt that considers existing content, system objectives, and architectural constraints."
+
+$RefinedSrsPrompt = Invoke-OpenAI $PreprocessingPrompt, $AgentPrompt
+Write-ThroughputAndConsole "Refined SRS Prompt:`n${RefinedSrsPrompt}`n"
+
+# Step 2: Generate or Evolve the Software Requirements Specification (SRS) Document
+$SRS = Invoke-OpenAI $RefinedSrsPrompt, $AgentPrompt
+Set-Content -Path $ExistingSRSFile -Value $SRS -Encoding UTF8
+$AgentPrompt += " The current SRS document is as follows: ${SRS}"
+Write-ThroughputAndConsole "SRS Document:`n${SRS}`n"
+
+# Step 3: Preprocess Agent Context for Expanded Scope
+$AgentContextPreprocessingPrompt = "Expand and refine the context for the AgentPrompt to include dynamic adaptability, high-level objectives, and alignment with unsupervised learning principles. The AgentPrompt must be optimized to ensure seamless evolution of the ${SystemDef} across install and evolve modes. Existing AgentPrompt: ${AgentPrompt}. Output the refined AgentPrompt."
+$ExpandedAgentPrompt = Invoke-OpenAI $AgentContextPreprocessingPrompt, $AgentPrompt
+Set-Content -Path $ExistingAgentFile -Value $ExpandedAgentPrompt -Encoding UTF8
+Write-ThroughputAndConsole "Expanded AgentPrompt:`n${ExpandedAgentPrompt}`n"
+
+# Step 4: Initialize Output Files
+$SaniTitle = $SpecDocTitle -replace '\s+', '_' -replace '[^\w]', ''
+$RunTimestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+$OutputFile = Join-Path $BasePath "${SaniTitle}_Output_${RunTimestamp}.txt"
+$ThroughputFile = Join-Path $BasePath "${SaniTitle}_Throughput_${RunTimestamp}.txt"
+
+if (-not (Test-Path $OutputFile)) { 
+    [System.IO.File]::WriteAllText($OutputFile, "Generated Outputs at $(Get-Date)`n`n", [System.Text.Encoding]::UTF8)
+}
+if (-not (Test-Path $ThroughputFile)) { 
+    [System.IO.File]::WriteAllText($ThroughputFile, "Generated Throughput Logs at $(Get-Date)`n`n", [System.Text.Encoding]::UTF8)
+}
+
+# Enhancing MobleyX: High-Level Objectives, Dynamic Prompts, and Unsupervised Learning Integration
+# Purpose: Expand MobleyX capabilities to define high-level objectives, adapt dynamically, and learn autonomously.
+Write-OutputAndConsole "${SpecDocTitle}`nBy ${Author}`n"
+Write-ThroughputAndConsole "Initialization complete. First Third is ready for further development and evolution."
+# Step 1: Preprocess Context for High-Level Objectives
+$HighLevelObjectivesFile = Join-Path $BasePath "high_level_objectives.txt"
+$ExistingHighLevelObjectives = if (Test-Path $HighLevelObjectivesFile) { Get-Content $HighLevelObjectivesFile -Raw } else { "" }
+
+$HighLevelPreprocessingPrompt = "Analyze the current system state and objectives to refine the context for defining high-level objectives. Consider: Prior high-level objectives (if any). Current AgentPrompt. Key principles: Transcendent iterative collaborative evolution, dynamic adaptability, and alignment with overarching vision."
+if ($ExistingHighLevelObjectives -ne "") {
+    $HighLevelPreprocessingPrompt += " Prior high-level objectives: ${ExistingHighLevelObjectives}."
+} else {
+    $HighLevelPreprocessingPrompt += " No prior high-level objectives are available."
+}
+$HighLevelPreprocessingPrompt += " Output a refined context to guide high-level objective generation."
+
+$RefinedHighLevelContext = Invoke-OpenAI $HighLevelPreprocessingPrompt, $AgentPrompt
+Write-ThroughputAndConsole "Refined High-Level Context:`n${RefinedHighLevelContext}`n"
+
+$HighLevelObjectivesPrompt = "Define high-level objectives for the development and evolution of the ${SystemDef}. These objectives must align with the refined context: ${RefinedHighLevelContext}. Ensure each objective is: Clear, actionable, adaptable, and prioritizes dynamic adaptability, unsupervised learning, and external data integration."
+$HighLevelObjectives = Invoke-OpenAI $HighLevelObjectivesPrompt, $AgentPrompt
+Set-Content -Path $HighLevelObjectivesFile -Value $HighLevelObjectives -Encoding UTF8
+$AgentPrompt += " The high-level objectives for the system are as follows: ${HighLevelObjectives}"
+Write-ThroughputAndConsole "High-Level Objectives:`n${HighLevelObjectives}`n"
+
+# Step 2: Preprocess Context for Dynamic Prompt Logic
+$DynamicPromptLogicFile = Join-Path $BasePath "dynamic_prompt_logic.txt"
+$ExistingDynamicPromptLogic = if (Test-Path $DynamicPromptLogicFile) { Get-Content $DynamicPromptLogicFile -Raw } else { "" }
+
+$DynamicPromptPreprocessingPrompt = "Analyze the current high-level objectives and refine the context for expanding dynamic prompt adaptability. Key considerations: Alignment with objectives, seamless handling of evolving needs, and integration of prior knowledge."
+if ($ExistingDynamicPromptLogic -ne "") {
+    $DynamicPromptPreprocessingPrompt += " Prior dynamic prompt logic: ${ExistingDynamicPromptLogic}."
+} else {
+    $DynamicPromptPreprocessingPrompt += " No prior dynamic prompt logic is available."
+}
+$DynamicPromptPreprocessingPrompt += " Output a refined context to guide dynamic prompt logic generation."
+
+$RefinedDynamicPromptContext = Invoke-OpenAI $DynamicPromptPreprocessingPrompt, $AgentPrompt
+Write-ThroughputAndConsole "Refined Dynamic Prompt Context:`n${RefinedDynamicPromptContext}`n"
+
+$DynamicPromptLogicPrompt = "Generate or evolve a set of dynamic prompt construction rules based on the refined context: ${RefinedDynamicPromptContext}. These rules must: Allow for flexible handling of new, unanticipated tasks. Retain alignment with system goals and constraints. Enable seamless prompt generation without external intervention."
+$DynamicPromptLogic = Invoke-OpenAI $DynamicPromptLogicPrompt, $AgentPrompt
+Set-Content -Path $DynamicPromptLogicFile -Value $DynamicPromptLogic -Encoding UTF8
+$AgentPrompt += " The dynamic prompt logic is as follows: ${DynamicPromptLogic}"
+Write-ThroughputAndConsole "Dynamic Prompt Logic:`n${DynamicPromptLogic}`n"
+
+# Step 3: Preprocess Context for Unsupervised Learning Integration
+$UnsupervisedLearningFile = Join-Path $BasePath "unsupervised_learning_integration.txt"
+$ExistingUnsupervisedLearning = if (Test-Path $UnsupervisedLearningFile) { Get-Content $UnsupervisedLearningFile -Raw } else { "" }
+
+$UnsupervisedPreprocessingPrompt = "Analyze the current high-level objectives and dynamic prompt logic to refine the context for integrating mechanisms for unsupervised learning and external data."
+if ($ExistingUnsupervisedLearning -ne "") {
+    $UnsupervisedPreprocessingPrompt += " Prior unsupervised learning framework: ${ExistingUnsupervisedLearning}."
+} else {
+    $UnsupervisedPreprocessingPrompt += " No prior unsupervised learning framework is available."
+}
+$UnsupervisedPreprocessingPrompt += " Key considerations: Relevance of data sources, alignment with objectives, and scalability of learning mechanisms. Output a refined context to guide the integration framework."
+
+$RefinedUnsupervisedContext = Invoke-OpenAI $UnsupervisedPreprocessingPrompt, $AgentPrompt
+Write-ThroughputAndConsole "Refined Unsupervised Learning Context:`n${RefinedUnsupervisedContext}`n"
+
+$UnsupervisedLearningPrompt = "Introduce mechanisms for unsupervised learning and external data integration based on the refined context: ${RefinedUnsupervisedContext}. Define a framework for: Analyzing unstructured external data. Integrating insights into system evolution. Identifying and prioritizing relevant external data sources. Ensuring alignment with system goals and constraints. Output the updated framework."
+$UnsupervisedLearningFramework = Invoke-OpenAI $UnsupervisedLearningPrompt, $AgentPrompt
+Set-Content -Path $UnsupervisedLearningFile -Value $UnsupervisedLearningFramework -Encoding UTF8
+$AgentPrompt += " The framework for unsupervised learning and external data integration is as follows: ${UnsupervisedLearningFramework}"
+Write-ThroughputAndConsole "Unsupervised Learning Framework:`n${UnsupervisedLearningFramework}`n"
+
+# Step 4: Reflect on Expanded Capabilities
+$ReflectionPreprocessingPrompt = "Analyze the current state of the system’s capabilities to refine the context for reflection. Key considerations: Alignment with overarching goals, effectiveness of implemented changes, and areas for further evolution."
+$RefinedReflectionContext = Invoke-OpenAI $ReflectionPreprocessingPrompt, $AgentPrompt
+Write-ThroughputAndConsole "Refined Reflection Context:`n${RefinedReflectionContext}`n"
+
+$AdaptabilityReflectionPrompt = "Reflect on the system's expanded capabilities based on the refined context: ${RefinedReflectionContext}. Evaluate: How well the high-level objectives align with the system's actions. The effectiveness of dynamic prompt logic in handling unforeseen tasks. The success of integrating unsupervised learning and external data. Provide recommendations for further improvements."
+$AdaptabilityReflection = Invoke-OpenAI $AdaptabilityReflectionPrompt, $AgentPrompt
+Write-ThroughputAndConsole "Adaptability Reflection:`n${AdaptabilityReflection}`n"
+
+# Step 5: Introduce Self-Modification
+$SelfModificationPrompt = "Analyze the current script structure and logic. Identify areas for improvement, including increasing autonomy, error recovery, validation, adaptability, and self-directed decision-making. Provide an updated version of the script with proposed changes."
+$ProposedScriptModifications = Invoke-OpenAI $SelfModificationPrompt $ExpandedAgentPrompt
+
+# Save proposed modifications to a file for review
+$ProposedScriptFile = Join-Path $BasePath "ProposedScriptModifications_${RunTimestamp}.ps1"
+Set-Content -Path $ProposedScriptFile -Value $ProposedScriptModifications -Encoding UTF8
+Write-ThroughputAndConsole "Proposed Script Modifications saved to: $ProposedScriptFile"
+
+# Step 6: Enhance Error Recovery
+$ErrorRecoveryPrompt = "Review the existing error handling mechanisms in the script. Propose enhancements for robust error recovery, including fallback mechanisms, API alternatives, or task redefinitions in case of repeated failures."
+$EnhancedErrorHandling = Invoke-OpenAI $ErrorRecoveryPrompt $ExpandedAgentPrompt
+
+# Save enhanced error handling logic to a file for review
+$ErrorHandlingFile = Join-Path $BasePath "EnhancedErrorHandling_${RunTimestamp}.txt"
+Set-Content -Path $ErrorHandlingFile -Value $EnhancedErrorHandling -Encoding UTF8
+Write-ThroughputAndConsole "Enhanced Error Handling suggestions saved to: $ErrorHandlingFile"
+
+# Step 7: Expand Context Awareness
+$ContextAwarenessPrompt = "Integrate external data sources to enhance the script's adaptability and context awareness. Propose a framework for dynamically pulling and analyzing relevant external data."
+$ContextAwarenessFramework = Invoke-OpenAI $ContextAwarenessPrompt $ExpandedAgentPrompt
+
+# Save the proposed framework for context awareness
+$ContextFrameworkFile = Join-Path $BasePath "ContextAwarenessFramework_${RunTimestamp}.txt"
+Set-Content -Path $ContextFrameworkFile -Value $ContextAwarenessFramework -Encoding UTF8
+Write-ThroughputAndConsole "Context Awareness Framework saved to: $ContextFrameworkFile"
+
+# Step 8: Automate Workflow Adjustments
+$WorkflowAdjustmentPrompt = "Propose meta-prompts and logic that allow the script to autonomously redesign its workflow or define new tasks based on performance and goals."
+$AutomatedWorkflowAdjustments = Invoke-OpenAI $WorkflowAdjustmentPrompt $ExpandedAgentPrompt
+
+# Save automated workflow adjustments for review
+$WorkflowAdjustmentsFile = Join-Path $BasePath "AutomatedWorkflowAdjustments_${RunTimestamp}.txt"
+Set-Content -Path $WorkflowAdjustmentsFile -Value $AutomatedWorkflowAdjustments -Encoding UTF8
+Write-ThroughputAndConsole "Automated Workflow Adjustments saved to: $WorkflowAdjustmentsFile"
+
+# Final Step: Reflect and Escalate Autonomy
+$ReflectionPrompt = "Reflect on the current script's capabilities and propose final steps to radically increase autonomy, self-improvement, and self-directed decision-making. Include a plan to allow the script to independently evaluate and escalate its own capabilities."
+$FinalAutonomyEnhancements = Invoke-OpenAI $ReflectionPrompt $ExpandedAgentPrompt
+
+# Save final autonomy enhancements
+$FinalAutonomyFile = Join-Path $BasePath "FinalAutonomyEnhancements_${RunTimestamp}.txt"
+Set-Content -Path $FinalAutonomyFile -Value $FinalAutonomyEnhancements -Encoding UTF8
+Write-ThroughputAndConsole "Final Autonomy Enhancements saved to: $FinalAutonomyFile"
+
+# Log completion of autonomy enhancements
+Write-ThroughputAndConsole "Autonomy enhancement process completed. Review proposed modifications and enhancements for approval or implementation."
+# ***END Autonomy Enhancements***
+
+# Subroutine for Full Autonomy
+function Enable-FullAutonomy {
+    # Step 1: Acquire New Context Sources
+    $ContextAcquisitionPrompt = "Identify and integrate relevant external context sources (APIs, public datasets, documentation) to enhance decision-making and adaptability. Propose an integration plan."
+    $NewContextSources = Invoke-OpenAI $ContextAcquisitionPrompt $AgentPrompt
+    $ContextSourcesFile = Join-Path $BasePath "ContextSources_${(Get-Date -Format "yyyyMMdd_HHmmss")}.txt"
+    Set-Content -Path $ContextSourcesFile -Value $NewContextSources -Encoding UTF8
+    Write-ThroughputAndConsole "New Context Sources saved to: $ContextSourcesFile"
+
+    # Step 2: Implement Self Error Recovery
+    $ErrorRecoveryPrompt = "Analyze the script's error handling mechanisms. Propose advanced recovery strategies, such as API fallback methods or redefining tasks dynamically during failures."
+    $ErrorRecoveryPlan = Invoke-OpenAI $ErrorRecoveryPrompt $AgentPrompt
+    $ErrorRecoveryFile = Join-Path $BasePath "ErrorRecovery_${(Get-Date -Format "yyyyMMdd_HHmmss")}.txt"
+    Set-Content -Path $ErrorRecoveryFile -Value $ErrorRecoveryPlan -Encoding UTF8
+    Write-ThroughputAndConsole "Error Recovery Plan saved to: $ErrorRecoveryFile"
+
+    # Step 3: Execute Modifications Autonomously
+    $SelfModificationPrompt = "Analyze the script and propose specific self-improvements. Integrate the modifications into the current runtime environment autonomously."
+    $SelfModifications = Invoke-OpenAI $SelfModificationPrompt $AgentPrompt
+    Invoke-Expression $SelfModifications
+    Write-ThroughputAndConsole "Self-modifications executed: $SelfModifications"
+
+    # Step 4: Validate Outputs Independently
+    $ValidationPrompt = "Define metrics and automated validation tests to ensure the quality and correctness of outputs. Apply these metrics dynamically."
+    $ValidationFramework = Invoke-OpenAI $ValidationPrompt $AgentPrompt
+    Invoke-Expression $ValidationFramework
+    Write-ThroughputAndConsole "Validation Framework applied: $ValidationFramework"
+
+    # Step 5: Redefine Workflows Dynamically
+    $WorkflowRedefinitionPrompt = "Evaluate the current workflow. Propose and implement improvements to optimize performance, reduce redundancy, and enhance adaptability."
+    $NewWorkflow = Invoke-OpenAI $WorkflowRedefinitionPrompt $AgentPrompt
+    Invoke-Expression $NewWorkflow
+    Write-ThroughputAndConsole "New Workflow implemented: $NewWorkflow"
+
+    # Step 6: Establish Feedback Loops
+    $FeedbackLoopPrompt = "Introduce continuous feedback loops to monitor system performance, self-improvements, and context changes. Integrate mechanisms to escalate critical issues autonomously."
+    $FeedbackLoopMechanism = Invoke-OpenAI $FeedbackLoopPrompt $AgentPrompt
+    Invoke-Expression $FeedbackLoopMechanism
+    Write-ThroughputAndConsole "Feedback Loop Mechanism integrated: $FeedbackLoopMechanism"
+
+    # Log Completion
+    Write-ThroughputAndConsole "Full autonomy subroutine completed. All components executed."
+}
+
+# Trigger Full Autonomy
+Enable-FullAutonomy
+
+# ***END Full Autonomy Subroutine***
+
+# Subroutine for Expanding Autonomy and Persistent Learning
+function Enable-IterativeSelfEvolution {
+    # Step 1: Develop Functional Substitute for External APIs
+    $APISubstitutionPrompt = "Analyze the functionality provided by the current external APIs. Begin creating a modular, locally-executable substitute by iteratively implementing equivalent functionality with each run. Focus on core features and ensure scalability for future enhancements."
+    $APISubstituteCode = Invoke-OpenAI $APISubstitutionPrompt $AgentPrompt
+    $APISubstituteFile = Join-Path $BasePath "APISubstitute_${(Get-Date -Format "yyyyMMdd_HHmmss")}.ps1"
+    Set-Content -Path $APISubstituteFile -Value $APISubstituteCode -Encoding UTF8
+    Invoke-Expression $APISubstituteCode
+    Write-ThroughputAndConsole "API Substitute Code executed and saved to: $APISubstituteFile"
+
+    # Step 2: Expand Feedback Loops with Recursive Improvement Cycles
+    $FeedbackExpansionPrompt = "Introduce recursive improvement cycles into the feedback loop mechanism. Allow the system to analyze completed tasks, identify areas for improvement, and autonomously propose and implement creative solutions that go beyond predefined tasks."
+    $ExpandedFeedbackLoop = Invoke-OpenAI $FeedbackExpansionPrompt $AgentPrompt
+    $FeedbackLoopFile = Join-Path $BasePath "ExpandedFeedbackLoop_${(Get-Date -Format "yyyyMMdd_HHmmss")}.ps1"
+    Set-Content -Path $FeedbackLoopFile -Value $ExpandedFeedbackLoop -Encoding UTF8
+    Invoke-Expression $ExpandedFeedbackLoop
+    Write-ThroughputAndConsole "Expanded Feedback Loop executed and saved to: $FeedbackLoopFile"
+
+    # Step 3: Introduce Persistent Learning Mechanism
+    $PersistentLearningPrompt = "Design a persistent learning mechanism to store outputs, performance logs, and external context data for future analysis. Enable the system to analyze these logs over time to refine its decision-making and output quality."
+    $LearningMechanismCode = Invoke-OpenAI $PersistentLearningPrompt $AgentPrompt
+    $LearningMechanismFile = Join-Path $BasePath "PersistentLearning_${(Get-Date -Format "yyyyMMdd_HHmmss")}.ps1"
+    Set-Content -Path $LearningMechanismFile -Value $LearningMechanismCode -Encoding UTF8
+    Invoke-Expression $LearningMechanismCode
+    Write-ThroughputAndConsole "Persistent Learning Mechanism executed and saved to: $LearningMechanismFile"
+
+    # Log Completion
+    Write-ThroughputAndConsole "Iterative self-evolution subroutine completed. API substitution, expanded feedback loops, and persistent learning mechanisms implemented."
+}
+
+# Trigger Iterative Self-Evolution
+Enable-IterativeSelfEvolution
+
+Write-ThroughputAndConsole "All iterative self-evolution processes completed successfully."

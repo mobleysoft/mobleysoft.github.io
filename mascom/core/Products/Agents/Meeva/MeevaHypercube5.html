@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypercube Startups</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://threejs.org/examples/js/geometries/TextGeometry.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <script>
+        let scene, camera, renderer, cubeGroup;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0, 300);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // Cube sizes
+            const size = 50;
+            const outerSize = 120;
+
+            // Define cube vertices
+            const vertices = [
+                [-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1],
+                [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]
+            ].map(v => new THREE.Vector3(v[0] * size, v[1] * size, v[2] * size));
+
+            const outerVertices = [
+                [-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1],
+                [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]
+            ].map(v => new THREE.Vector3(v[0] * outerSize, v[1] * outerSize, v[2] * outerSize));
+
+            // Define cube edges
+            const edges = [
+                [0,1], [0,2], [0,4], [1,3], [1,5], [2,3], [2,6], [3,7], [4,5], [4,6], [5,7], [6,7]
+            ];
+
+            // Group all objects so they rotate together
+            cubeGroup = new THREE.Group();
+            scene.add(cubeGroup);
+
+            // Create inner cube
+            const innerGeometry = new THREE.BufferGeometry();
+            const innerPositions = [];
+            edges.forEach(e => {
+                innerPositions.push(vertices[e[0]].x, vertices[e[0]].y, vertices[e[0]].z);
+                innerPositions.push(vertices[e[1]].x, vertices[e[1]].y, vertices[e[1]].z);
+            });
+            innerGeometry.setAttribute('position', new THREE.Float32BufferAttribute(innerPositions, 3));
+            const innerMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00 });
+            const innerCube = new THREE.LineSegments(innerGeometry, innerMaterial);
+            cubeGroup.add(innerCube);
+
+            // Create outer cube
+            const outerGeometry = new THREE.BufferGeometry();
+            const outerPositions = [];
+            edges.forEach(e => {
+                outerPositions.push(outerVertices[e[0]].x, outerVertices[e[0]].y, outerVertices[e[0]].z);
+                outerPositions.push(outerVertices[e[1]].x, outerVertices[e[1]].y, outerVertices[e[1]].z);
+            });
+            outerGeometry.setAttribute('position', new THREE.Float32BufferAttribute(outerPositions, 3));
+            const outerMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+            const outerCube = new THREE.LineSegments(outerGeometry, outerMaterial);
+            cubeGroup.add(outerCube);
+
+            // Connect inner cube vertices to outer cube vertices
+            const connectingGeometry = new THREE.BufferGeometry();
+            const connectingPositions = [];
+            for (let i = 0; i < vertices.length; i++) {
+                connectingPositions.push(vertices[i].x, vertices[i].y, vertices[i].z);
+                connectingPositions.push(outerVertices[i].x, outerVertices[i].y, outerVertices[i].z);
+            }
+            connectingGeometry.setAttribute('position', new THREE.Float32BufferAttribute(connectingPositions, 3));
+            const connectingMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
+            const connectingLines = new THREE.LineSegments(connectingGeometry, connectingMaterial);
+            cubeGroup.add(connectingLines);
+
+            // Load 3D text for startup names
+            const loader = new THREE.FontLoader();
+            loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+                const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+                function createText(text, x, y, z, color = 0xffffff) {
+                    const textGeometry = new THREE.TextGeometry(text, {
+                        font: font,
+                        size: 12,
+                        height: 1,
+                        curveSegments: 12,
+                        bevelEnabled: true,
+                        bevelThickness: 0.5,
+                        bevelSize: 0.3,
+                        bevelOffset: 0,
+                        bevelSegments: 5
+                    });
+                    const textMesh = new THREE.Mesh(textGeometry, new THREE.MeshBasicMaterial({ color }));
+                    textMesh.position.set(x, y, z);
+                    cubeGroup.add(textMesh);
+                }
+
+                // Center Texts on Faces     
+                createText('Syncropy.com\n Mindful Wholeness',   -45,  90,  00, 0x008888); // Top Face
+                createText('MobleysoftAGI',  -55,  25,   0); // Centered inside
+                createText('Mobcorp MentalOps',  -70,  10,   0); // Centered inside
+                createText('      Meeva.io\n  Mental Health\n     VoiceAGI',   -50,  -5,  0, 0x00ffff); // Cemtered inside
+                createText('     RecovAI.com\n -Addiction Recovery\n -Harm Reduction',      -55, -100,  0, 0xff00ff); // Bottom Face
+                createText('      LoveMaint.com\n Marraige Assistance',   -70,   20, 100, 0xff5555); // Front Face
+                createText('BondWright.com\n Family Harmony',   -65,   -20, 100, 0xff9900); // Front Face
+                createText('      YouthMend.com\n Escalated Interventions',    -90,   20,-100, 0x00ff00); // Back Face
+                createText('HealSpell.com\n Kids & Gamers',   -60,  -20,  -100, 0x009900); // Back Face
+                createText('   AgeWinder.com\n Golden Mind Care', -210,   0,   0, 0xff0000); // Left Face
+                createText('   WorkShrinker.com\n Career Stress Relief',       100,   0,   0, 0x0000ff); // Right Face
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                cubeGroup.rotation.x += 0.005;
+                cubeGroup.rotation.y += 0.005;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

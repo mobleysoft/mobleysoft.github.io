@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobleysoft - AI Consulting SaaS</title>
+<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+<style>
+body{font-family:Arial,sans-serif;background:#000;color:#fff;margin:0;padding:0;text-align:center;}
+.footer-bar{display:flex;justify-content:center;align-items:center;background:#000;padding:3px;font-size:14px;}
+.footer-logo{font-weight:bold;font-size:16px;color:#ffcc00;margin-right:10px;}
+.footer-link{text-decoration:none;padding:3px 8px;color:#ffcc00;border:1px solid #ffcc00;font-weight:normal;background:none;}
+.footer-link.devtoolbx{background-color:#ffcc00;color:#000;font-weight:bold;}
+.footer-separator{padding:0 5px;color:#ffcc00;}
+</style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://mobleysoft.com/scripts/blackhole.js"></script>
+<canvas id="blackhole"></canvas>
+<div id="overlay" style="width:1000px!important">
+    <div id="app">
+        <div id="logoRow">
+            <div id="logo"><header><div><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="100px"></div></header></div>
+        </div>
+        <div id="pricingTableRow">    
+            <stripe-pricing-table 
+                pricing-table-id="prctbl_1QSMCtLWTxUJi5AVAc7zahno"
+                publishable-key="pk_live_51QSK8LLWTxUJi5AV3h9n8yTt8upsRRZVDWKKLRy8XLQEGosWsRCIpqxolyN3cii4EliBIQML39fEcdCEdQQg5sov00nxpPW5WG">
+            </stripe-pricing-table>
+        </div>
+    </div>
+</div>
+<div class="footer-bar">
+    <span class="footer-logo">MobleysoftAGI</span>
+    <a href="https://devtoolbx.com" class="footer-link devtoolbx">DevToolBx</a>
+    <a href="https://devtoolai.com" class="footer-link">DevToolAI</a>
+    <a href="https://halside.com" class="footer-link">HalsIDE</a>
+    <a href="https://devducky.com" class="footer-link">DevDucky</a>
+    <a href="https://fystz.com" class="footer-link">Fystz</a>
+    <a href="https://extraterran.com" class="footer-link">Extraterran</a>
+    <a href="https://helmdir.com" class="footer-link">HelmDir</a>
+    <a href="#" class="footer-link">ToolMaker20</a>
+    <a href="#" class="footer-link">FirmSmith200</a>
+    <a href="#" class="footer-link">IndustryPress2k</a>
+</div>
+<script>
+const overlay = document.getElementById('overlay');
+let idleTimer;
+function showOverlay() {
+    overlay.classList.add('visible');
+    resetIdleTimer();
+}
+function hideOverlay() {
+    overlay.style.opacity = 0;
+    overlay.style.pointerEvents = "none";
+    setTimeout(() => {
+        overlay.classList.remove('visible');
+    }, 1500);
+}
+function resetIdleTimer() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(hideOverlay, 6000);
+    overlay.style.pointerEvents = "auto";
+    overlay.style.opacity = .9;
+}
+document.addEventListener('mousemove', showOverlay);
+document.addEventListener('click', showOverlay);
+document.addEventListener('keypress', showOverlay);
+hideOverlay();
+</script>
+</body>
+</html>

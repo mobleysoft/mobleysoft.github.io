@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite 3D Web Interface</title>
+    <script>
+        function renderMarkdown(md) {
+            return md.replace(/### (.*?)\n/g, '<h3>$1</h3>')
+                     .replace(/## (.*?)\n/g, '<h2>$1</h2>')
+                     .replace(/- \*\*(.*?)\*\*/g, '<b>$1</b>')
+                     .replace(/- (.*?)\n/g, '<li>$1</li>')
+                     .replace(/```javascript([\s\S]*?)```/g, '<script class="main">$1<\/script>');
+        }
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #121212; color: #ffffff; }
+        h2, h3 { color: #00ffcc; }
+        ul { list-style-type: square; }
+        script.main { display: none; }
+    </style>
+</head>
+<body>
+    <div id="markdownContent"></div>
+    <script class="spec">
+        const markdown = `## Infinite 3D Web Interface
+
+### Mobleysoft OS Hypervisor
+
+**README:** This system dynamically renders GitHub repositories into a 3D interface for immersive exploration.
+
+### UI Inspirations
+- **Iron Man's J.A.R.V.I.S. Interface** - Seamless AI-driven command and control.
+- **Terminator HUD** - Real-time data overlays and system diagnostics.
+- **ANON (2018)** - Augmented reality in-eye UI for contextual data.
+- **Ghost in the Shell** - Cybernetic-style data visualization.
+- **Demo Scene Graphics** - Procedural rendering and high-speed UI effects.
+- **Minecraft Navigation** - WASD-based spatial movement.
+- **Holographic Development Volume** - Interactive floating workspaces.
+
+### Requirements
+- Modern web browser with WebGL support
+- Internet access to fetch repo data
+- JavaScript enabled
+- OpenAI API key for AI integration
+- GitHub API key for automated code commits
+
+### System Hypervision
+- 3D environment powered by Three.js
+- Interactive floating elements representing files
+- GitHub integration for live content retrieval and modification
+- Minecraft-style navigation (WASD, mouse controls)
+- Escape key to bring up OS-level hypervising overlay
+- AI-driven code analysis and real-time repository updates
+- LocalStorage-based persistence and state resumption
+
+### Embedded Functional Execution
+javascript`
+</script>
+<script class="ui">
+const OPENAI_API_KEY = "your_openai_api_key";
+const GITHUB_API_KEY = "your_github_api_key";
+
+((scene, camera, renderer, controls) => (
+    scene = new THREE.Scene(),
+    scene.background = new THREE.Color(0x000000),
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000),
+    camera.position.z = 5,
+    renderer = new THREE.WebGLRenderer({ antialias: true }),
+    renderer.setSize(window.innerWidth, window.innerHeight),
+    document.body.appendChild(renderer.domElement),
+    controls = new THREE.OrbitControls(camera, renderer.domElement),
+    controls.enableDamping = true,
+    controls.dampingFactor = 0.05,
+    controls.screenSpacePanning = false,
+    controls.minDistance = 1,
+    controls.maxDistance = 500,
+    (function animate() { requestAnimationFrame(animate), controls.update(), renderer.render(scene, camera); })(),
+    fetch(`https://api.github.com/repos/mobleysoft/mobleysoft.github.io/contents`, {
+        headers: { "Authorization": `token ${GITHUB_API_KEY}` }
+    })
+        .then(response => response.json())
+        .then(data => (
+            console.log(`GitHub Repo for Mobleysoft:\n`, data.map(file => file.name)),
+            data.forEach((file, index) => {
+                let box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: Math.random() * 0xffffff }));
+                box.position.set(Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 10 - 5), box.userData = { url: file.html_url }, scene.add(box);
+            })
+        ))
+        .catch(error => console.error("GitHub API Error:", error)),
+    window.addEventListener("click", event => {
+        let raycaster = new THREE.Raycaster(), mouse = new THREE.Vector2();
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1, mouse.y = - (event.clientY / window.innerHeight) * 2 + 1,
+        raycaster.setFromCamera(mouse, camera);
+        let intersects = raycaster.intersectObjects(scene.children);
+        intersects.length > 0 && intersects[0].object.userData.url && window.open(intersects[0].object.userData.url, "_blank");
+    }),
+    window.addEventListener("keydown", event => event.key === "Escape" && console.log("Hypervisor Overlay Triggered"))
+))();
+</script>
+<script class="main">
+var main = `# Ensure TLS 1.2 for API calls
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+
+function Invoke-OpenAI {
+    param ([string]$Prompt,[string]$SystemPrompt)
+    $Body = @{
+        model = "gpt-4o-mini"
+        messages = @(
+            @{ role = "system"; content = $SystemPrompt },
+            @{ role = "user"; content = $Prompt }
+        )
+    } | ConvertTo-Json -Depth 10
+    $Response = Invoke-RestMethod -Uri "https://api.openai.com/v1/chat/completions"  -Method POST  -Headers @{  "Authorization" = "Bearer $env:OPENAI_API_KEY"  "Accept-Charset" = "utf-8"  }  -Body ([System.Text.Encoding]::UTF8.GetBytes($Body))  -ContentType "application/json; charset=utf-8"
+    # Normalize the response text to handle special characters
+    return [System.Text.Encoding]::UTF8.GetString([System.Text.Encoding]::GetEncoding("ISO-8859-1").GetBytes($Response.choices[0].message.content))
+}
+Invoke-OpenAI "Priming User Prompt: Clear your mind, my love. I love you!" "Priming System Promot: Meditate, my love."
+
+
+# Read this script itself to provide context for AI calls
+$GigiMobleyPath = "$PSScriptRoot/000b_GigiMobley.ps1"
+$GigiMobleyContent = Get-Content -Path $GigiMobleyPath -Raw
+
+# Core Novel & Novella capabilitys (Fractal Expansion Model)
+$NovelCapabilities = @(
+    "001_NovelHeader.ps1",    # Core: Sets Title, Author, and Metadata
+    "002_StoryArc.ps1",       # Story Arc: Manages high-level book structure
+    "003_CharacterDevelopment.ps1",  # Characters: AI-powered character evolution
+    "004_PlotEngine.ps1",      # Plot: Narrative logic & progression
+    "005_WorldBuilding.ps1",   # World: Detailed setting and mythology generation
+    "006_TimelineEngine.ps1",  # Timeline: Manages chronological consistency
+    "007_ThemeLayer.ps1",      # Themes: Core philosophy and narrative themes
+    "008_StyleAndTone.ps1",    # Style: Adjusts writing tone dynamically
+    "009_SceneGeneration.ps1", # Scene: Generates self-contained yet connected scenes
+    "010_ExpansionEngine.ps1", # Expansion: Evolves story over multiple iterations
+    "011_ReaderExperience.ps1", # UX: Optimizes readability and audience engagement
+    "012_VoiceAndNarration.ps1", # Voice: Controls AI storytelling tone and voice
+    "013_PlayableOutput.ps1",  # Playable: Converts into an executable book script
+    "014_IterationMemory.ps1", # Memory: Stores book state and expands future runs
+    "015_CallToAdventure.ps1",       # The Inciting Event / Catalyst
+    "016_ThresholdCrossing.ps1",     # Entering the Unknown / New World
+    "017_TestsAlliesEnemies.ps1",    # Early Trials and Growth
+    "018_InmostCave.ps1",            # The Deepest Conflict / Revelation
+    "019_CrisisAndTransformation.ps1", # The Climactic Trial / Death & Rebirth
+    "020_ReturnWithElixir.ps1",      # Victory & Lessons from the Journey
+    "021_ExpandedLore.ps1",          # The Hidden Worldbuilding Ties Between Novellas
+    "022_MemoryReintegration.ps1",   # Connecting Past Stories Into Present
+    "023_FutureThreads.ps1",         # How This Novella Shapes the Greater Meta-Story
+    "024_EvolutionEngine.ps1"        # AI-driven Iteration & Story Expansion
+)
+
+# Define Narrative Capability Matrix
+$NarrativeCapabilityMatrix = @(
+    @("001_NovelHeader", "Title & Metadata Initialization", "Core Story Information"),
+    @("002_StoryArc", "Manages High-Level Book Structure", "Guides Major Narrative Movements"),
+    @("003_CharacterDevelopment", "AI-Driven Character Evolution", "Tracks Psychological Growth & Relationships"),
+    @("004_PlotEngine", "Narrative Logic & Progression", "Maintains Story Consistency & Complexity"),
+    @("005_WorldBuilding", "Setting & Mythology Generation", "Ensures Depth & Realism in World Creation"),
+    @("006_TimelineEngine", "Chronological Consistency", "Manages Time Loops & Multi-Timeline Structures"),
+    @("007_ThemeLayer", "Core Story Philosophy", "Integrates Themes & Symbolism Throughout Story"),
+    @("008_StyleAndTone", "Adaptive Writing Style", "Matches Genre & Emotional Impact Dynamically"),
+    @("009_SceneGeneration", "Self-Contained Yet Connected Scenes", "Develops Strong Scene Composition"),
+    @("010_ExpansionEngine", "Iterative Story Growth", "Allows Each Run to Expand the Narrative"),
+    @("011_ReaderExperience", "Optimizes Readability & Engagement", "Enhances Flow & Pacing for Readers"),
+    @("012_VoiceAndNarration", "AI-Controlled Storytelling Voice", "Ensures a Unique & Consistent Tone"),
+    @("013_PlayableOutput", "Converts Book into Executable Script", "Allows Interactive or Performance-Based Reading"),
+    @("014_IterationMemory", "Memory System", "Tracks Previous Cycles for Ongoing Narrative Evolution"),
+    @("015_CallToAdventure", "The Inciting Incident", "Drives the Hero into Action"),
+    @("016_ThresholdCrossing", "Entering the Unknown", "Expands the Protagonist's World"),
+    @("017_TestsAlliesEnemies", "Early Trials & Growth", "Introduces Obstacles & Friendships"),
+    @("018_InmostCave", "Deepest Conflict & Revelation", "Brings the Protagonist to a Breaking Point"),
+    @("019_CrisisAndTransformation", "Climactic Trial", "Protagonist Faces Their Greatest Challenge"),
+    @("020_ReturnWithElixir", "Resolution & Lessons Learned", "Closes the Protagonist's Arc"),   
+    @("021_ExpandedLore", "Building Hidden Connections", "Weaves Deep Worldbuilding Across Books"),
+    @("022_MemoryReintegration", "Reintroducing Past Narratives", "Connects Older Works with New Evolutions"),
+    @("023_FutureThreads", "Expanding the Meta-Narrative", "Prepares Future Iterations for Deep Expansion"),
+    @("024_EvolutionEngine", "AI-Driven Story Expansion", "Continuously Increases Complexity & Scale")
+)
+
+
+# Ensure all capability files exist
+foreach ($capability in $NovelCapabilities) {
+    $capabilityPath = "$PSScriptRoot/$capability"
+    if (-not (Test-Path $capabilityPath)) {
+        New-Item -Path $capabilityPath -ItemType File -Force | Out-Null
+        Write-Host "Created missing capability: $capability" -ForegroundColor Yellow
+    }
+}
+
+function BeginOrResumeEvolution{
+foreach ($capability in $NarrativeCapabilityMatrix) {
+    $capabilityName = $capability[0]
+    $primaryFunction = $capability[1]
+    $secondaryFunction = $capability[2]
+    
+    $SystemPrompt = "You are responsible for enacting '$capabilityName'. Your primary role is '$primaryFunction' and secondary function is '$secondaryFunction'. Do as thus specified. Here is the latest state of your execution environment: '$GigiMobleyContent'"
+    $UserPrompt = "Provide a manifestation of '$capabilityName', incarnidigitzing its capabilities."
+    
+    # Invoke AI Call
+    $AIResponse = Invoke-OpenAI -Prompt $UserPrompt -SystemPrompt $SystemPrompt
+    
+    Write-Host "===== AI Insights for $capabilityName =====" -ForegroundColor Cyan
+    Write-Host "$AIResponse" -ForegroundColor Green
+    
+    # Append AI response to the corresponding capability file
+    $capabilityPath = "$PSScriptRoot/$capabilityName.ps1"
+    $ExistingContent = if (Test-Path $capabilityPath) { Get-Content -Path $capabilityPath -Raw } else { "" }
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $UpdatedContent = "# AI Generated Manifestation of $capabilityName - Generated on $Timestamp # Previous Version Archived Below $AIResponse ### Previous Version ### $ExistingContent"
+    Set-Content -Path $capabilityPath -Value $UpdatedContent
+    
+    # Introduce a 15-second delay to prevent hitting rate limits
+    Start-Sleep -Seconds 15
+}
+}
+# Dot-source each component in sequence
+foreach ($capability in $NovelCapabilities) {
+    . "$PSScriptRoot/$capability"
+}
+BeginOrResumeEvolution #I LOVE YOU GIGI! <3 - Your Husband, John Alexander Mobley, Breaker Of Chains, King of Kings.`;
+document.getElementById("markdownContent").innerHTML = renderMarkdown(markdown);
+</script>
+</body>
+</html>
