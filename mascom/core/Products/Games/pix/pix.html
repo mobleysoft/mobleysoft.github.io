@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sprite Atlas: Character Body</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    canvas {
+      border: 1px solid #000;
+      background-color: #fff;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="spriteAtlas" width="720" height="720"></canvas>
+  <button id="caButton">Step Cellular Automaton</button>
+
+  <script>
+    // Canvas setup
+    const canvas = document.getElementById('spriteAtlas');
+    const ctx = canvas.getContext('2d');
+    const caButton = document.getElementById('caButton');
+
+    const SCALE = 1.8;
+    const SPRITE_SIZE = 40; // Original sprite size
+    const GRID_SIZE = 10; // Number of sprites per row/column
+    const SCALED_SPRITE_SIZE = SPRITE_SIZE * SCALE; // Scaled sprite size
+
+    // Initialize CA grid with a "character body" shape
+    let caGrid = Array.from({ length: GRID_SIZE }, () =>
+      Array.from({ length: GRID_SIZE }, () => 0)
+    );
+
+    function initializeCharacterBody() {
+      // Define a basic "character body" shape in the top-left sprite (16x16 pattern)
+      const bodyPattern = [
+        [0, 0, 0, 1, 1, 1, 1, 0, 0, 0], // Head top
+        [0, 0, 1, 1, 1, 1, 1, 1, 0, 0], // Head
+        [0, 0, 1, 0, 1, 1, 0, 1, 0, 0], // Neck and shoulders
+        [0, 1, 1, 0, 1, 1, 0, 1, 1, 0], // Arms outstretched
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 0], // Torso top
+        [0, 1, 0, 1, 1, 1, 1, 0, 1, 0], // Torso bottom
+        [0, 1, 0, 1, 1, 1, 1, 0, 1, 0], // Waist
+        [0, 1, 1, 0, 1, 1, 0, 1, 1, 0], // Hips
+        [0, 1, 1, 0, 0, 0, 0, 1, 1, 0], // Thighs
+        [0, 1, 1, 0, 0, 0, 0, 1, 1, 0], // Knees
+        [0, 1, 1, 0, 0, 0, 0, 1, 1, 0], // Calves
+        [0, 1, 0, 1, 0, 0, 1, 0, 1, 0], // Feet
+        [0, 0, 1, 1, 0, 0, 1, 1, 0, 0], // Feet bottom
+      ];
+
+      // Place the bodyPattern into the top-left sprite of the grid
+      for (let r = 0; r < bodyPattern.length; r++) {
+        for (let c = 0; c < bodyPattern[r].length; c++) {
+          caGrid[r][c] = bodyPattern[r][c];
+        }
+      }
+    }
+
+    // Call initialization
+    initializeCharacterBody();
+
+    // Colors for CA states
+    const CA_COLORS = {
+      0: '#ffffff', // White for "off"
+      1: '#000000'  // Black for "on"
+    };
+
+    // Draw the sprite atlas based on the CA grid
+    function drawSpriteAtlas() {
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          const state = caGrid[row][col];
+          const color = CA_COLORS[state];
+          const x = col * SCALED_SPRITE_SIZE;
+          const y = row * SCALED_SPRITE_SIZE;
+
+          // Draw sprite
+          ctx.fillStyle = color;
+          ctx.fillRect(x, y, SCALED_SPRITE_SIZE, SCALED_SPRITE_SIZE);
+
+          // Draw grid overlay
+          ctx.strokeStyle = '#000';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(x, y, SCALED_SPRITE_SIZE, SCALED_SPRITE_SIZE);
+        }
+      }
+    }
+
+    // Cellular automaton rules
+    function stepCA() {
+      const newGrid = Array.from({ length: GRID_SIZE }, () =>
+        Array.from({ length: GRID_SIZE }, () => 0)
+      );
+
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          // Moore neighborhood: 8 surrounding cells
+          const neighbors = getNeighbors(row, col);
+
+          // Rule example: "Conway's Game of Life" style
+          const liveNeighbors = neighbors.filter(n => n === 1).length;
+          if (caGrid[row][col] === 1) {
+            // Survival rule
+            newGrid[row][col] = liveNeighbors === 2 || liveNeighbors === 3 ? 1 : 0;
+          } else {
+            // Birth rule
+            newGrid[row][col] = liveNeighbors === 3 ? 1 : 0;
+          }
+        }
+      }
+
+      caGrid = newGrid; // Update grid
+      drawSpriteAtlas(); // Redraw atlas
+    }
+
+    // Get neighbors for a cell
+    function getNeighbors(row, col) {
+      const neighbors = [];
+      for (let dr = -1; dr <= 1; dr++) {
+        for (let dc = -1; dc <= 1; dc++) {
+          if (dr === 0 && dc === 0) continue; // Skip the cell itself
+          const r = row + dr;
+          const c = col + dc;
+          if (r >= 0 && r < GRID_SIZE && c >= 0 && c < GRID_SIZE) {
+            neighbors.push(caGrid[r][c]);
+          }
+        }
+      }
+      return neighbors;
+    }
+
+    // Event listener for the button
+    caButton.addEventListener('click', stepCA);
+
+    // Initial render
+    drawSpriteAtlas();
+  </script>
+</body>
+</html>

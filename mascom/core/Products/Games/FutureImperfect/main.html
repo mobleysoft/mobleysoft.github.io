@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FutureImperfect</title>
+  <style>
+    body { margin:0; overflow:hidden; background:#000 }
+    #instructions { position:absolute; top:50%; width:100%; text-align:center; color:white; font:24px Arial; transform:translateY(-50%); cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div id="instructions">Click to Play</div>
+  <script type="module">
+    import * as THREE from './libs/three.module.js';
+    import { initPlayer, updatePlayer, getRotations } from './player.js';
+    import { initEnemies, updateEnemies } from './enemy.js';
+    import { initWeapons, updateWeapons, checkWeaponPickup } from './weapon.js';
+    import { handleInput } from './input.js';
+    
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({antialias:true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000);
+    document.body.appendChild(renderer.domElement);
+    
+    const grid = new THREE.GridHelper(100,100);
+    const axes = new THREE.AxesHelper(5);
+    scene.add(grid, axes);
+    
+    const floor = new THREE.Mesh(new THREE.BoxGeometry(100,1,100), new THREE.MeshBasicMaterial({color:0x555555, wireframe:true}));
+    floor.position.y = -0.5;
+    scene.add(floor);
+    
+    const wallMaterial = new THREE.MeshBasicMaterial({color:0x888888, wireframe:true});
+    const frontWall = new THREE.Mesh(new THREE.BoxGeometry(100,10,1), wallMaterial);
+    frontWall.position.set(0,5,-50);
+    scene.add(frontWall);
+    const backWall = new THREE.Mesh(new THREE.BoxGeometry(100,10,1), wallMaterial);
+    backWall.position.set(0,5,50);
+    scene.add(backWall);
+    const leftWall = new THREE.Mesh(new THREE.BoxGeometry(1,10,100), wallMaterial);
+    leftWall.position.set(-50,5,0);
+    scene.add(leftWall);
+    const rightWall = new THREE.Mesh(new THREE.BoxGeometry(1,10,100), wallMaterial);
+    rightWall.position.set(50,5,0);
+    scene.add(rightWall);
+    
+    const player = initPlayer(scene, camera);
+    const enemies = initEnemies(scene);
+    const weapons = initWeapons(scene);
+    
+    const instructions = document.getElementById('instructions');
+    instructions.onclick = () => { renderer.domElement.requestPointerLock(); }
+    document.addEventListener('click', () => {
+      if(document.pointerLockElement === renderer.domElement){
+        instructions.style.display='none';
+      }
+    });
+    
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }, false);
+    
+    const animate = () => {
+      requestAnimationFrame(animate);
+      handleInput(player);
+      updatePlayer(player, camera);
+      updateEnemies(enemies, player);
+      updateWeapons(weapons, scene);
+      checkWeaponPickup(player, weapons, scene);
+      
+      const { rotY, rotX } = getRotations();
+      camera.rotation.set(rotX, rotY, 0);
+      
+      renderer.render(scene, camera);
+    };
+    
+    animate();
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+Side Scroller Game World Map: Generate a 2D side-scrolling world map in pixel art style for a side-scrolling platformer game. The map must strictly follow a side-scrolliing perspective, ensuring all elements are designed for side-scrolling gameplay in a cohesive and playable side-scrolling environment. The side-scroller map should include:
+
+1. **Side-Scrolling Biomes with Smooth Transitions on the surface horizontal plane**:
+   - Forest: Open grassy areas with trees, foliage, and light hazards, all designed for side-scrolling gameplay in a side-scroller style.
+   - Caves: Enclosed, dark areas with stalactites, stalagmites, and occasional water pools, all visible and traversable from a side-scroller perspective.
+   - Lava Zones: Flowing lava rivers, jagged platforms, and high hazards, all designed for side-scrolling gameplay in a side-scroller environment.
+
+2. **Castlevania-Inspired Side-Scroller Castles**:
+   - Towers: Tall, vertical structures with climbable platforms and narrow walkways, all visible in a side-scroller perspective for side-scrolling gameplay.
+   - Rooms: Multi-level interiors with stairs, windows, and chandeliers, all designed for side-scrolling interaction in a side-scroller platformer.
+   - Corridors: Long horizontal pathways with doors, breakable walls, and hidden areas, all designed for seamless side-scrolling exploration in a side-scroller map.
+
+3. **Side-Scroller Gameplay Zones**:
+   - Starting Area: A safe zone with clear, open pathways leading into the side-scroller biomes, all visible from a side-scroller perspective.
+   - Treasures (yellow): Strategically placed treasures positioned near hazards (red) to encourage side-scroller exploration and risk-reward gameplay in a side-scroller map.
+   - Boss Rooms (purple): Large, enclosed areas located at key destinations, all designed for dramatic encounters in side-scrolling gameplay in a side-scroller perspective.
+
+4. **Side-Scrolling Platforming Elements**:
+   - Platforms at varying heights for vertical exploration in a side-scroller environment.
+   - Drop zones, climbable walls, and bridges, all designed for smooth side-scrolling interaction in a side-scroller platformer.
+
+5. **Side-Scroller Color-Coded Terrain**:
+   - Black (#000000): Solid walls for a side-scroller platformer.
+   - White (#FFFFFF): Traversable pathways for side-scrolling gameplay in a side-scroller environment.
+   - Red (#FF0000): Hazards (spikes, lava, or enemies) designed for side-scrolling challenges.
+   - Yellow (#FFFF00): Treasures for side-scrolling exploration in a side-scroller map.
+   - Blue (#0000FF): Water (pools or rivers) integrated into side-scrolling gameplay.
+   - Purple (#800080): Boss rooms for major side-scrolling encounters.
+
+6. **Side-Scrolling Vertical and Horizontal Balance**:
+   - Ensure vertical exploration with towers and caves, all designed for seamless side-scrolling interaction in a side-scroller platformer.
+   - Maintain horizontal flow with interconnected pathways, all visible from a side-scroller perspective.
+
+7. **Side-Scrolling Art Style**:
+   - Crisp pixel art designed for side-scroller gameplay, with clear visual differentiation between side-scrolling foreground elements (interactable) and background layers (decorative), all in a side-scroller perspective.
+
+8. **Side-Scrolling Layout**:
+   - Logical pathways connecting biomes and castles, avoiding floating or disconnected structures unless intentional (e.g., floating platforms), all designed for side-scrolling exploration in a side-scroller map.
+
+The side-scroller map must support smooth side-scrolling exploration, side-scrolling platforming challenges, and gameplay progression, all adhering to a side-scroller perspective in a side-scrolling platformer game.

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FutureImperfect - Browser FPS Prototype</title>
+  <style>
+    body { margin: 0; overflow: hidden; background-color: #000; }
+    canvas { display: block; }
+    #instructions {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      user-select: none;
+      cursor: pointer;
+      font-size: 24px;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">Click to Play</div>
+  <!-- Corrected Three.js CDN Link via jsDelivr -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+  <script>
+    (() => {
+      // Ensure THREE is loaded
+      if (!window.THREE) {
+        alert('Three.js failed to load. Please check your internet connection and try again.');
+        throw new Error('Three.js not loaded');
+      }
+
+      // Scene, Camera, Renderer
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x000000); // Black background
+      document.body.appendChild(renderer.domElement);
+
+      // Helpers
+      const gridHelper = new THREE.GridHelper(100, 100);
+      scene.add(gridHelper);
+      const axesHelper = new THREE.AxesHelper(5);
+      scene.add(axesHelper);
+
+      // Wireframe Floor
+      const floor = new THREE.Mesh(
+        new THREE.BoxGeometry(100, 1, 100),
+        new THREE.MeshBasicMaterial({ color: 0x555555, wireframe: true })
+      );
+      floor.position.y = -0.5; // Position floor so top is at y=0
+      scene.add(floor);
+
+      // Walls
+      const wallMaterial = new THREE.MeshBasicMaterial({ color: 0x888888, wireframe: true });
+      const wallThickness = 1;
+      const wallHeight = 10;
+      const wallLength = 100;
+
+      // Front Wall
+      const frontWall = new THREE.Mesh(
+        new THREE.BoxGeometry(wallLength, wallHeight, wallThickness),
+        wallMaterial
+      );
+      frontWall.position.set(0, wallHeight / 2, -50);
+      scene.add(frontWall);
+
+      // Back Wall
+      const backWall = new THREE.Mesh(
+        new THREE.BoxGeometry(wallLength, wallHeight, wallThickness),
+        wallMaterial
+      );
+      backWall.position.set(0, wallHeight / 2, 50);
+      scene.add(backWall);
+
+      // Left Wall
+      const leftWall = new THREE.Mesh(
+        new THREE.BoxGeometry(wallThickness, wallHeight, wallLength),
+        wallMaterial
+      );
+      leftWall.position.set(-50, wallHeight / 2, 0);
+      scene.add(leftWall);
+
+      // Right Wall
+      const rightWall = new THREE.Mesh(
+        new THREE.BoxGeometry(wallThickness, wallHeight, wallLength),
+        wallMaterial
+      );
+      rightWall.position.set(50, wallHeight / 2, 0);
+      scene.add(rightWall);
+
+      // Player (Ball)
+      const player = new THREE.Mesh(
+        new THREE.SphereGeometry(0.5, 16, 16),
+        new THREE.MeshBasicMaterial({ color: 0x0000ff })
+      );
+      player.position.set(0, 1, 0); // Positioned above the floor
+      scene.add(player);
+
+      // Weapon (Rectangle)
+      const weapon = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 0.2, 2),
+        new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+      );
+      weapon.position.set(0, 0, -1); // Position in front of the player
+      player.add(weapon);
+
+      // Sniper (Enemy)
+      const sniper = new THREE.Mesh(
+        new THREE.SphereGeometry(0.5, 16, 16),
+        new THREE.MeshBasicMaterial({ color: 0xff0000 })
+      );
+      sniper.position.set(10, 1, 10);
+      scene.add(sniper);
+
+      // Controls
+      const moveSpeed = 0.2, rotSpeed = 0.002;
+      const keys = {};
+      let rotY = 0, rotX = 0;
+
+      // Event Listeners for Keyboard
+      document.addEventListener('keydown', e => {
+        keys[e.key.toLowerCase()] = true;
+      });
+      document.addEventListener('keyup', e => {
+        keys[e.key.toLowerCase()] = false;
+      });
+
+      // Event Listener for Mouse Movement
+      document.addEventListener('mousemove', e => {
+        if (document.pointerLockElement === renderer.domElement) {
+          rotY -= e.movementX * rotSpeed;
+          rotX -= e.movementY * rotSpeed;
+          rotX = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, rotX));
+        }
+      });
+
+      // Pointer Lock on Click
+      const instructions = document.getElementById('instructions');
+      instructions.addEventListener('click', () => {
+        renderer.domElement.requestPointerLock();
+      });
+      document.body.addEventListener('click', () => {
+        if (document.pointerLockElement === renderer.domElement) {
+          instructions.style.display = 'none';
+        }
+      });
+
+      // Initial Camera Position
+      camera.position.set(player.position.x, player.position.y + 1.6, player.position.z + 2);
+      camera.lookAt(player.position.x, player.position.y + 1.6, player.position.z - 1);
+
+      // Handle Window Resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }, false);
+
+      // Game Loop
+      const animate = () => {
+        requestAnimationFrame(animate);
+
+        // Movement
+        let dir = new THREE.Vector3();
+        if (keys['w']) { dir.z -= 1; }
+        if (keys['s']) { dir.z += 1; }
+        if (keys['a']) { dir.x -= 1; }
+        if (keys['d']) { dir.x += 1; }
+        if (dir.length() > 0) {
+          dir.normalize();
+          // Calculate forward and right vectors based on rotation
+          const forward = new THREE.Vector3(Math.sin(rotY), 0, Math.cos(rotY));
+          const right = new THREE.Vector3(Math.cos(rotY), 0, -Math.sin(rotY));
+          const move = new THREE.Vector3();
+          move.addScaledVector(forward, dir.z);
+          move.addScaledVector(right, dir.x);
+          player.position.addScaledVector(move, moveSpeed);
+        }
+
+        // Update Camera Position and Rotation
+        camera.position.set(
+          player.position.x,
+          player.position.y + 1.6,
+          player.position.z + 2
+        );
+        camera.rotation.x = rotX;
+        camera.rotation.y = rotY;
+        camera.lookAt(
+          player.position.x + Math.sin(rotY),
+          player.position.y + 1.6,
+          player.position.z + Math.cos(rotY)
+        );
+
+        // Sniper AI (follow player)
+        const toPlayer = new THREE.Vector3().subVectors(player.position, sniper.position).normalize();
+        sniper.position.addScaledVector(toPlayer, 0.02);
+
+        // Simple Collision Detection (Prevent Player from going through walls)
+        const halfWallLength = 50 - 1; // Wall length minus player radius
+        player.position.x = THREE.MathUtils.clamp(player.position.x, -halfWallLength, halfWallLength);
+        player.position.z = THREE.MathUtils.clamp(player.position.z, -halfWallLength, halfWallLength);
+
+        // Render the Scene
+        renderer.render(scene, camera);
+      };
+
+      animate();
+    })();
+  </script>
+</body>
+</html>
