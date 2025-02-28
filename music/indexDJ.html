@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft Radio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #111; color: #fff; overflow: hidden; }
+        #main-container { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+        #threejs-container { width: 100vw; height: 50vh; }
+        #player { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
+        #genre-list { display: flex; gap: 10px; margin-bottom: 10px; }
+        .genre-button { padding: 10px; background: #444; color: white; border: none; cursor: pointer; }
+        .genre-button:hover { background: #666; }
+        #current-track { font-size: 18px; color: #0f0; margin-bottom: 10px; }
+        #visualizer { width: 100vw; height: 25vh; background: black; }
+        #console-output { position: absolute; bottom: 10px; left: 10px; color: lime; font-size: 14px; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <div id="threejs-container"></div>
+        <div id="player">
+            <div id="genre-list"></div>
+            <p id="current-track">Loading first track...</p>
+            <audio id="audio" controls autoplay></audio>
+        </div>
+        <canvas id="visualizer"></canvas>
+        <div id="console-output"></div>
+    </div>
+    
+    <script>
+        class MobleysoftMusicPlayer {
+            constructor(baseUrl) {
+                this.baseUrl = baseUrl;
+                this.audio = document.getElementById("audio");
+                this.musicData = {};
+                this.currentGenre = null;
+                this.currentTrackDisplay = document.getElementById("current-track");
+                this.consoleOutput = document.getElementById("console-output");
+                this.init();
+            }
+
+            logMessage(message) {
+                this.consoleOutput.innerHTML += `<p>${message}</p>`;
+                console.log(message);
+            }
+
+            async init() {
+                this.logMessage("Initializing player...");
+                await this.loadMusicData();
+                this.setupGenres();
+                this.playFirstTrack();
+                this.setupVisualizer();
+            }
+
+            async loadMusicData() {
+                try {
+                    this.logMessage("Fetching site directory...");
+                    let response = await fetch(`${this.baseUrl}/site-directory.json`);
+                    if (!response.ok) throw new Error("Site directory not found");
+                    const siteData = await response.json();
+                    
+                    if (siteData.music) {
+                        this.musicData = {};
+                        Object.keys(siteData.music).forEach(genre => {
+                            if (!(genre === "index.html")) { this.musicData[genre] = Object.keys(siteData.music[genre]); }
+                        });
+                        this.logMessage("Music data loaded successfully.");
+                    }
+                } catch (error) {
+                    this.logMessage("Failed to load site directory, attempting to regenerate...");
+                    await fetch(`${this.baseUrl}/.github/scripts/generate-site-directory.js`).catch(err => this.logMessage("Error running generate script: " + err));
+                }
+            }
+
+            setupGenres() {
+                const genreList = document.getElementById("genre-list");
+                Object.keys(this.musicData).forEach(genre => {
+                    const button = document.createElement("button");
+                    button.classList.add("genre-button");
+                    button.textContent = genre;
+                    button.addEventListener("click", () => this.playTrack(genre, this.musicData[genre][0]));
+                    genreList.appendChild(button);
+                });
+                this.logMessage("Genres loaded.");
+            }
+
+            playFirstTrack() {
+                const firstGenre = Object.keys(this.musicData)[0];
+                if (firstGenre) {
+                    const firstTrack = this.musicData[firstGenre][0];
+                    if (firstTrack) {
+                        this.playTrack(firstGenre, firstTrack);
+                    }
+                }
+            }
+
+            playTrack(genre, track) {
+                this.currentGenre = genre;
+                this.audio.src = `${this.baseUrl}/music/${genre}/${track}`;
+                this.audio.play();
+                this.currentTrackDisplay.textContent = `Now Playing: ${track} (${genre})`;
+                this.logMessage(`Playing track: ${track} from genre: ${genre}`);
+            }
+
+            setupVisualizer() {
+                const canvas = document.getElementById("visualizer");
+                const ctx = canvas.getContext("2d");
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const analyser = audioContext.createAnalyser();
+                const source = audioContext.createMediaElementSource(this.audio);
+                source.connect(analyser);
+                analyser.connect(audioContext.destination);
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+                
+                function draw() {
+                    requestAnimationFrame(draw);
+                    analyser.getByteFrequencyData(dataArray);
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    const barWidth = (canvas.width / bufferLength) * 2.5;
+                    let x = 0;
+                    
+                    for (let i = 0; i < bufferLength; i++) {
+                        const barHeight = dataArray[i];
+                        ctx.fillStyle = `rgb(${barHeight + 100},50,50)`;
+                        ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+                        x += barWidth + 1;
+                    }
+                }
+                draw();
+            }
+        }
+
+        const player = new MobleysoftMusicPlayer("https://mobleysoft.com");
+    </script>
+</body>
+</html>
