@@ -69,7 +69,7 @@
                     if (siteData.music) {
                         this.musicData = {};
                         Object.keys(siteData.music).forEach(genre => {
-                            if(!genre==="index.html"){this.musicData[genre] = Object.keys(siteData.music[genre]);}
+                            if(!(genre==="index.html")){this.musicData[genre] = Object.keys(siteData.music[genre]);}
                         });
                         this.logMessage("Music data loaded successfully.");
                     }
