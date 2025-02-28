@@ -962,14 +962,6 @@
   },
   "ms40786508.txt": "file",
   "music": {
-    "_ClassicalPayload": {
-      "Mobley'sDenoument.mp3": "file",
-      "Mobley'sHope.mp3": "file",
-      "Mobley'sJoy.mp3": "file",
-      "Mobley'sResolve.mp3": "file",
-      "Mobley'sRetracata.mp3": "file",
-      "Mobley'sSymphony.mp3": "file"
-    },
     "_FilmScorePayload": {
       "Come with me (21).mp3": "file",
       "Come with me (22).mp3": "file",
@@ -1108,6 +1100,14 @@
       "canyouMOBUS.mp3": "file",
       "dark hip pop.mp3": "file",
       "gimme all the cash.mp3": "file"
+    },
+    "classical": {
+      "Mobley'sDenoument.mp3": "file",
+      "Mobley'sHope.mp3": "file",
+      "Mobley'sJoy.mp3": "file",
+      "Mobley'sResolve.mp3": "file",
+      "Mobley'sRetracata.mp3": "file",
+      "Mobley'sSymphony.mp3": "file"
     },
     "index.html": "file"
   },
