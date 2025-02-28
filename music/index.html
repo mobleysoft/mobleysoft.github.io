@@ -10,6 +10,7 @@
         #genre-list button:hover { background: #666; }
         #player { margin-top: 20px; }
         canvas { width: 100%; height: 200px; background: black; }
+        #console-output { margin-top: 20px; color: #0f0; font-size: 14px; text-align: left; padding: 10px; background: #222; border-radius: 5px; max-width: 80%; margin-left: auto; margin-right: auto; }
     </style>
 </head>
 <body>
@@ -21,6 +22,7 @@
         <button id="generate-video">Generate Video</button>
     </div>
     <canvas id="visualizer"></canvas>
+    <div id="console-output"></div>
     
     <script>
         class MobleysoftMusicPlayer {
@@ -36,10 +38,17 @@
                 this.dataArray = null;
                 this.mediaRecorder = null;
                 this.recordedChunks = [];
+                this.consoleOutput = document.getElementById("console-output");
                 this.init();
             }
 
+            logMessage(message) {
+                this.consoleOutput.innerHTML += `<p>${message}</p>`;
+                console.log(message);
+            }
+
             async init() {
+                this.logMessage("Initializing player...");
                 await this.loadMusicData();
                 this.setupGenres();
                 this.setupVisualizer();
@@ -49,6 +58,7 @@
 
             async loadMusicData() {
                 try {
+                    this.logMessage("Fetching site directory...");
                     let response = await fetch(`${this.baseUrl}/site-directory.json`);
                     if (!response.ok) throw new Error("Site directory not found");
                     const siteData = await response.json();
@@ -58,10 +68,11 @@
                         Object.keys(siteData.music).forEach(genre => {
                             this.musicData[genre] = Object.keys(siteData.music[genre]);
                         });
+                        this.logMessage("Music data loaded successfully.");
                     }
                 } catch (error) {
-                    console.error("Failed to load site directory, attempting to regenerate:", error);
-                    await fetch(`${this.baseUrl}/.github/scripts/generate-site-directory.js`).catch(console.error);
+                    this.logMessage("Failed to load site directory, attempting to regenerate...");
+                    await fetch(`${this.baseUrl}/.github/scripts/generate-site-directory.js`).catch(err => this.logMessage("Error running generate script: " + err));
                 }
             }
 
@@ -73,70 +84,30 @@
                     button.addEventListener("click", () => this.playGenre(genre));
                     genreList.appendChild(button);
                 });
+                this.logMessage("Genres loaded.");
             }
 
             playGenre(genre) {
+                this.logMessage(`Playing genre: ${genre}`);
                 this.currentGenre = genre;
                 this.currentIndex = 0;
                 this.playNext();
             }
 
             playNext() {
-                if (!this.currentGenre) return;
+                if (!this.currentGenre) {
+                    this.logMessage("No genre selected.");
+                    return;
+                }
                 const tracks = this.musicData[this.currentGenre];
-                if (tracks.length === 0) return;
+                if (tracks.length === 0) {
+                    this.logMessage("No tracks available in this genre.");
+                    return;
+                }
                 this.currentIndex = (this.currentIndex + 1) % tracks.length;
                 this.audio.src = `${this.baseUrl}/music/${this.currentGenre}/${tracks[this.currentIndex]}`;
                 this.audio.play();
-            }
-
-            setupVisualizer() {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const source = audioContext.createMediaElementSource(this.audio);
-                this.analyser = audioContext.createAnalyser();
-                source.connect(this.analyser);
-                this.analyser.connect(audioContext.destination);
-                this.analyser.fftSize = 256;
-                this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-                this.renderVisualizer();
-            }
-
-            renderVisualizer() {
-                requestAnimationFrame(() => this.renderVisualizer());
-                this.analyser.getByteFrequencyData(this.dataArray);
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                this.ctx.fillStyle = "rgb(0, 0, 0)";
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-                const barWidth = (this.canvas.width / this.dataArray.length) * 2.5;
-                let barHeight;
-                let x = 0;
-                for (let i = 0; i < this.dataArray.length; i++) {
-                    barHeight = this.dataArray[i];
-                    this.ctx.fillStyle = `rgb(${barHeight + 100},50,50)`;
-                    this.ctx.fillRect(x, this.canvas.height - barHeight / 2, barWidth, barHeight / 2);
-                    x += barWidth + 1;
-                }
-            }
-
-            async generateVideo() {
-                this.recordedChunks = [];
-                const stream = this.canvas.captureStream(30);
-                this.mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-                this.mediaRecorder.ondataavailable = event => {
-                    if (event.data.size > 0) this.recordedChunks.push(event.data);
-                };
-                this.mediaRecorder.onstop = () => {
-                    const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'visualization.mp4';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                };
-                this.mediaRecorder.start();
-                setTimeout(() => this.mediaRecorder.stop(), 5000);
+                this.logMessage(`Playing track: ${this.audio.src}`);
             }
         }
 
