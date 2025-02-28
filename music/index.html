@@ -48,8 +48,21 @@
             }
 
             async loadMusicData() {
-                const response = await fetch(`${this.baseUrl}/music/index.json`);
-                this.musicData = await response.json();
+                try {
+                    let response = await fetch(`${this.baseUrl}/site-directory.json`);
+                    if (!response.ok) throw new Error("Site directory not found");
+                    const siteData = await response.json();
+                    
+                    if (siteData.music) {
+                        this.musicData = {};
+                        Object.keys(siteData.music).forEach(genre => {
+                            this.musicData[genre] = Object.keys(siteData.music[genre]);
+                        });
+                    }
+                } catch (error) {
+                    console.error("Failed to load site directory, attempting to regenerate:", error);
+                    await fetch(`${this.baseUrl}/.github/scripts/generate-site-directory.js`).catch(console.error);
+                }
             }
 
             setupGenres() {
