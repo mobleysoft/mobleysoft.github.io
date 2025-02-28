@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobleysoft Radio</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #111; color: #fff; }
-        #genre-list button { margin: 5px; padding: 10px; background: #444; color: white; border: none; cursor: pointer; }
-        #genre-list button:hover { background: #666; }
+        body { font-family: Arial, sans-serif; text-align: center; background: #111; color: #fff; padding: 20px; }
+        #genre-list { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        .genre-container { margin: 10px; padding: 10px; background: #222; border-radius: 5px; }
+        .genre-button { display: block; padding: 10px; background: #444; color: white; border: none; cursor: pointer; width: 150px; margin-bottom: 5px; }
+        .genre-button:hover { background: #666; }
+        .track-list { list-style: none; padding: 0; text-align: left; }
+        .track-list li { cursor: pointer; padding: 5px; background: #333; margin: 2px 0; border-radius: 3px; }
+        .track-list li:hover { background: #555; }
         #player { margin-top: 20px; }
-        canvas { width: 100%; height: 200px; background: black; }
+        #current-track { font-size: 18px; margin-top: 10px; color: #0f0; }
+        canvas { width: 100%; height: 200px; background: black; margin-top: 20px; }
         #console-output { margin-top: 20px; color: #0f0; font-size: 14px; text-align: left; padding: 10px; background: #222; border-radius: 5px; max-width: 80%; margin-left: auto; margin-right: auto; }
     </style>
 </head>
@@ -17,9 +23,8 @@
     <h1>Mobleysoft Radio</h1>
     <div id="genre-list"></div>
     <div id="player">
-        <audio id="audio" controls></audio>
-        <button id="next">Next</button>
-        <button id="generate-video">Generate Video</button>
+        <p id="current-track">Loading first track...</p>
+        <audio id="audio" controls autoplay></audio>
     </div>
     <canvas id="visualizer"></canvas>
     <div id="console-output"></div>
@@ -28,16 +33,15 @@
         class MobleysoftMusicPlayer {
             constructor(baseUrl) {
                 this.baseUrl = baseUrl;
-                this.audio = new Audio();
+                this.audio = document.getElementById("audio");
                 this.musicData = {};
                 this.currentGenre = null;
                 this.currentIndex = 0;
+                this.currentTrackDisplay = document.getElementById("current-track");
                 this.canvas = document.getElementById("visualizer");
                 this.ctx = this.canvas.getContext("2d");
                 this.analyser = null;
                 this.dataArray = null;
-                this.mediaRecorder = null;
-                this.recordedChunks = [];
                 this.consoleOutput = document.getElementById("console-output");
                 this.init();
             }
@@ -52,8 +56,7 @@
                 await this.loadMusicData();
                 this.setupGenres();
                 this.setupVisualizer();
-                document.getElementById("next").addEventListener("click", () => this.playNext());
-                document.getElementById("generate-video").addEventListener("click", () => this.generateVideo());
+                this.playFirstTrack();
             }
 
             async loadMusicData() {
@@ -79,35 +82,57 @@
             setupGenres() {
                 const genreList = document.getElementById("genre-list");
                 Object.keys(this.musicData).forEach(genre => {
+                    const genreContainer = document.createElement("div");
+                    genreContainer.classList.add("genre-container");
+                    
                     const button = document.createElement("button");
+                    button.classList.add("genre-button");
                     button.textContent = genre;
-                    button.addEventListener("click", () => this.playGenre(genre));
-                    genreList.appendChild(button);
+                    button.addEventListener("click", () => this.displayTracks(genre, genreContainer));
+                    
+                    genreContainer.appendChild(button);
+                    genreList.appendChild(genreContainer);
                 });
                 this.logMessage("Genres loaded.");
             }
 
-            playGenre(genre) {
-                this.logMessage(`Playing genre: ${genre}`);
-                this.currentGenre = genre;
-                this.currentIndex = 0;
-                this.playNext();
+            playFirstTrack() {
+                const firstGenre = Object.keys(this.musicData)[0];
+                if (firstGenre) {
+                    const firstTrack = this.musicData[firstGenre][0];
+                    if (firstTrack) {
+                        this.playTrack(firstGenre, firstTrack);
+                    }
+                }
             }
 
-            playNext() {
-                if (!this.currentGenre) {
-                    this.logMessage("No genre selected.");
+            displayTracks(genre, genreContainer) {
+                this.logMessage(`Displaying tracks for genre: ${genre}`);
+                this.currentGenre = genre;
+                
+                let trackList = genreContainer.querySelector(".track-list");
+                if (trackList) {
+                    genreContainer.removeChild(trackList);
                     return;
                 }
-                const tracks = this.musicData[this.currentGenre];
-                if (tracks.length === 0) {
-                    this.logMessage("No tracks available in this genre.");
-                    return;
-                }
-                this.currentIndex = (this.currentIndex + 1) % tracks.length;
-                this.audio.src = `${this.baseUrl}/music/${this.currentGenre}/${tracks[this.currentIndex]}`;
+
+                trackList = document.createElement("ul");
+                trackList.classList.add("track-list");
+                this.musicData[genre].forEach(track => {
+                    const trackItem = document.createElement("li");
+                    trackItem.textContent = track;
+                    trackItem.addEventListener("click", () => this.playTrack(genre, track));
+                    trackList.appendChild(trackItem);
+                });
+                genreContainer.appendChild(trackList);
+            }
+
+            playTrack(genre, track) {
+                this.currentGenre = genre;
+                this.audio.src = `${this.baseUrl}/music/${genre}/${track}`;
                 this.audio.play();
-                this.logMessage(`Playing track: ${this.audio.src}`);
+                this.currentTrackDisplay.textContent = `Now Playing: ${track} (${genre})`;
+                this.logMessage(`Playing track: ${track} from genre: ${genre}`);
             }
         }
 
