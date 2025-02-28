@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Video Generator</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: black; }
+        canvas { width: 100vw; height: 100vh; display: block; }
+        #gui { position: absolute; top: 10px; left: 10px; z-index: 9999; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px; }
+        #gui button { margin: 5px; padding: 10px; font-size: 16px; }
+        #gui select { margin: 5px; padding: 5px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div id="gui">
+        <select id="music-select"></select>
+        <button id="preview-button">Preview</button>
+        <button id="generate-button">Generate</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 3000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        function createTunnel() {
+            const geometry = new THREE.CylinderGeometry(20, 20, 2000, 36, 150, true);
+            const material = new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true, side: THREE.BackSide, transparent: true, opacity: 0.4 });
+            const tunnel = new THREE.Mesh(geometry, material);
+            tunnel.rotation.x = Math.PI / 2;
+            return tunnel;
+        }
+
+        const tunnel1 = createTunnel();
+        const tunnel2 = createTunnel();
+        tunnel1.position.z = 0;
+        tunnel2.position.z = -2000;
+        scene.add(tunnel1);
+        scene.add(tunnel2);
+        camera.position.z = 500;
+        const speed = 0.75;
+        let cameraZ = 500;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cameraZ -= speed;
+            if (cameraZ <= -1500) cameraZ = 500;
+            camera.position.z = cameraZ;
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        animate();
+
+        const musicSelect = document.getElementById("music-select");
+        const previewButton = document.getElementById("preview-button");
+        const generateButton = document.getElementById("generate-button");
+        let currentAudio = null;
+
+        // Populate dropdown
+        fetch('/api/music')
+            .then(res => res.json())
+            .then(files => {
+                files.forEach(file => {
+                    const option = document.createElement('option');
+                    option.value = file;
+                    option.textContent = file;
+                    musicSelect.appendChild(option);
+                });
+            });
+
+        // Play preview
+        previewButton.addEventListener("click", () => {
+            const file = musicSelect.value;
+            if (file) {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                currentAudio = new Audio(`/music/${encodeURIComponent(file)}`);
+                currentAudio.play();
+            } else {
+                alert("Select a music file first!");
+            }
+        });
+
+        async function enterFullscreen() {
+            if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
+            else if (document.documentElement.mozRequestFullScreen) await document.documentElement.mozRequestFullScreen();
+            else if (document.documentElement.webkitRequestFullscreen) await document.documentElement.webkitRequestFullscreen();
+            else if (document.documentElement.msRequestFullscreen) await document.documentElement.msRequestFullscreen();
+        }
+
+        async function exitFullscreen() {
+            if (document.exitFullscreen) await document.exitFullscreen();
+            else if (document.mozCancelFullScreen) await document.mozCancelFullScreen();
+            else if (document.webkitExitFullscreen) await document.webkitExitFullscreen();
+            else if (document.msExitFullscreen) await document.msExitFullscreen();
+        }
+
+        async function startRecording(file) {
+            const gui = document.getElementById("gui");
+            gui.style.display = "none";
+            document.body.style.cursor = "none";
+            await enterFullscreen();
+            setTimeout(() => {
+                fetch(`/api/generate?file=${encodeURIComponent(file)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.videoPath) {
+                            alert(`Video generated: ${data.videoPath}`);
+                            exitFullscreen();
+                            gui.style.display = "block";
+                            document.body.style.cursor = "default";
+                        } else alert("Error generating video");
+                    }).catch(err => {
+                        console.error("Error generating video:", err);
+                        exitFullscreen();
+                        gui.style.display = "block";
+                        document.body.style.cursor = "default";
+                    });
+            }, 3000);
+        }
+
+        generateButton.addEventListener("click", () => {
+            const file = musicSelect.value;
+            if (file) startRecording(file);
+            else alert("Select a music file first!");
+        });
+    </script>
+</body>
+</html>
