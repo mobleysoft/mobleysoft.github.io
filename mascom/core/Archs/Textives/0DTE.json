@@ -1,0 +1,20 @@
+{
+"0": { "id": "AIPredictionCore", "type": "0DTE Options Trading System", "name": "AI Prediction Core", "description": "Central intelligence, makes predictions about short-term price movements for 0DTE options trading." },
+"1": { "id": "UltraHighFrequencyDataProcessor", "type": "0DTE Options Trading System", "name": "Ultra High-Frequency Data Processor", "description": "Processes high-frequency market data, order book data, and alternative data for the AI Prediction Core." },
+"2": { "id": "ShortTermSentimentMonitor", "type": "0DTE Options Trading System", "name": "Short-Term Sentiment Monitor", "description": "Analyzes social media and other sentiment data to gauge short-term market sentiment affecting 0DTE options." },
+"3": { "id": "VolatilityAnalyzer", "type": "0DTE Options Trading System", "name": "Volatility Analyzer", "description": "Analyzes current and implied volatility to assess risk and inform option selection for 0DTE trading." },
+"4": { "id": "MarketMakerIntentClassifier", "type": "0DTE Options Trading System", "name": "Market Maker Intent Classifier", "description": "Attempts to predict the actions of market makers by analyzing order flow, volume, and other data points." },
+"5": { "id": "NewsAndPressReleaseParser", "type": "0DTE Options Trading System", "name": "News and Press Release Parser", "description": "Processes news feeds and press releases to extract relevant information for the AI Prediction Core." },
+"6": { "id": "OptionsTimeAndForceDecayCalculator", "type": "0DTE Options Trading System", "name": "Options Time & Force Decay Calculator", "description": "Calculates the time decay (theta) and other Greeks of options, crucial for 0DTE trading strategies." },
+"7": { "id": "HighSpeedTradeExecutor", "type": "0DTE Options Trading System", "name": "High-Speed Trade Executor", "description": "Executes trades rapidly on multiple exchanges based on signals from the AI Prediction Core and risk parameters." },
+"8": { "id": "RiskManagementModule", "type": "0DTE Options Trading System", "name": "Risk Management Module", "description": "Monitors and manages the risk associated with 0DTE options trading, adjusting positions and strategies as needed." },
+"9": { "id": "MarketDataFeeds", "type": "Data Inputs", "name": "Market Data Feeds", "description": "Provides real-time and historical market data, including prices, volumes, and other relevant information." },
+"10": { "id": "OrderBookData", "type": "Data Inputs", "name": "Order Book Data", "description": "Provides a detailed view of the order book, showing bid and ask prices and quantities at each level." },
+"11": { "id": "NewsFeeds", "type": "Data Inputs", "name": "News Feeds", "description": "Delivers news articles, headlines, and press releases that may impact the market and specific assets." },
+"12": { "id": "SocialMediaFeeds", "type": "Data Inputs", "name": "Social Media Feeds", "description": "Provides data from social media platforms, useful for gauging market sentiment and public opinion." },
+"13": { "id": "AlternativeFinancialData", "type": "Data Inputs", "name": "Alternative Financial Data", "description": "Includes non-traditional data sources that may provide insights into market movements or company performance." },
+"14": { "id": "ExchangePlatform1", "type": "Execution", "name": "Exchange Platform 1", "description": "One of the trading venues where the system executes trades, providing access to specific markets or assets." },
+"15": { "id": "ExchangePlatform2", "type": "Execution", "name": "Exchange Platform 2", "description": "A second trading venue for trade execution, offering access to different markets or liquidity pools." },
+"16": { "id": "HumanMonitoringInterface", "type": "Outside System", "name": "Human Monitoring Interface", "description": "Allows human operators to monitor the system's performance, adjust parameters, and intervene if necessary." },
+"17": { "id": "PerformanceAndBacktestingAnalyzer", "type": "Outside System", "name": "Performance & Backtesting Analyzer", "description": "Analyzes the system's performance and allows for backtesting of strategies using historical data." }
+}

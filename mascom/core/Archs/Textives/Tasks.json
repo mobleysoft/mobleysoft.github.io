@@ -1,0 +1,14 @@
+﻿{
+    "metadata_completedTasks_completedTask_0:": { "id": "48LawsOfPower", "type": "framework", "name": "48 Laws of Power", "description": "A guide to power dynamics and manipulation based on Robert Greene's work.", "priority": "completed","outputPath":"C:\\Users\\Owner\\mascom\\Core\\Power.json" },
+    "0": { "id": "TodoList", "type": "table", "name": "Dimensionally Reduce Frameworks", "description": "A prioritized list of frameworks to encode into MobleyDB for universal cognitive utility." },
+    "1": { "id": "ResilienceFrameworks", "type": "framework", "name": "Resilience Frameworks", "description": "Strategies for building personal and organizational resilience to adversity.", "priority": "High" },
+    "2": { "id": "SustainabilityModels", "type": "framework", "name": "Sustainability Models", "description": "Frameworks for achieving environmental, social, and economic sustainability.", "priority": "High" },
+    "3": { "id": "DigitalLiteracy", "type": "framework", "name": "Digital Literacy Framework", "description": "Skills and knowledge necessary to effectively use digital technologies.", "priority": "High" },
+    "4": { "id": "CrisisManagement", "type": "framework", "name": "Crisis Management Framework", "description": "Strategies for effectively responding to and managing crises.", "priority": "High" },
+    "5": { "id": "DiversityAndInclusion", "type": "framework", "name": "Diversity and Inclusion Framework", "description": "Principles and practices for fostering diverse and inclusive environments.", "priority": "High" },
+    "6": { "id": "EthicalLeadership", "type": "framework", "name": "Ethical Leadership Framework", "description": "Guidelines for leading with integrity and ethical considerations.", "priority": "High" },
+    "7": { "id": "ChangeManagement", "type": "framework", "name": "Change Management Framework", "description": "Strategies for effectively managing organizational change.", "priority": "High" },
+    "8": { "id": "NetworkingStrategies", "type": "framework", "name": "Networking Strategies", "description": "Effective methods for building and maintaining professional networks.", "priority": "High" },
+    "9": { "id": "VirtualCollaboration", "type": "framework", "name": "Virtual Collaboration Framework", "description": "Best practices for collaborating effectively in virtual environments.", "priority": "High" },
+    "10": { "id": "InterpersonalSkills", "type": "framework", "name": "Interpersonal Skills Framework", "description": "Essential skills for effective communication and relationship-building.", "priority": "High" }
+}
