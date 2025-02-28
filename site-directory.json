@@ -982,7 +982,12 @@
     "hits": {
       "CallsMeTo.mp3": "file",
       "CallsMeToCompile.mp3": "file",
-      "CanARobotWrite.mp3": "file"
+      "CanARobotWrite.mp3": "file",
+      "CanTheSteelHum.mp3": "file",
+      "CanTheSteelHumWithLoveAndPain.mp3": "file",
+      "CheCallsMeTo.mp3": "file",
+      "CodeAndGears.mp3": "file",
+      "canyouMOBUS.mp3": "file"
     },
     "index.html": "file"
   },
