@@ -78,7 +78,8 @@
 
     <script>
         const ws = new WebSocket("wss://mobleysoft.com/g1gi");
-        const discordAuthUrl = "https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands";
+        const discordAuthUrl = "https://discord.com/oauth2/authorize?client_id=1345172575764090900&permissions=8&scope=bot%20applications.commands";
+        const discordInteractionsEndpoint = "https://g1gi-discord-interactions.johnmobley99.workers.dev";
 
         ws.onmessage = function(event) {
             const responseBox = document.getElementById("responseBox");
@@ -96,7 +97,12 @@
         }
 
         async function getVerification() {
-            return { status: "success", message: "Verification complete." };
+            const response = await fetch(discordInteractionsEndpoint, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
+            });
+            const data = await response.text();
+            return { status: "success", message: data };
         }
 
         function loadTerms() {
@@ -117,15 +123,18 @@
             `;
         }
 
-        // Simulating API Routes
-        window.addEventListener("hashchange", () => {
+        // Alternative Navigation Handling
+        function checkRoute() {
             const route = window.location.hash;
             if (route === "#terms") {
                 loadTerms();
             } else if (route === "#privacy") {
                 loadPrivacy();
             }
-        });
+        }
+        
+        window.addEventListener("load", checkRoute);
+        window.addEventListener("popstate", checkRoute);
     </script>
 </body>
 </html>
