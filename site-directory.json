@@ -299,9 +299,13 @@
     },
     "HunterAGI.html": "file",
     "MainDev": {
+      "gigi.html": "file",
+      "index0.html": "file",
       "index2.html": "file",
       "indexADMIN.html": "file",
+      "indexMON.html": "file",
       "indexNEO.html": "file",
+      "indexPRO.html": "file",
       "indexTEST.html": "file"
     },
     "Payloader0.html": "file",
@@ -311,10 +315,7 @@
     "youtubemanager.html": "file"
   },
   "ads.txt": "file",
-  "gigi.html": "file",
   "index.html": "file",
-  "index0.html": "file",
-  "indexMON.html": "file",
   "mascom": {
     "core": {
       "AgiBootstrap": {
