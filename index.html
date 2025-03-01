@@ -8,27 +8,7 @@
         crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-5472173055679081">
     <title>MobCorp-MobleysoftAGI</title>
-    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
     <style>
-        #main {
-            width: 100%;
-            height: 100%;
-            left: 0px;
-            top: 0px;
-            position: fixed;
-            z-index: 2;
-            display: block;
-            z-index: 101;
-        }
-
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: #000;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
-
         canvas {
             display: block;
             position: absolute;
@@ -37,6 +17,26 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: Arial, sans-serif;
+            color: white;
+            position:relative;
+        }
+
+
+        #main {
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+            position: fixed;
+            display: block;
+            z-index: 101;
         }
 
         #shrinkWrap {
@@ -84,6 +84,10 @@
             opacity: 1;
             pointer-events: auto;
         }
+
+
+
+
 
         stripe-pricing-table {
             flex: 1;

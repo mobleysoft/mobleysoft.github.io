@@ -1,0 +1,32 @@
+name: AGI State Commit
+
+on:
+  workflow_dispatch: # Allows manual trigger
+  repository_dispatch: # Allows API trigger from frontend
+    types: [save-agi-state]
+
+jobs:
+  commit-agi-state:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "Mobleysoft AGI Bot"
+          git config --global user.email "agi-bot@mobleysoft.com"
+
+      - name: Decode and Save AGI State
+        env:
+          AGI_STATE_FILENAME: ${{ github.event.client_payload.filename }}
+          AGI_STATE_CONTENT: ${{ github.event.client_payload.content }}
+        run: |
+          echo "$AGI_STATE_CONTENT" | base64 --decode > "AGI_States/$AGI_STATE_FILENAME"
+
+      - name: Commit and Push AGI State
+        run: |
+          git add "AGI_States/$AGI_STATE_FILENAME"
+          git commit -m "Update AGI state: $AGI_STATE_FILENAME"
+          git push
