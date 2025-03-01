@@ -81,15 +81,41 @@
         const discordAuthUrl = "https://discord.com/oauth2/authorize?client_id=1345172575764090900&permissions=8&scope=bot%20applications.commands";
         const discordInteractionsEndpoint = "https://g1gi-discord-interactions.johnmobley99.workers.dev";
 
+        ws.onopen = function () {
+            console.log("WebSocket connected.");
+        };
+
         ws.onmessage = function(event) {
             const responseBox = document.getElementById("responseBox");
             responseBox.innerHTML += `<p><b>G1GI:</b> ${event.data}</p>`;
         };
 
         function sendMessage() {
-            const input = document.getElementById("chatInput").value;
+            const input = document.getElementById("chatInput").value.trim();
+            if (!input) return;
+
             document.getElementById("chatInput").value = "";
             ws.send(input);
+
+            fetchAIResponse(input);
+        }
+
+        async function fetchAIResponse(userInput) {
+            const aiPayload = {
+                messages: [
+                    { role: "system", content: "You are an advanced AGI, G1GI." },
+                    { role: "user", content: userInput }
+                ]
+            };
+
+            const response = await fetch(discordInteractionsEndpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ type: "ai", data: aiPayload })
+            });
+
+            const result = await response.json();
+            document.getElementById("responseBox").innerHTML += `<p><b>G1GI AI:</b> ${result.response}</p>`;
         }
 
         function authorizeDiscord() {
