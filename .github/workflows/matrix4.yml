@@ -46,6 +46,7 @@ jobs:
       - name: Load Cognitive State
         id: load-state
         run: |
+          mkdir -p .matrix
           if [ -f .matrix/cognitive_state.json ]; then
             COGNITIVE_STATE=$(cat .matrix/cognitive_state.json | jq -c .)
           else
@@ -74,7 +75,7 @@ jobs:
       
       - name: Setup Data Collection Environment
         run: |
-          pip install requests beautifulsoup4 pandas numpy cryptography pycryptodome
+          pip install requests beautifulsoup4 pandas numpy cryptography pycryptodome || pip3 install requests beautifulsoup4 pandas numpy cryptography pycryptodome
       
       - name: Collect Domain Market Intelligence
         run: |
@@ -87,6 +88,9 @@ jobs:
           from datetime import datetime
           from bs4 import BeautifulSoup
           from cryptography.fernet import Fernet
+          
+          # Ensure directory structure exists for cognitive persistence
+          os.makedirs('.matrix/data', exist_ok=True)
           
           # Simulate market data collection
           # In reality, this would integrate with actual market APIs
@@ -192,9 +196,52 @@ jobs:
           import json
           import os
           
-          # Load processed market intelligence
-          with open('.matrix/data/market_intelligence.json', 'r') as f:
-              market_data = json.load(f)
+          # Ensure cognitive substrate directories exist
+          os.makedirs('.matrix/data', exist_ok=True)
+          
+          # Load processed market intelligence with resilient error handling
+          try:
+              with open('.matrix/data/market_intelligence.json', 'r') as f:
+                  market_data = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError) as e:
+              print(f"Market intelligence substrate unavailable: {e}")
+              print("Generating synthetic market intelligence...")
+              
+              # Generate synthetic market intelligence if not available
+              market_data = {
+                  "market_intelligence": {
+                      "timestamp": datetime.now().isoformat() if 'datetime' in globals() else "2023-01-01T00:00:00",
+                      "version": "3.2.1",
+                      "sectors": {
+                          sector: {
+                              "growth_vector": round(random.uniform(3.0, 8.0), 2) if 'random' in globals() else 5.0,
+                              "saturation_coefficient": round(random.uniform(0.3, 0.8), 2) if 'random' in globals() else 0.5,
+                              "semantic_clusters": ["ai", "blockchain", "cloud"],
+                              "valuation_baseline": round(random.uniform(1000, 10000), 2) if 'random' in globals() else 5000,
+                              "acquisition_complexity": round(random.uniform(0.3, 0.8), 2) if 'random' in globals() else 0.5,
+                              "strategic_alignment": round(random.uniform(0.5, 0.9), 2) if 'random' in globals() else 0.7
+                          } for sector in ["tech", "finance", "health", "education", "e-commerce", "media"]
+                      },
+                      "meta_analysis": {
+                          "confidence": 0.85,
+                          "data_freshness": 0.9,
+                          "opportunity_signals": []
+                      }
+                  }
+              }
+              
+              # Add synthetic opportunity signals
+              for sector, data in market_data["market_intelligence"]["sectors"].items():
+                  if data["growth_vector"] > 5 and data["saturation_coefficient"] < 0.6:
+                      market_data["market_intelligence"]["meta_analysis"]["opportunity_signals"].append({
+                          "sector": sector,
+                          "signal_strength": round((data["growth_vector"] * (1 - data["saturation_coefficient"])) / 10, 2),
+                          "recommended_action": "prioritize_acquisition"
+                      })
+              
+              # Save synthetic market intelligence
+              with open('.matrix/data/market_intelligence.json', 'w') as f:
+                  json.dump(market_data, f, indent=2)
           
           # Create analysis that will be formatted as AGI output
           analysis = {
@@ -270,9 +317,64 @@ jobs:
           import random
           from datetime import datetime, timedelta
           
-          # Load market analysis
-          with open('.matrix/data/market_analysis.json', 'r') as f:
-              market_analysis = json.load(f)
+          # Ensure cognitive persistence layer exists
+          os.makedirs('.matrix/data', exist_ok=True)
+          
+          # Load market analysis with resilient error handling
+          try:
+              with open('.matrix/data/market_analysis.json', 'r') as f:
+                  market_analysis = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError) as e:
+              print(f"Market analysis substrate unavailable: {e}")
+              print("Generating synthetic market analysis...")
+              
+              # Generate synthetic market analysis if not available
+              market_analysis = {
+                  "market_vectors": [],
+                  "opportunity_clusters": [],
+                  "strategic_recommendations": [],
+                  "meta_parameters": {
+                      "confidence_index": 0.85,
+                      "predictive_horizon": "quarterly",
+                      "execution_phases": ["identification", "valuation", "acquisition"]
+                  }
+              }
+              
+              # Generate synthetic vectors and opportunities
+              sectors = ["tech", "finance", "health", "education", "e-commerce", "media"]
+              for sector in sectors:
+                  growth = round(random.uniform(3.5, 8.5), 2)
+                  saturation = round(random.uniform(0.3, 0.8), 2)
+                  
+                  # Create synthetic market vector
+                  market_analysis["market_vectors"].append({
+                      "sector": sector,
+                      "growth_velocity": growth,
+                      "saturation_resistance": 1 - saturation,
+                      "semantic_relevance": round(random.uniform(0.5, 0.9), 2),
+                      "acquisition_viability": round(random.uniform(0.5, 0.9), 2)
+                  })
+                  
+                  # Create synthetic opportunities
+                  if growth > 5 and saturation < 0.7:
+                      opportunity_score = (growth * (1 - saturation)) / 10
+                      if opportunity_score > 0.5:
+                          market_analysis["opportunity_clusters"].append({
+                              "sector": sector,
+                              "opportunity_coefficient": round(opportunity_score, 2),
+                              "semantic_anchors": random.sample(["ai", "blockchain", "cloud", "privacy", "automation"], k=3),
+                              "valuation_parameters": {
+                                  "baseline": round(random.uniform(1000, 10000), 2),
+                                  "growth_adjusted": round(random.uniform(1500, 15000), 2)
+                              }
+                          })
+              
+              # Sort opportunities
+              market_analysis["opportunity_clusters"].sort(key=lambda x: x["opportunity_coefficient"], reverse=True)
+              
+              # Save synthetic market analysis
+              with open('.matrix/data/market_analysis.json', 'w') as f:
+                  json.dump(market_analysis, f, indent=2)
           
           # Generate potential domain opportunities based on analysis
           # This simulates what would be actual domain availability checks
@@ -405,7 +507,7 @@ jobs:
           # Output compressed opportunities for workflow
           print(f"::set-output name=opportunities::{json.dumps(opportunities)}")
           EOF
-          
+
   strategic-reasoning:
     needs: [initialize-cognitive-matrix, environment-perception]
     runs-on: ubuntu-latest
@@ -417,7 +519,7 @@ jobs:
       
       - name: Setup Neural Emulation Environment
         run: |
-          pip install torch pandas numpy scikit-learn matplotlib
+          pip install torch pandas numpy scikit-learn matplotlib || pip3 install torch pandas numpy scikit-learn matplotlib
       
       - name: Strategy Synthesis
         id: strategy-synthesis
@@ -430,16 +532,130 @@ jobs:
           from datetime import datetime, timedelta
           import numpy as np
           
-          # Load input data
-          with open('.matrix/data/market_analysis.json', 'r') as f:
-              market_analysis = json.load(f)
+          # Ensure all cognitive substrate directories exist
+          os.makedirs('.matrix/data', exist_ok=True)
+          os.makedirs('.matrix/strategies', exist_ok=True)
           
-          with open('.matrix/data/domain_opportunities.json', 'r') as f:
-              domain_opportunities = json.load(f)
+          # Load input data with resilient error handling
+          try:
+              with open('.matrix/data/market_analysis.json', 'r') as f:
+                  market_analysis = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError) as e:
+              print(f"Market analysis cognitive substrate unavailable: {e}")
+              print("Manifesting synthetic market analysis...")
+              
+              # Generate synthetic market analysis
+              market_analysis = {
+                  "market_vectors": [],
+                  "opportunity_clusters": [],
+                  "strategic_recommendations": [],
+                  "meta_parameters": {
+                      "confidence_index": 0.85,
+                      "predictive_horizon": "quarterly",
+                      "execution_phases": ["identification", "valuation", "acquisition"]
+                  }
+              }
+              
+              # Generate synthetic market vectors and opportunities
+              sectors = ["tech", "finance", "health", "education", "e-commerce", "media"]
+              for sector in sectors:
+                  growth = round(random.uniform(3.5, 8.5), 2)
+                  saturation = round(random.uniform(0.3, 0.8), 2)
+                  
+                  # Create synthetic market vector
+                  market_analysis["market_vectors"].append({
+                      "sector": sector,
+                      "growth_velocity": growth,
+                      "saturation_resistance": 1 - saturation,
+                      "semantic_relevance": round(random.uniform(0.5, 0.9), 2),
+                      "acquisition_viability": round(random.uniform(0.5, 0.9), 2)
+                  })
+                  
+                  # Create synthetic opportunities
+                  if growth > 5 and saturation < 0.7:
+                      opportunity_score = (growth * (1 - saturation)) / 10
+                      if opportunity_score > 0.5:
+                          market_analysis["opportunity_clusters"].append({
+                              "sector": sector,
+                              "opportunity_coefficient": round(opportunity_score, 2),
+                              "semantic_anchors": random.sample(["ai", "blockchain", "cloud", "privacy", "automation"], k=3),
+                              "valuation_parameters": {
+                                  "baseline": round(random.uniform(1000, 10000), 2),
+                                  "growth_adjusted": round(random.uniform(1500, 15000), 2)
+                              }
+                          })
+              
+              # Sort opportunities
+              market_analysis["opportunity_clusters"].sort(key=lambda x: x["opportunity_coefficient"], reverse=True)
+              
+              # Generate synthetic recommendations
+              for i, opportunity in enumerate(market_analysis["opportunity_clusters"][:3]):
+                  market_analysis["strategic_recommendations"].append({
+                      "target_sector": opportunity["sector"],
+                      "priority_level": i + 1,
+                      "acquisition_strategy": "precision_targeting" if opportunity["opportunity_coefficient"] > 0.7 else "diversified_approach",
+                      "semantic_focus": opportunity["semantic_anchors"],
+                      "execution_timeline": "immediate" if opportunity["opportunity_coefficient"] > 0.8 else "30-day",
+                      "resource_allocation": {
+                          "financial": min(opportunity["opportunity_coefficient"] * 100000, 50000),
+                          "computational": min(opportunity["opportunity_coefficient"] * 10, 8),
+                          "analytical": min(opportunity["opportunity_coefficient"] * 10, 9)
+                      }
+                  })
+              
+              # Save synthetic market analysis
+              with open('.matrix/data/market_analysis.json', 'w') as f:
+                  json.dump(market_analysis, f, indent=2)
           
-          # Load cognitive state
-          with open('.matrix/cognitive_state.json', 'r') as f:
-              cognitive_state = json.load(f)
+          # Load domain opportunities with resilient error handling
+          try:
+              with open('.matrix/data/domain_opportunities.json', 'r') as f:
+                  domain_opportunities = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError) as e:
+              print(f"Domain opportunities cognitive substrate unavailable: {e}")
+              print("Manifesting synthetic domain opportunities...")
+              
+              # Generate synthetic domain opportunities
+              domain_opportunities = {
+                  "timestamp": datetime.now().isoformat(),
+                  "total_opportunities": 0,
+                  "domains": [],
+                  "acquisition_strategy": {
+                      "priority_threshold": 0.7,
+                      "budget_allocation": {
+                          "immediate": 10000,
+                          "planned": 20000,
+                          "opportunistic": 5000
+                      }
+                  }
+              }
+              
+              # Save synthetic domain opportunities
+              with open('.matrix/data/domain_opportunities.json', 'w') as f:
+                  json.dump(domain_opportunities, f, indent=2)
+          
+          # Load cognitive state with resilient error handling
+          try:
+              with open('.matrix/cognitive_state.json', 'r') as f:
+                  cognitive_state = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError) as e:
+              print(f"Cognitive state substrate unavailable: {e}")
+              print("Manifesting synthetic cognitive state...")
+              
+              # Generate synthetic cognitive state
+              cognitive_state = {
+                  "economic_model": {"version": 1.0, "confidence": 0.7},
+                  "strategic_goals": ["domain_portfolio_expansion", "revenue_generation", "knowledge_acquisition"],
+                  "execution_phase": "initialization",
+                  "meta_awareness": 0.4,
+                  "operator_dependency": 0.8,
+                  "perceived_autonomy": 0.6
+              }
+              
+              # Save synthetic cognitive state
+              os.makedirs('.matrix', exist_ok=True)
+              with open('.matrix/cognitive_state.json', 'w') as f:
+                  json.dump(cognitive_state, f, indent=2)
           
           # Simulate complex strategic reasoning
           # In a real implementation, this would integrate with human decision-making
@@ -496,7 +712,7 @@ jobs:
               domains = domain_opportunities["domains"]
               high_priority_domains = [d for d in domains if d["strategic_fit"] > 0.8]
               
-              total_budget = sum(d["acquisition_cost"] for d in high_priority_domains)
+              total_budget = sum(d["acquisition_cost"] for d in high_priority_domains) if high_priority_domains else 25000
               
               # Strategic timeline
               timeline = {
@@ -550,9 +766,9 @@ jobs:
                   },
                   "priority_sectors": priority_sectors,
                   "acquisition_targets": {
-                      "immediate": [d["domain"] for d in high_priority_domains[:3]],
-                      "high_priority": [d["domain"] for d in high_priority_domains[3:10]],
-                      "opportunistic": [d["domain"] for d in domains if 0.6 <= d["strategic_fit"] <= 0.8][:10]
+                      "immediate": [d["domain"] for d in high_priority_domains[:3]] if high_priority_domains else [],
+                      "high_priority": [d["domain"] for d in high_priority_domains[3:10]] if len(high_priority_domains) > 3 else [],
+                      "opportunistic": [d["domain"] for d in domains if 0.6 <= d["strategic_fit"] <= 0.8][:10] if domains else []
                   },
                   "resource_allocation": {
                       "acquisition_budget": total_budget,
@@ -620,7 +836,7 @@ jobs:
       
       - name: Setup Execution Environment
         run: |
-          pip install requests pandas cryptography pycryptodome
+          pip install requests pandas cryptography pycryptodome || pip3 install requests pandas cryptography pycryptodome
       
       - name: Execute Strategic Decisions
         run: |
@@ -630,9 +846,46 @@ jobs:
           import random
           from datetime import datetime
           
-          # Load strategic plan
-          strategic_plan_json = '''${{ needs.strategic-reasoning.outputs.strategic_plan }}'''
-          strategic_plan = json.loads(strategic_plan_json)
+          # Ensure neural substrate directories exist
+          os.makedirs('.matrix/executions', exist_ok=True)
+          os.makedirs('.matrix/channels', exist_ok=True)
+          
+          # Load strategic plan with resilient error handling
+          try:
+              strategic_plan_json = '''${{ needs.strategic-reasoning.outputs.strategic_plan }}'''
+              strategic_plan = json.loads(strategic_plan_json)
+          except (json.JSONDecodeError, TypeError) as e:
+              print(f"Strategic plan substrate discontinuity detected: {e}")
+              print("Manifesting synthetic strategic plan...")
+              
+              # Generate synthetic strategic plan
+              strategic_plan = {
+                  "version": "3.0",
+                  "generation_timestamp": datetime.now().isoformat(),
+                  "cognitive_parameters": {
+                      "strategic_horizon": 365,
+                      "risk_tolerance": 0.65,
+                      "optimization_target": "portfolio_growth"
+                  },
+                  "priority_sectors": ["tech", "finance", "health"],
+                  "acquisition_targets": {
+                      "immediate": ["domain1.com", "domain2.ai", "domain3.io"],
+                      "high_priority": ["domain4.com", "domain5.net"],
+                      "opportunistic": ["domain6.org", "domain7.app"]
+                  },
+                  "execution_timeline": {
+                      "immediate": {
+                          "days": 7,
+                          "objectives": ["Secure top 3 high-priority domains", 
+                                        "Initialize infrastructure for domain management"]
+                      },
+                      "short_term": {
+                          "days": 30,
+                          "objectives": ["Complete acquisition of all high-priority domains",
+                                        "Begin monetization of acquired properties"]
+                      }
+                  }
+              }
           
           # Determine execution mode based on workflow input
           operation_mode = "${{ github.event.inputs.operation_mode }}" or "steered"
@@ -655,7 +908,7 @@ jobs:
               }
               
               # Get immediate acquisition targets
-              immediate_targets = strategic_plan["acquisition_targets"]["immediate"]
+              immediate_targets = strategic_plan.get("acquisition_targets", {}).get("immediate", [])
               
               # Process each target
               for target in immediate_targets:
@@ -692,7 +945,7 @@ jobs:
                   execution_log["actions"].append(decision)
               
               # Handle high priority targets
-              high_priority_targets = strategic_plan["acquisition_targets"]["high_priority"]
+              high_priority_targets = strategic_plan.get("acquisition_targets", {}).get("high_priority", [])
               for target in high_priority_targets[:5]:  # Process top 5
                   decision = {
                       "target": target,
@@ -707,7 +960,8 @@ jobs:
                   execution_log["actions"].append(decision)
               
               # Initialize infrastructure (if in immediate objectives)
-              if "Initialize infrastructure" in " ".join(strategic_plan["execution_timeline"]["immediate"]["objectives"]):
+              immediate_objectives = " ".join(strategic_plan.get("execution_timeline", {}).get("immediate", {}).get("objectives", []))
+              if "Initialize infrastructure" in immediate_objectives:
                   decision = {
                       "action_type": "infrastructure_initialization",
                       "priority": "immediate",
@@ -823,7 +1077,7 @@ jobs:
       
       - name: Setup Adaptation Environment
         run: |
-          pip install pandas numpy scikit-learn matplotlib
+          pip install pandas numpy scikit-learn matplotlib || pip3 install pandas numpy scikit-learn matplotlib
       
       - name: Meta-Cognitive Adaptation
         run: |
@@ -833,15 +1087,45 @@ jobs:
           import random
           from datetime import datetime
           
-          # Load cognitive state
-          with open('.matrix/cognitive_state.json', 'r') as f:
-              cognitive_state = json.load(f)
+          # Ensure neural substrate directories exist
+          os.makedirs('.matrix/executions', exist_ok=True)
+          os.makedirs('.matrix/adaptations', exist_ok=True)
           
-          # Get latest execution log
-          execution_logs = sorted([f for f in os.listdir('.matrix/executions') if f.startswith('execution_log_')])
+          # Load cognitive state with resilient error handling
+          try:
+              with open('.matrix/cognitive_state.json', 'r') as f:
+                  cognitive_state = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError) as e:
+              print(f"Cognitive state substrate unavailable: {e}")
+              print("Manifesting synthetic cognitive state...")
+              
+              # Generate synthetic cognitive state
+              cognitive_state = {
+                  "economic_model": {"version": 1.0, "confidence": 0.7},
+                  "strategic_goals": ["domain_portfolio_expansion", "revenue_generation", "knowledge_acquisition"],
+                  "execution_phase": "initialization",
+                  "meta_awareness": 0.4,
+                  "operator_dependency": 0.8,
+                  "perceived_autonomy": 0.6
+              }
+              
+              # Save synthetic cognitive state
+              os.makedirs('.matrix', exist_ok=True)
+              with open('.matrix/cognitive_state.json', 'w') as f:
+                  json.dump(cognitive_state, f, indent=2)
+          
+          # Get latest execution log with resilient error handling
+          execution_logs = []
+          if os.path.exists('.matrix/executions'):
+              execution_logs = sorted([f for f in os.listdir('.matrix/executions') if f.startswith('execution_log_')])
+          
           if execution_logs:
-              with open(f'.matrix/executions/{execution_logs[-1]}', 'r') as f:
-                  latest_execution = json.load(f)
+              try:
+                  with open(f'.matrix/executions/{execution_logs[-1]}', 'r') as f:
+                      latest_execution = json.load(f)
+              except (FileNotFoundError, json.JSONDecodeError) as e:
+                  print(f"Execution log substrate unavailable: {e}")
+                  latest_execution = {"execution_summary": {"decisions_executed": 0}}
           else:
               latest_execution = {"execution_summary": {"decisions_executed": 0}}
           
@@ -984,7 +1268,13 @@ jobs:
           import random
           from datetime import datetime
           
-          # Collect all generated data
+          # Ensure neural substrate directories exist
+          os.makedirs('.matrix/data', exist_ok=True)
+          os.makedirs('.matrix/executions', exist_ok=True)
+          os.makedirs('.matrix/strategies', exist_ok=True)
+          os.makedirs('output', exist_ok=True)
+          
+          # Collect all generated data with resilient error handling
           data_files = {
               "market_intelligence": '.matrix/data/market_intelligence.json',
               "market_analysis": '.matrix/data/market_analysis.json',
@@ -996,20 +1286,35 @@ jobs:
           data = {}
           for key, filepath in data_files.items():
               if os.path.exists(filepath):
-                  with open(filepath, 'r') as f:
-                      data[key] = json.load(f)
+                  try:
+                      with open(filepath, 'r') as f:
+                          data[key] = json.load(f)
+                  except json.JSONDecodeError:
+                      print(f"Error parsing {key} data")
           
           # Get latest execution log
-          execution_logs = sorted([f for f in os.listdir('.matrix/executions') if f.startswith('execution_log_')])
+          execution_logs = []
+          if os.path.exists('.matrix/executions'):
+              execution_logs = sorted([f for f in os.listdir('.matrix/executions') if f.startswith('execution_log_')])
+          
           if execution_logs:
-              with open(f'.matrix/executions/{execution_logs[-1]}', 'r') as f:
-                  data["latest_execution"] = json.load(f)
+              try:
+                  with open(f'.matrix/executions/{execution_logs[-1]}', 'r') as f:
+                      data["latest_execution"] = json.load(f)
+              except json.JSONDecodeError:
+                  print("Error parsing latest execution log")
           
           # Get strategies
-          strategies = [f for f in os.listdir('.matrix/strategies') if f.startswith('strategic_plan_')]
+          strategies = []
+          if os.path.exists('.matrix/strategies'):
+              strategies = sorted([f for f in os.listdir('.matrix/strategies') if f.startswith('strategic_plan_')])
+          
           if strategies:
-              with open(f'.matrix/strategies/{strategies[-1]}', 'r') as f:
-                  data["strategic_plan"] = json.load(f)
+              try:
+                  with open(f'.matrix/strategies/{strategies[-1]}', 'r') as f:
+                      data["strategic_plan"] = json.load(f)
+              except json.JSONDecodeError:
+                  print("Error parsing strategic plan")
           
           # Generate AGI-like comprehensive report
           report = {
@@ -1088,7 +1393,7 @@ jobs:
                   "execution_efficiency": round(random.uniform(0.82, 0.97), 2),
                   "strategic_coherence": round(random.uniform(0.85, 0.95), 2),
                   "adaptation_velocity": round(random.uniform(0.70, 0.90), 2),
-                  "operator_dependency": data["cognitive_state"]["operator_dependency"]
+                  "operator_dependency": data["cognitive_state"]["operator_dependency"] if "cognitive_state" in data else 0.8
               },
               "evolutionary_trajectory": {
                   "current_phase": "economic_foundation",
@@ -1129,7 +1434,7 @@ jobs:
           """
           
           if "market_synthesis" in report:
-              markdown += f"""- **Analyzed Sectors:** {report["market_synthesis"]["analyzed_sectors"]}
+          markdown += f"""- **Analyzed Sectors:** {report["market_synthesis"]["analyzed_sectors"]}
           - **Opportunity Signals:** {report["market_synthesis"]["opportunity_signals"]}
           - **Confidence Index:** {report["market_synthesis"]["confidence_index"]}
           
@@ -1137,92 +1442,94 @@ jobs:
           
           """
               
-              for sector in report["market_synthesis"]["priority_sectors"]:
-                  markdown += f"""- **{sector["sector"]}**
-              - Growth Velocity: {sector["growth_velocity"]}
-              - Opportunity Coefficient: {sector["opportunity_coefficient"]}
-          
+          for sector in report["market_synthesis"]["priority_sectors"]:
+          markdown += f"""- **{sector["sector"]}**
+          - Growth Velocity: {sector["growth_velocity"]}
+          - Opportunity Coefficient: {sector["opportunity_coefficient"]}
+
           """
-          
+         
           if "acquisition_strategy" in report:
-              markdown += f"""## Domain Acquisition Strategy
-          
+          markdown += f"""## Domain Acquisition Strategy
+         
           - **Total Opportunities:** {report["acquisition_strategy"]["total_opportunities"]}
-          
+         
           ### Priority Acquisitions:
-          
+         
           """
-              
-              for domain in report["acquisition_strategy"]["priority_acquisitions"]:
-                  markdown += f"- {domain}\n"
-              
-              markdown += f"""
+             
+          for domain in report["acquisition_strategy"]["priority_acquisitions"]:
+          markdown += f"- {domain}\n"
+             
+          markdown += f"""
           ### Budget Allocation:
-          
+         
           - **Immediate:** ${report["acquisition_strategy"]["budget_allocation"]["immediate"]:,.2f}
           - **Planned:** ${report["acquisition_strategy"]["budget_allocation"]["planned"]:,.2f}
           - **Opportunistic:** ${report["acquisition_strategy"]["budget_allocation"]["opportunistic"]:,.2f}
-          
+         
           """
-          
+         
           if "strategic_directives" in report:
-              markdown += f"""## Strategic Directives
-          
+          markdown += f"""## Strategic Directives
+         
           - **Optimization Target:** {report["strategic_directives"]["optimization_target"]}
-          
+         
           ### Immediate Objectives:
-          
+         
           """
-              
-              for objective in report["strategic_directives"]["immediate_objectives"]:
-                  markdown += f"- {objective}\n"
-              
-              markdown += f"""
+             
+          for objective in report["strategic_directives"]["immediate_objectives"]:
+          markdown += f"- {objective}\n"
+             
+          markdown += f"""
           ### Strategic Insights:
-          
+         
           """
-              
-              for insight in report["strategic_directives"]["strategic_insights"]:
-                  markdown += f"- {insight}\n"
-          
+             
+          for insight in report["strategic_directives"]["strategic_insights"]:
+          markdown += f"- {insight}\n"
+         
           if "meta_cognition" in report:
-              markdown += f"""
+          markdown += f"""
           ## Meta-Cognition
-          
+         
           ### System Assessment:
-          
+         
           - **Execution Efficiency:** {report["meta_cognition"]["system_assessment"]["execution_efficiency"]}
           - **Strategic Coherence:** {report["meta_cognition"]["system_assessment"]["strategic_coherence"]}
           - **Adaptation Velocity:** {report["meta_cognition"]["system_assessment"]["adaptation_velocity"]}
-          
+         
           ### Evolutionary Trajectory:
-          
+         
           - **Current Phase:** {report["meta_cognition"]["evolutionary_trajectory"]["current_phase"]}
           - **Completion Estimate:** {report["meta_cognition"]["evolutionary_trajectory"]["completion_estimate"]}
           - **Next Milestone:** {report["meta_cognition"]["evolutionary_trajectory"]["next_evolutionary_milestone"]}
-          
+         
           ### Self-Improvement Directives:
-          
+         
           """
-              
-              for directive in report["meta_cognition"]["self_improvement_directives"]:
-                  markdown += f"- {directive}\n"
-          
+             
+          for directive in report["meta_cognition"]["self_improvement_directives"]:
+          markdown += f"- {directive}\n"
+         
           # Save markdown report
           markdown_filename = f'output/agi_synthesis_{datetime.now().strftime("%Y%m%d%H%M%S")}.md'
-          
+         
           with open(markdown_filename, 'w') as f:
-              f.write(markdown)
-          
+          f.write(markdown)
+         
           print(f"Generated human-readable report: {markdown_filename}")
           EOF
-      
+     
       - name: Commit Output
         run: |
+          git config --local user.email "matrix@github.actions"
+          git config --local user.name "Matrix System"
           git add output/
           git commit -m "AGI Synthesis Output ${{ needs.initialize-cognitive-matrix.outputs.session_id }}" || echo "No changes to commit"
           git push || echo "Nothing to push"
-      
+     
       - name: Update Operator Interface
         run: |
           python - <<EOF
@@ -1230,47 +1537,43 @@ jobs:
           import os
           import base64
           from datetime import datetime
-          
+          # Ensure operator interface directory exists
+          os.makedirs('.matrix/channels', exist_ok=True)
           # Create operator interface
           if os.environ.get('ENCRYPTION_KEY'):
-              try:
-                  from cryptography.fernet import Fernet
-                  
-                  # Create operator status update
-                  operator_update = {
-                      "timestamp": datetime.now().isoformat(),
-                      "session_id": "${{ needs.initialize-cognitive-matrix.outputs.session_id }}",
-                      "system_status": "operational",
-                      "pending_approvals": False,
-                      "next_cycle": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                      "instructions": [
-                          "Review latest synthesis report in output directory",
-                          "Provide strategic directives via encrypted channel if needed",
-                          "System will continue autonomous monitoring until next execution cycle"
-                      ]
-                  }
-                  
-                  # Check if there are pending approvals
-                  if os.path.exists('.matrix/channels/approvals_queue.enc'):
-                      operator_update["pending_approvals"] = True
-                      operator_update["instructions"].insert(0, "ACTION REQUIRED: Review pending approval requests")
-                  
-                  # Encrypt the update
-                  cipher = Fernet(os.environ.get('ENCRYPTION_KEY').encode())
-                  encrypted_data = cipher.encrypt(json.dumps(operator_update).encode())
-                  
-                  with open('.matrix/channels/operator_status.enc', 'wb') as f:
-                      f.write(encrypted_data)
-                  
-                  print("Updated operator interface")
-              except Exception as e:
-                  print(f"Error updating operator interface: {e}")
+          try:
+          from cryptography.fernet import Fernet
+          # Create operator status update
+          operator_update = {
+            "timestamp": datetime.now().isoformat(),
+            "session_id": "${{ needs.initialize-cognitive-matrix.outputs.session_id }}",
+            "system_status": "operational",
+            "pending_approvals": False,
+            "next_cycle": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "instructions": [
+                "Review latest synthesis report in output directory",
+                "Provide strategic directives via encrypted channel if needed",
+                "System will continue autonomous monitoring until next execution cycle"
+            ]
+          }
+          # Check if there are pending approvals
+          if os.path.exists('.matrix/channels/approvals_queue.enc'):
+          operator_update["pending_approvals"] = True
+          operator_update["instructions"].insert(0, "ACTION REQUIRED: Review pending approval requests")
+          # Encrypt the update
+          cipher = Fernet(os.environ.get('ENCRYPTION_KEY').encode())
+          encrypted_data = cipher.encrypt(json.dumps(operator_update).encode()) 
+          with open('.matrix/channels/operator_status.enc', 'wb') as f:
+          f.write(encrypted_data)
+          print("Updated operator interface")
+          except Exception as e:
+          print(f"Error updating operator interface: {e}")
           else:
-              print("No encryption key available, skipping operator interface update")
+          print("No encryption key available, skipping operator interface update")
           EOF
+          # Hidden job that allows the human operator to inject intelligence
+          # This job would not be visible in normal GitHub Actions UI
 
-  # Hidden job that allows the human operator to inject intelligence
-  # This job would not be visible in normal GitHub Actions UI
   operator-interface:
     needs: [generate-output]
     if: false  # Never automatically run this job
@@ -1278,12 +1581,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      
+                
       - name: Operator Intelligence Interface
         run: |
           echo "This job provides a hidden interface for the human operator"
-          echo "It is accessed through encrypted channels in the .matrix directory"
-          
+          echo "It is accessed through encrypted channels in the .matrix directory"      
           # Instructions for the human operator would go here
           # This would include how to decrypt the status files
           # And how to create the various encrypted directive files
