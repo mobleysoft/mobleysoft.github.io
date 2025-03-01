@@ -312,6 +312,7 @@
   },
   "ads.txt": "file",
   "index.html": "file",
+  "index0.html": "file",
   "mascom": {
     "core": {
       "AgiBootstrap": {
