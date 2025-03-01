@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft Execution Monitor</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #0e0e0e; color: #00ff00; padding: 20px; }
+        #log-container { max-height: 400px; overflow-y: auto; background: black; padding: 10px; border-radius: 5px; }
+        #status { font-size: 18px; margin-bottom: 10px; }
+        .hidden { display: none; }
+        .panel { background: #1e1e1e; padding: 15px; border-radius: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Mobleysoft Execution Monitor</h1>
+    <div id="status">System Status: <span id="status-text">Initializing...</span></div>
+    <div id="log-container"></div>
+    
+    <button onclick="togglePanel()">Toggle Admin Console</button>
+    <div id="admin-console" class="hidden panel">
+        <h2>Admin Console</h2>
+        <button onclick="runTestCycle()">Run Test Harness</button>
+    </div>
+
+    <script>
+        function logMessage(msg) {
+            const logContainer = document.getElementById("log-container");
+            const entry = document.createElement("div");
+            entry.textContent = `[${new Date().toISOString()}] ${msg}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function togglePanel() {
+            const panel = document.getElementById("admin-console");
+            panel.classList.toggle("hidden");
+        }
+
+        function runTestCycle() {
+            logMessage("Executing test harness...");
+            fetch("/run-test") // Simulated backend trigger
+                .then(response => response.json())
+                .then(data => {
+                    logMessage("Test completed: " + JSON.stringify(data));
+                    document.getElementById("status-text").textContent = "Test Successful";
+                })
+                .catch(error => logMessage("Test Error: " + error));
+        }
+
+        function monitorExecution() {
+            fetch("/execution-status") // Simulated API call
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("status-text").textContent = data.status;
+                    logMessage("Status Updated: " + data.status);
+                })
+                .catch(error => logMessage("Monitoring Error: " + error));
+        }
+
+        setInterval(monitorExecution, 5000); // Poll every 5 seconds
+    </script>
+</body>
+</html>
