@@ -8,6 +8,7 @@
     <script src="https://mobleysoft.com/1Holder/Assets/Scripts/Blackhole.js"></script>
     <style>
         body { margin: 0; overflow: hidden; background: black; font-family: "Inter", sans-serif; color: white; cursor: url('https://mobleysoft.com/cursor.glow.cur'), auto; }
+        canvas { display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         #site-directory {
             position: fixed;
             bottom: 50px;
@@ -53,6 +54,8 @@
             overflow: auto;
             backdrop-filter: blur(10px);
             animation: popIn 0.3s ease-in-out forwards;
+            resize: both;
+            overflow: hidden;
         }
         #file-content {
             width: 100%;
@@ -109,27 +112,24 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
-            await initializeBlackholeBackground();
+            createBlackhole();
             await loadSiteDirectory();
-            autoAnimateWindows();
         });
 
-        async function initializeBlackholeBackground() {
-            console.log("Three.js Loaded");
-            createBlackhole();
-        }
-
-        function createBlackhole() {
-            // Blackhole.js effect initialized here
+        function toggleDirectory() {
+            const dir = document.getElementById("site-directory");
+            dir.style.display = dir.style.display === "none" ? "block" : "none";
         }
 
         async function loadSiteDirectory() {
             try {
                 const response = await fetch("https://mobleysoft.com/site-directory.json");
+                if (!response.ok) throw new Error("Failed to fetch site directory.");
                 const directory = await response.json();
                 displayRootDirectory(directory);
             } catch (error) {
                 console.error("Failed to load site directory:", error);
+                document.getElementById("site-directory").textContent = "Error loading directory.";
             }
         }
 
@@ -154,19 +154,12 @@
         }
 
         function openFolder(folderName) {
-            console.log("Opening folder:", folderName);
-            const overlay = document.getElementById("file-overlay");
-            overlay.style.display = "block";
-            const content = document.getElementById("file-content");
-            content.innerHTML = `<h3>${folderName}</h3><p>Folder contents will be displayed here.</p>`;
+            document.getElementById("file-content").innerHTML = `<h3>${folderName}</h3><p>Loading contents...</p>`;
         }
 
         function openFile(fileName, type) {
-            console.log("Opening file:", fileName);
-            const overlay = document.getElementById("file-overlay");
-            overlay.style.display = "block";
-            const content = document.getElementById("file-content");
-            content.innerHTML = `<iframe src="${fileName}" width="100%" height="100%"></iframe>`;
+            document.getElementById("file-overlay").style.display = "block";
+            document.getElementById("file-content").innerHTML = `<iframe src="${fileName}" width="100%" height="100%"></iframe>`;
         }
 
         function closeOverlay() {
