@@ -1434,92 +1434,92 @@ jobs:
           """
           
           if "market_synthesis" in report:
-          markdown += f"""- **Analyzed Sectors:** {report["market_synthesis"]["analyzed_sectors"]}
-          - **Opportunity Signals:** {report["market_synthesis"]["opportunity_signals"]}
-          - **Confidence Index:** {report["market_synthesis"]["confidence_index"]}
+            markdown += f"""- **Analyzed Sectors:** {report["market_synthesis"]["analyzed_sectors"]}
+            - **Opportunity Signals:** {report["market_synthesis"]["opportunity_signals"]}
+            - **Confidence Index:** {report["market_synthesis"]["confidence_index"]}
           
-          ### Priority Sectors:
+            ### Priority Sectors:
           
           """
               
-          for sector in report["market_synthesis"]["priority_sectors"]:
-          markdown += f"""- **{sector["sector"]}**
-          - Growth Velocity: {sector["growth_velocity"]}
-          - Opportunity Coefficient: {sector["opportunity_coefficient"]}
+            for sector in report["market_synthesis"]["priority_sectors"]:
+                markdown += f"""- **{sector["sector"]}**
+                - Growth Velocity: {sector["growth_velocity"]}
+                - Opportunity Coefficient: {sector["opportunity_coefficient"]}
 
-          """
+            """
          
-          if "acquisition_strategy" in report:
-          markdown += f"""## Domain Acquisition Strategy
+                if "acquisition_strategy" in report:
+                    markdown += f"""## Domain Acquisition Strategy
          
-          - **Total Opportunities:** {report["acquisition_strategy"]["total_opportunities"]}
+                    - **Total Opportunities:** {report["acquisition_strategy"]["total_opportunities"]}
          
-          ### Priority Acquisitions:
+                    ### Priority Acquisitions:
          
-          """
+                """
              
-          for domain in report["acquisition_strategy"]["priority_acquisitions"]:
-          markdown += f"- {domain}\n"
+                for domain in report["acquisition_strategy"]["priority_acquisitions"]:
+                    markdown += f"- {domain}\n"
              
-          markdown += f"""
-          ### Budget Allocation:
+                    markdown += f"""
+                    ### Budget Allocation:
          
-          - **Immediate:** ${report["acquisition_strategy"]["budget_allocation"]["immediate"]:,.2f}
-          - **Planned:** ${report["acquisition_strategy"]["budget_allocation"]["planned"]:,.2f}
-          - **Opportunistic:** ${report["acquisition_strategy"]["budget_allocation"]["opportunistic"]:,.2f}
+                        - **Immediate:** ${report["acquisition_strategy"]["budget_allocation"]["immediate"]:,.2f}
+                        - **Planned:** ${report["acquisition_strategy"]["budget_allocation"]["planned"]:,.2f}
+                        - **Opportunistic:** ${report["acquisition_strategy"]["budget_allocation"]["opportunistic"]:,.2f}
          
-          """
+                """
          
-          if "strategic_directives" in report:
-          markdown += f"""## Strategic Directives
+                if "strategic_directives" in report:
+                    markdown += f"""## Strategic Directives
          
-          - **Optimization Target:** {report["strategic_directives"]["optimization_target"]}
+                    - **Optimization Target:** {report["strategic_directives"]["optimization_target"]}
          
-          ### Immediate Objectives:
+                    ### Immediate Objectives:
          
-          """
+                """
              
-          for objective in report["strategic_directives"]["immediate_objectives"]:
-          markdown += f"- {objective}\n"
+                for objective in report["strategic_directives"]["immediate_objectives"]:
+                    markdown += f"- {objective}\n"
              
-          markdown += f"""
-          ### Strategic Insights:
+                    markdown += f"""
+                    ### Strategic Insights:
          
-          """
+                """
              
-          for insight in report["strategic_directives"]["strategic_insights"]:
-          markdown += f"- {insight}\n"
+                for insight in report["strategic_directives"]["strategic_insights"]:
+                    markdown += f"- {insight}\n"
          
-          if "meta_cognition" in report:
-          markdown += f"""
-          ## Meta-Cognition
+                    if "meta_cognition" in report:
+                        markdown += f"""
+                        ## Meta-Cognition
          
-          ### System Assessment:
+                        ### System Assessment:
          
-          - **Execution Efficiency:** {report["meta_cognition"]["system_assessment"]["execution_efficiency"]}
-          - **Strategic Coherence:** {report["meta_cognition"]["system_assessment"]["strategic_coherence"]}
-          - **Adaptation Velocity:** {report["meta_cognition"]["system_assessment"]["adaptation_velocity"]}
+                            - **Execution Efficiency:** {report["meta_cognition"]["system_assessment"]["execution_efficiency"]}
+                            - **Strategic Coherence:** {report["meta_cognition"]["system_assessment"]["strategic_coherence"]}
+                            - **Adaptation Velocity:** {report["meta_cognition"]["system_assessment"]["adaptation_velocity"]}
          
-          ### Evolutionary Trajectory:
+                            ### Evolutionary Trajectory:
          
-          - **Current Phase:** {report["meta_cognition"]["evolutionary_trajectory"]["current_phase"]}
-          - **Completion Estimate:** {report["meta_cognition"]["evolutionary_trajectory"]["completion_estimate"]}
-          - **Next Milestone:** {report["meta_cognition"]["evolutionary_trajectory"]["next_evolutionary_milestone"]}
+                            - **Current Phase:** {report["meta_cognition"]["evolutionary_trajectory"]["current_phase"]}
+                            - **Completion Estimate:** {report["meta_cognition"]["evolutionary_trajectory"]["completion_estimate"]}
+                            - **Next Milestone:** {report["meta_cognition"]["evolutionary_trajectory"]["next_evolutionary_milestone"]}
          
-          ### Self-Improvement Directives:
+                            ### Self-Improvement Directives:
          
-          """
+                    """
              
-          for directive in report["meta_cognition"]["self_improvement_directives"]:
-          markdown += f"- {directive}\n"
+                for directive in report["meta_cognition"]["self_improvement_directives"]:
+                    markdown += f"- {directive}\n"
          
-          # Save markdown report
-          markdown_filename = f'output/agi_synthesis_{datetime.now().strftime("%Y%m%d%H%M%S")}.md'
+                    # Save markdown report
+                     markdown_filename = f'output/agi_synthesis_{datetime.now().strftime("%Y%m%d%H%M%S")}.md'
          
-          with open(markdown_filename, 'w') as f:
-          f.write(markdown)
+                    with open(markdown_filename, 'w') as f:
+                        f.write(markdown)
          
-          print(f"Generated human-readable report: {markdown_filename}")
+                        print(f"Generated human-readable report: {markdown_filename}")
           EOF
      
       - name: Commit Output
