@@ -2,7 +2,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5472173055679081" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-5472173055679081">
     <title>MobCorp-MobleysoftAGI</title><script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-    <style>body{margin:0;overflow:hidden;background:#000;font-family:Arial,sans-serif;color:white;}
+    <style>
+    #main{width:100%;height:100%;left:0px;top:0px;position:fixed;z-index:2;display:block;}
+    body{margin:0;overflow:hidden;background:#000;font-family:Arial,sans-serif;color:white;}
     canvas{display:block;position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;}
     #shrinkWrap{display:flex;flex-direction:column;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:10;transition:opacity 1.5s ease-in-out,transform 0.5s;opacity:0;pointer-events:auto;width:auto;height:auto;max-width:100vw;max-height:100vh;padding:1px;}
     #shrinkWrap.visible{opacity:1!important;pointer-events:auto!important;}
@@ -120,10 +122,9 @@
     }
     </style></head><body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="https://mobleysoft.com/1Holder/Assets/Scripts/Blackhole.js"></script>
-    <canvas id="blackhole"></canvas><div id="shrinkWrap"><div id="overlay" style="width:1000px!important"><div id="app">
+    <canvas id="blackhole"></canvas><div id="main"><div id="shrinkWrap"><div id="overlay" style="width:1000px!important"><div id="app">
     <!--div id="logoRow"><div id="logo"><header><div><img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png"alt="Mobleysoft" height="100px"></div></header></div></div-->
-    <img id="logo" src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="50px" onclick="toggleDirectory()">
-    <div id="site-directory">Loading site directory...</div>
+   <div id="site-directory">Loading site directory...</div>
     <div id="file-overlay">
         <span id="close-overlay" onclick="closeOverlay()">✖</span>
         <div id="file-content"></div>
@@ -141,7 +142,8 @@
     <a href="#" class="footer-link" onclick="activateTool('FirmSmith200')">FirmSmith200</a>
     <a href="#" class="footer-link" onclick="activateTool('IndustryPress2k')">IndustryPress2k</a></div>
     <div class="startup-footer" id="startup-toolbar"><span class="startup-link MobCorp">MobCorp</span></div>
-    <div id="wireframe"></div><div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div></div></div>
+    <div id="wireframe"></div><div id="subapp-container"><button id="closeSubApp" onclick="closeSubApp()">✖</button></div></div></div> <img id="logo" src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="50px" onclick="toggleDirectory()">
+</div>
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
             //createBlackhole();
