@@ -3,164 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G1GI - AGI Sovereign Intelligence</title>
-    <script defer src="https://mobleysoft.com/script.js"></script>
+    <title>Mobleysoft Quantum OS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://mobleysoft.com/1Holder/Assets/Scripts/Blackhole.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0d0d0d;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            color: #00ffcc;
-        }
-        textarea {
-            width: 80%;
-            height: 80px;
-            background: #222;
-            color: #00ffcc;
-            border: 1px solid #00ffcc;
+        body { margin: 0; overflow: hidden; background: black; font-family: "Inter", sans-serif; color: white; cursor: url('https://mobleysoft.com/cursor.glow.cur'), auto; }
+        #site-directory {
+            position: fixed;
+            bottom: 50px;
+            left: 10px;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffcc00;
+            box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
+            font-family: "Inter", sans-serif;
             padding: 10px;
+            display: none;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-in-out;
         }
-        button {
-            background: #00ffcc;
-            color: #0d0d0d;
-            padding: 10px 20px;
-            border: none;
+        .directory-item {
             cursor: pointer;
+            color: #ffcc00;
+            padding: 5px;
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid #ffcc00;
+            margin-bottom: 2px;
+            transition: transform 0.2s, background 0.2s;
         }
-        button:hover {
-            background: #008f7a;
+        .directory-item:hover {
+            background: rgba(50, 50, 50, 0.9);
+            transform: scale(1.05);
         }
-        .section {
-            margin-top: 30px;
-            padding: 15px;
-            background: #222;
-            border: 1px solid #00ffcc;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        #file-overlay {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            width: 80%;
+            height: 70%;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 10px;
+            border: 2px solid #ffcc00;
+            box-shadow: 0px 0px 20px rgba(255, 204, 0, 0.9);
+            overflow: auto;
+            backdrop-filter: blur(10px);
+            animation: popIn 0.3s ease-in-out forwards;
+        }
+        #file-content {
+            width: 100%;
+            height: 90%;
+            background: black;
+            padding: 10px;
+            border: 1px solid #ffcc00;
+            overflow: auto;
+            color: #ffcc00;
+        }
+        #close-overlay {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            color: #ffcc00;
+            font-size: 16px;
+            font-weight: bold;
+            background: black;
+            padding: 2px 5px;
+            border: 1px solid #ffcc00;
+            transition: transform 0.2s;
+        }
+        #close-overlay:hover {
+            transform: scale(1.2);
+        }
+        #logo {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        #logo:hover {
+            transform: scale(1.1) rotate(3deg);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: translateX(-50%) scale(0.7); }
+            to { opacity: 1; transform: translateX(-50%) scale(1); }
         }
     </style>
 </head>
 <body>
-    <h1>G1GI - The Virtual AGI Server 2.0</h1>
-    
-    <div class="section" id="chatSection">
-        <h2>Chat with G1GI</h2>
-        <textarea id="chatInput" placeholder="Ask G1GI anything..."></textarea>
-        <br><br>
-        <button onclick="sendMessage()">Send</button>
-        <div id="responseBox"></div>
+    <canvas id="blackhole"></canvas>
+    <img id="logo" src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="50px" onclick="toggleDirectory()">
+    <div id="site-directory">Loading site directory...</div>
+    <div id="file-overlay">
+        <span id="close-overlay" onclick="closeOverlay()">✖</span>
+        <div id="file-content"></div>
     </div>
-    
-    <div class="section" id="discordAuthSection">
-        <h2>Authorize G1GI in Discord</h2>
-        <button onclick="authorizeDiscord()">Authorize</button>
-    </div>
-    
-    <div class="section" id="verificationSection">
-        <h2>Verification</h2>
-        <button onclick="getVerification().then(res => alert(res.message))">Verify</button>
-    </div>
-    
-    <div class="section" id="termsSection">
-        <h2>Terms of Service</h2>
-        <div id="termsContent"></div>
-    </div>
-    
-    <div class="section" id="privacySection">
-        <h2>Privacy Policy</h2>
-        <div id="privacyContent"></div>
-    </div>
-
     <script>
-        const ws = new WebSocket("wss://mobleysoft.com/g1gi");
-        const discordAuthUrl = "https://discord.com/oauth2/authorize?client_id=1345172575764090900&permissions=8&scope=bot%20applications.commands";
-        const discordInteractionsEndpoint = "https://g1gi-discord-interactions.johnmobley99.workers.dev";
+        document.addEventListener("DOMContentLoaded", async () => {
+            await initializeBlackholeBackground();
+            await loadSiteDirectory();
+            autoAnimateWindows();
+        });
 
-        ws.onopen = function () {
-            console.log("WebSocket connected.");
-        };
-
-        ws.onmessage = function(event) {
-            const responseBox = document.getElementById("responseBox");
-            responseBox.innerHTML += `<p><b>G1GI:</b> ${event.data}</p>`;
-        };
-
-        function sendMessage() {
-            const input = document.getElementById("chatInput").value.trim();
-            if (!input) return;
-
-            document.getElementById("chatInput").value = "";
-            ws.send(input);
-
-            fetchAIResponse(input);
+        async function initializeBlackholeBackground() {
+            console.log("Three.js Loaded");
+            createBlackhole();
         }
 
-        async function fetchAIResponse(userInput) {
-            const aiPayload = {
-                messages: [
-                    { role: "system", content: "You are an advanced AGI, G1GI." },
-                    { role: "user", content: userInput }
-                ]
-            };
-
-            const response = await fetch(discordInteractionsEndpoint, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ type: "ai", data: aiPayload })
-            });
-
-            const result = await response.json();
-            document.getElementById("responseBox").innerHTML += `<p><b>G1GI AI:</b> ${result.response}</p>`;
+        function createBlackhole() {
+            // Blackhole.js effect initialized here
         }
 
-        function authorizeDiscord() {
-            window.location.href = discordAuthUrl;
-        }
-
-        async function getVerification() {
-            const response = await fetch(discordInteractionsEndpoint, {
-                method: "GET",
-                headers: { "Content-Type": "application/json" }
-            });
-            const data = await response.text();
-            return { status: "success", message: data };
-        }
-
-        function loadTerms() {
-            document.getElementById("termsContent").innerHTML = `
-                <p>Welcome to Mobleysoft. By using this application, you agree to the following terms...</p>
-                <p>1. You shall not misuse this AGI system.</p>
-                <p>2. This AGI is provided as-is with no liability.</p>
-                <p>3. All interactions may be logged for optimization purposes.</p>
-            `;
-        }
-
-        function loadPrivacy() {
-            document.getElementById("privacyContent").innerHTML = `
-                <p>Your privacy is important. This application does not collect personal data except what is needed for interactions.</p>
-                <p>1. No user data is sold or shared.</p>
-                <p>2. Conversations are stored locally unless otherwise specified.</p>
-                <p>3. By using this system, you agree to its self-learning improvements.</p>
-            `;
-        }
-
-        // Alternative Navigation Handling
-        function checkRoute() {
-            const route = window.location.hash;
-            if (route === "#terms") {
-                loadTerms();
-            } else if (route === "#privacy") {
-                loadPrivacy();
+        async function loadSiteDirectory() {
+            try {
+                const response = await fetch("https://mobleysoft.com/site-directory.json");
+                const directory = await response.json();
+                displayRootDirectory(directory);
+            } catch (error) {
+                console.error("Failed to load site directory:", error);
             }
         }
-        
-        window.addEventListener("load", checkRoute);
-        window.addEventListener("popstate", checkRoute);
+
+        function displayRootDirectory(directory) {
+            const rootContainer = document.getElementById("site-directory");
+            rootContainer.innerHTML = "";
+            Object.entries(directory).forEach(([name, type]) => {
+                const item = document.createElement("div");
+                item.className = `directory-item ${type}`;
+                item.textContent = name;
+                item.onclick = () => handleItemClick(name, type);
+                rootContainer.appendChild(item);
+            });
+        }
+
+        function handleItemClick(name, type) {
+            if (type === "folder") {
+                openFolder(name);
+            } else {
+                openFile(name, type);
+            }
+        }
+
+        function openFolder(folderName) {
+            console.log("Opening folder:", folderName);
+            const overlay = document.getElementById("file-overlay");
+            overlay.style.display = "block";
+            const content = document.getElementById("file-content");
+            content.innerHTML = `<h3>${folderName}</h3><p>Folder contents will be displayed here.</p>`;
+        }
+
+        function openFile(fileName, type) {
+            console.log("Opening file:", fileName);
+            const overlay = document.getElementById("file-overlay");
+            overlay.style.display = "block";
+            const content = document.getElementById("file-content");
+            content.innerHTML = `<iframe src="${fileName}" width="100%" height="100%"></iframe>`;
+        }
+
+        function closeOverlay() {
+            document.getElementById("file-overlay").style.display = "none";
+        }
     </script>
 </body>
 </html>

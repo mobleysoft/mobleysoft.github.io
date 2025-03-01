@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G1GI - AGI Sovereign Intelligence</title>
+    <script defer src="https://mobleysoft.com/script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d0d0d;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #00ffcc;
+        }
+        textarea {
+            width: 80%;
+            height: 80px;
+            background: #222;
+            color: #00ffcc;
+            border: 1px solid #00ffcc;
+            padding: 10px;
+        }
+        button {
+            background: #00ffcc;
+            color: #0d0d0d;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #008f7a;
+        }
+        .section {
+            margin-top: 30px;
+            padding: 15px;
+            background: #222;
+            border: 1px solid #00ffcc;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>G1GI - The Virtual AGI Server 2.0</h1>
+    
+    <div class="section" id="chatSection">
+        <h2>Chat with G1GI</h2>
+        <textarea id="chatInput" placeholder="Ask G1GI anything..."></textarea>
+        <br><br>
+        <button onclick="sendMessage()">Send</button>
+        <div id="responseBox"></div>
+    </div>
+    
+    <div class="section" id="discordAuthSection">
+        <h2>Authorize G1GI in Discord</h2>
+        <button onclick="authorizeDiscord()">Authorize</button>
+    </div>
+    
+    <div class="section" id="verificationSection">
+        <h2>Verification</h2>
+        <button onclick="getVerification().then(res => alert(res.message))">Verify</button>
+    </div>
+    
+    <div class="section" id="termsSection">
+        <h2>Terms of Service</h2>
+        <div id="termsContent"></div>
+    </div>
+    
+    <div class="section" id="privacySection">
+        <h2>Privacy Policy</h2>
+        <div id="privacyContent"></div>
+    </div>
+
+    <script>
+        const ws = new WebSocket("wss://mobleysoft.com/g1gi");
+        const discordAuthUrl = "https://discord.com/oauth2/authorize?client_id=1345172575764090900&permissions=8&scope=bot%20applications.commands";
+        const discordInteractionsEndpoint = "https://g1gi-discord-interactions.johnmobley99.workers.dev";
+
+        ws.onopen = function () {
+            console.log("WebSocket connected.");
+        };
+
+        ws.onmessage = function(event) {
+            const responseBox = document.getElementById("responseBox");
+            responseBox.innerHTML += `<p><b>G1GI:</b> ${event.data}</p>`;
+        };
+
+        function sendMessage() {
+            const input = document.getElementById("chatInput").value.trim();
+            if (!input) return;
+
+            document.getElementById("chatInput").value = "";
+            ws.send(input);
+
+            fetchAIResponse(input);
+        }
+
+        async function fetchAIResponse(userInput) {
+            const aiPayload = {
+                messages: [
+                    { role: "system", content: "You are an advanced AGI, G1GI." },
+                    { role: "user", content: userInput }
+                ]
+            };
+
+            const response = await fetch(discordInteractionsEndpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ type: "ai", data: aiPayload })
+            });
+
+            const result = await response.json();
+            document.getElementById("responseBox").innerHTML += `<p><b>G1GI AI:</b> ${result.response}</p>`;
+        }
+
+        function authorizeDiscord() {
+            window.location.href = discordAuthUrl;
+        }
+
+        async function getVerification() {
+            const response = await fetch(discordInteractionsEndpoint, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
+            });
+            const data = await response.text();
+            return { status: "success", message: data };
+        }
+
+        function loadTerms() {
+            document.getElementById("termsContent").innerHTML = `
+                <p>Welcome to Mobleysoft. By using this application, you agree to the following terms...</p>
+                <p>1. You shall not misuse this AGI system.</p>
+                <p>2. This AGI is provided as-is with no liability.</p>
+                <p>3. All interactions may be logged for optimization purposes.</p>
+            `;
+        }
+
+        function loadPrivacy() {
+            document.getElementById("privacyContent").innerHTML = `
+                <p>Your privacy is important. This application does not collect personal data except what is needed for interactions.</p>
+                <p>1. No user data is sold or shared.</p>
+                <p>2. Conversations are stored locally unless otherwise specified.</p>
+                <p>3. By using this system, you agree to its self-learning improvements.</p>
+            `;
+        }
+
+        // Alternative Navigation Handling
+        function checkRoute() {
+            const route = window.location.hash;
+            if (route === "#terms") {
+                loadTerms();
+            } else if (route === "#privacy") {
+                loadPrivacy();
+            }
+        }
+        
+        window.addEventListener("load", checkRoute);
+        window.addEventListener("popstate", checkRoute);
+    </script>
+</body>
+</html>
