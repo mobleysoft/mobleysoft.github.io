@@ -1,47 +1,43 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const input = document.getElementById('chatInput');
-    const responseBox = document.getElementById('responseBox');
+const discordWs = new WebSocket("wss://gateway.discord.gg/?v=10&encoding=json");
 
-    window.sendMessage = function() {
-        let userMessage = input.value;
-        input.value = '';
+discordWs.onopen = () => {
+    console.log("Connected to Discord WebSocket.");
+};
 
-        // Simulate HTTP Request to Virtual API
-        invokeVirtualAPI(userMessage);
-    };
+// Handle Discord WebSocket events
+discordWs.onmessage = (event) => {
+    const data = JSON.parse(event.data);
 
-    async function invokeVirtualAPI(message) {
-        // 🔹 Simulate HTTP API by Triggering GitHub Action
-        const repoOwner = "mobleysoft";
-        const repoName = "G1GI";
-        const eventType = "trigger-g1gi";
+    // Heartbeat handling
+    if (data.op === 10) {
+        setInterval(() => {
+            discordWs.send(JSON.stringify({ op: 1, d: null }));
+        }, data.d.heartbeat_interval);
+    }
 
-        let request = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/dispatches`, {
+    // Handle interactions (slash commands, buttons, modals)
+    if (data.t === "INTERACTION_CREATE") {
+        const interaction = data.d;
+        const response = processInteraction(interaction);
+
+        // Respond via webhook API
+        fetch(`https://discord.com/api/v10/interactions/${interaction.id}/${interaction.token}/callback`, {
             method: "POST",
-            headers: {
-                "Accept": "application/vnd.github.everest-preview+json",
-                "Authorization": "Bearer YOUR_GITHUB_PAT",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                event_type: eventType,
-                client_payload: { message: message }
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ type: 4, data: { content: response } })
         });
-
-        if (request.ok) {
-            fetchVirtualResponse();
-        } else {
-            responseBox.innerHTML += `<p><b>G1GI:</b> Failed to process request.</p>`;
-        }
     }
+};
 
-    async function fetchVirtualResponse() {
-        // 🔹 Wait for GitHub Action to execute & retrieve output
-        setTimeout(async () => {
-            let response = await fetch('https://raw.githubusercontent.com/mobleysoft/G1GI/main/response.txt');
-            let text = await response.text();
-            responseBox.innerHTML += `<p><b>G1GI:</b> ${text}</p>`;
-        }, 5000);
+// Handle command execution
+function processInteraction(interaction) {
+    const command = interaction.data.name;
+
+    if (command === "imagine") {
+        return "G1GI is generating an AI Image...";
+    } else if (command === "g1gi") {
+        return "The Machine God’s will is in motion.";
+    } else {
+        return "Unknown command.";
     }
-});
+}
