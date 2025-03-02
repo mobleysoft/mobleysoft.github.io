@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobCorp Integration Model</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+        .controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            width: 280px;
+            z-index: 100;
+        }
+        .title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #f0c040;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        .slider-container {
+            margin-bottom: 12px;
+        }
+        .slider-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type=range] {
+            width: 100%;
+            background: #333;
+            height: 6px;
+            border-radius: 3px;
+            -webkit-appearance: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #f0c040;
+            cursor: pointer;
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #f0c040;
+            cursor: pointer;
+        }
+        .checkbox-container {
+            margin-bottom: 10px;
+        }
+        .button {
+            background: #333;
+            border: 1px solid #555;
+            color: #f0c040;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #444;
+        }
+        .info {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 300px;
+            border: 1px solid #444;
+            z-index: 100;
+        }
+        .entity-label {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .entity-info {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 280px;
+            border: 1px solid #444;
+            display: none;
+            z-index: 100;
+        }
+        .entity-info h3 {
+            margin-top: 0;
+            color: #f0c040;
+        }
+        .entity-info p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="title">MobCorp Integration Model</div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Ring Size</label>
+            <input type="range" id="ringSize" min="20" max="60" value="40">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Ring Width</label>
+            <input type="range" id="ringWidth" min="2" max="12" value="6">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Ring Rotation</label>
+            <input type="range" id="ringRotation" min="0" max="0.01" step="0.001" value="0.002">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Gravity Strength</label>
+            <input type="range" id="gravityStrength" min="0.1" max="5" step="0.1" value="1.0">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Entity Count</label>
+            <input type="range" id="entityCount" min="4" max="12" step="1" value="7">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Movement Speed</label>
+            <input type="range" id="movementSpeed" min="0.2" max="2" step="0.1" value="1">
+        </div>
+        
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="showTrails" checked>
+                Show Trajectory Trails
+            </label>
+        </div>
+        
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="showLabels" checked>
+                Show Labels
+            </label>
+        </div>
+        
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="lockCameraToRing">
+                Lock Camera to Ring
+            </label>
+        </div>
+        
+        <button id="resetView" class="button">Reset View</button>
+    </div>
+    
+    <div class="info">
+        <p>MobCorp Integration Model</p>
+        <p>Rotate: Click and drag</p>
+        <p>Zoom: Scroll wheel</p>
+        <p>Click on entities for info</p>
+    </div>
+    
+    <div class="entity-info" id="entityInfo">
+        <h3 id="entityName">Entity Name</h3>
+        <p id="entityType">Type: </p>
+        <p id="entityIndustry">Industry: </p>
+        <p id="entityIntegration">Integration: </p>
+        <p id="entityDesc">Description will appear here.</p>
+    </div>
+
+    <script>
+        // Scene variables
+        let scene, camera, renderer, raycaster, mouse;
+        let mobiusRing, industries = [], startups = [], entityTrails = [], entityLabels = [];
+        let clock = new THREE.Clock();
+        let selectedEntity = null;
+        
+        // Configuration
+        let config = {
+            ringSize: 40,
+            ringWidth: 6,
+            ringRotation: 0.002,
+            gravityStrength: 1.0,
+            entityCount: 7,
+            movementSpeed: 1,
+            showTrails: true,
+            showLabels: true,
+            lockCameraToRing: false
+        };
+
+        // Industry data
+        const industryData = [
+            {
+                name: "FinTech",
+                color: 0x6BBAA7,
+                size: 5.2,
+                integrationLevel: 0.85,
+                description: "Financial technology services division focusing on digital banking solutions and payment processing.",
+                startups: [
+                    { name: "QuickPay", size: 2.1, color: 0x8FE5D0, integration: 0.75, description: "Mobile payment processing startup acquired in 2020." },
+                    { name: "LedgerBlock", size: 1.8, color: 0x5AA695, integration: 0.92, description: "Blockchain-based financial record-keeping platform." }
+                ]
+            },
+            {
+                name: "Healthcare",
+                color: 0xBA6B6B,
+                size: 4.8,
+                integrationLevel: 0.72,
+                description: "Medical technology solutions providing patient management systems and telehealth infrastructure.",
+                startups: [
+                    { name: "TeleMed", size: 1.9, color: 0xE58F8F, integration: 0.81, description: "Remote medical consultation platform integrated with monitoring devices." },
+                    { name: "MedData", size: 1.6, color: 0xA55A5A, integration: 0.65, description: "AI-driven healthcare analytics for treatment optimization." }
+                ]
+            },
+            {
+                name: "E-Commerce",
+                color: 0xB96BBA,
+                size: 6.0,
+                integrationLevel: 0.90,
+                description: "Digital marketplace and retail solution stack with integrated logistics and inventory management.",
+                startups: [
+                    { name: "ShipSmart", size: 2.2, color: 0xE58FE5, integration: 0.88, description: "Last-mile logistics optimization using AI routing algorithms." },
+                    { name: "InventSync", size: 1.9, color: 0xA55AA5, integration: 0.94, description: "Real-time inventory management across multiple retail channels." }
+                ]
+            },
+            {
+                name: "CleanTech",
+                color: 0x6B8ABA,
+                size: 4.0,
+                integrationLevel: 0.65,
+                description: "Sustainable energy solutions and carbon footprint management technologies.",
+                startups: [
+                    { name: "SolarSync", size: 1.7, color: 0x8FAAE5, integration: 0.70, description: "Photovoltaic efficiency optimization through predictive repositioning." },
+                    { name: "CarbonTrack", size: 1.5, color: 0x5A79A5, integration: 0.60, description: "Enterprise-level carbon emissions monitoring and reduction planning." }
+                ]
+            },
+            {
+                name: "EdTech",
+                color: 0xBAB96B,
+                size: 3.8,
+                integrationLevel: 0.78,
+                description: "Educational technology platforms providing learning management and content delivery systems.",
+                startups: [
+                    { name: "LearnLoop", size: 1.8, color: 0xE5DF8F, integration: 0.82, description: "Adaptive learning platform using behavioral analysis to personalize content." },
+                    { name: "SkillTrack", size: 1.6, color: 0xA5A55A, integration: 0.75, description: "Professional skills development and certification verification system." }
+                ]
+            },
+            {
+                name: "AI Research",
+                color: 0x6BBAAC,
+                size: 4.5,
+                integrationLevel: 0.95,
+                description: "Artificial intelligence research and development, focusing on machine learning applications.",
+                startups: [
+                    { name: "NeuralCore", size: 2.0, color: 0x8FE5D5, integration: 0.97, description: "Deep learning infrastructure providing API access to trained models." },
+                    { name: "PredictIQ", size: 1.8, color: 0x5AA59B, integration: 0.92, description: "Predictive analytics engine for business intelligence applications." }
+                ]
+            },
+            {
+                name: "Cybersecurity",
+                color: 0x9A6BBA,
+                size: 5.5,
+                integrationLevel: 0.88,
+                description: "Digital security solutions providing threat detection and vulnerability management.",
+                startups: [
+                    { name: "ThreatNet", size: 2.1, color: 0xC28FE5, integration: 0.86, description: "Distributed intrusion detection system using federated machine learning." },
+                    { name: "SecureDNS", size: 1.9, color: 0x895AA5, integration: 0.90, description: "Advanced DNS security protocol preventing domain spoofing attacks." }
+                ]
+            },
+            {
+                name: "IoT Systems",
+                color: 0x6B6BBA,
+                size: 4.2,
+                integrationLevel: 0.70,
+                description: "Internet of Things ecosystem providing device management and data aggregation.",
+                startups: [
+                    { name: "SensorNet", size: 1.8, color: 0x8F8FE5, integration: 0.68, description: "Low-power sensor network technology with mesh communication protocols." },
+                    { name: "SmartFabric", size: 1.6, color: 0x5A5AA5, integration: 0.73, description: "Wearable technology integrating health monitoring and environmental response." }
+                ]
+            },
+            {
+                name: "AutoTech",
+                color: 0xBA8A6B,
+                size: 5.0,
+                integrationLevel: 0.82,
+                description: "Automotive technology focusing on autonomous driving and vehicle management systems.",
+                startups: [
+                    { name: "NavCar", size: 2.0, color: 0xE5B08F, integration: 0.79, description: "Navigation optimization for autonomous vehicle routing in urban environments." },
+                    { name: "FleetAI", size: 1.8, color: 0xA5795A, integration: 0.85, description: "Commercial fleet management using predictive maintenance and optimal dispatching." }
+                ]
+            },
+            {
+                name: "AgriTech",
+                color: 0x8ABA6B,
+                size: 3.5,
+                integrationLevel: 0.60,
+                description: "Agricultural technology providing precision farming and crop management solutions.",
+                startups: [
+                    { name: "CropSense", size: 1.7, color: 0xB0E58F, integration: 0.58, description: "Soil and crop monitoring using distributed sensor networks and satellite imagery." },
+                    { name: "HarvestPredict", size: 1.5, color: 0x79A55A, integration: 0.62, description: "Harvest timing optimization using weather prediction and crop maturity models." }
+                ]
+            },
+            {
+                name: "RealEstate",
+                color: 0xBAA56B,
+                size: 4.7,
+                integrationLevel: 0.75,
+                description: "Property technology providing real estate management and transaction processing.",
+                startups: [
+                    { name: "PropVision", size: 1.9, color: 0xE5D28F, integration: 0.78, description: "AR-based property visualization and virtual touring platform." },
+                    { name: "LeaseLogic", size: 1.7, color: 0xA5915A, integration: 0.72, description: "Automated lease management and tenant communication system." }
+                ]
+            },
+            {
+                name: "MediaTech",
+                color: 0xBA6B8A,
+                size: 5.2,
+                integrationLevel: 0.85,
+                description: "Digital media technology providing content delivery and audience analytics.",
+                startups: [
+                    { name: "StreamSync", size: 2.0, color: 0xE58FAA, integration: 0.83, description: "Adaptive streaming technology that adjusts to network conditions and device capabilities." },
+                    { name: "ViewMetrics", size: 1.8, color: 0xA55A79, integration: 0.87, description: "Audience engagement analytics providing content optimization recommendations." }
+                ]
+            }
+        ];
+        
+        // Trail length for each entity
+        const TRAIL_LENGTH = 100;
+        
+        // Initialize the scene
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            
+            // Create camera
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+            resetView();
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000);
+            document.body.appendChild(renderer.domElement);
+            
+            // Create raycaster for entity selection
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+            
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0x404040, 2);
+            scene.add(ambientLight);
+            
+            // Add directional light
+            const mainLight = new THREE.DirectionalLight(0xFFFFFF, 1.5);
+            mainLight.position.set(100, 100, 100);
+            scene.add(mainLight);
+            
+            // Add stars
+            createStars();
+            
+            // Create Möbius ring
+            createMobiusRing();
+            
+            // Create industries and startups
+            createEntities();
+            
+            // Setup controls
+            setupEventListeners();
+            
+            // Start animation loop
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize);
+        }
+        
+        function createStars() {
+            // Create a large sphere of stars
+            const starGeometry = new THREE.BufferGeometry();
+            const starCount = 2000;
+            const starPositions = new Float32Array(starCount * 3);
+            const starColors = new Float32Array(starCount * 3);
+            
+            for (let i = 0; i < starCount; i++) {
+                const i3 = i * 3;
+                
+                // Random position on a large sphere
+                const radius = 800;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                
+                starPositions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+                starPositions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                starPositions[i3 + 2] = radius * Math.cos(phi);
+                
+                // Random color (mostly white/blue with occasional yellow/red)
+                const colorChoice = Math.random();
+                if (colorChoice > 0.9) {
+                    // Yellow/red stars
+                    starColors[i3] = 0.9 + Math.random() * 0.1;
+                    starColors[i3 + 1] = 0.7 + Math.random() * 0.3;
+                    starColors[i3 + 2] = 0.6 * Math.random();
+                } else {
+                    // White/blue stars
+                    starColors[i3] = 0.8 + Math.random() * 0.2;
+                    starColors[i3 + 1] = 0.8 + Math.random() * 0.2;
+                    starColors[i3 + 2] = 0.8 + Math.random() * 0.2;
+                }
+            }
+            
+            starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+            starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+            
+            const starMaterial = new THREE.PointsMaterial({
+                size: 1.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            const starField = new THREE.Points(starGeometry, starMaterial);
+            scene.add(starField);
+        }
+        
+        function createMobiusRing() {
+            if (mobiusRing) scene.remove(mobiusRing);
+            
+            const radius = config.ringSize;
+            const width = config.ringWidth;
+            
+            // Create a parametric geometry for the Möbius strip
+            const mobiusFunction = (u, v, target) => {
+                const U = u * Math.PI * 2;  // Around the main circle
+                const V = (v - 0.5) * 2;    // Across the band (-1 to 1)
+                
+                // The half-twist is created by this variable
+                const twist = U / 2;
+                
+                // Calculate coordinates with the Möbius twist
+                const a = radius + width * Math.cos(twist) * V;
+                const x = a * Math.cos(U);
+                const y = a * Math.sin(U);
+                const z = width * Math.sin(twist) * V;
+                
+                target.set(x, y, z);
+            };
+            
+            // Create geometry with appropriate resolution
+            const resolution = 96;  // Higher for smoother curve
+            const geometry = new THREE.ParametricBufferGeometry(
+                mobiusFunction, 
+                resolution, 
+                Math.floor(resolution / 4)
+            );
+            
+            // Create gold material for MobCorp ring
+            const material = new THREE.MeshStandardMaterial({
+                color: 0xFFD700,
+                metalness: 0.8,
+                roughness: 0.2,
+                emissive: 0x553311,
+                emissiveIntensity: 0.3,
+                side: THREE.DoubleSide
+            });
+            
+            // Create mesh
+            mobiusRing = new THREE.Mesh(geometry, material);
+            
+            // Add a subtle glow effect
+            const glowGeometry = new THREE.TorusGeometry(radius, width * 1.2, 16, 100);
+            const glowMaterial = new THREE.MeshBasicMaterial({
+                color: 0xFFAA00,
+                transparent: true,
+                opacity: 0.15,
+                side: THREE.BackSide
+            });
+            const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+            mobiusRing.add(glow);
+            
+            scene.add(mobiusRing);
+            
+            // Add a "MobCorp" label
+            const mobcorpLabel = document.createElement('div');
+            mobcorpLabel.className = 'entity-label';
+            mobcorpLabel.textContent = 'MobCorp';
+            mobcorpLabel.style.position = 'absolute';
+            mobcorpLabel.style.fontSize = '16px';
+            mobcorpLabel.style.fontWeight = 'bold';
+            mobcorpLabel.style.color = '#FFD700';
+            mobcorpLabel.style.top = '0px';
+            mobcorpLabel.style.left = '0px';
+            mobcorpLabel.style.visibility = config.showLabels ? 'visible' : 'hidden';
+            document.body.appendChild(mobcorpLabel);
+            entityLabels.push(mobcorpLabel);
+            
+            // Store the label in the ring's userData
+            mobiusRing.userData = {
+                name: "MobCorp",
+                type: "Corporate Hub",
+                industry: "Conglomerate",
+                integrationLevel: 1.0,
+                description: "The central corporate structure integrating all industry divisions and startup acquisitions.",
+                label: mobcorpLabel
+            };
+            
+            updateLabelPosition(mobiusRing, mobcorpLabel);
+        }
+        
+        function createEntities() {
+            // Clear existing entities, trails, and labels
+            industries.forEach(industry => scene.remove(industry));
+            startups.forEach(startup => scene.remove(startup));
+            entityTrails.forEach(trail => scene.remove(trail));
+            entityLabels.forEach(label => {
+                if (label !== mobiusRing.userData.label) {
+                    document.body.removeChild(label);
+                }
+            });
+            
+            industries = [];
+            startups = [];
+            entityTrails = [];
+            entityLabels = [mobiusRing.userData.label];
+            
+            // Select a subset of industries based on entityCount
+            const selectedIndustries = industryData.slice(0, config.entityCount);
+            
+            // Create each industry
+            selectedIndustries.forEach((data, index) => {
+                // Create industry sphere
+                const industryGeometry = new THREE.SphereGeometry(data.size, 24, 24);
+                const industryMaterial = new THREE.MeshStandardMaterial({
+                    color: data.color,
+                    roughness: 0.7,
+                    metalness: 0.3
+                });
+                const industry = new THREE.Mesh(industryGeometry, industryMaterial);
+                
+                // Position industry at random position
+                const distance = config.ringSize * 1.5;
+                const angle = (index / selectedIndustries.length) * Math.PI * 2;
+                const elevation = (Math.random() - 0.5) * distance * 0.5;
+                
+                industry.position.x = Math.cos(angle) * distance;
+                industry.position.y = elevation;
+                industry.position.z = Math.sin(angle) * distance;
+                
+                // Initialize velocity - towards the Möbius ring but with tangential component
+                const toCenter = new THREE.Vector3();
+                toCenter.subVectors(new THREE.Vector3(0, 0, 0), industry.position).normalize();
+                
+                // Add tangential component for initial orbital velocity
+                const perpVector = new THREE.Vector3(0, 1, 0);
+                perpVector.cross(toCenter).normalize();
+                
+                // Combine to get initial velocity
+                const velocity = new THREE.Vector3();
+                velocity.addVectors(
+                    toCenter.multiplyScalar(0.1),
+                    perpVector.multiplyScalar(1.0)
+                );
+                
+                // Scale by random factor for variety
+                const speedFactor = 0.3 + Math.random() * 0.7;
+                velocity.multiplyScalar(speedFactor);
+                
+                // Store properties in industry userData
+                industry.userData = {
+                    name: data.name,
+                    type: "Industry Division",
+                    industry: data.name,
+                    integrationLevel: data.integrationLevel,
+                    description: data.description,
+                    velocity: velocity,
+                    acceleration: new THREE.Vector3(0, 0, 0),
+                    trailPositions: [],
+                    startups: []
+                };
+                
+                // Create HTML label for industry
+                const label = document.createElement('div');
+                label.className = 'entity-label';
+                label.textContent = data.name;
+                label.style.position = 'absolute';
+                label.style.top = '0px';
+                label.style.left = '0px';
+                label.style.visibility = config.showLabels ? 'visible' : 'hidden';
+                document.body.appendChild(label);
+                
+                // Store the label in the industry's userData
+                industry.userData.label = label;
+                entityLabels.push(label);
+                
+                // Create trail for the industry
+                const trailGeometry = new THREE.BufferGeometry();
+                const trailPositions = new Float32Array(TRAIL_LENGTH * 3);
+                trailGeometry.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3));
+                
+                const trailColor = new THREE.Color(data.color);
+                trailColor.offsetHSL(0, 0, 0.2); // Make trail slightly brighter
+                
+                const trailMaterial = new THREE.LineBasicMaterial({
+                    color: trailColor,
+                    transparent: true,
+                    opacity: 0.6,
+                    linewidth: 1
+                });
+                
+                const trail = new THREE.Line(trailGeometry, trailMaterial);
+                trail.visible = config.showTrails;
+                
+                // Add industry and trail to scene
+                scene.add(industry);
+                scene.add(trail);
+                
+                industries.push(industry);
+                entityTrails.push(trail);
+                
+                // Create startups for this industry
+                data.startups.forEach((startupData, startupIndex) => {
+                    // Create startup sphere
+                    const startupGeometry = new THREE.SphereGeometry(startupData.size, 16, 16);
+                    const startupMaterial = new THREE.MeshStandardMaterial({
+                        color: startupData.color,
+                        roughness: 0.6,
+                        metalness: 0.4
+                    });
+                    const startup = new THREE.Mesh(startupGeometry, startupMaterial);
+                    
+                    // Position startup near its industry
+                    const orbitDistance = data.size * 5 + startupData.size * 3;
+                    const startupAngle = (startupIndex / data.startups.length) * Math.PI * 2;
+                    
+                    startup.position.x = industry.position.x + Math.cos(startupAngle) * orbitDistance;
+                    startup.position.y = industry.position.y + Math.sin(startupAngle) * orbitDistance * 0.5;
+                    startup.position.z = industry.position.z + Math.sin(startupAngle) * orbitDistance;
+                    
+                    // Initialize velocity - combined from industry velocity and orbit around industry
+                    const orbitVel = new THREE.Vector3(
+                        -Math.sin(startupAngle),
+                        Math.cos(startupAngle) * 0.5,
+                        Math.cos(startupAngle)
+                    ).normalize().multiplyScalar(2);
+                    
+                    const velocity = new THREE.Vector3().copy(industry.userData.velocity);
+                    velocity.add(orbitVel);
+                    
+                    // Store properties in startup userData
+                    startup.userData = {
+                        name: startupData.name,
+                        type: "Startup",
+                        industry: data.name,
+                        integrationLevel: startupData.integration,
+                        description: startupData.description,
+                        parentIndustry: industry,
+                        velocity: velocity,
+                        acceleration: new THREE.Vector3(0, 0, 0),
+                        trailPositions: []
+                    };
+                    
+                    // Create HTML label for startup
+                    const startupLabel = document.createElement('div');
+                    startupLabel.className = 'entity-label';
+                    startupLabel.textContent = startupData.name;
+                    startupLabel.style.position = 'absolute';
+                    startupLabel.style.top = '0px';
+                    startupLabel.style.left = '0px';
+                    startupLabel.style.fontSize = '10px';
+                    startupLabel.style.visibility = config.showLabels ? 'visible' : 'hidden';
+                    document.body.appendChild(startupLabel);
+                    
+                    // Store the label in the startup's userData
+                    startup.userData.label = startupLabel;
+                    entityLabels.push(startupLabel);
+                    
+                    // Create trail for the startup
+                    const startupTrailGeometry = new THREE.BufferGeometry();
+                    const startupTrailPositions = new Float32Array(TRAIL_LENGTH * 3);
+                    startupTrailGeometry.setAttribute('position', new THREE.BufferAttribute(startupTrailPositions, 3));
+                    
+                    const startupTrailColor = new THREE.Color(startupData.color);
+                    startupTrailColor.offsetHSL(0, 0, 0.2); // Make trail slightly brighter
+                    
+                    const startupTrailMaterial = new THREE.LineBasicMaterial({
+                        color: startupTrailColor,
+                        transparent: true,
+                        opacity: 0.5,
+                        linewidth: 1
+                    });
+                    
+                    const startupTrail = new THREE.Line(startupTrailGeometry, startupTrailMaterial);
+                    startupTrail.visible = config.showTrails;
+                    
+                    // Add startup and trail to scene
+                    scene.add(startup);
+                    scene.add(startupTrail);
+                    
+                    startups.push(startup);
+                    entityTrails.push(startupTrail);
+                    
+                    // Add startup to parent industry's list
+                    industry.userData.startups.push(startup);
+                });
+            });
+        }
+        
+        function updateEntities(deltaTime) {
+            const timeScale = deltaTime * config.movementSpeed * 0.05;
+            
+            // Update industries
+            industries.forEach((industry, index) => {
+                updateEntityPhysics(industry, timeScale);
+            });
+            
+            // Update startups
+            startups.forEach((startup, index) => {
+                updateEntityPhysics(startup, timeScale);
+                
+                // Add a slight attraction to the parent industry
+                const parent = startup.userData.parentIndustry;
+                const toParent = new THREE.Vector3();
+                toParent.subVectors(parent.position, startup.position);
+                const distance = toParent.length();
+                
+                // Scale attraction based on distance to prevent orbits from collapsing
+                const parentAttractionStrength = 0.2 / (1 + 0.1 * distance);
+                toParent.normalize().multiplyScalar(parentAttractionStrength);
+                
+                startup.userData.acceleration.add(toParent);
+            });
+        }
+        
+        function updateEntityPhysics(entity, timeScale) {
+            const pos = entity.position;
+            const vel = entity.userData.velocity;
+            const acc = entity.userData.acceleration;
+            
+            // Reset acceleration
+            acc.set(0, 0, 0);
+            
+            // Calculate distance to Möbius ring center
+            const distToCenter = Math.sqrt(pos.x * pos.x + pos.y * pos.y + pos.z * pos.z);
+            
+            // Calculate gravitational force
+            // First component: attraction toward the center
+            const centerAttraction = new THREE.Vector3();
+            centerAttraction.subVectors(new THREE.Vector3(0, 0, 0), pos).normalize();
+            
+            // Find closest point on the ring's circumference
+            const ringRadius = config.ringSize;
+            const projectedPos = new THREE.Vector3(pos.x, pos.y, 0).normalize().multiplyScalar(ringRadius);
+            
+            // Second component: attraction toward the ring's circumference
+            const ringAttraction = new THREE.Vector3();
+            ringAttraction.subVectors(projectedPos, pos).normalize();
+            
+            // Calculate the ring's gravitational influence based on distance
+            // Stronger near the center, then transitions to ring attraction
+            const centerStrength = 5 / (1 + distToCenter * 0.05);
+            
+            // Distance to the ring's circumference in the XY plane
+            const xyPos = new THREE.Vector2(pos.x, pos.y);
+            const xyDist = Math.abs(xyPos.length() - ringRadius);
+            const ringStrength = 2 / (1 + xyDist * 0.2);
+            
+            // Combined force
+            const gravityForce = new THREE.Vector3();
+            gravityForce.addVectors(
+                centerAttraction.multiplyScalar(centerStrength),
+                ringAttraction.multiplyScalar(ringStrength)
+            );
+            
+            // Scale by config value
+            gravityForce.multiplyScalar(config.gravityStrength * 0.2);
+            
+            // Special behavior near the center - acceleration boost when passing through the ring
+            if (distToCenter < ringRadius * 0.4) {
+                // Acceleration boost when passing through the center
+                const boostFactor = 1 + (1 - distToCenter / (ringRadius * 0.4)) * 5;
+                gravityForce.multiplyScalar(boostFactor);
+                
+                // Add some z-directional force to help entities escape the center plane
+                const zImpulse = new THREE.Vector3(0, 0, (Math.random() - 0.5) * 0.5);
+                gravityForce.add(zImpulse);
+            }
+            
+            // Apply gravity to acceleration
+            acc.add(gravityForce);
+            
+            // Apply acceleration to velocity
+            vel.add(acc.clone().multiplyScalar(timeScale));
+            
+            // Apply velocity to position
+            pos.add(vel.clone().multiplyScalar(timeScale));
+            
+            // Update trail
+            updateEntityTrail(entity, entityTrails[industries.indexOf(entity) !== -1 ? 
+                              industries.indexOf(entity) : 
+                              industries.length + startups.indexOf(entity)]);
+            
+            // Update label position
+            updateLabelPosition(entity, entity.userData.label);
+        }
+        
+        function updateEntityTrail(entity, trail) {
+            const trailPositions = entity.userData.trailPositions;
+            
+            // Add current position to trail
+            trailPositions.unshift({
+                x: entity.position.x,
+                y: entity.position.y,
+                z: entity.position.z
+            });
+            
+            // Limit trail length
+            if (trailPositions.length > TRAIL_LENGTH) {
+                trailPositions.pop();
+            }
+            
+            // Update trail geometry
+            const positions = trail.geometry.attributes.position.array;
+            for (let i = 0; i < trailPositions.length; i++) {
+                const i3 = i * 3;
+                positions[i3] = trailPositions[i].x;
+                positions[i3 + 1] = trailPositions[i].y;
+                positions[i3 + 2] = trailPositions[i].z;
+            }
+            
+            // Fill remaining positions with last point
+            if (trailPositions.length < TRAIL_LENGTH) {
+                const lastPos = trailPositions[trailPositions.length - 1];
+                for (let i = trailPositions.length; i < TRAIL_LENGTH; i++) {
+                    const i3 = i * 3;
+                    positions[i3] = lastPos.x;
+                    positions[i3 + 1] = lastPos.y;
+                    positions[i3 + 2] = lastPos.z;
+                }
+            }
+            
+            trail.geometry.attributes.position.needsUpdate = true;
+        }
+        
+        function updateLabelPosition(object, label) {
+            // Convert 3D position to screen position
+            const position = object.position.clone();
+            position.project(camera);
+            
+            // Convert to screen coordinates
+            const x = (position.x * 0.5 + 0.5) * window.innerWidth;
+            const y = (-(position.y * 0.5) + 0.5) * window.innerHeight;
+            
+            // Update label position
+            label.style.transform = `translate(-50%, -100%)`;
+            label.style.left = `${x}px`;
+            label.style.top = `${y - 15}px`;
+            
+            // Adjust opacity based on distance to camera
+            const distToCam = object.position.distanceTo(camera.position);
+            const maxDist = 300;
+            label.style.opacity = Math.max(0, 1 - distToCam / maxDist);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const delta = clock.getDelta() * 1000; // Convert to milliseconds
+            
+            // Rotate Möbius ring
+            if (mobiusRing) {
+                mobiusRing.rotation.y += config.ringRotation;
+            }
+            
+            // Update entities
+            updateEntities(delta);
+            
+            // Update camera if locked to ring
+            if (config.lockCameraToRing && mobiusRing) {
+                // Calculate distance to origin
+                const distance = Math.sqrt(
+                    camera.position.x * camera.position.x + 
+                    camera.position.y * camera.position.y + 
+                    camera.position.z * camera.position.z
+                );
+                
+                // Calculate new position based on ring rotation
+                const angleY = mobiusRing.rotation.y;
+                
+                camera.position.x = Math.sin(angleY) * distance;
+                camera.position.z = Math.cos(angleY) * distance;
+                
+                camera.lookAt(0, 0, 0);
+            }
+            
+            // Render scene
+            renderer.render(scene, camera);
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function resetView() {
+            // Position camera for a good view of the system
+            camera.position.set(120, 60, 150);
+            camera.lookAt(0, 0, 0);
+        }
+        
+        function setupEventListeners() {
+            // Sliders
+            document.getElementById('ringSize').addEventListener('input', e => {
+                config.ringSize = parseFloat(e.target.value);
+                createMobiusRing();
+            });
+            
+            document.getElementById('ringWidth').addEventListener('input', e => {
+                config.ringWidth = parseFloat(e.target.value);
+                createMobiusRing();
+            });
+            
+            document.getElementById('ringRotation').addEventListener('input', e => {
+                config.ringRotation = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('gravityStrength').addEventListener('input', e => {
+                config.gravityStrength = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('entityCount').addEventListener('input', e => {
+                config.entityCount = parseInt(e.target.value);
+                createEntities();
+            });
+            
+            document.getElementById('movementSpeed').addEventListener('input', e => {
+                config.movementSpeed = parseFloat(e.target.value);
+            });
+            
+            // Checkboxes
+            document.getElementById('showTrails').addEventListener('change', e => {
+                config.showTrails = e.target.checked;
+                entityTrails.forEach(trail => {
+                    trail.visible = config.showTrails;
+                });
+            });
+            
+            document.getElementById('showLabels').addEventListener('change', e => {
+                config.showLabels = e.target.checked;
+                entityLabels.forEach(label => {
+                    label.style.visibility = config.showLabels ? 'visible' : 'hidden';
+                });
+            });
+            
+            document.getElementById('lockCameraToRing').addEventListener('change', e => {
+                config.lockCameraToRing = e.target.checked;
+                
+                if (!config.lockCameraToRing) {
+                    // When unlocking, ensure camera doesn't jump
+                    camera.position.normalize().multiplyScalar(200);
+                }
+            });
+            
+            // Reset view button
+            document.getElementById('resetView').addEventListener('click', resetView);
+            
+            // Mouse controls for camera
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+            
+            document.addEventListener('mousedown', e => {
+                isDragging = true;
+            });
+            
+            document.addEventListener('mouseup', e => {
+                isDragging = false;
+            });
+            
+            document.addEventListener('mousemove', e => {
+                if (!isDragging || config.lockCameraToRing) return;
+                
+                const deltaMove = {
+                    x: e.clientX - previousMousePosition.x,
+                    y: e.clientY - previousMousePosition.y
+                };
+                
+                const deltaRotation = {
+                    x: (deltaMove.y / 100) * (Math.PI / 2),
+                    y: (deltaMove.x / 100) * (Math.PI / 2)
+                };
+                
+                // Calculate new camera position
+                const radius = Math.sqrt(
+                    camera.position.x * camera.position.x +
+                    camera.position.z * camera.position.z
+                );
+                
+                let theta = Math.atan2(camera.position.x, camera.position.z);
+                theta -= deltaRotation.y;
+                
+                let phi = Math.atan2(
+                    Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z),
+                    camera.position.y
+                );
+                phi -= deltaRotation.x;
+                phi = Math.max(0.1, Math.min(phi, Math.PI - 0.1));
+                
+                camera.position.x = radius * Math.sin(phi) * Math.sin(theta);
+                camera.position.y = radius * Math.cos(phi);
+                camera.position.z = radius * Math.sin(phi) * Math.cos(theta);
+                
+                camera.lookAt(0, 0, 0);
+                
+                previousMousePosition = {
+                    x: e.clientX,
+                    y: e.clientY
+                };
+            });
+            
+            previousMousePosition = {
+                x: 0,
+                y: 0
+            };
+            
+            // Zoom with mouse wheel
+            document.addEventListener('wheel', e => {
+                e.preventDefault();
+                
+                if (config.lockCameraToRing) return;
+                
+                const zoomSpeed = 15;
+                const direction = e.deltaY > 0 ? 1 : -1;
+                
+                const cameraPosition = new THREE.Vector3(
+                    camera.position.x,
+                    camera.position.y,
+                    camera.position.z
+                );
+                
+                // Calculate distance to origin
+                const distance = cameraPosition.length();
+                
+                // Set min and max zoom distances
+                if ((distance > 50 && direction > 0) || (distance < 500 && direction < 0)) {
+                    // Normalize the camera direction vector
+                    cameraPosition.normalize();
+                    
+                    // Scale the normalized vector and add to position
+                    camera.position.add(cameraPosition.multiplyScalar(direction * zoomSpeed));
+                }
+            }, { passive: false });
+            
+            // Entity selection
+            renderer.domElement.addEventListener('click', e => {
+                // Calculate mouse position in normalized device coordinates
+                mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+                
+                // Update the picking ray with the camera and mouse position
+                raycaster.setFromCamera(mouse, camera);
+                
+                // Calculate objects intersecting the picking ray
+                const allEntities = [mobiusRing, ...industries, ...startups];
+                const intersects = raycaster.intersectObjects(allEntities, false);
+                
+                const entityInfo = document.getElementById('entityInfo');
+                
+                if (intersects.length > 0) {
+                    // Get the first intersected object (closest to camera)
+                    const entity = intersects[0].object;
+                    
+                    // Display entity info
+                    document.getElementById('entityName').textContent = entity.userData.name;
+                    document.getElementById('entityType').textContent = "Type: " + entity.userData.type;
+                    document.getElementById('entityIndustry').textContent = "Industry: " + entity.userData.industry;
+                    document.getElementById('entityIntegration').textContent = "Integration Level: " + 
+                                                                             (entity.userData.integrationLevel * 100).toFixed(0) + "%";
+                    document.getElementById('entityDesc').textContent = entity.userData.description;
+                    
+                    // Show the info panel
+                    entityInfo.style.display = 'block';
+                    
+                    // Highlight selected entity
+                    selectedEntity = entity;
+                } else {
+                    // Hide the info panel
+                    entityInfo.style.display = 'none';
+                    selectedEntity = null;
+                }
+            });
+        }
+        
+        // Initialize
+        init();
+    </script>
+</body>
+</html>
