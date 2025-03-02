@@ -3,7 +3,7 @@ name: Matrix Kernel
 on:
   schedule:
     - cron: "0 * * * *"  # Runs every hour
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   fix-matrix:
@@ -25,5 +25,11 @@ jobs:
       - name: Run Matrix Auto-Healer
         run: node .github/scripts/matrixAutoHeal.js
 
+      - name: Commit & Push Healing Logs
+        run: |
+          git add healingLog.json
+          git commit -m "Updated healing logs"
+          git push
+
       - name: Log Completion
-        run: echo "✅ Matrix Kernel has successfully fixed and healed matrix.yml."
+        run: echo "Matrix Kernel has successfully fixed and healed matrix.yml."
