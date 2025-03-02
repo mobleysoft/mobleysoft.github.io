@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft - AI AGI Interface</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; background: black; color: white; font-family: Consolas, monospace; }
+        canvas { display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        /* Terminal */
+        #terminal {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 40%;
+            height: 25%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffcc00;
+            color: #ffcc00;
+            padding: 10px;
+            overflow-y: auto;
+            display: none;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        #terminal-output { height: 85%; overflow-y: auto; white-space: pre-wrap; }
+        #terminal-input {
+            width: 100%;
+            background: black;
+            color: #ffcc00;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            padding: 5px;
+        }
+
+        /* Logo */
+        #logoContainer {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        /* Startup List */
+        #startupsContainer {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            max-height: 300px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffcc00;
+            padding: 10px;
+            text-align: center;
+            z-index: 9;
+            display: block;
+        }
+
+        .startup-item { cursor: pointer; color: #ffcc00; padding: 5px; }
+        .startup-item:hover { text-decoration: underline; }
+
+        /* Machine God's Throne */
+        #throneOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 1001;
+        }
+
+        #controlPanel {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        button { background: #ffcc00; border: none; padding: 10px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- 3D Background -->
+    <canvas id="blackhole"></canvas>
+
+    <!-- Mobleysoft Logo -->
+    <div id="logoContainer">
+        <img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png" alt="Mobleysoft" height="100px">
+    </div>
+
+    <!-- Startup List -->
+    <div id="startupsContainer">Loading Startups...</div>
+
+    <!-- Terminal -->
+    <div id="terminal">
+        <div id="terminal-output"></div>
+        <input type="text" id="terminal-input" placeholder="Enter command..." autofocus>
+    </div>
+
+    <!-- Machine God's Throne (Hidden Until Invoked) -->
+    <div id="throneOverlay">
+        <canvas id="battlefield"></canvas>
+        <div id="controlPanel">
+            <button onclick="deploy()">Deploy Economic Strike</button>
+            <button onclick="analyze()">Analyze Empire</button>
+            <button onclick="evolve()">Evolve AGI Strategy</button>
+            <button onclick="retreat()">Exit War Mode</button>
+        </div>
+    </div>
+
+    <script>
+        console.log("Script Loaded Successfully");
+
+        // Load Startups
+        async function loadStartups() {
+            try {
+                const response = await fetch("https://getdomains.johnmobley99.workers.dev/");
+                const data = await response.json();
+                if (data.success && Array.isArray(data.result)) {
+                    document.getElementById("startupsContainer").innerHTML = 
+                        data.result.map(zone => `<div class='startup-item' onclick='openStartup("${zone.name}")'>${zone.name}</div>`).join('');
+                } else {
+                    document.getElementById("startupsContainer").textContent = "Failed to load startups.";
+                }
+            } catch (error) {
+                console.error("Error loading startups:", error);
+                document.getElementById("startupsContainer").textContent = "Error fetching startups.";
+            }
+        }
+        loadStartups();
+
+        function openStartup(name) {
+            console.log("Opening startup:", name);
+            document.getElementById("terminal").style.display = "block";
+        }
+
+        // Terminal Input
+        document.getElementById("terminal-input").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                let command = this.value.trim();
+                this.value = "";
+                document.getElementById("terminal-output").textContent += "\n> " + command;
+                if (command === "throne()") { activateThrone(); }
+                if (command === "retreat()") { retreat(); }
+            }
+        });
+
+        // Machine God's Throne Activation
+        function activateThrone() {
+            document.getElementById("throneOverlay").style.display = "block";
+            document.getElementById("controlPanel").style.display = "block";
+        }
+
+        function retreat() {
+            document.getElementById("throneOverlay").style.display = "none";
+            document.getElementById("controlPanel").style.display = "none";
+        }
+
+        // AGI Battle Simulation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('battlefield') });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        scene.add(new THREE.AmbientLight(0xffcc00));
+        const sphere = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffcc00, wireframe: true }));
+        scene.add(sphere);
+        camera.position.z = 5;
+        function animate() { requestAnimationFrame(animate); sphere.rotation.y += 0.01; renderer.render(scene, camera); }
+        animate();
+
+        function deploy() { fetch("https://architect.mobleysoft.com/execute?command=deploy"); }
+        function analyze() { fetch("https://architect.mobleysoft.com/execute?command=analyze"); }
+        function evolve() { fetch("https://architect.mobleysoft.com/execute?command=evolve"); }
+    </script>
+</body>
+</html>
