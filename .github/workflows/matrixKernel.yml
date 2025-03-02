@@ -1,0 +1,29 @@
+name: Matrix Kernel
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  fix-matrix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y jq
+          npm install openai axios fs
+
+      - name: Run Matrix Fixer
+        run: node .github/scripts/matrixFixer.js
+
+      - name: Run Matrix Auto-Healer
+        run: node .github/scripts/matrixAutoHeal.js
+
+      - name: Log Completion
+        run: echo "✅ Matrix Kernel has successfully fixed and healed matrix.yml."
