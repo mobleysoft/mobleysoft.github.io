@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fix-matrix:
+  optimize-matrix:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +25,14 @@ jobs:
       - name: Run Matrix Auto-Healer
         run: node .github/scripts/matrixAutoHeal.js
 
-      - name: Commit & Push Healing Logs
+      - name: Run Execution Optimizer
+        run: node .github/scripts/matrixExecutionOptimizer.js
+
+      - name: Commit & Push Optimization Logs
         run: |
-          git add healingLog.json
-          git commit -m "Updated healing logs"
+          git add .matrix/executions/optimization_history.json
+          git commit -m "Updated optimization history"
           git push
 
       - name: Log Completion
-        run: echo "Matrix Kernel has successfully fixed and healed matrix.yml."
+        run: echo "Matrix Kernel has successfully healed and optimized execution."
