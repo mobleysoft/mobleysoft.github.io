@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft AGI Evolution Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            color: gold;
+            font-family: monospace;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background"></canvas>
+    <div id="game-container" class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+        <div id="game-ui" class="p-5 border-2 border-yellow-500 rounded-lg shadow-lg bg-black/80 text-yellow-400">
+            <h1 class="text-3xl font-bold text-center">Mobleysoft Evolution Matrix</h1>
+            <p class="text-center">Observe as the AGI self-reconfigures...</p>
+            <button class="mt-5 px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded">Engage</button>
+        </div>
+    </div>
+
+    <script>
+        // Golden Matrix Rain Background Effect
+        const canvas = document.getElementById("background");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const matrixChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "gold";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 50);
+
+        // Phaser.js Simple Game Init
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            scene: {
+                preload: function () {
+                    this.load.image('logo', 'https://phaser.io/content/tutorials/making-your-first-phaser-3-game/logo.png');
+                },
+                create: function () {
+                    this.add.image(400, 300, 'logo');
+                }
+            }
+        };
+        const game = new Phaser.Game(config);
+        document.getElementById('game-container').appendChild(game.canvas);
+    </script>
+</body>
+</html>
