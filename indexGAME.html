@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft AGI Evolution Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            color: gold;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #game-container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <script>
+        // Phaser.js Game Initialization
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            parent: 'game-container',
+            scene: {
+                preload: function () {
+                    this.load.image('logo', 'https://phaser.io/content/tutorials/making-your-first-phaser-3-game/logo.png');
+                },
+                create: function () {
+                    this.add.image(400, 300, 'logo');
+                }
+            }
+        };
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>
