@@ -325,6 +325,7 @@
   },
   "ads.txt": "file",
   "index.html": "file",
+  "indexGAME.html": "file",
   "indexMAIN.html": "file",
   "mascom": {
     "core": {
