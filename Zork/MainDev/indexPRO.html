@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobleysoft AGI Forms</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/geometries/TextGeometry.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #hero {
+            position: absolute;
+            top: 10px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        #hero a {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        #hero a:hover {
+            color: #ffffff;
+        }
+        #three-container {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+        }
+        #debug {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            color: yellow;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="hero">
+        <h1>Mobleysoft: The AGI-First Firm</h1>
+        <p>Mobleysoft is an ever-evolving AGI-driven entity, constantly rewriting itself to adapt and optimize. Below are its current forms:</p>
+        <p><a href="https://mobleysoft.com/music/">Visit Our Music Player</a></p>
+    </div>
+    <div id="three-container"></div>
+    <div id="debug">Fetching data...</div>
+    <script>
+        let scene, camera, renderer, controls;
+        
+        function debugLog(message) {
+            console.log("[DEBUG]:", message);
+            document.getElementById("debug").innerText = message;
+        }
+        
+        function init() {
+            debugLog("Initializing scene...");
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('three-container').appendChild(renderer.domElement);
+            camera.position.z = 15;
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableZoom = false;
+            addMobiusStrip();
+            fetchWords();
+        }
+        
+        function addMobiusStrip() {
+            debugLog("Adding Möbius strip with thickness...");
+            const mobiusGeometry = new THREE.ParametricGeometry(function (u, v, target) {
+                let a = 5; // Radius
+                let t = 0.5; // Thickness
+                u *= Math.PI * 2;
+                v = (v - 0.5) * t;
+                let x = (a + v * Math.cos(u / 2)) * Math.cos(u);
+                let y = (a + v * Math.cos(u / 2)) * Math.sin(u);
+                let z = v * Math.sin(u / 2);
+                target.set(x, y, z);
+            }, 300, 100);
+            const mobiusMaterial = new THREE.MeshStandardMaterial({ color: 0x8888ff, wireframe: true, metalness: 0.7, roughness: 0.1 });
+            const mobiusMesh = new THREE.Mesh(mobiusGeometry, mobiusMaterial);
+            mobiusMesh.rotation.x = Math.PI / 2;
+            scene.add(mobiusMesh);
+            function animateMobius() {
+                requestAnimationFrame(animateMobius);
+                mobiusMesh.rotation.y += 0.005;
+                renderer.render(scene, camera);
+            }
+            animateMobius();
+        }
+        
+        function fetchWords() {
+            debugLog("Fetching words from site-directory.json...");
+            fetch("https://mobleysoft.com/site-directory.json")
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.Zork || !data.Zork.MainDev) {
+                        throw new Error("Invalid JSON structure: Missing Zork.MainDev");
+                    }
+                    let mainDevFiles = data.Zork.MainDev;
+                    let words = Object.keys(mainDevFiles).map(file => file.replace("index", "").replace(".html", "").trim()).filter(word => word);
+                    debugLog("Retrieved: " + words.join(", "));
+                    displayWords(words);
+                })
+                .catch(error => debugLog("[ERROR]: Failed to fetch site directory - " + error));
+        }
+        
+        function displayWords(words) {
+            words.forEach((word, index) => {
+                createWordMesh(word, index, words.length);
+            });
+        }
+        
+        function createWordMesh(text, index, total) {
+            const loader = new THREE.FontLoader();
+            loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+                const textGeometry = new THREE.TextGeometry(text, {
+                    font: font,
+                    size: 0.6,
+                    height: 0.2,
+                });
+                const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
+                const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+                let angle = (index / total) * Math.PI * 2;
+                textMesh.position.set(Math.cos(angle) * 6, Math.sin(angle) * 6, 0);
+                textMesh.rotation.y = angle;
+                scene.add(textMesh);
+            });
+        }
+        
+        init();
+    </script>
+</body>
+</html>
