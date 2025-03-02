@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XP3099 WebOS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://mobleysoft.com/1Holder/Assets/Scripts/Blackhole.js"></script>
+    <style>
+        :root {
+            --primary-color: #ffcc00;
+            --background-color: #000;
+            --text-color: white;
+        }
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+        #blackhole { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        #start-menu {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+            padding: 10px;
+            display: none;
+            backdrop-filter: blur(5px);
+            transition: opacity 0.3s ease-in-out;
+        }
+        #start-menu:hover { display: block; }
+        #search-box {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid var(--primary-color);
+            background: black;
+            color: var(--primary-color);
+        }
+        .directory-item {
+            cursor: pointer;
+            padding: 5px;
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid var(--primary-color);
+            margin-bottom: 2px;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .directory-item:hover {
+            background: rgba(50, 50, 50, 0.9);
+            transform: scale(1.05);
+        }
+        #program-window {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.9);
+        }
+        #program-content {
+            width: 100%;
+            height: 90%;
+            background: black;
+        }
+        #close-window {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            background: black;
+            padding: 2px 5px;
+            border: 1px solid var(--primary-color);
+        }
+        #pi-auth {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: black;
+            padding: 20px;
+            border: 2px solid var(--primary-color);
+        }
+        #admin-terminal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: var(--primary-color);
+            font-family: Consolas, monospace;
+            font-size: 16px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="blackhole"></canvas>
+
+    <div id="start-menu">
+        <input id="search-box" type="text" placeholder="Search or ask GigiAI...">
+        <div id="directory-list"></div>
+    </div>
+
+    <div id="program-window">
+        <span id="close-window" onclick="closeProgram()">✖</span>
+        <iframe id="program-content"></iframe>
+    </div>
+
+    <div id="pi-auth">
+        <input type="password" id="pi-pass" placeholder="Enter Pi Code">
+        <button onclick="authenticatePi()">Login</button>
+    </div>
+
+    <div id="admin-terminal">XP3099 Admin Terminal Ready...</div>
+
+    <script>
+        async function loadDirectory() {
+            const response = await fetch("https://api.mobleysoft.com/directory");
+            const files = await response.json();
+            const container = document.getElementById("directory-list");
+            container.innerHTML = "";
+            files.forEach(file => {
+                const item = document.createElement("div");
+                item.className = "directory-item";
+                item.textContent = file.name;
+                item.onclick = () => openProgram(file.path);
+                container.appendChild(item);
+            });
+        }
+        function openProgram(path) {
+            document.getElementById("program-window").style.display = "block";
+            document.getElementById("program-content").src = path;
+        }
+        function closeProgram() {
+            document.getElementById("program-window").style.display = "none";
+        }
+        function authenticatePi() {
+            if (document.getElementById("pi-pass").value === "secret") {
+                document.getElementById("admin-terminal").style.display = "block";
+            }
+        }
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                document.getElementById("pi-auth").style.display = "block";
+            }
+        });
+        loadDirectory();
+    </script>
+</body>
+</html>
