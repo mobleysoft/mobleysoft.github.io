@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Möbius Ring Sun with Planetary System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+        .controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            width: 280px;
+            z-index: 100;
+        }
+        .title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #f0c040;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        .slider-container {
+            margin-bottom: 12px;
+        }
+        .slider-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type=range] {
+            width: 100%;
+            background: #333;
+            height: 6px;
+            border-radius: 3px;
+            -webkit-appearance: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #f0c040;
+            cursor: pointer;
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #f0c040;
+            cursor: pointer;
+        }
+        .checkbox-container {
+            margin-bottom: 10px;
+        }
+        .button {
+            background: #333;
+            border: 1px solid #555;
+            color: #f0c040;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #444;
+        }
+        .info {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 300px;
+            border: 1px solid #444;
+            z-index: 100;
+        }
+        .planet-label {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .planet-info {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 280px;
+            border: 1px solid #444;
+            display: none;
+            z-index: 100;
+        }
+        .planet-info h3 {
+            margin-top: 0;
+            color: #f0c040;
+        }
+        .planet-info p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="title">Möbius Ring Sun System</div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Ring Size</label>
+            <input type="range" id="ringSize" min="20" max="60" value="40">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Ring Width</label>
+            <input type="range" id="ringWidth" min="2" max="12" value="6">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Ring Rotation</label>
+            <input type="range" id="ringRotation" min="0" max="0.01" step="0.001" value="0.002">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Light Intensity</label>
+            <input type="range" id="lightIntensity" min="0.5" max="5" step="0.1" value="2">
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label">Orbital Speed</label>
+            <input type="range" id="orbitalSpeed" min="0.1" max="2" step="0.1" value="0.5">
+        </div>
+        
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="showOrbits" checked>
+                Show Orbits
+            </label>
+        </div>
+        
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="showLabels" checked>
+                Show Planet Labels
+            </label>
+        </div>
+        
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="lockCameraToRing">
+                Lock Camera to Ring
+            </label>
+        </div>
+        
+        <button id="resetView" class="button">Reset View</button>
+    </div>
+    
+    <div class="info">
+        <p>Möbius Ring Sun System</p>
+        <p>Rotate: Click and drag</p>
+        <p>Zoom: Scroll wheel</p>
+        <p>Click on planets for info</p>
+    </div>
+    
+    <div class="planet-info" id="planetInfo">
+        <h3 id="planetName">Planet Name</h3>
+        <p id="planetDistance">Distance: </p>
+        <p id="planetDiameter">Diameter: </p>
+        <p id="planetDay">Day length: </p>
+        <p id="planetYear">Year length: </p>
+        <p id="planetDesc">Description will appear here.</p>
+    </div>
+
+    <script>
+        // Scene variables
+        let scene, camera, renderer, raycaster, mouse;
+        let mobiusRing, planets = [], orbits = [], planetLabels = [];
+        let clock = new THREE.Clock();
+        let selectedPlanet = null;
+        
+        // Configuration
+        let config = {
+            ringSize: 40,
+            ringWidth: 6,
+            ringRotation: 0.002,
+            lightIntensity: 2,
+            orbitalSpeed: 0.5,
+            showOrbits: true,
+            showLabels: true,
+            lockCameraToRing: false
+        };
+
+        // Planet data
+        const planetData = [
+            {
+                name: "Mercurix",
+                color: 0xAA8866,
+                size: 3.8,
+                distance: 70,
+                speed: 4.1,
+                day: "58 Earth days",
+                year: "88 Earth days",
+                obliquity: 0.03,
+                description: "A small, rocky world with extreme temperature variations. The side facing the Möbius sun reaches 430°C while the dark side plunges to -180°C.",
+                features: [
+                    { type: "craters", size: 0.2, count: 12, color: 0x888888 }
+                ],
+                rings: null,
+                moons: []
+            },
+            {
+                name: "Venusia",
+                color: 0xDDBB88,
+                size: 9.5,
+                distance: 108,
+                speed: 1.6,
+                day: "243 Earth days",
+                year: "225 Earth days",
+                obliquity: 0.1,
+                description: "A planet shrouded in dense yellow clouds of sulfuric acid. Its thick atmosphere traps heat, making it the hottest planet in the system.",
+                features: [
+                    { type: "clouds", size: 0.15, count: 40, color: 0xEEEEAA }
+                ],
+                rings: null,
+                moons: []
+            },
+            {
+                name: "Terranova",
+                color: 0x6B93D6,
+                size: 10,
+                distance: 150,
+                speed: 1,
+                day: "24 Earth hours",
+                year: "365 Earth days",
+                obliquity: 0.4,
+                description: "A vibrant blue-green world with liquid water oceans and diverse ecosystems. White clouds swirl above continents of green and brown.",
+                features: [
+                    { type: "continents", size: 0.3, count: 7, color: 0x55AA55 },
+                    { type: "clouds", size: 0.2, count: 15, color: 0xFFFFFF }
+                ],
+                rings: null,
+                moons: [
+                    { name: "Luna", size: 2.7, distance: 15, speed: 27.3, color: 0xCCCCCC }
+                ]
+            },
+            {
+                name: "Rubrum",
+                color: 0xE27B58,
+                size: 5.3,
+                distance: 228,
+                speed: 0.53,
+                day: "24.6 Earth hours",
+                year: "687 Earth days",
+                obliquity: 0.44,
+                description: "The red planet, with iron-rich soil and polar ice caps. Its thin atmosphere and evidence of ancient water features suggest it might once have been more habitable.",
+                features: [
+                    { type: "craters", size: 0.15, count: 8, color: 0x884422 },
+                    { type: "icecaps", size: 0.25, count: 2, color: 0xFFFFFF }
+                ],
+                rings: null,
+                moons: [
+                    { name: "Phobia", size: 1.1, distance: 9, speed: 7.6, color: 0xAAAAAA },
+                    { name: "Demeter", size: 0.9, distance: 15, speed: 30.3, color: 0x999999 }
+                ]
+            },
+            {
+                name: "Jovialis",
+                color: 0xF0D080,
+                size: 112,
+                distance: 778,
+                speed: 0.084,
+                day: "9.9 Earth hours",
+                year: "11.9 Earth years",
+                obliquity: 0.05,
+                description: "A massive gas giant with swirling storms in its atmosphere, including the Great Crimson Spot - a storm larger than Terranova that has raged for centuries.",
+                features: [
+                    { type: "bands", size: 0.4, count: 9, color: 0xE8C870 },
+                    { type: "spot", size: 0.2, count: 1, color: 0xCC4422 }
+                ],
+                rings: { innerRadius: 1.1, outerRadius: 1.5, color: 0xDDCCAA },
+                moons: [
+                    { name: "Io", size: 3.6, distance: 25, speed: 1.77, color: 0xFFDD44 },
+                    { name: "Europa", size: 3.1, distance: 35, speed: 3.55, color: 0xFFFFEE },
+                    { name: "Ganymede", size: 5.3, distance: 50, speed: 7.15, color: 0xCCBB99 },
+                    { name: "Callisto", size: 4.8, distance: 70, speed: 16.7, color: 0x777788 }
+                ]
+            },
+            {
+                name: "Saturnalia",
+                color: 0xEDDBC0,
+                size: 94.5,
+                distance: 1427,
+                speed: 0.034,
+                day: "10.7 Earth hours",
+                year: "29.5 Earth years", 
+                obliquity: 0.47,
+                description: "Famous for its spectacular ring system, this pale yellow gas giant has thousands of distinct rings made of ice particles and dust.",
+                features: [
+                    { type: "bands", size: 0.3, count: 7, color: 0xE0D0B0 }
+                ],
+                rings: { innerRadius: 1.2, outerRadius: 2.3, color: 0xD4CBB3 },
+                moons: [
+                    { name: "Titan", size: 5.2, distance: 65, speed: 15.9, color: 0xE0D890 },
+                    { name: "Enceladus", size: 2.5, distance: 40, speed: 1.4, color: 0xEEEEFF }
+                ]
+            },
+            {
+                name: "Caelum",
+                color: 0x88AADD,
+                size: 40.1,
+                distance: 2871,
+                speed: 0.012,
+                day: "17.2 Earth hours",
+                year: "84 Earth years",
+                obliquity: 0.97,
+                description: "A blue-green ice giant with a tilted magnetic field and atmosphere containing methane that gives it its blue color.",
+                features: [
+                    { type: "bands", size: 0.22, count: 5, color: 0x7799CC }
+                ],
+                rings: { innerRadius: 1.1, outerRadius: 1.3, color: 0x555566 },
+                moons: [
+                    { name: "Titania", size: 3.1, distance: 35, speed: 8.7, color: 0xBBBBBB },
+                    { name: "Oberon", size: 3.0, distance: 45, speed: 13.5, color: 0xAAAAAA }
+                ]
+            },
+            {
+                name: "Neptis",
+                color: 0x3A6EA5,
+                size: 38.8,
+                distance: 4495,
+                speed: 0.006,
+                day: "16.1 Earth hours",
+                year: "165 Earth years",
+                obliquity: 0.49,
+                description: "A deep blue ice giant with the strongest winds in the system, reaching speeds of 2,100 km/h. It has a dark storm called the Great Dark Spot.",
+                features: [
+                    { type: "bands", size: 0.18, count: 4, color: 0x3366AA },
+                    { type: "spot", size: 0.2, count: 1, color: 0x224477 }
+                ],
+                rings: { innerRadius: 1.1, outerRadius: 1.2, color: 0x445566 },
+                moons: [
+                    { name: "Triton", size: 2.7, distance: 35, speed: 5.9, color: 0xEEEEEE }
+                ]
+            }
+        ];
+        
+        // Initialize the scene
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            
+            // Create camera
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 10000);
+            resetView();
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000);
+            document.body.appendChild(renderer.domElement);
+            
+            // Create raycaster for planet selection
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+            
+            // Add stars
+            createStars();
+            
+            // Create Möbius ring sun
+            createMobiusRing();
+            
+            // Create planets
+            createPlanets();
+            
+            // Setup controls
+            setupEventListeners();
+            
+            // Start animation loop
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize);
+        }
+        
+        function createStars() {
+            // Create a large sphere of stars
+            const starGeometry = new THREE.BufferGeometry();
+            const starCount = 5000;
+            const starPositions = new Float32Array(starCount * 3);
+            const starColors = new Float32Array(starCount * 3);
+            
+            for (let i = 0; i < starCount; i++) {
+                const i3 = i * 3;
+                
+                // Random position on a large sphere
+                const radius = 8000;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                
+                starPositions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+                starPositions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                starPositions[i3 + 2] = radius * Math.cos(phi);
+                
+                // Random color (mostly white/blue with occasional yellow/red)
+                const colorChoice = Math.random();
+                if (colorChoice > 0.9) {
+                    // Yellow/red stars
+                    starColors[i3] = 0.9 + Math.random() * 0.1;
+                    starColors[i3 + 1] = 0.7 + Math.random() * 0.3;
+                    starColors[i3 + 2] = 0.6 * Math.random();
+                } else {
+                    // White/blue stars
+                    starColors[i3] = 0.8 + Math.random() * 0.2;
+                    starColors[i3 + 1] = 0.8 + Math.random() * 0.2;
+                    starColors[i3 + 2] = 0.8 + Math.random() * 0.2;
+                }
+            }
+            
+            starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+            starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+            
+            const starMaterial = new THREE.PointsMaterial({
+                size: 2,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            const starField = new THREE.Points(starGeometry, starMaterial);
+            scene.add(starField);
+        }
+        
+        function createMobiusRing() {
+            if (mobiusRing) {
+                // Remove old lights
+                scene.children.forEach(child => {
+                    if (child.isLight && child.userData.isSunLight) {
+                        scene.remove(child);
+                    }
+                });
+                
+                // Remove old ring
+                scene.remove(mobiusRing);
+            }
+            
+            const radius = config.ringSize;
+            const width = config.ringWidth;
+            
+            // Create a parametric geometry for the Möbius strip
+            const mobiusFunction = (u, v, target) => {
+                const U = u * Math.PI * 2;  // Around the main circle
+                const V = (v - 0.5) * 2;    // Across the band (-1 to 1)
+                
+                // The half-twist is created by this variable
+                const twist = U / 2;
+                
+                // Calculate coordinates with the Möbius twist
+                const a = radius + width * Math.cos(twist) * V;
+                const x = a * Math.cos(U);
+                const y = a * Math.sin(U);
+                const z = width * Math.sin(twist) * V;
+                
+                target.set(x, y, z);
+            };
+            
+            // Create geometry with appropriate resolution
+            const resolution = 96;  // Higher for smoother curve
+            const geometry = new THREE.ParametricBufferGeometry(
+                mobiusFunction, 
+                resolution, 
+                Math.floor(resolution / 4)
+            );
+            
+            // Create emissive material for sun
+            const material = new THREE.MeshStandardMaterial({
+                color: 0xFFAA00,
+                emissive: 0xFFAA00,
+                emissiveIntensity: 1,
+                metalness: 0.3,
+                roughness: 0.2,
+                side: THREE.DoubleSide
+            });
+            
+            // Create mesh
+            mobiusRing = new THREE.Mesh(geometry, material);
+            
+            // Add volumetric light effect
+            const glowGeometry = new THREE.TorusGeometry(radius, width * 1.5, 16, 100);
+            const glowMaterial = new THREE.MeshBasicMaterial({
+                color: 0xFFAA00,
+                transparent: true,
+                opacity: 0.15,
+                side: THREE.BackSide
+            });
+            const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+            mobiusRing.add(glow);
+            
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0x333333);
+            scene.add(ambientLight);
+            
+            // Add point lights along the Möbius ring
+            const lightCount = 12;
+            const lightColor = new THREE.Color(0xFFAA00);
+            const intensity = config.lightIntensity;
+            const distance = radius * 10;
+            
+            for (let i = 0; i < lightCount; i++) {
+                const angle = (i / lightCount) * Math.PI * 2;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                const z = Math.sin(angle / 2) * width * (i % 2 === 0 ? 1 : -1);
+                
+                const light = new THREE.PointLight(lightColor, intensity, distance);
+                light.position.set(x, y, z);
+                light.userData.isSunLight = true;
+                light.userData.basePosition = { x, y, z };
+                light.userData.angle = angle;
+                scene.add(light);
+            }
+            
+            scene.add(mobiusRing);
+        }
+        
+        function createPlanets() {
+            // Clear existing planets, orbits, and labels
+            planets.forEach(planet => scene.remove(planet));
+            orbits.forEach(orbit => scene.remove(orbit));
+            planetLabels.forEach(label => document.body.removeChild(label));
+            
+            planets = [];
+            orbits = [];
+            planetLabels = [];
+            
+            // Create each planet based on data
+            planetData.forEach((data, index) => {
+                // Scale distances for visual appeal
+                const scaledDistance = data.distance / 5;
+                
+                // Create orbit
+                const orbitGeometry = new THREE.RingGeometry(scaledDistance - 0.5, scaledDistance + 0.5, 128);
+                const orbitMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x444444,
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
+                orbit.rotation.x = Math.PI / 2;
+                orbit.visible = config.showOrbits;
+                scene.add(orbit);
+                orbits.push(orbit);
+                
+                // Create planet
+                const planetGeometry = new THREE.SphereGeometry(data.size, 32, 32);
+                const planetMaterial = new THREE.MeshStandardMaterial({
+                    color: data.color,
+                    roughness: 0.7,
+                    metalness: 0.1
+                });
+                const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+                
+                // Position planet on its orbit
+                const angle = (index / planetData.length) * Math.PI * 2;
+                planet.position.x = Math.cos(angle) * scaledDistance;
+                planet.position.z = Math.sin(angle) * scaledDistance;
+                
+                // Apply obliquity (axial tilt)
+                planet.rotation.x = data.obliquity * Math.PI;
+                
+                // Store planet data
+                planet.userData = {
+                    name: data.name,
+                    description: data.description,
+                    orbitAngle: angle,
+                    orbitDistance: scaledDistance,
+                    orbitSpeed: data.speed,
+                    day: data.day,
+                    year: data.year,
+                    diameter: data.size * 2 + " units",
+                    distance: data.distance + " million km",
+                    moons: [],
+                    index: index
+                };
+                
+                // Add planet features
+                if (data.features && data.features.length > 0) {
+                    data.features.forEach(feature => {
+                        if (feature.type === "bands") {
+                            // Create atmospheric bands for gas giants
+                            for (let i = 0; i < feature.count; i++) {
+                                const band = new THREE.Mesh(
+                                    new THREE.TorusGeometry(data.size * 1.001, feature.size, 8, 32),
+                                    new THREE.MeshStandardMaterial({
+                                        color: feature.color,
+                                        transparent: true,
+                                        opacity: 0.7,
+                                        roughness: 0.7
+                                    })
+                                );
+                                
+                                // Position and rotate the band
+                                band.rotation.x = Math.PI / 2;
+                                band.position.y = -data.size + (data.size * 2 * i / feature.count);
+                                planet.add(band);
+                            }
+                        } else if (feature.type === "spot") {
+                            // Create a spot (like Jupiter's Great Red Spot)
+                            const spot = new THREE.Mesh(
+                                new THREE.CircleGeometry(data.size * feature.size, 32),
+                                new THREE.MeshStandardMaterial({
+                                    color: feature.color,
+                                    roughness: 0.7,
+                                    side: THREE.DoubleSide
+                                })
+                            );
+                            spot.position.z = data.size * 1.001;
+                            spot.rotation.y = Math.PI / 2;
+                            planet.add(spot);
+                        } else if (feature.type === "clouds") {
+                            // Create cloud particles
+                            const cloudGeometry = new THREE.BufferGeometry();
+                            const cloudCount = feature.count;
+                            const cloudPositions = new Float32Array(cloudCount * 3);
+                            
+                            for (let i = 0; i < cloudCount; i++) {
+                                const i3 = i * 3;
+                                const phi = Math.random() * Math.PI * 2;
+                                const theta = Math.random() * Math.PI;
+                                
+                                cloudPositions[i3] = (data.size * 1.05) * Math.sin(theta) * Math.cos(phi);
+                                cloudPositions[i3 + 1] = (data.size * 1.05) * Math.sin(theta) * Math.sin(phi);
+                                cloudPositions[i3 + 2] = (data.size * 1.05) * Math.cos(theta);
+                            }
+                            
+                            cloudGeometry.setAttribute('position', new THREE.BufferAttribute(cloudPositions, 3));
+                            
+                            const cloudMaterial = new THREE.PointsMaterial({
+                                color: feature.color,
+                                size: data.size * feature.size,
+                                transparent: true,
+                                opacity: 0.8,
+                                blending: THREE.AdditiveBlending
+                            });
+                            
+                            const clouds = new THREE.Points(cloudGeometry, cloudMaterial);
+                            planet.add(clouds);
+                        } else if (feature.type === "craters") {
+                            // Create craters
+                            for (let i = 0; i < feature.count; i++) {
+                                const phi = Math.random() * Math.PI * 2;
+                                const theta = Math.random() * Math.PI;
+                                
+                                const crater = new THREE.Mesh(
+                                    new THREE.CircleGeometry(data.size * feature.size * (0.5 + Math.random() * 0.5), 16),
+                                    new THREE.MeshStandardMaterial({
+                                        color: feature.color,
+                                        roughness: 0.9,
+                                        side: THREE.DoubleSide
+                                    })
+                                );
+                                
+                                // Position the crater on the surface
+                                const px = data.size * Math.sin(theta) * Math.cos(phi);
+                                const py = data.size * Math.sin(theta) * Math.sin(phi);
+                                const pz = data.size * Math.cos(theta);
+                                
+                                crater.position.set(px, py, pz);
+                                
+                                // Orient the crater to face outward
+                                crater.lookAt(planet.position);
+                                
+                                planet.add(crater);
+                            }
+                        } else if (feature.type === "continents") {
+                            // Create continental shapes for Terranova
+                            for (let i = 0; i < feature.count; i++) {
+                                const phi = Math.random() * Math.PI * 2;
+                                const theta = Math.random() * Math.PI;
+                                
+                                // Create irregular continent shape
+                                const shape = new THREE.Shape();
+                                const size = data.size * feature.size * (0.5 + Math.random() * 0.5);
+                                const points = Math.floor(5 + Math.random() * 5);
+                                
+                                shape.moveTo(size, 0);
+                                for (let j = 1; j <= points; j++) {
+                                    const angle = (j / points) * Math.PI * 2;
+                                    const radius = size * (0.6 + Math.random() * 0.4);
+                                    shape.lineTo(
+                                        Math.cos(angle) * radius,
+                                        Math.sin(angle) * radius
+                                    );
+                                }
+                                shape.closePath();
+                                
+                                const continent = new THREE.Mesh(
+                                    new THREE.ShapeGeometry(shape),
+                                    new THREE.MeshStandardMaterial({
+                                        color: feature.color,
+                                        roughness: 0.8,
+                                        side: THREE.DoubleSide
+                                    })
+                                );
+                                
+                                // Position the continent on the surface
+                                const px = data.size * 1.001 * Math.sin(theta) * Math.cos(phi);
+                                const py = data.size * 1.001 * Math.sin(theta) * Math.sin(phi);
+                                const pz = data.size * 1.001 * Math.cos(theta);
+                                
+                                continent.position.set(px, py, pz);
+                                
+                                // Orient the continent to face outward
+                                continent.lookAt(planet.position);
+                                
+                                planet.add(continent);
+                            }
+                        } else if (feature.type === "icecaps") {
+                            // Create polar ice caps
+                            for (let i = 0; i < feature.count; i++) {
+                                // Alternate between north and south pole
+                                const theta = i % 2 === 0 ? 0.1 : Math.PI - 0.1;
+                                
+                                const icecap = new THREE.Mesh(
+                                    new THREE.CircleGeometry(data.size * feature.size, 32),
+                                    new THREE.MeshStandardMaterial({
+                                        color: feature.color,
+                                        roughness: 0.4,
+                                        side: THREE.DoubleSide
+                                    })
+                                );
+                                
+                                // Position the icecap at the pole
+                                const px = 0;
+                                const py = data.size * Math.cos(theta);
+                                const pz = 0;
+                                
+                                icecap.position.set(px, py, pz);
+                                
+                                // Orient the icecap
+                                if (i % 2 === 0) {
+                                    icecap.rotation.x = Math.PI / 2;
+                                } else {
+                                    icecap.rotation.x = -Math.PI / 2;
+                                }
+                                
+                                planet.add(icecap);
+                            }
+                        }
+                    });
+                }
+                
+                // Add planetary rings if specified
+                if (data.rings) {
+                    const innerRadius = data.size * data.rings.innerRadius;
+                    const outerRadius = data.size * data.rings.outerRadius;
+                    
+                    const ringGeometry = new THREE.RingGeometry(innerRadius, outerRadius, 64, 8);
+                    const ringMaterial = new THREE.MeshStandardMaterial({
+                        color: data.rings.color,
+                        side: THREE.DoubleSide,
+                        transparent: true,
+                        opacity: 0.8,
+                        roughness: 0.7
+                    });
+                    
+                    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                    ring.rotation.x = Math.PI / 2;
+                    planet.add(ring);
+                    
+                    // Add ring particles for more detail
+                    const particleCount = 2000;
+                    const ringParticlesGeometry = new THREE.BufferGeometry();
+                    const positions = new Float32Array(particleCount * 3);
+                    
+                    for (let i = 0; i < particleCount; i++) {
+                        const i3 = i * 3;
+                        const angle = Math.random() * Math.PI * 2;
+                        const radius = innerRadius + Math.random() * (outerRadius - innerRadius);
+                        
+                        positions[i3] = radius * Math.cos(angle);
+                        positions[i3 + 1] = (Math.random() - 0.5) * 0.5;
+                        positions[i3 + 2] = radius * Math.sin(angle);
+                    }
+                    
+                    ringParticlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                    
+                    const ringParticlesMaterial = new THREE.PointsMaterial({
+                        color: data.rings.color,
+                        size: 0.5,
+                        transparent: true,
+                        opacity: 0.6
+                    });
+                    
+                    const ringParticles = new THREE.Points(ringParticlesGeometry, ringParticlesMaterial);
+                    planet.add(ringParticles);
+                }
+                
+                // Add moons if specified
+                if (data.moons && data.moons.length > 0) {
+                    data.moons.forEach(moon => {
+                        // Create moon
+                        const moonGeometry = new THREE.SphereGeometry(moon.size / 3, 16, 16);
+                        const moonMaterial = new THREE.MeshStandardMaterial({
+                            color: moon.color,
+                            roughness: 0.8
+                        });
+                        const moonObj = new THREE.Mesh(moonGeometry, moonMaterial);
+                        
+                        // Position moon
+                        const moonAngle = Math.random() * Math.PI * 2;
+                        moonObj.position.x = Math.cos(moonAngle) * moon.distance;
+                        moonObj.position.z = Math.sin(moonAngle) * moon.distance;
+                        
+                        // Store moon data
+                        moonObj.userData = {
+                            name: moon.name,
+                            orbitAngle: moonAngle,
+                            orbitDistance: moon.distance,
+                            orbitSpeed: moon.speed
+                        };
+                        
+                        // Create moon orbit
+                        const moonOrbitGeometry = new THREE.RingGeometry(moon.distance - 0.1, moon.distance + 0.1, 64);
+                        const moonOrbitMaterial = new THREE.MeshBasicMaterial({
+                            color: 0x444444,
+                            side: THREE.DoubleSide,
+                            transparent: true,
+                            opacity: 0.2
+                        });
+                        const moonOrbit = new THREE.Mesh(moonOrbitGeometry, moonOrbitMaterial);
+                        moonOrbit.rotation.x = Math.PI / 2;
+                        moonOrbit.visible = config.showOrbits;
+                        
+                        // Add moon and its orbit to the planet
+                        planet.add(moonObj);
+                        planet.add(moonOrbit);
+                        
+                        // Store moon in planet's userData
+                        planet.userData.moons.push(moonObj);
+                    });
+                }
+                
+                // Create HTML label for planet
+                const label = document.createElement('div');
+                label.className = 'planet-label';
+                label.textContent = data.name;
+                label.style.position = 'absolute';
+                label.style.top = '0px';
+                label.style.left = '0px';
+                label.style.visibility = config.showLabels ? 'visible' : 'hidden';
+                document.body.appendChild(label);
+                
+                // Add to scene
+                scene.add(planet);
+                planets.push(planet);
+                planetLabels.push(label);
+            });
+        }
+        
+        function updatePlanets(deltaTime) {
+            const timeScale = deltaTime * config.orbitalSpeed * 0.01;
+            
+            planets.forEach((planet, index) => {
+                // Update orbital position
+                planet.userData.orbitAngle += timeScale * planet.userData.orbitSpeed;
+                planet.position.x = Math.cos(planet.userData.orbitAngle) * planet.userData.orbitDistance;
+                planet.position.z = Math.sin(planet.userData.orbitAngle) * planet.userData.orbitDistance;
+                
+                // Rotate planet on its axis (difference speeds based on index)
+                const rotationSpeed = 0.01 * (1 + (index % 3) * 0.5) * timeScale * 20;
+                planet.rotation.y += rotationSpeed;
+                
+                // Update planet's moons
+                planet.userData.moons.forEach(moon => {
+                    moon.userData.orbitAngle += timeScale * moon.userData.orbitSpeed * 0.1;
+                    moon.position.x = Math.cos(moon.userData.orbitAngle) * moon.userData.orbitDistance;
+                    moon.position.z = Math.sin(moon.userData.orbitAngle) * moon.userData.orbitDistance;
+                    
+                    // Rotate moon
+                    moon.rotation.y += rotationSpeed * 0.5;
+                });
+                
+                // Update label position
+                updateLabelPosition(planet, planetLabels[index]);
+            });
+        }
+        
+        function updateLabelPosition(object, label) {
+            // Convert 3D position to screen position
+            const position = object.position.clone();
+            position.project(camera);
+            
+            // Convert to screen coordinates
+            const x = (position.x * 0.5 + 0.5) * window.innerWidth;
+            const y = (-(position.y * 0.5) + 0.5) * window.innerHeight;
+            
+            // Update label position
+            label.style.transform = `translate(-50%, -100%)`;
+            label.style.left = `${x}px`;
+            label.style.top = `${y - 20}px`;
+        }
+        
+        function updateSunLights() {
+            scene.children.forEach(child => {
+                if (child.isLight && child.userData.isSunLight) {
+                    const angle = child.userData.angle + mobiusRing.rotation.y;
+                    const basePos = child.userData.basePosition;
+                    
+                    // Rotate light position based on Möbius ring rotation
+                    child.position.x = Math.cos(angle) * basePos.x - Math.sin(angle) * basePos.y;
+                    child.position.y = Math.sin(angle) * basePos.x + Math.cos(angle) * basePos.y;
+                    
+                    // Adjust z position based on the twisted geometry
+                    child.position.z = Math.sin(angle / 2) * basePos.z;
+                    
+                    // Update light intensity
+                    child.intensity = config.lightIntensity;
+                }
+            });
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const delta = clock.getDelta() * 1000; // Convert to milliseconds
+            
+            // Rotate Möbius ring
+            if (mobiusRing) {
+                mobiusRing.rotation.y += config.ringRotation;
+            }
+            
+            // Update sun lights
+            updateSunLights();
+            
+            // Update planets
+            updatePlanets(delta);
+            
+            // Update camera if locked to ring
+            if (config.lockCameraToRing && mobiusRing) {
+                // Calculate distance to origin
+                const distance = Math.sqrt(
+                    camera.position.x * camera.position.x + 
+                    camera.position.y * camera.position.y + 
+                    camera.position.z * camera.position.z
+                );
+                
+                // Calculate new position based on ring rotation
+                const angleY = mobiusRing.rotation.y;
+                const angleX = mobiusRing.rotation.x * 0.5;
+                
+                camera.position.x = Math.sin(angleY) * Math.cos(angleX) * distance;
+                camera.position.z = Math.cos(angleY) * Math.cos(angleX) * distance;
+                camera.position.y = Math.sin(angleX) * distance;
+                
+                camera.lookAt(0, 0, 0);
+            }
+            
+            // Render scene
+            renderer.render(scene, camera);
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function resetView() {
+            // Position camera further away for a good view of the system
+            camera.position.set(200, 150, 250);
+            camera.lookAt(0, 0, 0);
+        }
+        
+        function setupEventListeners() {
+            // Sliders
+            document.getElementById('ringSize').addEventListener('input', e => {
+                config.ringSize = parseFloat(e.target.value);
+                createMobiusRing();
+            });
+            
+            document.getElementById('ringWidth').addEventListener('input', e => {
+                config.ringWidth = parseFloat(e.target.value);
+                createMobiusRing();
+            });
+            
+            document.getElementById('ringRotation').addEventListener('input', e => {
+                config.ringRotation = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('lightIntensity').addEventListener('input', e => {
+                config.lightIntensity = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('orbitalSpeed').addEventListener('input', e => {
+                config.orbitalSpeed = parseFloat(e.target.value);
+            });
+            
+            // Checkboxes
+            document.getElementById('showOrbits').addEventListener('change', e => {
+                config.showOrbits = e.target.checked;
+                orbits.forEach(orbit => {
+                    orbit.visible = config.showOrbits;
+                });
+                
+                // Update moon orbits visibility
+                planets.forEach(planet => {
+                    planet.children.forEach(child => {
+                        if (child.geometry && child.geometry.type === 'RingGeometry') {
+                            child.visible = config.showOrbits;
+                        }
+                    });
+                });
+            });
+            
+            document.getElementById('showLabels').addEventListener('change', e => {
+                config.showLabels = e.target.checked;
+                planetLabels.forEach(label => {
+                    label.style.visibility = config.showLabels ? 'visible' : 'hidden';
+                });
+            });
+            
+            document.getElementById('lockCameraToRing').addEventListener('change', e => {
+                config.lockCameraToRing = e.target.checked;
+                
+                if (!config.lockCameraToRing) {
+                    // When unlocking, ensure camera doesn't jump
+                    camera.position.normalize().multiplyScalar(250);
+                }
+            });
+            
+            // Reset view button
+            document.getElementById('resetView').addEventListener('click', resetView);
+            
+            // Mouse controls for camera
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+            
+            document.addEventListener('mousedown', e => {
+                isDragging = true;
+            });
+            
+            document.addEventListener('mouseup', e => {
+                isDragging = false;
+            });
+            
+            document.addEventListener('mousemove', e => {
+                if (!isDragging || config.lockCameraToRing) return;
+                
+                const deltaMove = {
+                    x: e.clientX - previousMousePosition.x,
+                    y: e.clientY - previousMousePosition.y
+                };
+                
+                const deltaRotation = {
+                    x: (deltaMove.y / 100) * (Math.PI / 2),
+                    y: (deltaMove.x / 100) * (Math.PI / 2)
+                };
+                
+                // Calculate new camera position
+                const radius = Math.sqrt(
+                    camera.position.x * camera.position.x +
+                    camera.position.z * camera.position.z
+                );
+                
+                let theta = Math.atan2(camera.position.x, camera.position.z);
+                theta -= deltaRotation.y;
+                
+                let phi = Math.atan2(
+                    Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z),
+                    camera.position.y
+                );
+                phi -= deltaRotation.x;
+                phi = Math.max(0.1, Math.min(phi, Math.PI - 0.1));
+                
+                camera.position.x = radius * Math.sin(phi) * Math.sin(theta);
+                camera.position.y = radius * Math.cos(phi);
+                camera.position.z = radius * Math.sin(phi) * Math.cos(theta);
+                
+                camera.lookAt(0, 0, 0);
+                
+                previousMousePosition = {
+                    x: e.clientX,
+                    y: e.clientY
+                };
+            });
+            
+            previousMousePosition = {
+                x: 0,
+                y: 0
+            };
+            
+            // Zoom with mouse wheel
+            document.addEventListener('wheel', e => {
+                e.preventDefault();
+                
+                if (config.lockCameraToRing) return;
+                
+                const zoomSpeed = 30;
+                const direction = e.deltaY > 0 ? 1 : -1;
+                
+                const cameraPosition = new THREE.Vector3(
+                    camera.position.x,
+                    camera.position.y,
+                    camera.position.z
+                );
+                
+                // Calculate distance to origin
+                const distance = cameraPosition.length();
+                
+                // Set min and max zoom distances
+                if ((distance > 100 && direction > 0) || (distance < 5000 && direction < 0)) {
+                    // Normalize the camera direction vector
+                    cameraPosition.normalize();
+                    
+                    // Scale the normalized vector and add to position
+                    camera.position.add(cameraPosition.multiplyScalar(direction * zoomSpeed));
+                }
+            }, { passive: false });
+            
+            // Planet selection
+            renderer.domElement.addEventListener('click', e => {
+                // Calculate mouse position in normalized device coordinates
+                mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+                
+                // Update the picking ray with the camera and mouse position
+                raycaster.setFromCamera(mouse, camera);
+                
+                // Calculate objects intersecting the picking ray
+                const intersects = raycaster.intersectObjects(planets, false);
+                
+                const planetInfo = document.getElementById('planetInfo');
+                
+                if (intersects.length > 0) {
+                    // Get the first intersected object (closest to camera)
+                    const planet = intersects[0].object;
+                    
+                    // Display planet info
+                    document.getElementById('planetName').textContent = planet.userData.name;
+                    document.getElementById('planetDistance').textContent = "Distance: " + planet.userData.distance;
+                    document.getElementById('planetDiameter').textContent = "Diameter: " + planet.userData.diameter;
+                    document.getElementById('planetDay').textContent = "Day length: " + planet.userData.day;
+                    document.getElementById('planetYear').textContent = "Year length: " + planet.userData.year;
+                    document.getElementById('planetDesc').textContent = planet.userData.description;
+                    
+                    // Show the info panel
+                    planetInfo.style.display = 'block';
+                    
+                    // Highlight selected planet
+                    selectedPlanet = planet;
+                } else {
+                    // Hide the info panel
+                    planetInfo.style.display = 'none';
+                    selectedPlanet = null;
+                }
+            });
+        }
+        
+        // Initialize
+        init();
+    </script>
+</body>
+</html>
