@@ -299,14 +299,15 @@
     },
     "HunterAGI.html": "file",
     "MainDev": {
-      "gigi.html": "file",
-      "index0.html": "file",
-      "index2.html": "file",
       "indexADMIN.html": "file",
+      "indexECON_AGI_FRAMEWORK.html": "file",
+      "indexGIGI.html": "file",
       "indexMON.html": "file",
       "indexNEO.html": "file",
       "indexPRO.html": "file",
+      "indexSAAS.html": "file",
       "indexTEST.html": "file",
+      "indexTHRONE.html": "file",
       "indexXP.html": "file"
     },
     "Payloader0.html": "file",
