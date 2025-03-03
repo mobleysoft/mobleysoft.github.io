@@ -38,4 +38,4 @@ jobs:
           git push
 
       - name: Log Completion
-        run: echo "✅ Matrix Kernel has successfully healed, optimized, and benchmarked execution."
+        run: echo "Matrix Kernel has successfully healed, optimized, and benchmarked execution."
