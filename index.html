@@ -835,6 +835,21 @@
         </div>
     </section>
 
+    <section id="chat-interface">
+        <div class="container">
+            <div class="section-title">
+                <h2>Talk to AGI</h2>
+                <p>Enter a prompt and receive an AI-generated response.</p>
+            </div>
+            <div class="chat-box">
+                <textarea id="prompt-input" placeholder="Enter your prompt..."></textarea>
+                <button id="generate-button">Generate</button>
+            </div>
+            <div id="response-output"></div>
+        </div>
+    </section>
+    
+    
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -862,7 +877,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="https://mobleysoft.com/1Holder/Assets/Scripts/OpenAI-Client.js"></script>
     <script>
         // Initialize the blackhole effect when the page loads
         document.addEventListener('DOMContentLoaded', function () {
