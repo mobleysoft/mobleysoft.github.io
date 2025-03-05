@@ -190,7 +190,8 @@
     "Assets": {
       "Scripts": {
         "Blackhole.js": "file",
-        "Fade.js": "file"
+        "Fade.js": "file",
+        "OpenAI-Client.js": "file"
       },
       "images": {
         "MobleysoftBlackLetters.png": "file"
