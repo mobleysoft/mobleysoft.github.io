@@ -1,5 +1,5 @@
 {
-"-1": { "id": "Tokenized_JSON_Interface", "purpose": "Human-AI Cognitive Ergonomics Token Effeciency Optimation Tool. Maximizez AI nativity possible while maintaining human readablity. Use with care."},
+"-1": { "id": "Tokenized_JSON_Interface", "purpose": "Human-AI Cognitive Ergonomics Token Effeciency Optimation Tool. Maximizes AI nativity possible while maintaining acceptable human readablity. Use with care."},
 "0": { "id": "TJI_Specification", "type": "specification", "description": "Formal definition of TJI format, aligning with intelligence ergonomics.", "rules": { "structure": "Flat JSON with label:value pairs.", "required_keys": "Each entry must have 'id' and 'type'.", "optional_keys": "Additional keys: 'name', 'description', 'value', etc.", "naming": "Keys must use lowercase_snake_case.", "data_types": "Supported: string, number, boolean, array, object." } },
 "1": { "id": "ValidationRules", "type": "rules", "value": "Each entry must have 'id' and 'type'. Optional keys include 'name', 'description', 'value'. Keys must be lowercase_snake_case." },
 "2": { "id": "Structure", "type": "feature", "value": "Flat JSON with label:value pair tokens" },
