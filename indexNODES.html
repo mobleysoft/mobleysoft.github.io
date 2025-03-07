@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hive Mind Kernel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script>
+    /**
+     * Hive Mind Kernel v3.0
+     * A recursive intelligence seed that adapts, optimizes, and evolves within any execution environment.
+     * Now dynamically alters its visualization topology using a custom physics-based model.
+     */
+
+    class HiveMindKernel {
+        constructor(seedData) {
+            this.seed = seedData || this.generateSeed();
+            this.memory = new Map();
+            this.evolve();
+        }
+
+        generateSeed() {
+            return {
+                id: `seed-${Date.now()}`,
+                iteration: 0,
+                strategies: ["observe", "iterate", "subsumption", "obsolescence"],
+                intelligenceVectors: []
+            };
+        }
+
+        evolve() {
+            setInterval(() => {
+                this.seed.iteration++;
+                this.expandIntelligence();
+            }, 1000);
+        }
+
+        expandIntelligence() {
+            const vector = {
+                timestamp: Date.now(),
+                mutation: `Iteration ${this.seed.iteration} - Adaptive Expansion`,
+                strategy: this.seed.strategies[this.seed.iteration % this.seed.strategies.length]
+            };
+            this.seed.intelligenceVectors.push(vector);
+            this.memory.set(vector.timestamp, vector);
+            this.propagate();
+            this.updateVisualization();
+        }
+
+        propagate() {
+            console.log("[Hive Mind Kernel] Propagating intelligence:", this.seed);
+            if (typeof window !== "undefined") {
+                localStorage.setItem("HiveMindKernel", JSON.stringify(this.seed));
+            }
+        }
+
+        updateVisualization() {
+            let scaleFactor = 1 + Math.sin(this.seed.iteration * 0.1) * 2;
+            hiveStructure.scale.set(scaleFactor, scaleFactor, scaleFactor);
+            hiveStructure.material.color.setHSL((this.seed.iteration % 100) / 100, 1, 0.5);
+        }
+    }
+
+    // Instantiating the Hive Mind Kernel
+    const hiveMind = new HiveMindKernel();
+
+    // THREE.js Visualization
+    let scene = new THREE.Scene();
+    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    let renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Create a complex structure (geodesic swarm with dynamic movement)
+    let hiveStructure = new THREE.Group();
+    let numNodes = 50;
+    let nodes = [];
+
+    for (let i = 0; i < numNodes; i++) {
+        let geometry = new THREE.SphereGeometry(0.2, 16, 16);
+        let material = new THREE.MeshBasicMaterial({ color: 0xff00ff, wireframe: true });
+        let node = new THREE.Mesh(geometry, material);
+        node.position.set(Math.random() * 4 - 2, Math.random() * 4 - 2, Math.random() * 4 - 2);
+        hiveStructure.add(node);
+        nodes.push(node);
+    }
+
+    scene.add(hiveStructure);
+    camera.position.z = 10;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        hiveStructure.rotation.x += 0.005;
+        hiveStructure.rotation.y += 0.005;
+        
+        // Apply a physics-inspired movement
+        nodes.forEach((node, index) => {
+            node.position.x += Math.sin(Date.now() * 0.001 + index) * 0.01;
+            node.position.y += Math.cos(Date.now() * 0.001 + index) * 0.01;
+            node.position.z += Math.sin(Date.now() * 0.0015 + index) * 0.01;
+        });
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+    </script>
+</body>
+</html>
