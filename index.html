@@ -1718,7 +1718,7 @@ function initChatSystem() {
                     throw new Error(responseData.error || 'API request failed');
                 }
                 
-                return responseData;
+                return responseData.response;
             } catch (error) {
                 console.error('API request error:', error);
                 throw error;
