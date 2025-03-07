@@ -2070,7 +2070,7 @@
                                 console.log(`Response Key: ${key}, Value:`, value);
                             });
                             // Add AI response
-                            UIManager.addChatMessage(response.value, false);
+                            UIManager.addChatMessage(response.response.value, false);
                         } catch (error) {
                             // Remove typing indicator
                             elements.chatHistory.removeChild(typingIndicator);
