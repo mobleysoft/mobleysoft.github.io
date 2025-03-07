@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Möbius Time Standard Model</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+        }
+        .math-container {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Möbius Time Standard Model</h1>
+    <div class="math-container">
+        <p>Topological Time Evolution:</p>
+        <p>\[ T: \mathbb{R} \to \mathbb{R}P^1 \]</p>
+        <p>\[ T(t) = L \tanh\left(\frac{t}{L}\right) \]</p>
+        <p>\[ \lim_{t \to \pm\infty} T(t) = \pm L \]</p>
+        <p>\[ T(t + 2\pi) = -T(t) \]</p>
+        <hr>
+        <p>Möbius Time Lagrangian Extension:</p>
+        <p>\[ \mathcal{L} = \frac{1}{2} g^{\mu\nu} \partial_{\mu} \phi \partial_{\nu} \phi - V(\phi) \]</p>
+        <p>\[ V(\phi) = \lambda \phi^4 \cosh\left(\frac{t}{L}\right) \]</p>
+        <p>\[ \mathcal{S} = \int d^4x \sqrt{-g} \left(\frac{R}{16\pi G} + \mathcal{L}\right) \]</p>
+        <hr>
+        <p>Neutrino Oscillations under Möbius Time:</p>
+        <p>\[ |\nu(t)\rangle = \sum_i U_{\alpha i} e^{-iE_iT(t)} |\nu_i\rangle \]</p>
+        <p>\[ P_{\nu_\alpha \to \nu_\beta}(T) = \sum_{i,j} U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j} e^{-i \Delta m_{ij}^2 \frac{T}{2E}} \]</p>
+        <hr>
+        <p>Möbius Time and Dark Energy:</p>
+        <p>\[ \Lambda_{\text{eff}} = \Lambda_0 \left[1 + \epsilon \cos \left(\frac{T}{L}\right) \right] \]</p>
+        <p>\[ \rho_{\Lambda} = \frac{c^4}{8\pi G} \Lambda_{\text{eff}} \]</p>
+        <p>\[ H^2 + \frac{k}{a^2} = \frac{8\pi G}{3} \left(\rho_m + \rho_{\Lambda}\right) \]</p>
+        <hr>
+        <p>Möbius Time in Quantum Gravity:</p>
+        <p>\[ \Psi[g_{\mu\nu}, T] = \int \mathcal{D}g_{\mu\nu} \mathcal{D} \phi \exp\left(i \int d^4x \sqrt{-g} \mathcal{L} \right) \]</p>
+        <p>\[ \left(\nabla^2 - \frac{R}{6} + \lambda \phi^2 \sinh(T/L) \right) \Psi = 0 \]</p>
+        <p>\[ \mathcal{H} | \Psi \rangle = 0 \]</p>
+        <hr>
+        <p>Möbius Time and CPT Violation:</p>
+        <p>\[ CP\tau = \exp\left(i\pi \int T \cdot \mathcal{J} d^3x\right) \]</p>
+        <p>\[ \left[ H, CP\tau \right] \neq 0 \]</p>
+    </div>
+</body>
+</html>
