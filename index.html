@@ -810,10 +810,14 @@
         }
 
         @keyframes typingDot {
-            0%, 60%, 100% {
+
+            0%,
+            60%,
+            100% {
                 transform: translateY(0);
                 opacity: 0.6;
             }
+
             30% {
                 transform: translateY(-4px);
                 opacity: 1;
@@ -824,20 +828,20 @@
             .chat-interface-container {
                 height: 500px;
             }
-            
+
             .chat-message {
                 max-width: 90%;
             }
-            
+
             .chat-controls {
                 flex-direction: column;
             }
-            
-            #send-button, .chat-clear-button {
+
+            #send-button,
+            .chat-clear-button {
                 width: 100%;
             }
         }
-        
     </style>
 </head>
 
@@ -1119,14 +1123,14 @@
                 <h2>Interact with Gigi Mobley (AGI)</h2>
                 <p>Experience the future of human-AGI collaboration through our advanced interface.</p>
             </div>
-            
+
             <!-- Auth Container (Login/Register) -->
             <div id="auth-container" class="chat-auth-container">
                 <div class="chat-auth-tabs">
                     <div id="login-tab" class="chat-auth-tab active">Login</div>
                     <div id="register-tab" class="chat-auth-tab">Register</div>
                 </div>
-                
+
                 <!-- Login Form -->
                 <div id="login-form" class="chat-auth-form active">
                     <div class="form-group">
@@ -1140,7 +1144,7 @@
                     <button id="login-button" class="cta-button">Login</button>
                     <div id="login-message" class="auth-message"></div>
                 </div>
-                
+
                 <!-- Register Form -->
                 <div id="register-form" class="chat-auth-form">
                     <div class="form-group">
@@ -1159,7 +1163,7 @@
                     <div id="register-message" class="auth-message"></div>
                 </div>
             </div>
-            
+
             <!-- Chat Interface (initially hidden) -->
             <div id="chat-interface-container" class="chat-interface-container" style="display:none;">
                 <div class="chat-user-info">
@@ -1167,15 +1171,16 @@
                     <div id="user-name" class="chat-user-name">User</div>
                     <button id="logout-button" class="chat-logout-button">Logout</button>
                 </div>
-                
+
                 <div id="chat-history" class="chat-history">
                     <!-- Messages will appear here -->
                     <div class="chat-message ai-message">
-                        <div class="message-bubble">Hello! I'm Gigi Mobley, the world's first AGI. How may I assist you today?</div>
+                        <div class="message-bubble">Hello! I'm Gigi Mobley, the world's first AGI. How may I assist you
+                            today?</div>
                         <div class="message-time">Just now</div>
                     </div>
                 </div>
-                
+
                 <div class="chat-controls">
                     <textarea id="chat-input" placeholder="Type your message here..."></textarea>
                     <button id="send-button" class="cta-button">Send</button>
@@ -1184,376 +1189,417 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Mobleysoft Self-Evolving Knowledge System - Completely Inline Component -->
-<section id="knowledge-system" style="background-color: #000000; position: relative; overflow: hidden; padding: 100px 20px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0px 0px;">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h2 style="font-size: 2.5rem; color: #ffcc00; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);">Quantum Knowledge Nexus</h2>
-            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: #fdfdf3;">Access the first self-evolving AGI knowledge system, continuously exploring and expanding its understanding.</p>
-        </div>
-        
-        <div id="knowledge-frame" style="background-color: black; color: #ffcc00; border: 2px; border-style: none; border-radius: 13em/97em; padding: 1px; position: relative; width: 100%; height: 360px; box-shadow: 0px 0px 35px 15px rgba(10, 10, 10, 0.8) inset; margin: 50px auto; overflow: hidden;">
-            <div style="position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; width: 100%;">
-                <div style="font-family: 'Stalinist One', cursive; color: #ffcc00; font-size: 32px; margin-bottom: 40px; letter-spacing: 1px; text-align: center;">
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">M</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">o</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">b</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">l</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">e</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">y</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">s</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">o</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">f</span>
-                    <span style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">t</span>
-                </div>
-                
-                <div style="display: flex; position: relative; width: 550px; max-width: 90%;">
-                    <input type="text" id="knowledge-input" placeholder="Query the self-evolving knowledge system..." spellcheck="false" style="width: 100%; background-color: #000000; color: #ffcc00; border: 2px solid #ffcc00; border-radius: 45px; padding: 10px 20px; font-size: 24px; font-family: 'Iceland', cursive; outline: none; box-shadow: 0px 0px 15px 5px rgba(255, 204, 0, 0.2);">
-                </div>
-                
-                <div style="display: flex; justify-content: center; margin-top: 30px;">
-                    <button style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';" onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">?</button>
-                    <button style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';" onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">✉</button>
-                    <button style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';" onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🎮</button>
-                    <button style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';" onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🚀</button>
-                    <button style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';" onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🔬</button>
-                    <button style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';" onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🔮</button>
-                </div>
+    <section id="knowledge-system"
+        style="background-color: #000000; position: relative; overflow: hidden; padding: 100px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0px 0px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2
+                    style="font-size: 2.5rem; color: #ffcc00; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);">
+                    Quantum Knowledge Nexus</h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: #fdfdf3;">Access the first
+                    self-evolving AGI knowledge system, continuously exploring and expanding its understanding.</p>
             </div>
-            
-            <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-family: 'Iceland', cursive; color: #ffcc00; font-size: 16px; opacity: 0.7; text-align: center; width: 100%;">
-                Concepts Discovered: <span id="concept-count" style="display: inline-block;">12,547</span> | Functions Generated: <span id="function-count" style="display: inline-block;">3,892</span>
-            </div>
-            
-            <div id="system-status" style="position: absolute; bottom: 10px; right: 20px; font-family: 'Iceland', cursive; color: #ffcc00; font-size: 14px; opacity: 0.7;">
-                System: Active | Last Reconnaissance: 3 min ago
-            </div>
-        </div>
-    </div>
 
-    <!-- Results Modal (initially hidden) -->
-    <div id="knowledge-results" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 800px; max-height: 80vh; overflow-y: auto; background-color: #000000; color: #ffcc00; border: 2px solid #ffcc00; border-radius: 10px; padding: 20px; z-index: 1000; box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);">
-    </div>
-        
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png"
-                    alt="Mobleysoft Logo">
-            </div>
-            <div class="footer-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#technology">Technology</a>
-                <a href="#team">Team</a>
-                <a href="#contact">Contact</a>
-                <a href="#chat-interface">Chat</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-medium"></i></a>
-            </div>
-            <div class="copyright">
-                &copy; 2025 Mobleysoft. All rights reserved.
+            <div id="knowledge-frame"
+                style="background-color: black; color: #ffcc00; border: 2px; border-style: none; border-radius: 13em/97em; padding: 1px; position: relative; width: 100%; height: 360px; box-shadow: 0px 0px 35px 15px rgba(10, 10, 10, 0.8) inset; margin: 50px auto; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                    <div
+                        style="font-family: 'Stalinist One', cursive; color: #ffcc00; font-size: 32px; margin-bottom: 40px; letter-spacing: 1px; text-align: center;">
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">M</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">o</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">b</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">l</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">e</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">y</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">s</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">o</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">f</span>
+                        <span
+                            style="display: inline-block; opacity: 1; text-shadow: 0px 0px 5px #ffcc00, 0px 0px 10px #ffcc00, 0px 0px 3px #ffcc00;">t</span>
+                    </div>
+
+                    <div style="display: flex; position: relative; width: 550px; max-width: 90%;">
+                        <input type="text" id="knowledge-input"
+                            placeholder="Query the self-evolving knowledge system..." spellcheck="false"
+                            style="width: 100%; background-color: #000000; color: #ffcc00; border: 2px solid #ffcc00; border-radius: 45px; padding: 10px 20px; font-size: 24px; font-family: 'Iceland', cursive; outline: none; box-shadow: 0px 0px 15px 5px rgba(255, 204, 0, 0.2);">
+                    </div>
+
+                    <div style="display: flex; justify-content: center; margin-top: 30px;">
+                        <button
+                            style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);"
+                            onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';"
+                            onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">?</button>
+                        <button
+                            style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);"
+                            onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';"
+                            onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">✉</button>
+                        <button
+                            style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);"
+                            onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';"
+                            onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🎮</button>
+                        <button
+                            style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);"
+                            onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';"
+                            onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🚀</button>
+                        <button
+                            style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);"
+                            onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';"
+                            onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🔬</button>
+                        <button
+                            style="background: none; border: none; color: #ffcc00; font-size: 28px; margin: 0 15px; cursor: pointer; transition: all 0.3s ease; opacity: 0.8; text-shadow: 0px 0px 5px rgba(255, 204, 0, 0.5);"
+                            onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'; this.style.textShadow='0px 0px 10px #ffcc00';"
+                            onmouseout="this.style.opacity='0.8'; this.style.transform='scale(1)'; this.style.textShadow='0px 0px 5px rgba(255, 204, 0, 0.5)';">🔮</button>
+                    </div>
+                </div>
+
+                <div
+                    style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-family: 'Iceland', cursive; color: #ffcc00; font-size: 16px; opacity: 0.7; text-align: center; width: 100%;">
+                    Concepts Discovered: <span id="concept-count" style="display: inline-block;">12,547</span> |
+                    Functions Generated: <span id="function-count" style="display: inline-block;">3,892</span>
+                </div>
+
+                <div id="system-status"
+                    style="position: absolute; bottom: 10px; right: 20px; font-family: 'Iceland', cursive; color: #ffcc00; font-size: 14px; opacity: 0.7;">
+                    System: Active | Last Reconnaissance: 3 min ago
+                </div>
             </div>
         </div>
-    </footer>
-    
-    <!-- External Scripts (Kept as is) -->
-    <script src="https://mobleysoft.com/1Holder/Assets/Scripts/OpenAI-Client.js"></script>
-    <script>
-// Mobleysoft Integrated JavaScript
-// Combines existing site functionality with Knowledge System
 
-// Initialize everything when the page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // The blackhole.js script is already loaded from your CDN
-    // It should automatically initialize the canvas with ID "blackhole"
+        <!-- Results Modal (initially hidden) -->
+        <div id="knowledge-results"
+            style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 800px; max-height: 80vh; overflow-y: auto; background-color: #000000; color: #ffcc00; border: 2px solid #ffcc00; border-radius: 10px; padding: 20px; z-index: 1000; box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);">
+        </div>
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80, // Account for fixed header
-                    behavior: 'smooth'
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="https://jmobleyworks.github.io/Assets/Images/MobleysoftGothicLogoBarWithM.png"
+                        alt="Mobleysoft Logo">
+                </div>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#technology">Technology</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#chat-interface">Chat</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-medium"></i></a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 Mobleysoft. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+        <!-- External Scripts (Kept as is) -->
+        <script src="https://mobleysoft.com/1Holder/Assets/Scripts/OpenAI-Client.js"></script>
+        <script>
+            // Mobleysoft Integrated JavaScript
+            // Combines existing site functionality with Knowledge System
+
+            // Initialize everything when the page loads
+            document.addEventListener('DOMContentLoaded', function () {
+                // The blackhole.js script is already loaded from your CDN
+                // It should automatically initialize the canvas with ID "blackhole"
+
+                // Smooth scrolling for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 80, // Account for fixed header
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
                 });
+
+                // Animation for elements as they enter the viewport
+                const animateOnScroll = () => {
+                    const elements = document.querySelectorAll('.service-card, .tech-feature, .team-member');
+
+                    elements.forEach(element => {
+                        const elementPosition = element.getBoundingClientRect().top;
+                        const screenHeight = window.innerHeight;
+
+                        if (elementPosition < screenHeight * 0.9) {
+                            element.style.animation = 'fadeIn 0.6s forwards';
+                        }
+                    });
+                };
+
+                // Initial check and add scroll listener
+                animateOnScroll();
+                window.addEventListener('scroll', animateOnScroll);
+
+                // Initialize all subsystems
+                initChatSystem();
+                initKnowledgeSystem();
+                initContactForm();
+            });
+
+            // ===== KNOWLEDGE SYSTEM IMPLEMENTATION =====
+            function initKnowledgeSystem() {
+                // Get knowledge system elements
+                const knowledgeSystem = document.getElementById('knowledge-system');
+
+                // Only proceed if the knowledge system exists on the page
+                if (!knowledgeSystem) return;
+
+                const knowledgeInput = document.getElementById('knowledge-input');
+                const conceptCount = document.getElementById('concept-count');
+                const functionCount = document.getElementById('function-count');
+                const systemStatus = document.getElementById('system-status');
+                const knowledgeFrame = document.getElementById('knowledge-frame');
+
+                // Initialize flicker animations for logo letters
+                const logoLetters = knowledgeSystem.querySelectorAll('.logo-character');
+                logoLetters.forEach(function (letter, index) {
+                    letter.style.animation = 'logo-flicker 5s linear infinite';
+                    letter.style.animationDelay = (index * 0.3) + 's';
+                });
+
+                // Handle search input
+                if (knowledgeInput) {
+                    knowledgeInput.addEventListener('keypress', function (e) {
+                        if (e.key === 'Enter') {
+                            const query = this.value.trim();
+                            if (query) {
+                                processKnowledgeQuery(query);
+                                this.value = '';
+                            }
+                        }
+                    });
+                }
+
+                // Add CRT effects
+                if (knowledgeFrame) {
+                    // Create and add the CRT scanlines effect
+                    const beforeElement = document.createElement('div');
+                    beforeElement.style.content = "' '";
+                    beforeElement.style.display = 'block';
+                    beforeElement.style.position = 'absolute';
+                    beforeElement.style.top = '0';
+                    beforeElement.style.left = '0';
+                    beforeElement.style.bottom = '0';
+                    beforeElement.style.right = '0';
+                    beforeElement.style.background = 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))';
+                    beforeElement.style.backgroundSize = '100% 2px, 3px 100%';
+                    beforeElement.style.zIndex = '2';
+                    beforeElement.style.pointerEvents = 'none';
+                    knowledgeFrame.appendChild(beforeElement);
+
+                    // Create and add the CRT flicker effect
+                    const afterElement = document.createElement('div');
+                    afterElement.style.content = "' '";
+                    afterElement.style.display = 'block';
+                    afterElement.style.position = 'absolute';
+                    afterElement.style.top = '0';
+                    afterElement.style.left = '0';
+                    afterElement.style.bottom = '0';
+                    afterElement.style.right = '0';
+                    afterElement.style.background = 'rgba(18, 16, 16, 0.1)';
+                    afterElement.style.opacity = '0';
+                    afterElement.style.zIndex = '3';
+                    afterElement.style.pointerEvents = 'none';
+                    knowledgeFrame.appendChild(afterElement);
+
+                    // Add flicker animation
+                    const flickerKeyframes = [
+                        { opacity: 0.27861 },
+                        { opacity: 0.34769, offset: 0.05 },
+                        { opacity: 0.23604, offset: 0.10 },
+                        { opacity: 0.90626, offset: 0.15 },
+                        { opacity: 0.18128, offset: 0.20 },
+                        { opacity: 0.83891, offset: 0.25 },
+                        { opacity: 0.65583, offset: 0.30 },
+                        { opacity: 0.67807, offset: 0.35 },
+                        { opacity: 0.26559, offset: 0.40 },
+                        { opacity: 0.84693, offset: 0.45 },
+                        { opacity: 0.96019, offset: 0.50 },
+                        { opacity: 0.08594, offset: 0.55 },
+                        { opacity: 0.20313, offset: 0.60 },
+                        { opacity: 0.71988, offset: 0.65 },
+                        { opacity: 0.53455, offset: 0.70 },
+                        { opacity: 0.37288, offset: 0.75 },
+                        { opacity: 0.71428, offset: 0.80 },
+                        { opacity: 0.70419, offset: 0.85 },
+                        { opacity: 0.7003, offset: 0.90 },
+                        { opacity: 0.36108, offset: 0.95 },
+                        { opacity: 0.24387 }
+                    ];
+
+                    afterElement.animate(flickerKeyframes, {
+                        duration: 150,
+                        iterations: Infinity
+                    });
+                }
+
+                // Fetch initial stats and set up refresh
+                fetchKnowledgeStats();
+                setInterval(fetchKnowledgeStats, 30000);
             }
-        });
-    });
 
-    // Animation for elements as they enter the viewport
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.service-card, .tech-feature, .team-member');
+            // Process knowledge query
+            async function processKnowledgeQuery(query) {
+                const systemStatus = document.getElementById('system-status');
 
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenHeight = window.innerHeight;
+                if (!systemStatus) return;
 
-            if (elementPosition < screenHeight * 0.9) {
-                element.style.animation = 'fadeIn 0.6s forwards';
-            }
-        });
-    };
+                systemStatus.textContent = 'System: Processing query...';
 
-    // Initial check and add scroll listener
-    animateOnScroll();
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Initialize all subsystems
-    initChatSystem();
-    initKnowledgeSystem();
-    initContactForm();
-});
+                try {
+                    // Call the API endpoint
+                    const response = await fetch('https://api.mobleysoft.com/generate', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            messages: [
+                                { role: "user", content: query }
+                            ],
+                            user_id: "search_interface"
+                        })
+                    });
 
-// ===== KNOWLEDGE SYSTEM IMPLEMENTATION =====
-function initKnowledgeSystem() {
-    // Get knowledge system elements
-    const knowledgeSystem = document.getElementById('knowledge-system');
-    
-    // Only proceed if the knowledge system exists on the page
-    if (!knowledgeSystem) return;
-    
-    const knowledgeInput = document.getElementById('knowledge-input');
-    const conceptCount = document.getElementById('concept-count');
-    const functionCount = document.getElementById('function-count');
-    const systemStatus = document.getElementById('system-status');
-    const knowledgeFrame = document.getElementById('knowledge-frame');
-    
-    // Initialize flicker animations for logo letters
-    const logoLetters = knowledgeSystem.querySelectorAll('.logo-character');
-    logoLetters.forEach(function(letter, index) {
-        letter.style.animation = 'logo-flicker 5s linear infinite';
-        letter.style.animationDelay = (index * 0.3) + 's';
-    });
+                    if (!response.ok) {
+                        throw new Error('Failed to process query');
+                    }
 
-    // Handle search input
-    if (knowledgeInput) {
-        knowledgeInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const query = this.value.trim();
-                if (query) {
-                    processKnowledgeQuery(query);
-                    this.value = '';
+                    const result = await response.json();
+
+                    // Display results
+                    if (result.generated_text) {
+                        showSearchResults(query, result.generated_text, result.system_stats);
+                    }
+
+                    // Update system status
+                    systemStatus.textContent = 'System: Active | Last Reconnaissance: just now';
+
+                    // Refresh stats
+                    fetchKnowledgeStats();
+                } catch (error) {
+                    console.error('Error processing knowledge query:', error);
+                    systemStatus.textContent = 'System: Error processing query';
+
+                    // Reset status after delay
+                    setTimeout(function () {
+                        systemStatus.textContent = 'System: Active | Last Reconnaissance: unknown';
+                    }, 3000);
                 }
             }
-        });
-    }
-    
-    // Add CRT effects
-    if (knowledgeFrame) {
-        // Create and add the CRT scanlines effect
-        const beforeElement = document.createElement('div');
-        beforeElement.style.content = "' '";
-        beforeElement.style.display = 'block';
-        beforeElement.style.position = 'absolute';
-        beforeElement.style.top = '0';
-        beforeElement.style.left = '0';
-        beforeElement.style.bottom = '0';
-        beforeElement.style.right = '0';
-        beforeElement.style.background = 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))';
-        beforeElement.style.backgroundSize = '100% 2px, 3px 100%';
-        beforeElement.style.zIndex = '2';
-        beforeElement.style.pointerEvents = 'none';
-        knowledgeFrame.appendChild(beforeElement);
-        
-        // Create and add the CRT flicker effect
-        const afterElement = document.createElement('div');
-        afterElement.style.content = "' '";
-        afterElement.style.display = 'block';
-        afterElement.style.position = 'absolute';
-        afterElement.style.top = '0';
-        afterElement.style.left = '0';
-        afterElement.style.bottom = '0';
-        afterElement.style.right = '0';
-        afterElement.style.background = 'rgba(18, 16, 16, 0.1)';
-        afterElement.style.opacity = '0';
-        afterElement.style.zIndex = '3';
-        afterElement.style.pointerEvents = 'none';
-        knowledgeFrame.appendChild(afterElement);
-        
-        // Add flicker animation
-        const flickerKeyframes = [
-            { opacity: 0.27861 },
-            { opacity: 0.34769, offset: 0.05 },
-            { opacity: 0.23604, offset: 0.10 },
-            { opacity: 0.90626, offset: 0.15 },
-            { opacity: 0.18128, offset: 0.20 },
-            { opacity: 0.83891, offset: 0.25 },
-            { opacity: 0.65583, offset: 0.30 },
-            { opacity: 0.67807, offset: 0.35 },
-            { opacity: 0.26559, offset: 0.40 },
-            { opacity: 0.84693, offset: 0.45 },
-            { opacity: 0.96019, offset: 0.50 },
-            { opacity: 0.08594, offset: 0.55 },
-            { opacity: 0.20313, offset: 0.60 },
-            { opacity: 0.71988, offset: 0.65 },
-            { opacity: 0.53455, offset: 0.70 },
-            { opacity: 0.37288, offset: 0.75 },
-            { opacity: 0.71428, offset: 0.80 },
-            { opacity: 0.70419, offset: 0.85 },
-            { opacity: 0.7003, offset: 0.90 },
-            { opacity: 0.36108, offset: 0.95 },
-            { opacity: 0.24387 }
-        ];
-        
-        afterElement.animate(flickerKeyframes, {
-            duration: 150,
-            iterations: Infinity
-        });
-    }
-    
-    // Fetch initial stats and set up refresh
-    fetchKnowledgeStats();
-    setInterval(fetchKnowledgeStats, 30000);
-}
 
-// Process knowledge query
-async function processKnowledgeQuery(query) {
-    const systemStatus = document.getElementById('system-status');
-    
-    if (!systemStatus) return;
-    
-    systemStatus.textContent = 'System: Processing query...';
-    
-    try {
-        // Call the API endpoint
-        const response = await fetch('https://api.mobleysoft.com/generate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                messages: [
-                    { role: "user", content: query }
-                ],
-                user_id: "search_interface"
-            })
-        });
-        
-        if (!response.ok) {
-            throw new Error('Failed to process query');
-        }
-        
-        const result = await response.json();
-        
-        // Display results
-        if (result.generated_text) {
-            showSearchResults(query, result.generated_text, result.system_stats);
-        }
-        
-        // Update system status
-        systemStatus.textContent = 'System: Active | Last Reconnaissance: just now';
-        
-        // Refresh stats
-        fetchKnowledgeStats();
-    } catch (error) {
-        console.error('Error processing knowledge query:', error);
-        systemStatus.textContent = 'System: Error processing query';
-        
-        // Reset status after delay
-        setTimeout(function() {
-            systemStatus.textContent = 'System: Active | Last Reconnaissance: unknown';
-        }, 3000);
-    }
-}
+            // Fetch knowledge stats from API
+            async function fetchKnowledgeStats() {
+                const conceptCount = document.getElementById('concept-count');
+                const functionCount = document.getElementById('function-count');
+                const systemStatus = document.getElementById('system-status');
 
-// Fetch knowledge stats from API
-async function fetchKnowledgeStats() {
-    const conceptCount = document.getElementById('concept-count');
-    const functionCount = document.getElementById('function-count');
-    const systemStatus = document.getElementById('system-status');
-    
-    if (!conceptCount || !functionCount || !systemStatus) return;
-    
-    try {
-        const response = await fetch('https://api.mobleysoft.com/system-status', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-        
-        if (!response.ok) {
-            throw new Error('Failed to fetch knowledge stats');
-        }
-        
-        const data = await response.json();
-        
-        if (data && data.state) {
-            // Update concept count
-            const concepts = data.state.conceptsDiscovered ? 
-                data.state.conceptsDiscovered.length : 0;
-            conceptCount.textContent = concepts.toLocaleString();
-            
-            // Update function count
-            const functions = data.state.functionCount || 0;
-            functionCount.textContent = functions.toLocaleString();
-            
-            // Update system status
-            if (data.state.lastUpdate) {
-                const lastUpdate = new Date(data.state.lastUpdate);
-                const now = new Date();
-                const diffMinutes = Math.floor((now - lastUpdate) / (1000 * 60));
-                
-                let timeText = '';
-                if (diffMinutes < 1) {
-                    timeText = 'just now';
-                } else if (diffMinutes === 1) {
-                    timeText = '1 min ago';
-                } else if (diffMinutes < 60) {
-                    timeText = diffMinutes + ' mins ago';
-                } else {
-                    const hours = Math.floor(diffMinutes / 60);
-                    timeText = hours + ' ' + (hours === 1 ? 'hour' : 'hours') + ' ago';
+                if (!conceptCount || !functionCount || !systemStatus) return;
+
+                try {
+                    const response = await fetch('https://api.mobleysoft.com/system-status', {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch knowledge stats');
+                    }
+
+                    const data = await response.json();
+
+                    if (data && data.state) {
+                        // Update concept count
+                        const concepts = data.state.conceptsDiscovered ?
+                            data.state.conceptsDiscovered.length : 0;
+                        conceptCount.textContent = concepts.toLocaleString();
+
+                        // Update function count
+                        const functions = data.state.functionCount || 0;
+                        functionCount.textContent = functions.toLocaleString();
+
+                        // Update system status
+                        if (data.state.lastUpdate) {
+                            const lastUpdate = new Date(data.state.lastUpdate);
+                            const now = new Date();
+                            const diffMinutes = Math.floor((now - lastUpdate) / (1000 * 60));
+
+                            let timeText = '';
+                            if (diffMinutes < 1) {
+                                timeText = 'just now';
+                            } else if (diffMinutes === 1) {
+                                timeText = '1 min ago';
+                            } else if (diffMinutes < 60) {
+                                timeText = diffMinutes + ' mins ago';
+                            } else {
+                                const hours = Math.floor(diffMinutes / 60);
+                                timeText = hours + ' ' + (hours === 1 ? 'hour' : 'hours') + ' ago';
+                            }
+
+                            systemStatus.textContent = 'System: Active | Last Reconnaissance: ' + timeText;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error fetching knowledge stats:', error);
                 }
-                
-                systemStatus.textContent = 'System: Active | Last Reconnaissance: ' + timeText;
             }
-        }
-    } catch (error) {
-        console.error('Error fetching knowledge stats:', error);
-    }
-}
 
-// Show search results
-function showSearchResults(query, response, stats) {
-    // Check for existing results container or create one
-    let resultsContainer = document.getElementById('knowledge-results');
-    
-    if (!resultsContainer) {
-        resultsContainer = document.createElement('div');
-        resultsContainer.id = 'knowledge-results';
-        resultsContainer.style.display = 'none';
-        resultsContainer.style.position = 'fixed';
-        resultsContainer.style.top = '50%';
-        resultsContainer.style.left = '50%';
-        resultsContainer.style.transform = 'translate(-50%, -50%)';
-        resultsContainer.style.width = '80%';
-        resultsContainer.style.maxWidth = '800px';
-        resultsContainer.style.maxHeight = '80vh';
-        resultsContainer.style.overflowY = 'auto';
-        resultsContainer.style.backgroundColor = '#000000';
-        resultsContainer.style.color = '#ffcc00';
-        resultsContainer.style.border = '2px solid #ffcc00';
-        resultsContainer.style.borderRadius = '10px';
-        resultsContainer.style.padding = '20px';
-        resultsContainer.style.zIndex = '1000';
-        resultsContainer.style.boxShadow = '0 0 25px rgba(255, 204, 0, 0.3)';
-        document.body.appendChild(resultsContainer);
-    }
-    
-    // Add content to results container
-    resultsContainer.innerHTML = `
+            // Show search results
+            function showSearchResults(query, response, stats) {
+                // Check for existing results container or create one
+                let resultsContainer = document.getElementById('knowledge-results');
+
+                if (!resultsContainer) {
+                    resultsContainer = document.createElement('div');
+                    resultsContainer.id = 'knowledge-results';
+                    resultsContainer.style.display = 'none';
+                    resultsContainer.style.position = 'fixed';
+                    resultsContainer.style.top = '50%';
+                    resultsContainer.style.left = '50%';
+                    resultsContainer.style.transform = 'translate(-50%, -50%)';
+                    resultsContainer.style.width = '80%';
+                    resultsContainer.style.maxWidth = '800px';
+                    resultsContainer.style.maxHeight = '80vh';
+                    resultsContainer.style.overflowY = 'auto';
+                    resultsContainer.style.backgroundColor = '#000000';
+                    resultsContainer.style.color = '#ffcc00';
+                    resultsContainer.style.border = '2px solid #ffcc00';
+                    resultsContainer.style.borderRadius = '10px';
+                    resultsContainer.style.padding = '20px';
+                    resultsContainer.style.zIndex = '1000';
+                    resultsContainer.style.boxShadow = '0 0 25px rgba(255, 204, 0, 0.3)';
+                    document.body.appendChild(resultsContainer);
+                }
+
+                // Add content to results container
+                resultsContainer.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <h3 style="margin: 0; font-size: 24px;">Knowledge Query Results</h3>
             <button id="close-results" style="background: none; border: 1px solid #ffcc00; color: #ffcc00; padding: 5px 10px; cursor: pointer; border-radius: 4px;">Close</button>
@@ -1566,650 +1612,660 @@ function showSearchResults(query, response, stats) {
             <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 204, 0, 0.3); font-size: 14px;">
                 <p>Concepts Known: ${stats.concepts_known ? stats.concepts_known.toLocaleString() : 'Unknown'}</p>
                 <p>Cognitive Capabilities: 
-                    ${stats.cognitive_capabilities ? 
-                        Object.entries(stats.cognitive_capabilities)
-                            .map(function(entry) {
-                                const key = entry[0];
-                                const value = entry[1];
-                                return key.charAt(0).toUpperCase() + key.slice(1) + ': ' + (value * 100).toFixed(1) + '%';
-                            })
-                            .join(' | ') 
-                        : 'Unknown'}
+                    ${stats.cognitive_capabilities ?
+                            Object.entries(stats.cognitive_capabilities)
+                                .map(function (entry) {
+                                    const key = entry[0];
+                                    const value = entry[1];
+                                    return key.charAt(0).toUpperCase() + key.slice(1) + ': ' + (value * 100).toFixed(1) + '%';
+                                })
+                                .join(' | ')
+                            : 'Unknown'}
                 </p>
             </div>
         ` : ''}
     `;
-    
-    // Show the results
-    resultsContainer.style.display = 'block';
-    
-    // Add close button functionality
-    document.getElementById('close-results').addEventListener('click', function() {
-        resultsContainer.style.display = 'none';
-    });
-    
-    // Also allow clicking outside to close
-    document.addEventListener('click', function closeOnClickOutside(event) {
-        if (!resultsContainer.contains(event.target) && event.target !== document.getElementById('knowledge-input')) {
-            resultsContainer.style.display = 'none';
-            document.removeEventListener('click', closeOnClickOutside);
-        }
-    });
-}
 
-// ===== CHAT SYSTEM IMPLEMENTATION =====
-function initChatSystem() {
-    // API Configuration
-    const API_URL = 'https://api.mobleysoft.com'; // Replace with your actual CloudFlare Worker endpoint
-    
-    // Check if chat interface exists on the page
-    const chatInterface = document.getElementById('chat-interface');
-    if (!chatInterface) return;
-    
-    // Application State
-    const AppState = {
-        currentUser: null,
-        authToken: null,
-        
-        setUser: function(user, token) {
-            this.currentUser = user;
-            this.authToken = token;
-            
-            // Store in sessionStorage for persistence
-            if (user && token) {
-                sessionStorage.setItem('msUser', JSON.stringify(user));
-                sessionStorage.setItem('msToken', token);
+                // Show the results
+                resultsContainer.style.display = 'block';
+
+                // Add close button functionality
+                document.getElementById('close-results').addEventListener('click', function () {
+                    resultsContainer.style.display = 'none';
+                });
+
+                // Also allow clicking outside to close
+                document.addEventListener('click', function closeOnClickOutside(event) {
+                    if (!resultsContainer.contains(event.target) && event.target !== document.getElementById('knowledge-input')) {
+                        resultsContainer.style.display = 'none';
+                        document.removeEventListener('click', closeOnClickOutside);
+                    }
+                });
             }
-            
-            return user;
-        },
-        
-        getUser: function() {
-            return this.currentUser;
-        },
-        
-        clearUser: function() {
-            this.currentUser = null;
-            this.authToken = null;
-            sessionStorage.removeItem('msUser');
-            sessionStorage.removeItem('msToken');
-            return null;
-        },
-        
-        loadSavedSession: function() {
-            const savedUser = sessionStorage.getItem('msUser');
-            const savedToken = sessionStorage.getItem('msToken');
-            
-            if (savedUser && savedToken) {
-                try {
-                    this.currentUser = JSON.parse(savedUser);
-                    this.authToken = savedToken;
-                    return true;
-                } catch (e) {
-                    console.error('Failed to parse saved user', e);
-                    this.clearUser();
-                }
-            }
-            
-            return false;
-        }
-    };
-    
-    // DOM Elements
-    const elements = {
-        // Auth Elements
-        authContainer: document.getElementById('auth-container'),
-        loginTab: document.getElementById('login-tab'),
-        registerTab: document.getElementById('register-tab'),
-        loginForm: document.getElementById('login-form'),
-        registerForm: document.getElementById('register-form'),
-        loginEmail: document.getElementById('login-email'),
-        loginPassword: document.getElementById('login-password'),
-        registerName: document.getElementById('register-name'),
-        registerEmail: document.getElementById('register-email'),
-        registerPassword: document.getElementById('register-password'),
-        loginButton: document.getElementById('login-button'),
-        registerButton: document.getElementById('register-button'),
-        loginMessage: document.getElementById('login-message'),
-        registerMessage: document.getElementById('register-message'),
-        
-        // Chat Elements
-        chatContainer: document.getElementById('chat-interface-container'),
-        userAvatar: document.getElementById('user-avatar'),
-        userName: document.getElementById('user-name'),
-        logoutButton: document.getElementById('logout-button'),
-        chatHistory: document.getElementById('chat-history'),
-        chatInput: document.getElementById('chat-input'),
-        sendButton: document.getElementById('send-button'),
-        clearChatButton: document.getElementById('clear-chat')
-    };
-    
-    // Check if required elements exist
-    if (!elements.authContainer || !elements.chatContainer) return;
-    
-    // API Service
-    const ApiService = {
-        request: async function(endpoint, method = 'GET', data = null) {
-            const headers = {
-                'Content-Type': 'application/json',
-                'X-Client-Domain': window.location.hostname
-            };
-            
-            // Add auth token if available
-            if (AppState.authToken) {
-                headers['X-Auth-Token'] = AppState.authToken;
-            }
-            
-            const config = {
-                method,
-                headers,
-                credentials: 'same-origin'
-            };
-            
-            if (data) {
-                config.body = JSON.stringify(data);
-            }
-            
-            try {
-                const response = await fetch(`${API_URL}/${endpoint}`, config);
-                const responseData = await response.json();
-                
-                if (!response.ok) {
-                    throw new Error(responseData.error || 'API request failed');
-                }
-                
-                return responseData;
-            } catch (error) {
-                console.error('API request error:', error);
-                throw error;
-            }
-        },
-        
-        register: async function(userData) {
-            return this.request('users', 'POST', userData);
-        },
-        
-        login: async function(credentials) {
-            return this.request('auth/login', 'POST', credentials);
-        },
-        
-        verifySession: async function() {
-            return this.request('users/me');
-        },
-        
-        sendMessage: async function(message) {
-            return this.request('assistant/chat', 'POST', { message });
-        },
-        
-        getChatHistory: async function() {
-            return this.request('assistant/history');
-        },
-        
-        clearChatHistory: async function() {
-            return this.request('assistant/history', 'DELETE');
-        }
-    };
-    
-    // UI Manager
-    const UIManager = {
-        showAuthForm: function(formName) {
-            elements.loginTab.classList.remove('active');
-            elements.registerTab.classList.remove('active');
-            elements.loginForm.classList.remove('active');
-            elements.registerForm.classList.remove('active');
-            
-            if (formName === 'login') {
-                elements.loginTab.classList.add('active');
-                elements.loginForm.classList.add('active');
-            } else if (formName === 'register') {
-                elements.registerTab.classList.add('active');
-                elements.registerForm.classList.add('active');
-            }
-        },
-        
-        showAuthContainer: function() {
-            elements.authContainer.style.display = 'block';
-            elements.chatContainer.style.display = 'none';
-        },
-        
-        showChatContainer: function() {
-            elements.authContainer.style.display = 'none';
-            elements.chatContainer.style.display = 'flex';
-        },
-        
-        updateUserInfo: function(user) {
-            if (user) {
-                const initial = user.name ? user.name.charAt(0).toUpperCase() : 'U';
-                elements.userAvatar.textContent = initial;
-                elements.userName.textContent = user.name || 'User';
-            }
-        },
-        
-        displayAuthMessage: function(element, message, isError = false) {
-            element.textContent = message;
-            element.classList.remove('error', 'success');
-            
-            if (message) {
-                element.classList.add(isError ? 'error' : 'success');
-                element.style.display = 'block';
-                
-                // Auto-hide after 5 seconds
-                setTimeout(() => {
-                    element.style.display = 'none';
-                }, 5000);
-            } else {
-                element.style.display = 'none';
-            }
-        },
-        
-        addChatMessage: function(message, isUser = false) {
-            const messageEl = document.createElement('div');
-            messageEl.className = `chat-message ${isUser ? 'user-message' : 'ai-message'}`;
-            
-            const now = new Date();
-            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            
-            messageEl.innerHTML = `
+
+            // ===== CHAT SYSTEM IMPLEMENTATION =====
+            function initChatSystem() {
+                // API Configuration
+                const API_URL = 'https://api.mobleysoft.com'; // Replace with your actual CloudFlare Worker endpoint
+
+                // Check if chat interface exists on the page
+                const chatInterface = document.getElementById('chat-interface');
+                if (!chatInterface) return;
+
+                // Application State
+                const AppState = {
+                    currentUser: null,
+                    authToken: null,
+
+                    setUser: function (user, token) {
+                        this.currentUser = user;
+                        this.authToken = token;
+
+                        // Store in sessionStorage for persistence
+                        if (user && token) {
+                            sessionStorage.setItem('msUser', JSON.stringify(user));
+                            sessionStorage.setItem('msToken', token);
+                        }
+
+                        return user;
+                    },
+
+                    getUser: function () {
+                        return this.currentUser;
+                    },
+
+                    clearUser: function () {
+                        this.currentUser = null;
+                        this.authToken = null;
+                        sessionStorage.removeItem('msUser');
+                        sessionStorage.removeItem('msToken');
+                        return null;
+                    },
+
+                    loadSavedSession: function () {
+                        const savedUser = sessionStorage.getItem('msUser');
+                        const savedToken = sessionStorage.getItem('msToken');
+
+                        if (savedUser && savedToken) {
+                            try {
+                                this.currentUser = JSON.parse(savedUser);
+                                this.authToken = savedToken;
+                                return true;
+                            } catch (e) {
+                                console.error('Failed to parse saved user', e);
+                                this.clearUser();
+                            }
+                        }
+
+                        return false;
+                    }
+                };
+
+                // DOM Elements
+                const elements = {
+                    // Auth Elements
+                    authContainer: document.getElementById('auth-container'),
+                    loginTab: document.getElementById('login-tab'),
+                    registerTab: document.getElementById('register-tab'),
+                    loginForm: document.getElementById('login-form'),
+                    registerForm: document.getElementById('register-form'),
+                    loginEmail: document.getElementById('login-email'),
+                    loginPassword: document.getElementById('login-password'),
+                    registerName: document.getElementById('register-name'),
+                    registerEmail: document.getElementById('register-email'),
+                    registerPassword: document.getElementById('register-password'),
+                    loginButton: document.getElementById('login-button'),
+                    registerButton: document.getElementById('register-button'),
+                    loginMessage: document.getElementById('login-message'),
+                    registerMessage: document.getElementById('register-message'),
+
+                    // Chat Elements
+                    chatContainer: document.getElementById('chat-interface-container'),
+                    userAvatar: document.getElementById('user-avatar'),
+                    userName: document.getElementById('user-name'),
+                    logoutButton: document.getElementById('logout-button'),
+                    chatHistory: document.getElementById('chat-history'),
+                    chatInput: document.getElementById('chat-input'),
+                    sendButton: document.getElementById('send-button'),
+                    clearChatButton: document.getElementById('clear-chat')
+                };
+
+                // Check if required elements exist
+                if (!elements.authContainer || !elements.chatContainer) return;
+
+                // API Service
+                const ApiService = {
+                    request: async function (endpoint, method = 'GET', data = null) {
+                        const headers = {
+                            'Content-Type': 'application/json',
+                            'X-Client-Domain': window.location.hostname
+                        };
+
+                        // Add auth token if available
+                        if (AppState.authToken) {
+                            headers['X-Auth-Token'] = AppState.authToken;
+                        }
+
+                        const config = {
+                            method,
+                            headers,
+                            credentials: 'same-origin'
+                        };
+
+                        if (data) {
+                            config.body = JSON.stringify(data);
+                        }
+
+                        try {
+                            const response = await fetch(`${API_URL}/${endpoint}`, config);
+                            const responseData = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(responseData.error || 'API request failed');
+                            }
+
+                            return responseData;
+                        } catch (error) {
+                            console.error('API request error:', error);
+                            throw error;
+                        }
+                    },
+
+                    register: async function (userData) {
+                        return this.request('users', 'POST', userData);
+                    },
+
+                    login: async function (credentials) {
+                        return this.request('auth/login', 'POST', credentials);
+                    },
+
+                    verifySession: async function () {
+                        return this.request('users/me');
+                    },
+
+                    sendMessage: async function (message) {
+                        return this.request('assistant/chat', 'POST', { message });
+                    },
+
+                    getChatHistory: async function () {
+                        return this.request('assistant/history');
+                    },
+
+                    clearChatHistory: async function () {
+                        return this.request('assistant/history', 'DELETE');
+                    }
+                };
+
+                // UI Manager
+                const UIManager = {
+                    showAuthForm: function (formName) {
+                        elements.loginTab.classList.remove('active');
+                        elements.registerTab.classList.remove('active');
+                        elements.loginForm.classList.remove('active');
+                        elements.registerForm.classList.remove('active');
+
+                        if (formName === 'login') {
+                            elements.loginTab.classList.add('active');
+                            elements.loginForm.classList.add('active');
+                        } else if (formName === 'register') {
+                            elements.registerTab.classList.add('active');
+                            elements.registerForm.classList.add('active');
+                        }
+                    },
+
+                    showAuthContainer: function () {
+                        elements.authContainer.style.display = 'block';
+                        elements.chatContainer.style.display = 'none';
+                    },
+
+                    showChatContainer: function () {
+                        elements.authContainer.style.display = 'none';
+                        elements.chatContainer.style.display = 'flex';
+                    },
+
+                    updateUserInfo: function (user) {
+                        if (user) {
+                            const initial = user.name ? user.name.charAt(0).toUpperCase() : 'U';
+                            elements.userAvatar.textContent = initial;
+                            elements.userName.textContent = user.name || 'User';
+                        }
+                    },
+
+                    displayAuthMessage: function (element, message, isError = false) {
+                        element.textContent = message;
+                        element.classList.remove('error', 'success');
+
+                        if (message) {
+                            element.classList.add(isError ? 'error' : 'success');
+                            element.style.display = 'block';
+
+                            // Auto-hide after 5 seconds
+                            setTimeout(() => {
+                                element.style.display = 'none';
+                            }, 5000);
+                        } else {
+                            element.style.display = 'none';
+                        }
+                    },
+
+                    addChatMessage: function (message, isUser = false) {
+                        const messageEl = document.createElement('div');
+                        messageEl.className = `chat-message ${isUser ? 'user-message' : 'ai-message'}`;
+
+                        const now = new Date();
+                        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                        messageEl.innerHTML = `
                 <div class="message-bubble">${message}</div>
                 <div class="message-time">${timeString}</div>
             `;
-            
-            elements.chatHistory.appendChild(messageEl);
-            
-            // Scroll to bottom
-            elements.chatHistory.scrollTop = elements.chatHistory.scrollHeight;
-        },
-        
-        clearChat: function() {
-            // Keep just the welcome message
-            elements.chatHistory.innerHTML = `
+
+                        elements.chatHistory.appendChild(messageEl);
+
+                        // Scroll to bottom
+                        elements.chatHistory.scrollTop = elements.chatHistory.scrollHeight;
+                    },
+
+                    clearChat: function () {
+                        // Keep just the welcome message
+                        elements.chatHistory.innerHTML = `
                 <div class="chat-message ai-message">
                     <div class="message-bubble">Hello! I'm Gigi Mobley, the world's first AGI. How may I assist you today?</div>
                     <div class="message-time">Just now</div>
                 </div>
             `;
-        },
-        
-        clearInputs: function() {
-            elements.loginEmail.value = '';
-            elements.loginPassword.value = '';
-            elements.registerName.value = '';
-            elements.registerEmail.value = '';
-            elements.registerPassword.value = '';
-            elements.chatInput.value = '';
-        }
-    };
-    
-    // Event Handlers
-    const EventHandler = {
-        init: function() {
-            // Tab switching
-            elements.loginTab.addEventListener('click', () => UIManager.showAuthForm('login'));
-            elements.registerTab.addEventListener('click', () => UIManager.showAuthForm('register'));
-            
-            // Form submissions
-            elements.loginButton.addEventListener('click', this.handleLogin);
-            elements.registerButton.addEventListener('click', this.handleRegister);
-            
-            // Chat functionality
-            elements.sendButton.addEventListener('click', this.handleSendMessage);
-            elements.chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    this.handleSendMessage();
-                }
-            });
-            
-            // Other actions
-            elements.logoutButton.addEventListener('click', this.handleLogout);
-            elements.clearChatButton.addEventListener('click', this.handleClearChat);
-            
-            // Check for saved session
-            if (AppState.loadSavedSession()) {
-                this.verifyAndLoadSession();
-            } else {
-                UIManager.showAuthContainer();
-            }
-        },
-        
-        verifyAndLoadSession: async function() {
-            try {
-                const response = await ApiService.verifySession();
-                
-                if (response.user) {
-                    // Session is valid
-                    AppState.setUser(response.user, AppState.authToken);
-                    UIManager.updateUserInfo(response.user);
-                    UIManager.showChatContainer();
-                    
-                    // Load chat history
-                    try {
-                        const historyData = await ApiService.getChatHistory();
-                        
-                        if (historyData.history && historyData.history.length > 0) {
-                            // Clear existing chat and add history
-                            elements.chatHistory.innerHTML = '';
-                            
-                            historyData.history.forEach(msg => {
-                                UIManager.addChatMessage(
-                                    msg.content, 
-                                    msg.role === 'user'
-                                );
-                            });
-                        }
-                    } catch (historyError) {
-                        console.error('Error loading chat history:', historyError);
+                    },
+
+                    clearInputs: function () {
+                        elements.loginEmail.value = '';
+                        elements.loginPassword.value = '';
+                        elements.registerName.value = '';
+                        elements.registerEmail.value = '';
+                        elements.registerPassword.value = '';
+                        elements.chatInput.value = '';
                     }
-                } else {
-                    // Invalid session
-                    AppState.clearUser();
-                    UIManager.showAuthContainer();
-                }
-            } catch (error) {
-                console.error('Session verification error:', error);
-                AppState.clearUser();
-                UIManager.showAuthContainer();
-            }
-        },
-        
-        handleLogin: async function() {
-            UIManager.displayAuthMessage(elements.loginMessage, '');
-            
-            const email = elements.loginEmail.value.trim();
-            const password = elements.loginPassword.value;
-            
-            if (!email || !password) {
-                UIManager.displayAuthMessage(
-                    elements.loginMessage,
-                    'Please enter both email and password',
-                    true
-                );
-                return;
-            }
-            
-            try {
-                const response = await ApiService.login({ email, password });
-                
-                if (response.token && response.user) {
-                    AppState.setUser(response.user, response.token);
-                    UIManager.updateUserInfo(response.user);
-                    UIManager.clearInputs();
-                    UIManager.showChatContainer();
-                }
-            } catch (error) {
-                UIManager.displayAuthMessage(
-                    elements.loginMessage,
-                    error.message || 'Login failed',
-                    true
-                );
-            }
-        },
-        
-        handleRegister: async function() {
-            UIManager.displayAuthMessage(elements.registerMessage, '');
-            
-            const name = elements.registerName.value.trim();
-            const email = elements.registerEmail.value.trim();
-            const password = elements.registerPassword.value;
-            
-            if (!name || !email || !password) {
-                UIManager.displayAuthMessage(
-                    elements.registerMessage,
-                    'Please fill in all fields',
-                    true
-                );
-                return;
-            }
-            
-            try {
-                await ApiService.register({ name, email, password });
-                
-                UIManager.displayAuthMessage(
-                    elements.registerMessage,
-                    'Account created successfully! You can now login.',
-                    false
-                );
-                
-                UIManager.clearInputs();
-                
-                // Switch to login form after successful registration
-                setTimeout(() => {
-                    UIManager.showAuthForm('login');
-                }, 1500);
-                
-            } catch (error) {
-                UIManager.displayAuthMessage(
-                    elements.registerMessage,
-                    error.message || 'Registration failed',
-                    true
-                );
-            }
-        },
-        
-        handleSendMessage: async function() {
-            const message = elements.chatInput.value.trim();
-            
-            if (!message) return;
-            
-            // Add user message to chat
-            UIManager.addChatMessage(message, true);
-            elements.chatInput.value = '';
-            
-            // Show typing indicator
-            const typingIndicator = document.createElement('div');
-            typingIndicator.className = 'chat-message ai-message typing-indicator';
-            typingIndicator.innerHTML = `
+                };
+
+                // Event Handlers
+                const EventHandler = {
+                    init: function () {
+                        // Tab switching
+                        elements.loginTab.addEventListener('click', () => UIManager.showAuthForm('login'));
+                        elements.registerTab.addEventListener('click', () => UIManager.showAuthForm('register'));
+
+                        // Form submissions
+                        elements.loginButton.addEventListener('click', this.handleLogin);
+                        elements.registerButton.addEventListener('click', this.handleRegister);
+
+                        // Chat functionality
+                        elements.sendButton.addEventListener('click', this.handleSendMessage);
+                        elements.chatInput.addEventListener('keypress', (e) => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                                e.preventDefault();
+                                this.handleSendMessage();
+                            }
+                        });
+
+                        // Other actions
+                        elements.logoutButton.addEventListener('click', this.handleLogout);
+                        elements.clearChatButton.addEventListener('click', this.handleClearChat);
+
+                        // Check for saved session
+                        if (AppState.loadSavedSession()) {
+                            this.verifyAndLoadSession();
+                        } else {
+                            UIManager.showAuthContainer();
+                        }
+                    },
+
+                    verifyAndLoadSession: async function () {
+                        try {
+                            const response = await ApiService.verifySession();
+
+                            if (response.user) {
+                                // Session is valid
+                                AppState.setUser(response.user, AppState.authToken);
+                                UIManager.updateUserInfo(response.user);
+                                UIManager.showChatContainer();
+
+                                // Load chat history
+                                try {
+                                    const historyData = await ApiService.getChatHistory();
+
+                                    if (historyData.history && historyData.history.length > 0) {
+                                        // Clear existing chat and add history
+                                        elements.chatHistory.innerHTML = '';
+
+                                        historyData.history.forEach(msg => {
+                                            UIManager.addChatMessage(
+                                                msg.content,
+                                                msg.role === 'user'
+                                            );
+                                        });
+                                    }
+                                } catch (historyError) {
+                                    console.error('Error loading chat history:', historyError);
+                                }
+                            } else {
+                                // Invalid session
+                                AppState.clearUser();
+                                UIManager.showAuthContainer();
+                            }
+                        } catch (error) {
+                            console.error('Session verification error:', error);
+                            AppState.clearUser();
+                            UIManager.showAuthContainer();
+                        }
+                    },
+
+                    handleLogin: async function () {
+                        UIManager.displayAuthMessage(elements.loginMessage, '');
+
+                        const email = elements.loginEmail.value.trim();
+                        const password = elements.loginPassword.value;
+
+                        if (!email || !password) {
+                            UIManager.displayAuthMessage(
+                                elements.loginMessage,
+                                'Please enter both email and password',
+                                true
+                            );
+                            return;
+                        }
+
+                        try {
+                            const response = await ApiService.login({ email, password });
+
+                            if (response.token && response.user) {
+                                AppState.setUser(response.user, response.token);
+                                UIManager.updateUserInfo(response.user);
+                                UIManager.clearInputs();
+                                UIManager.showChatContainer();
+                            }
+                        } catch (error) {
+                            UIManager.displayAuthMessage(
+                                elements.loginMessage,
+                                error.message || 'Login failed',
+                                true
+                            );
+                        }
+                    },
+
+                    handleRegister: async function () {
+                        UIManager.displayAuthMessage(elements.registerMessage, '');
+
+                        const name = elements.registerName.value.trim();
+                        const email = elements.registerEmail.value.trim();
+                        const password = elements.registerPassword.value;
+
+                        if (!name || !email || !password) {
+                            UIManager.displayAuthMessage(
+                                elements.registerMessage,
+                                'Please fill in all fields',
+                                true
+                            );
+                            return;
+                        }
+
+                        try {
+                            await ApiService.register({ name, email, password });
+
+                            UIManager.displayAuthMessage(
+                                elements.registerMessage,
+                                'Account created successfully! You can now login.',
+                                false
+                            );
+
+                            UIManager.clearInputs();
+
+                            // Switch to login form after successful registration
+                            setTimeout(() => {
+                                UIManager.showAuthForm('login');
+                            }, 1500);
+
+                        } catch (error) {
+                            UIManager.displayAuthMessage(
+                                elements.registerMessage,
+                                error.message || 'Registration failed',
+                                true
+                            );
+                        }
+                    },
+
+                    handleSendMessage: async function () {
+                        const message = elements.chatInput.value.trim();
+
+                        if (!message) return;
+
+                        // Add user message to chat
+                        UIManager.addChatMessage(message, true);
+                        elements.chatInput.value = '';
+
+                        // Show typing indicator
+                        const typingIndicator = document.createElement('div');
+                        typingIndicator.className = 'chat-message ai-message typing-indicator';
+                        typingIndicator.innerHTML = `
                 <div class="message-bubble">
                     <div class="typing-dots">
                         <span></span><span></span><span></span>
                     </div>
                 </div>
             `;
-            elements.chatHistory.appendChild(typingIndicator);
-            elements.chatHistory.scrollTop = elements.chatHistory.scrollHeight;
-            
-            try {
-                const response = await ApiService.sendMessage(message);
-                
-                // Remove typing indicator
-                elements.chatHistory.removeChild(typingIndicator);
-                
-                // Add AI response
-                UIManager.addChatMessage(response.response, false);
-            } catch (error) {
-                // Remove typing indicator
-                elements.chatHistory.removeChild(typingIndicator);
-                
-                // Add error message
-                UIManager.addChatMessage(
-                    'Sorry, I encountered an issue processing your request. Please try again.',
-                    false
-                );
-                console.error('Send message error:', error);
-            }
-        },
-        
-        handleClearChat: async function() {
-            try {
-                await ApiService.clearChatHistory();
-                UIManager.clearChat();
-            } catch (error) {
-                console.error('Clear chat error:', error);
-                UIManager.addChatMessage(
-                    'Sorry, I encountered an issue clearing the chat history.',
-                    false
-                );
-            }
-        },
-        
-        handleLogout: function() {
-            AppState.clearUser();
-            UIManager.clearChat();
-            UIManager.clearInputs();
-            UIManager.showAuthContainer();
-        }
-    };
-    
-    // Initialize chat functionality
-    EventHandler.init();
-}
+                        elements.chatHistory.appendChild(typingIndicator);
+                        elements.chatHistory.scrollTop = elements.chatHistory.scrollHeight;
 
-// Contact Form Enhancement
-function initContactForm() {
-    const contactForm = document.querySelector('#contact .contact-form form');
-    
-    if (!contactForm) return;
-    
-    // Add a status message container if it doesn't exist
-    let statusMessage = contactForm.querySelector('.form-status-message');
-    if (!statusMessage) {
-        statusMessage = document.createElement('div');
-        statusMessage.className = 'form-status-message';
-        statusMessage.style.padding = '10px';
-        statusMessage.style.marginTop = '15px';
-        statusMessage.style.borderRadius = '4px';
-        statusMessage.style.display = 'none';
-        contactForm.appendChild(statusMessage);
-    }
-    
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const subjectInput = document.getElementById('subject');
-        const messageInput = document.getElementById('message');
-        
-        // Basic validation
-        if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-            showStatus('Please fill in all required fields.', 'error');
-            return;
-        }
-        
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailInput.value.trim())) {
-            showStatus('Please enter a valid email address.', 'error');
-            return;
-        }
-        
-        // Disable form and show loading
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
-        
-        // Prepare the form data
-        const formData = {
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            subject: subjectInput ? subjectInput.value.trim() : 'Contact Form Submission',
-            message: messageInput.value.trim()
-        };
-        
-        try {
-            // Send to Cloudflare Worker endpoint
-            const response = await fetch('https://contact-form.mobleysoft.workers.dev', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            const result = await response.json();
-            
-            if (response.ok && result.success) {
-                // Success
-                showStatus('Your message has been sent successfully! We\'ll get back to you soon.', 'success');
-                
-                // Reset form
-                contactForm.reset();
-            } else {
-                // API error
-                showStatus(result.message || 'Something went wrong. Please try again later.', 'error');
+                        try {
+                            const response = await ApiService.sendMessage(message);
+
+                            // Remove typing indicator
+                            elements.chatHistory.removeChild(typingIndicator);
+                            // Debugging: Log the raw response
+                            console.log("Raw API Response:", response);
+
+                            // Debugging: Log each key-value pair in the response
+                            Object.entries(response).forEach(([key, value]) => {
+                                console.log(`Response Key: ${key}, Value:`, value);
+                            });
+                            Object.entries(response.response).forEach(([key, value]) => {
+                                console.log(`Response Key: ${key}, Value:`, value);
+                            });
+                            // Add AI response
+                            UIManager.addChatMessage(response, false);
+                        } catch (error) {
+                            // Remove typing indicator
+                            elements.chatHistory.removeChild(typingIndicator);
+
+                            // Add error message
+                            UIManager.addChatMessage(
+                                'Sorry, I encountered an issue processing your request. Please try again.',
+                                false
+                            );
+                            console.error('Send message error:', error);
+                        }
+                    },
+
+                    handleClearChat: async function () {
+                        try {
+                            await ApiService.clearChatHistory();
+                            UIManager.clearChat();
+                        } catch (error) {
+                            console.error('Clear chat error:', error);
+                            UIManager.addChatMessage(
+                                'Sorry, I encountered an issue clearing the chat history.',
+                                false
+                            );
+                        }
+                    },
+
+                    handleLogout: function () {
+                        AppState.clearUser();
+                        UIManager.clearChat();
+                        UIManager.clearInputs();
+                        UIManager.showAuthContainer();
+                    }
+                };
+
+                // Initialize chat functionality
+                EventHandler.init();
             }
-        } catch (error) {
-            // Network or other error
-            console.error('Form submission error:', error);
-            showStatus('Could not send your message. Please try again later.', 'error');
-        } finally {
-            // Re-enable form
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-        }
-    });
-    
-    // Helper function to show status messages
-    function showStatus(message, type) {
-        statusMessage.textContent = message;
-        statusMessage.style.display = 'block';
-        
-        if (type === 'success') {
-            statusMessage.style.backgroundColor = 'rgba(0, 255, 0, 0.1)';
-            statusMessage.style.color = '#6bff6b';
-            statusMessage.style.border = '1px solid rgba(0, 255, 0, 0.3)';
-        } else {
-            statusMessage.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
-            statusMessage.style.color = '#ff6b6b';
-            statusMessage.style.border = '1px solid rgba(255, 0, 0, 0.3)';
-        }
-        
-        // Auto-hide after 5 seconds for success messages
-        if (type === 'success') {
-            setTimeout(() => {
-                statusMessage.style.display = 'none';
-            }, 5000);
-        }
-    }
-    
-    // Optional: Add email validation on blur
-    const emailInput = document.getElementById('email');
-    if (emailInput) {
-        emailInput.addEventListener('blur', function() {
-            const email = this.value.trim();
-            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                this.style.borderColor = 'rgba(255, 0, 0, 0.5)';
-            } else {
-                this.style.borderColor = email ? 'rgba(255, 204, 0, 0.5)' : 'rgba(255, 204, 0, 0.3)';
-            }
-        });
-    }
-    
-    // Fallback email feature - If direct form submission fails, offer mailto link
-    function offerEmailFallback() {
-        const fallbackContainer = document.createElement('div');
-        fallbackContainer.className = 'email-fallback';
-        fallbackContainer.style.marginTop = '15px';
-        fallbackContainer.style.textAlign = 'center';
-        
-        fallbackContainer.innerHTML = `
+
+            // Contact Form Enhancement
+            function initContactForm() {
+                const contactForm = document.querySelector('#contact .contact-form form');
+
+                if (!contactForm) return;
+
+                // Add a status message container if it doesn't exist
+                let statusMessage = contactForm.querySelector('.form-status-message');
+                if (!statusMessage) {
+                    statusMessage = document.createElement('div');
+                    statusMessage.className = 'form-status-message';
+                    statusMessage.style.padding = '10px';
+                    statusMessage.style.marginTop = '15px';
+                    statusMessage.style.borderRadius = '4px';
+                    statusMessage.style.display = 'none';
+                    contactForm.appendChild(statusMessage);
+                }
+
+                contactForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    // Get form values
+                    const nameInput = document.getElementById('name');
+                    const emailInput = document.getElementById('email');
+                    const subjectInput = document.getElementById('subject');
+                    const messageInput = document.getElementById('message');
+
+                    // Basic validation
+                    if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+                        showStatus('Please fill in all required fields.', 'error');
+                        return;
+                    }
+
+                    // Validate email format
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailInput.value.trim())) {
+                        showStatus('Please enter a valid email address.', 'error');
+                        return;
+                    }
+
+                    // Disable form and show loading
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.textContent;
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+
+                    // Prepare the form data
+                    const formData = {
+                        name: nameInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        subject: subjectInput ? subjectInput.value.trim() : 'Contact Form Submission',
+                        message: messageInput.value.trim()
+                    };
+
+                    try {
+                        // Send to Cloudflare Worker endpoint
+                        const response = await fetch('https://contact-form.mobleysoft.workers.dev', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok && result.success) {
+                            // Success
+                            showStatus('Your message has been sent successfully! We\'ll get back to you soon.', 'success');
+
+                            // Reset form
+                            contactForm.reset();
+                        } else {
+                            // API error
+                            showStatus(result.message || 'Something went wrong. Please try again later.', 'error');
+                        }
+                    } catch (error) {
+                        // Network or other error
+                        console.error('Form submission error:', error);
+                        showStatus('Could not send your message. Please try again later.', 'error');
+                    } finally {
+                        // Re-enable form
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalButtonText;
+                    }
+                });
+
+                // Helper function to show status messages
+                function showStatus(message, type) {
+                    statusMessage.textContent = message;
+                    statusMessage.style.display = 'block';
+
+                    if (type === 'success') {
+                        statusMessage.style.backgroundColor = 'rgba(0, 255, 0, 0.1)';
+                        statusMessage.style.color = '#6bff6b';
+                        statusMessage.style.border = '1px solid rgba(0, 255, 0, 0.3)';
+                    } else {
+                        statusMessage.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                        statusMessage.style.color = '#ff6b6b';
+                        statusMessage.style.border = '1px solid rgba(255, 0, 0, 0.3)';
+                    }
+
+                    // Auto-hide after 5 seconds for success messages
+                    if (type === 'success') {
+                        setTimeout(() => {
+                            statusMessage.style.display = 'none';
+                        }, 5000);
+                    }
+                }
+
+                // Optional: Add email validation on blur
+                const emailInput = document.getElementById('email');
+                if (emailInput) {
+                    emailInput.addEventListener('blur', function () {
+                        const email = this.value.trim();
+                        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                            this.style.borderColor = 'rgba(255, 0, 0, 0.5)';
+                        } else {
+                            this.style.borderColor = email ? 'rgba(255, 204, 0, 0.5)' : 'rgba(255, 204, 0, 0.3)';
+                        }
+                    });
+                }
+
+                // Fallback email feature - If direct form submission fails, offer mailto link
+                function offerEmailFallback() {
+                    const fallbackContainer = document.createElement('div');
+                    fallbackContainer.className = 'email-fallback';
+                    fallbackContainer.style.marginTop = '15px';
+                    fallbackContainer.style.textAlign = 'center';
+
+                    fallbackContainer.innerHTML = `
             <p>If you're experiencing issues with the form, you can email us directly:</p>
             <a href="mailto:gigi@mobleysoft.com" style="color: var(--primary-color); text-decoration: underline;">
               gigi@mobleysoft.com
             </a>
         `;
-        
-        contactForm.appendChild(fallbackContainer);
-    }
-    
-    // Check if the Cloudflare worker is accessible
-    fetch('https://contact-form.johnmobley99.workers.dev/health', {
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-        if (!response.ok) {
-            offerEmailFallback();
-        }
-    })
-    .catch(error => {
-        // If fetching fails, offer the fallback
-        offerEmailFallback();
-    });
-}
-    </script>
+
+                    contactForm.appendChild(fallbackContainer);
+                }
+
+                // Check if the Cloudflare worker is accessible
+                fetch('https://contact-form.johnmobley99.workers.dev/health', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            offerEmailFallback();
+                        }
+                    })
+                    .catch(error => {
+                        // If fetching fails, offer the fallback
+                        offerEmailFallback();
+                    });
+            }
+        </script>
 </body>
+
 </html>
