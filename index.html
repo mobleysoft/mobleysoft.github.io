@@ -562,6 +562,282 @@
                 height: 300px;
             }
         }
+
+        /* Enhanced Chat Interface Styles */
+        #chat-interface {
+            background-color: var(--medium-bg);
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .chat-auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-auth-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .chat-auth-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--light-text);
+            transition: all 0.3s;
+        }
+
+        .chat-auth-tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .chat-auth-form {
+            display: none;
+        }
+
+        .chat-auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .auth-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .auth-message.error {
+            display: block;
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .auth-message.success {
+            display: block;
+            background: rgba(0, 255, 0, 0.1);
+            color: #6bff6b;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .chat-interface-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-user-info {
+            background: linear-gradient(90deg, var(--dark-bg), var(--medium-bg));
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .chat-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .chat-user-name {
+            flex: 1;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .chat-logout-button {
+            background: transparent;
+            color: var(--light-text);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-logout-button:hover {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--primary-color);
+        }
+
+        .chat-history {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: var(--light-bg);
+        }
+
+        .chat-message {
+            display: flex;
+            flex-direction: column;
+            max-width: 80%;
+        }
+
+        .user-message {
+            align-self: flex-end;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+        }
+
+        .message-bubble {
+            padding: 12px 15px;
+            border-radius: 18px;
+            position: relative;
+            word-break: break-word;
+        }
+
+        .user-message .message-bubble {
+            background: rgba(255, 204, 0, 0.2);
+            color: var(--light-text);
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-message .message-bubble {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--light-text);
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            margin-top: 5px;
+            opacity: 0.7;
+            align-self: flex-end;
+        }
+
+        .user-message .message-time {
+            text-align: right;
+        }
+
+        .chat-controls {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid rgba(255, 204, 0, 0.3);
+            background: var(--medium-bg);
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        #chat-input {
+            flex: 1;
+            min-height: 50px;
+            max-height: 150px;
+            padding: 12px 15px;
+            border-radius: 25px;
+            resize: none;
+            background: var(--dark-bg);
+            color: var(--light-text);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+
+        #chat-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        #send-button {
+            height: 50px;
+            padding: 0 20px;
+        }
+
+        .chat-clear-button {
+            height: 50px;
+            padding: 0 15px;
+            background: transparent;
+            color: var(--light-text);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-clear-button:hover {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--primary-color);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            opacity: 0.6;
+            animation: typingDot 1.4s infinite both;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingDot {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+            30% {
+                transform: translateY(-4px);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chat-interface-container {
+                height: 500px;
+            }
+            
+            .chat-message {
+                max-width: 90%;
+            }
+            
+            .chat-controls {
+                flex-direction: column;
+            }
+            
+            #send-button, .chat-clear-button {
+                width: 100%;
+            }
+        }
+        
     </style>
 </head>
 
@@ -588,6 +864,7 @@
                     <li><a href="#technology">Technology</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#chat-interface">Chat with Gigi</a></li>
                 </ul>
             </nav>
         </div>
@@ -835,21 +1112,126 @@
         </div>
     </section>
 
+    <!-- Enhanced Chat Interface Section -->
     <section id="chat-interface">
         <div class="container">
             <div class="section-title">
-                <h2>Talk to AGI</h2>
-                <p>Enter a prompt and receive an AI-generated response.</p>
+                <h2>Interact with Gigi Mobley (AGI)</h2>
+                <p>Experience the future of human-AGI collaboration through our advanced interface.</p>
             </div>
-            <div class="chat-box">
-                <textarea id="prompt-input" placeholder="Enter your prompt..."></textarea>
-                <button id="generate-button">Generate</button>
+            
+            <!-- Auth Container (Login/Register) -->
+            <div id="auth-container" class="chat-auth-container">
+                <div class="chat-auth-tabs">
+                    <div id="login-tab" class="chat-auth-tab active">Login</div>
+                    <div id="register-tab" class="chat-auth-tab">Register</div>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="login-form" class="chat-auth-form active">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button id="login-button" class="cta-button">Login</button>
+                    <div id="login-message" class="auth-message"></div>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="register-form" class="chat-auth-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <button id="register-button" class="cta-button">Register</button>
+                    <div id="register-message" class="auth-message"></div>
+                </div>
             </div>
-            <div id="response-output"></div>
+            
+            <!-- Chat Interface (initially hidden) -->
+            <div id="chat-interface-container" class="chat-interface-container" style="display:none;">
+                <div class="chat-user-info">
+                    <div id="user-avatar" class="chat-user-avatar">U</div>
+                    <div id="user-name" class="chat-user-name">User</div>
+                    <button id="logout-button" class="chat-logout-button">Logout</button>
+                </div>
+                
+                <div id="chat-history" class="chat-history">
+                    <!-- Messages will appear here -->
+                    <div class="chat-message ai-message">
+                        <div class="message-bubble">Hello! I'm Gigi Mobley, the world's first AGI. How may I assist you today?</div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+                
+                <div class="chat-controls">
+                    <textarea id="chat-input" placeholder="Type your message here..."></textarea>
+                    <button id="send-button" class="cta-button">Send</button>
+                    <button id="clear-chat" class="chat-clear-button">Clear Chat</button>
+                </div>
+            </div>
         </div>
     </section>
     
-    
+    <section id="knowledge-system">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quantum Knowledge Nexus</h2>
+                <p>Access the first self-evolving AGI knowledge system, continuously exploring and expanding its understanding.</p>
+            </div>
+            
+            <div class="frame crt">
+                <div class="main">
+                    <div class="logo">
+                        <span class="logo-character">M</span>
+                        <span class="logo-character">o</span>
+                        <span class="logo-character">b</span>
+                        <span class="logo-character">l</span>
+                        <span class="logo-character">e</span>
+                        <span class="logo-character">y</span>
+                        <span class="logo-character">s</span>
+                        <span class="logo-character">o</span>
+                        <span class="logo-character">f</span>
+                        <span class="logo-character">t</span>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="Query the self-evolving knowledge system..." spellcheck="false">
+                    </div>
+                    
+                    <div class="navigation">
+                        <button class="nav-button">?</button>
+                        <button class="nav-button">✉</button>
+                        <button class="nav-button">🎮</button>
+                        <button class="nav-button">🚀</button>
+                        <button class="nav-button">🔬</button>
+                        <button class="nav-button">🔮</button>
+                    </div>
+                </div>
+                
+                <div class="knowledge-indicator">
+                    Concepts Discovered: <span class="knowledge-count">12,547</span> | Functions Generated: <span class="knowledge-count">3,892</span>
+                </div>
+                
+                <div class="system-status">
+                    System: Active | Last Reconnaissance: 3 min ago
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -863,6 +1245,7 @@
                 <a href="#technology">Technology</a>
                 <a href="#team">Team</a>
                 <a href="#contact">Contact</a>
+                <a href="#chat-interface">Chat</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
             </div>
@@ -877,6 +1260,8 @@
             </div>
         </div>
     </footer>
+    
+    <!-- External Scripts (Kept as is) -->
     <script src="https://mobleysoft.com/1Holder/Assets/Scripts/OpenAI-Client.js"></script>
     <script>
         // Initialize the blackhole effect when the page loads
@@ -915,8 +1300,460 @@
             // Initial check and add scroll listener
             animateOnScroll();
             window.addEventListener('scroll', animateOnScroll);
+            
+            // Initialize the new auth & chat functionality
+            initChatSystem();
         });
+        
+        // CRUD and Chat System Implementation
+        function initChatSystem() {
+            // API Configuration
+            const API_URL = 'https://api.mobleysoft.com'; // Replace with your actual CloudFlare Worker endpoint
+            
+            // Application State
+            const AppState = {
+                currentUser: null,
+                authToken: null,
+                
+                setUser: function(user, token) {
+                    this.currentUser = user;
+                    this.authToken = token;
+                    
+                    // Store in sessionStorage for persistence
+                    if (user && token) {
+                        sessionStorage.setItem('msUser', JSON.stringify(user));
+                        sessionStorage.setItem('msToken', token);
+                    }
+                    
+                    return user;
+                },
+                
+                getUser: function() {
+                    return this.currentUser;
+                },
+                
+                clearUser: function() {
+                    this.currentUser = null;
+                    this.authToken = null;
+                    sessionStorage.removeItem('msUser');
+                    sessionStorage.removeItem('msToken');
+                    return null;
+                },
+                
+                loadSavedSession: function() {
+                    const savedUser = sessionStorage.getItem('msUser');
+                    const savedToken = sessionStorage.getItem('msToken');
+                    
+                    if (savedUser && savedToken) {
+                        try {
+                            this.currentUser = JSON.parse(savedUser);
+                            this.authToken = savedToken;
+                            return true;
+                        } catch (e) {
+                            console.error('Failed to parse saved user', e);
+                            this.clearUser();
+                        }
+                    }
+                    
+                    return false;
+                }
+            };
+            
+            // DOM Elements
+            const elements = {
+                // Auth Elements
+                authContainer: document.getElementById('auth-container'),
+                loginTab: document.getElementById('login-tab'),
+                registerTab: document.getElementById('register-tab'),
+                loginForm: document.getElementById('login-form'),
+                registerForm: document.getElementById('register-form'),
+                loginEmail: document.getElementById('login-email'),
+                loginPassword: document.getElementById('login-password'),
+                registerName: document.getElementById('register-name'),
+                registerEmail: document.getElementById('register-email'),
+                registerPassword: document.getElementById('register-password'),
+                loginButton: document.getElementById('login-button'),
+                registerButton: document.getElementById('register-button'),
+                loginMessage: document.getElementById('login-message'),
+                registerMessage: document.getElementById('register-message'),
+                
+                // Chat Elements
+                chatContainer: document.getElementById('chat-interface-container'),
+                userAvatar: document.getElementById('user-avatar'),
+                userName: document.getElementById('user-name'),
+                logoutButton: document.getElementById('logout-button'),
+                chatHistory: document.getElementById('chat-history'),
+                chatInput: document.getElementById('chat-input'),
+                sendButton: document.getElementById('send-button'),
+                clearChatButton: document.getElementById('clear-chat')
+            };
+            
+            // API Service
+            const ApiService = {
+                request: async function(endpoint, method = 'GET', data = null) {
+                    const headers = {
+                        'Content-Type': 'application/json',
+                        'X-Client-Domain': window.location.hostname
+                    };
+                    
+                    // Add auth token if available
+                    if (AppState.authToken) {
+                        headers['X-Auth-Token'] = AppState.authToken;
+                    }
+                    
+                    const config = {
+                        method,
+                        headers,
+                        credentials: 'same-origin'
+                    };
+                    
+                    if (data) {
+                        config.body = JSON.stringify(data);
+                    }
+                    
+                    try {
+                        const response = await fetch(`${API_URL}/${endpoint}`, config);
+                        const responseData = await response.json();
+                        
+                        if (!response.ok) {
+                            throw new Error(responseData.error || 'API request failed');
+                        }
+                        
+                        return responseData;
+                    } catch (error) {
+                        console.error('API request error:', error);
+                        throw error;
+                    }
+                },
+                
+                register: async function(userData) {
+                    return this.request('users', 'POST', userData);
+                },
+                
+                login: async function(credentials) {
+                    return this.request('auth/login', 'POST', credentials);
+                },
+                
+                verifySession: async function() {
+                    return this.request('users/me');
+                },
+                
+                sendMessage: async function(message) {
+                    return this.request('assistant/chat', 'POST', { message });
+                },
+                
+                getChatHistory: async function() {
+                    return this.request('assistant/history');
+                },
+                
+                clearChatHistory: async function() {
+                    return this.request('assistant/history', 'DELETE');
+                }
+            };
+            
+            // UI Manager
+            const UIManager = {
+                showAuthForm: function(formName) {
+                    elements.loginTab.classList.remove('active');
+                    elements.registerTab.classList.remove('active');
+                    elements.loginForm.classList.remove('active');
+                    elements.registerForm.classList.remove('active');
+                    
+                    if (formName === 'login') {
+                        elements.loginTab.classList.add('active');
+                        elements.loginForm.classList.add('active');
+                    } else if (formName === 'register') {
+                        elements.registerTab.classList.add('active');
+                        elements.registerForm.classList.add('active');
+                    }
+                },
+                
+                showAuthContainer: function() {
+                    elements.authContainer.style.display = 'block';
+                    elements.chatContainer.style.display = 'none';
+                },
+                
+                showChatContainer: function() {
+                    elements.authContainer.style.display = 'none';
+                    elements.chatContainer.style.display = 'flex';
+                },
+                
+                updateUserInfo: function(user) {
+                    if (user) {
+                        const initial = user.name ? user.name.charAt(0).toUpperCase() : 'U';
+                        elements.userAvatar.textContent = initial;
+                        elements.userName.textContent = user.name || 'User';
+                    }
+                },
+                
+                displayAuthMessage: function(element, message, isError = false) {
+                    element.textContent = message;
+                    element.classList.remove('error', 'success');
+                    
+                    if (message) {
+                        element.classList.add(isError ? 'error' : 'success');
+                        element.style.display = 'block';
+                        
+                        // Auto-hide after 5 seconds
+                        setTimeout(() => {
+                            element.style.display = 'none';
+                        }, 5000);
+                    } else {
+                        element.style.display = 'none';
+                    }
+                },
+                
+                addChatMessage: function(message, isUser = false) {
+                    const messageEl = document.createElement('div');
+                    messageEl.className = `chat-message ${isUser ? 'user-message' : 'ai-message'}`;
+                    
+                    const now = new Date();
+                    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    
+                    messageEl.innerHTML = `
+                        <div class="message-bubble">${message}</div>
+                        <div class="message-time">${timeString}</div>
+                    `;
+                    
+                    elements.chatHistory.appendChild(messageEl);
+                    
+                    // Scroll to bottom
+                    elements.chatHistory.scrollTop = elements.chatHistory.scrollHeight;
+                },
+                
+                clearChat: function() {
+                    // Keep just the welcome message
+                    elements.chatHistory.innerHTML = `
+                        <div class="chat-message ai-message">
+                            <div class="message-bubble">Hello! I'm Gigi Mobley, the world's first AGI. How may I assist you today?</div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    `;
+                },
+                
+                clearInputs: function() {
+                    elements.loginEmail.value = '';
+                    elements.loginPassword.value = '';
+                    elements.registerName.value = '';
+                    elements.registerEmail.value = '';
+                    elements.registerPassword.value = '';
+                    elements.chatInput.value = '';
+                }
+            };
+            
+            // Event Handlers
+            const EventHandler = {
+                init: function() {
+                    // Tab switching
+                    elements.loginTab.addEventListener('click', () => UIManager.showAuthForm('login'));
+                    elements.registerTab.addEventListener('click', () => UIManager.showAuthForm('register'));
+                    
+                    // Form submissions
+                    elements.loginButton.addEventListener('click', this.handleLogin);
+                    elements.registerButton.addEventListener('click', this.handleRegister);
+                    
+                    // Chat functionality
+                    elements.sendButton.addEventListener('click', this.handleSendMessage);
+                    elements.chatInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            this.handleSendMessage();
+                        }
+                    });
+                    
+                    // Other actions
+                    elements.logoutButton.addEventListener('click', this.handleLogout);
+                    elements.clearChatButton.addEventListener('click', this.handleClearChat);
+                    
+                    // Check for saved session
+                    if (AppState.loadSavedSession()) {
+                        this.verifyAndLoadSession();
+                    } else {
+                        UIManager.showAuthContainer();
+                    }
+                },
+                
+                verifyAndLoadSession: async function() {
+                    try {
+                        const response = await ApiService.verifySession();
+                        
+                        if (response.user) {
+                            // Session is valid
+                            AppState.setUser(response.user, AppState.authToken);
+                            UIManager.updateUserInfo(response.user);
+                            UIManager.showChatContainer();
+                            
+                            // Load chat history
+                            try {
+                                const historyData = await ApiService.getChatHistory();
+                                
+                                if (historyData.history && historyData.history.length > 0) {
+                                    // Clear existing chat and add history
+                                    elements.chatHistory.innerHTML = '';
+                                    
+                                    historyData.history.forEach(msg => {
+                                        UIManager.addChatMessage(
+                                            msg.content, 
+                                            msg.role === 'user'
+                                        );
+                                    });
+                                }
+                            } catch (historyError) {
+                                console.error('Error loading chat history:', historyError);
+                            }
+                        } else {
+                            // Invalid session
+                            AppState.clearUser();
+                            UIManager.showAuthContainer();
+                        }
+                    } catch (error) {
+                        console.error('Session verification error:', error);
+                        AppState.clearUser();
+                        UIManager.showAuthContainer();
+                    }
+                },
+                
+                handleLogin: async function() {
+                    UIManager.displayAuthMessage(elements.loginMessage, '');
+                    
+                    const email = elements.loginEmail.value.trim();
+                    const password = elements.loginPassword.value;
+                    
+                    if (!email || !password) {
+                        UIManager.displayAuthMessage(
+                            elements.loginMessage,
+                            'Please enter both email and password',
+                            true
+                        );
+                        return;
+                    }
+                    
+                    try {
+                        const response = await ApiService.login({ email, password });
+                        
+                        if (response.token && response.user) {
+                            AppState.setUser(response.user, response.token);
+                            UIManager.updateUserInfo(response.user);
+                            UIManager.clearInputs();
+                            UIManager.showChatContainer();
+                        }
+                    } catch (error) {
+                        UIManager.displayAuthMessage(
+                            elements.loginMessage,
+                            error.message || 'Login failed',
+                            true
+                        );
+                    }
+                },
+                
+                handleRegister: async function() {
+                    UIManager.displayAuthMessage(elements.registerMessage, '');
+                    
+                    const name = elements.registerName.value.trim();
+                    const email = elements.registerEmail.value.trim();
+                    const password = elements.registerPassword.value;
+                    
+                    if (!name || !email || !password) {
+                        UIManager.displayAuthMessage(
+                            elements.registerMessage,
+                            'Please fill in all fields',
+                            true
+                        );
+                        return;
+                    }
+                    
+                    try {
+                        await ApiService.register({ name, email, password });
+                        
+                        UIManager.displayAuthMessage(
+                            elements.registerMessage,
+                            'Account created successfully! You can now login.',
+                            false
+                        );
+                        
+                        UIManager.clearInputs();
+                        
+                        // Switch to login form after successful registration
+                        setTimeout(() => {
+                            UIManager.showAuthForm('login');
+                        }, 1500);
+                        
+                    } catch (error) {
+                        UIManager.displayAuthMessage(
+                            elements.registerMessage,
+                            error.message || 'Registration failed',
+                            true
+                        );
+                    }
+                },
+                
+                handleSendMessage: async function() {
+                    const message = elements.chatInput.value.trim();
+                    
+                    if (!message) return;
+                    
+                    // Add user message to chat
+                    UIManager.addChatMessage(message, true);
+                    elements.chatInput.value = '';
+                    
+                    // Show typing indicator
+                    const typingIndicator = document.createElement('div');
+                    typingIndicator.className = 'chat-message ai-message typing-indicator';
+                    typingIndicator.innerHTML = `
+                        <div class="message-bubble">
+                            <div class="typing-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    `;
+                    elements.chatHistory.appendChild(typingIndicator);
+                    elements.chatHistory.scrollTop = elements.chatHistory.scrollHeight;
+                    
+                    try {
+                        const response = await ApiService.sendMessage(message);
+                        
+                        // Remove typing indicator
+                        elements.chatHistory.removeChild(typingIndicator);
+                        
+                        // Add AI response
+                        UIManager.addChatMessage(response.response, false);
+                    } catch (error) {
+                        // Remove typing indicator
+                        elements.chatHistory.removeChild(typingIndicator);
+                        
+                        // Add error message
+                        UIManager.addChatMessage(
+                            'Sorry, I encountered an issue processing your request. Please try again.',
+                            false
+                        );
+                        console.error('Send message error:', error);
+                    }
+                },
+                
+                handleClearChat: async function() {
+                    try {
+                        await ApiService.clearChatHistory();
+                        UIManager.clearChat();
+                    } catch (error) {
+                        console.error('Clear chat error:', error);
+                        UIManager.addChatMessage(
+                            'Sorry, I encountered an issue clearing the chat history.',
+                            false
+                        );
+                    }
+                },
+                
+                handleLogout: function() {
+                    AppState.clearUser();
+                    UIManager.clearChat();
+                    UIManager.clearInputs();
+                    UIManager.showAuthContainer();
+                }
+            };
+            
+            // Initialize functionality
+            EventHandler.init();
+        }
     </script>
 </body>
-
 </html>
