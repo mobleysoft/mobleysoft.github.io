@@ -2055,22 +2055,22 @@
                         elements.chatHistory.scrollTop = elements.chatHistory.scrollHeight;
 
                         try {
-                            const response = await ApiService.sendMessage(message);
+                            const raw_response = await ApiService.sendMessage(message);
 
                             // Remove typing indicator
                             elements.chatHistory.removeChild(typingIndicator);
                             // Debugging: Log the raw response
-                            console.log("Raw API Response:", response);
+                            console.log("Raw API Response:", raw_response);
 
                             // Debugging: Log each key-value pair in the response
-                            Object.entries(response).forEach(([key, value]) => {
+                            Object.entries(raw_response).forEach(([key, value]) => {
                                 console.log(`Response Key: ${key}, Value:`, value);
                             });
-                            Object.entries(response.response).forEach(([key, value]) => {
+                            Object.entries(raw_response.response).forEach(([key, value]) => {
                                 console.log(`Response Key: ${key}, Value:`, value);
                             });
                             // Add AI response
-                            UIManager.addChatMessage(response.value, false);
+                            UIManager.addChatMessage(raw_response.key("response").Value, false);
                         } catch (error) {
                             // Remove typing indicator
                             elements.chatHistory.removeChild(typingIndicator);
