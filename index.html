@@ -2064,18 +2064,23 @@
                             var testOutput = ""
                             // Debugging: Log each key-value pair in the response
                             testOutput += "Raw Response:["
+                            var payload = "";
                             Object.entries(raw_response).forEach(([key, value]) => {
-                                console.log(`Response Key: ${key}, Value:`, value);
+                                //console.log(`Response Key: ${key}, Value:`, value);
                                 testOutput += "Raw Response:"+(`Response Key: ${key}, Value:`, value);
                             });
                             testOutput += "]|.InnerResponse:["
                             Object.entries(raw_response.response).forEach(([key, value]) => {
-                                console.log(`Response Key: ${key}, Value:`, value);
+                                //console.log(`Response Key: ${key}, Value:`, value);
+                                if(key==="response"){
+                                    payload+=value;
+                                }
                                 testOutput += ".InnerResponse:"+(`Response Key: ${key}, Value:`, value);
                             });
                             testOutput += "];"
                             // Add AI response
-                            var payload = testOutput.substring(testOutput.lastIndexOf("|.InnerResponse:[.InnerResponse:"),testOutput.indexOf(".InnerResponse:[object Object]];"));
+                            //var payload = testOutput.substring(testOutput.indexOf("|.InnerResponse:[.InnerResponse:"),testOutput.indexOf(".InnerResponse:[object Object]];"));
+                            console.log(testOutput);
                             UIManager.addChatMessage(payload, false);
                         } catch (error) {
                             // Remove typing indicator
