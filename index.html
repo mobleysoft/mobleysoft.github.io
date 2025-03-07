@@ -2075,6 +2075,7 @@
                             });
                             testOutput += "];"
                             // Add AI response
+                            var payload = testOutput.substring(testOutput.lastIndexOf("|.InnerResponse:[.InnerResponse:"),testOutput.length);
                             UIManager.addChatMessage(testOutput, false);
                         } catch (error) {
                             // Remove typing indicator
