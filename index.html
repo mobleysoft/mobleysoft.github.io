@@ -2061,16 +2061,21 @@
                             elements.chatHistory.removeChild(typingIndicator);
                             // Debugging: Log the raw response
                             console.log("Raw API Response:", raw_response);
-
+                            var testOutput = ""
                             // Debugging: Log each key-value pair in the response
+                            testOutput += "Raw Response:["
                             Object.entries(raw_response).forEach(([key, value]) => {
                                 console.log(`Response Key: ${key}, Value:`, value);
+                                testOutput += "Raw Response:"+(`Response Key: ${key}, Value:`, value);
                             });
+                            testOutput += "]|.InnerResponse:["
                             Object.entries(raw_response.response).forEach(([key, value]) => {
                                 console.log(`Response Key: ${key}, Value:`, value);
+                                testOutput += ".InnerResponse:"+(`Response Key: ${key}, Value:`, value);
                             });
+                            testOutput += "];"
                             // Add AI response
-                            UIManager.addChatMessage(raw_response?.response, false);
+                            UIManager.addChatMessage(testOutput, false);
                         } catch (error) {
                             // Remove typing indicator
                             elements.chatHistory.removeChild(typingIndicator);
