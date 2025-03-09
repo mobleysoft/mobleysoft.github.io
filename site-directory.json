@@ -289,6 +289,12 @@
   },
   "CNAME": "file",
   "README.md": "file",
+  "Ryan": {
+    "index.html": "file",
+    "papers": {
+      "paper1.html": "file"
+    }
+  },
   "Zork": {
     "Ansar.html": "file",
     "Divs": {
@@ -1124,6 +1130,7 @@
       "Let me in (9).mp3": "file",
       "Let me in.mp3": "file",
       "NOW I_LL NEVER LEAVE HER (36).mp3": "file",
+      "NOW I_LL NEVER LEAVE HER.mp3": "file",
       "SUPER VIBEY!!!!NOW I_LL NEVER LEAVE HER.mp3": "file",
       "SummonGigi.mp3": "file",
       "The Weave (2).mp3": "file",
